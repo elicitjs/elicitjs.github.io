@@ -1,0 +1,382 @@
+1:"$Sreact.fragment"
+2:I[7121,[],""]
+3:I[4581,[],""]
+4:I[6984,["799","static/chunks/799-7af107d40bc88b92.js","3724","static/chunks/3724-d12e76d78a883e63.js","8500","static/chunks/8500-421c3037307d9211.js","637","static/chunks/637-1286b55f42136e00.js","5424","static/chunks/5424-f839d0fc5daf46c0.js","9761","static/chunks/9761-547c4c0c570149b3.js","1098","static/chunks/1098-2ff397ccf5b527da.js","5238","static/chunks/app/editing/external-controls/page-1cb03cffca8c7bab.js"],"DocShell"]
+5:I[2478,["799","static/chunks/799-7af107d40bc88b92.js","3724","static/chunks/3724-d12e76d78a883e63.js","8500","static/chunks/8500-421c3037307d9211.js","637","static/chunks/637-1286b55f42136e00.js","5424","static/chunks/5424-f839d0fc5daf46c0.js","9761","static/chunks/9761-547c4c0c570149b3.js","1098","static/chunks/1098-2ff397ccf5b527da.js","5238","static/chunks/app/editing/external-controls/page-1cb03cffca8c7bab.js"],"ApiReference"]
+16:I[7123,[],""]
+:HL["/_next/static/css/89d8c60f936c1aa1.css","style"]
+0:{"P":null,"b":"tv18AyE76ijOK3suAUb2x","p":"","c":["","editing","external-controls",""],"i":false,"f":[[["",{"children":["editing",{"children":["external-controls",{"children":["__PAGE__",{}]}]}]},"$undefined","$undefined",true],["",["$","$1","c",{"children":[[["$","link","0",{"rel":"stylesheet","href":"/_next/static/css/89d8c60f936c1aa1.css","precedence":"next","crossOrigin":"$undefined","nonce":"$undefined"}]],["$","html",null,{"lang":"en","suppressHydrationWarning":true,"children":["$","body",null,{"suppressHydrationWarning":true,"children":["$","$L2",null,{"parallelRouterKey":"children","error":"$undefined","errorStyles":"$undefined","errorScripts":"$undefined","template":["$","$L3",null,{}],"templateStyles":"$undefined","templateScripts":"$undefined","notFound":[[["$","title",null,{"children":"404: This page could not be found."}],["$","div",null,{"style":{"fontFamily":"system-ui,\"Segoe UI\",Roboto,Helvetica,Arial,sans-serif,\"Apple Color Emoji\",\"Segoe UI Emoji\"","height":"100vh","textAlign":"center","display":"flex","flexDirection":"column","alignItems":"center","justifyContent":"center"},"children":["$","div",null,{"children":[["$","style",null,{"dangerouslySetInnerHTML":{"__html":"body{color:#000;background:#fff;margin:0}.next-error-h1{border-right:1px solid rgba(0,0,0,.3)}@media (prefers-color-scheme:dark){body{color:#fff;background:#000}.next-error-h1{border-right:1px solid rgba(255,255,255,.3)}}"}}],["$","h1",null,{"className":"next-error-h1","style":{"display":"inline-block","margin":"0 20px 0 0","padding":"0 23px 0 0","fontSize":24,"fontWeight":500,"verticalAlign":"top","lineHeight":"49px"},"children":404}],["$","div",null,{"style":{"display":"inline-block"},"children":["$","h2",null,{"style":{"fontSize":14,"fontWeight":400,"lineHeight":"49px","margin":0},"children":"This page could not be found."}]}]]}]}]],[]],"forbidden":"$undefined","unauthorized":"$undefined"}]}]}]]}],{"children":["editing",["$","$1","c",{"children":[null,["$","$L2",null,{"parallelRouterKey":"children","error":"$undefined","errorStyles":"$undefined","errorScripts":"$undefined","template":["$","$L3",null,{}],"templateStyles":"$undefined","templateScripts":"$undefined","notFound":"$undefined","forbidden":"$undefined","unauthorized":"$undefined"}]]}],{"children":["external-controls",["$","$1","c",{"children":[null,["$","$L2",null,{"parallelRouterKey":"children","error":"$undefined","errorStyles":"$undefined","errorScripts":"$undefined","template":["$","$L3",null,{}],"templateStyles":"$undefined","templateScripts":"$undefined","notFound":"$undefined","forbidden":"$undefined","unauthorized":"$undefined"}]]}],{"children":["__PAGE__",["$","$1","c",{"children":[["$","$L4",null,{"children":[["$","h1",null,{"children":"External controls"}],"\n",["$","p",null,{"className":"lead","children":["Bind an edit to any external controller — a ",["$","code",null,{"className":"inline","children":"<select>"}],", sliders, a rotate icon, a plain function — and drive it from outside the SVG. Give the edit a ",["$","code",null,{"className":"inline","children":"name"}],", then call ",["$","code",null,{"className":"inline","children":"el.control(name).set(value)"}],". Nothing about how edits work changes: the control synthesizes the ",["$","strong",null,{"children":"same"}]," events a pointer produces and hands them to the one dispatch, so constraints, undo/redo, guides, and ",["$","code",null,{"className":"inline","children":"on(\"change\")"}]," all run identically. It is a new input ",["$","em",null,{"children":"source"}],", not a second interaction system — the same move the keyboard already makes when it turns an arrow key into a drag."]}],"\n",["$","$L5",null,{"entries":[{"name":"edit({ name }) · container.control(name, index?)","summary":["Give any edit a ",["$","code",null,{"className":"inline","children":"name"}],", then drive it from outside the chart with"," ",["$","code",null,{"className":"inline","children":"el.control(name)"}],". The control synthesizes the same events a pointer does and feeds them to the one dispatch — so constraints, undo, guides, and"," ",["$","code",null,{"className":"inline","children":"on(\"change\")"}]," all run. A new input ",["$","em",null,{"children":"source"}],", not a second interaction system."],"signatures":["move({ name: \"move\", channels: [\"x\", \"y\"] })   // name an edit","const h = el.control(\"move\", 0);   // handle bound to the edit + datum 0","h.set(value)          // one-shot write (value edit) …","h.set({ x, y })       // … or a data value per channel (positional edit)","h.begin(); h.set(v); h.end();   // live drag → ONE undo entry","h.fire()              // TRIGGER edit (cycle/remove/toggle) — fires its click gesture","h.emit(event)         // raw event passthrough, scoped to this feature/node","h.accepts()           // what the channel's scale allows"],"options":[{"name":"edit.name","type":"string","default":"null","desc":"The handle this edit answers to. An edit with no name stays pointer- and keyboard-driven."},{"name":"control(name, index?)","type":"→ EditControl","default":"index: 0","desc":"A handle bound to that edit and that row. Ask for it again after the data changes; it resolves the edit on each call."},{"name":"h.set(value)","type":"void","default":"—","desc":"$L6"},{"name":"h.begin() / h.end()","type":"void","default":"—","desc":"$L7"},{"name":"h.fire()","type":"void","default":"—","desc":"$L8"},{"name":"h.accepts()","type":"→ object | null","default":"—","desc":"$L9"},{"name":"h.emit(event)","type":"void","default":"—","desc":"A raw event, scoped to this edit's feature and node. The low-level route when you already hold pixels."}],"returns":"$La"},{"name":"set(options?)","summary":"$Lb","signatures":["fill: { field: \"group\", edit: set({ name: \"category\" }) }","el.control(\"category\", i).set(\"B\")"]},{"name":"select() · el.select · el.selectWhere","summary":"$Lc","signatures":["edits: [ select() ]            // click a mark to select it","el.select(2)                   // select a SPECIFIC item by index","el.selectWhere(\"group\", \"North\")  // select by CATEGORY (first match)","el.getSelection()             // → index | null","el.clearSelection()           // deselect all","el.on(\"select\", (i, all) => …)  // selection changed (no data moved)"]},{"name":"container.emit(event)","summary":"$Ld","signatures":["el.emit({ type: \"commit\", node, value })","el.emit({ type: \"dragstart\", node });  el.emit({ type: \"drag\", node, x, y });  el.emit({ type: \"dragend\", node })"]}]}],"\n","$Le","\n","$Lf","\n","$L10","\n","$L11","\n","$L12","\n","$L13"]}],null,"$L14"]}],{},null,false]},null,false]},null,false]},null,false],"$L15",false]],"m":"$undefined","G":["$16",[]],"s":false,"S":true}
+17:I[7009,["799","static/chunks/799-7af107d40bc88b92.js","3724","static/chunks/3724-d12e76d78a883e63.js","8500","static/chunks/8500-421c3037307d9211.js","637","static/chunks/637-1286b55f42136e00.js","5424","static/chunks/5424-f839d0fc5daf46c0.js","9761","static/chunks/9761-547c4c0c570149b3.js","1098","static/chunks/1098-2ff397ccf5b527da.js","5238","static/chunks/app/editing/external-controls/page-1cb03cffca8c7bab.js"],"Example"]
+1c:I[8500,["799","static/chunks/799-7af107d40bc88b92.js","3724","static/chunks/3724-d12e76d78a883e63.js","8500","static/chunks/8500-421c3037307d9211.js","637","static/chunks/637-1286b55f42136e00.js","5424","static/chunks/5424-f839d0fc5daf46c0.js","9761","static/chunks/9761-547c4c0c570149b3.js","1098","static/chunks/1098-2ff397ccf5b527da.js","5238","static/chunks/app/editing/external-controls/page-1cb03cffca8c7bab.js"],""]
+1e:I[484,[],"OutletBoundary"]
+20:I[7837,[],"AsyncMetadataOutlet"]
+22:I[484,[],"ViewportBoundary"]
+24:I[484,[],"MetadataBoundary"]
+25:"$Sreact.suspense"
+6:["Write a ",["$","b",null,{"children":"data"}]," value. A scalar for a single-channel edit, or a map keyed by channel or field for a multi-channel one. Untouched axes hold their current position rather than teleporting."]
+7:["Bracket a live drag, so many ",["$","code",null,{"className":"inline","children":"set"}]," ticks collapse into one ",["$","a",null,{"href":"/editing/history","children":"undo"}]," entry — exactly as a pointer drag does."]
+8:["Trigger an edit that takes no value — ",["$","code",null,{"className":"inline","children":"cycle"}],", ",["$","code",null,{"className":"inline","children":"remove"}],", ",["$","code",null,{"className":"inline","children":"toggle"}],". It dispatches the edit’s own gesture on the row."]
+9:["What the channel’s scale allows: ",["$","code",null,{"className":"inline","children":"{ field, type, kind, temporal, invertible, domain, values, range }"}],". ",["$","code",null,{"className":"inline","children":"values"}]," is the accepted set on a discrete channel and ",["$","code",null,{"className":"inline","children":"null"}]," on a continuous one, where ",["$","code",null,{"className":"inline","children":"domain"}]," is the accepted range — so a picker or slider can offer only valid choices."]
+a:"Every route runs the ordinary dispatch, so a constraint gates an external write exactly as it gates a drag. External control is not a bypass."
+b:["The universal value edit: write a value into a channel's field — quantitative, colour, categorical, temporal. The ",["$","code",null,{"className":"inline","children":"commit"}],"-gesture counterpart to the positional edits, and what an external picker/slider drives via"," ",["$","code",null,{"className":"inline","children":"control(name).set(value)"}],". (",["$","code",null,{"className":"inline","children":"editText"}]," ","is its text specialization.)"]
+c:["Selection is transient ",["$","em",null,{"children":"pipeline"}]," state, not a ",["$","code",null,{"className":"inline","children":"selected"}]," data column. Put ",["$","code",null,{"className":"inline","children":"edit.select()"}]," on a mark to select it by click; drive the same state from outside with ",["$","code",null,{"className":"inline","children":"el.select(index)"}]," (a specific item) or"," ",["$","code",null,{"className":"inline","children":"el.selectWhere(field, value)"}]," (a category — the first matching row). The selected row gets the highlight outline, and a legend picker's"," ",["$","code",null,{"className":"inline","children":"row"}]," defaults to it. A ",["$","code",null,{"className":"inline","children":"select"}]," event fires; ",["$","code",null,{"className":"inline","children":"on(\"change\")"}],"/",["$","code",null,{"className":"inline","children":"getData"}]," never do."]
+d:["Low-level: inject a renderer-shaped gesture event directly. ",["$","code",null,{"className":"inline","children":"x"}],"/",["$","code",null,{"className":"inline","children":"y"}]," are inner (margin-subtracted) pixels. Prefer"," ",["$","code",null,{"className":"inline","children":"control"}],", which computes pixels from a data value for you."]
+e:["$","section",null,{"id":"how","children":[["$","h2",null,{"className":"section","children":"Name an edit, then drive it"}],[["$","p",".0",{"children":["The value flows the opposite way through the same scale. An edit maps a gesture → data by ",["$","em",null,{"children":"inverting"}]," a channel's scale; ",["$","code",null,{"className":"inline","children":"control(name).set(value)"}]," maps data → a gesture by running that scale ",["$","em",null,{"children":"forward"}],", then dispatches the ordinary edit. For a value edit (",["$","code",null,{"className":"inline","children":"set"}],"/",["$","code",null,{"className":"inline","children":"editText"}],") there is no pixel at all — the value is carried straight through. ",["$","code",null,{"className":"inline","children":"control(name).accepts()"}]," reports what the channel's scale allows, so a picker or slider can offer only valid values."],"className":"intro"}]],null]}]
+18:T10f1,// External controllers drive the SAME edits a pointer does. A `<select>` sets the
+// category (a value edit); a draggable pad moves the point (a positional edit).
+// Both go through the normal pipeline — the clamp on y holds for the pad exactly
+// as it would for a mouse drag.
+const chart = Elicit({
+  width: 380, height: 260,
+  margins: { top: 14, right: 14, bottom: 26, left: 30 },
+  schema: {
+    x:     { type: "quantitative", domain: [0, 100] },
+    y:     { type: "quantitative", domain: [0, 100] },
+    group: { type: "categorical",  domain: ["A", "B", "C"] },
+  },
+  data: [
+    { x: 30, y: 40, group: "A" },
+    { x: 62, y: 70, group: "B" },
+    { x: 78, y: 25, group: "C" },
+  ],
+  // A dataset invariant: y can never exceed 80. It gates EVERY edit, including the
+  // pad drag below — external control is not a bypass.
+  constraints: [ clamp({ field: "y", max: 80 }) ],
+  marks: [
+    point({
+      size: 7,
+      channels: {
+        x: { field: "x" },
+        y: { field: "y" },
+        fill: {
+          field: "group",
+          scale: { range: ["#2563eb", "#059669", "#d97706"] },
+          // A universal value edit: an external picker writes the chosen category.
+          edit: set({ name: "category" }),
+        },
+      },
+      // One drag over BOTH axes, named so a controller can address it.
+      edits: [ move({ name: "move", channels: ["x", "y"] }) ],
+    }),
+  ],
+});
+mount(chart);
+
+// We drive datum 0 (the first point). `.accepts()` reads what the channel allows.
+const i = 0;
+const cats = chart.control("category", i).accepts().values;   // ["A","B","C"]
+const [dx, dy] = [chart.getSchema().x.domain, chart.getSchema().y.domain];
+
+const controls = document.createElement("div");
+controls.style.cssText = "display:flex;gap:16px;align-items:center;margin-top:10px;font:12px system-ui";
+
+// 1) Category picker — options come straight from the scale's accepted values.
+const pick = document.createElement("select");
+for (const c of cats) {
+  const o = document.createElement("option");
+  o.value = c; o.textContent = c; pick.append(o);
+}
+pick.value = chart.getData()[i].group;
+pick.onchange = () => chart.control("category", i).set(pick.value);
+const pickWrap = document.createElement("label");
+pickWrap.style.cssText = "display:flex;gap:6px;align-items:center";
+pickWrap.append("category", pick);
+
+// 2) A draggable pad — the "UI element around the point". Dragging maps the pad's
+// local position to data space and drives the `move` edit live: begin() … set() …
+// end() collapse into ONE undo entry, just like a real drag.
+const pad = document.createElement("div");
+pad.style.cssText = "position:relative;width:120px;height:120px;border:1px solid #cbd5e1;border-radius:8px;background:#f8fafc;touch-action:none;cursor:grab";
+const knob = document.createElement("div");
+knob.style.cssText = "position:absolute;width:14px;height:14px;margin:-7px 0 0 -7px;border-radius:50%;background:#111827";
+pad.append(knob);
+const placeKnob = () => {
+  const d = chart.getData()[i];
+  knob.style.left = ((d.x - dx[0]) / (dx[1] - dx[0]) * 100) + "%";
+  knob.style.top = (100 - (d.y - dy[0]) / (dy[1] - dy[0]) * 100) + "%";
+};
+let handle = null;
+const toData = (ev) => {
+  const r = pad.getBoundingClientRect();
+  const fx = Math.max(0, Math.min(1, (ev.clientX - r.left) / r.width));
+  const fy = Math.max(0, Math.min(1, (ev.clientY - r.top) / r.height));
+  return { x: dx[0] + fx * (dx[1] - dx[0]), y: dy[0] + (1 - fy) * (dy[1] - dy[0]) };
+};
+pad.addEventListener("pointerdown", (ev) => {
+  pad.setPointerCapture(ev.pointerId);
+  handle = chart.control("move", i);
+  handle.begin();
+  handle.set(toData(ev));
+});
+pad.addEventListener("pointermove", (ev) => { if (handle) handle.set(toData(ev)); });
+const stop = () => { if (handle) { handle.end(); handle = null; } };
+pad.addEventListener("pointerup", stop);
+pad.addEventListener("pointercancel", stop);
+
+const padWrap = document.createElement("div");
+padWrap.style.cssText = "display:flex;flex-direction:column;gap:4px;align-items:center;color:#64748b";
+padWrap.append(pad, document.createTextNode("drag to move point 0"));
+
+controls.append(pickWrap, padWrap);
+mount(controls);
+
+// Keep the picker + knob in sync with committed data (edits, undo, redo all fire).
+chart.on("change", () => { pick.value = chart.getData()[i].group; placeKnob(); });
+placeKnob();
+f:["$","section",null,{"id":"scatter","children":[["$","h2",null,{"className":"section","children":"A picker and a drag pad"}],[["$","p",".0",{"children":["The ",["$","code",null,{"className":"inline","children":"<select>"}]," writes the point's category through a ",["$","code",null,{"className":"inline","children":"set()"}]," edit; its options come from ",["$","code",null,{"className":"inline","children":"control(\"category\", 0).accepts().values"}],". The pad drives a two-axis ",["$","code",null,{"className":"inline","children":"move"}]," live — ",["$","code",null,{"className":"inline","children":"begin() … set({x,y}) … end()"}]," collapses into one undo entry. The ",["$","code",null,{"className":"inline","children":"clamp"}]," on ",["$","code",null,{"className":"inline","children":"y"}]," gates the pad exactly as it gates a mouse drag: external control is not a bypass."],"className":"intro"}]],["$","div",null,{"className":"grid","children":[["$","$L17",".1",{"code":"$18","title":"Scatter: category picker + drag pad","blurb":"A <select> sets the category; a draggable pad moves the point through the clamped drag edit.","try":"pick a category; drag the pad; the point obeys the y ≤ 80 clamp either way."}]]}]]}]
+19:T846,// Two ways to change one circle's category, both external. `cycle` is a CLICK edit
+// that steps to the next value; a picker SETS a value directly. They coexist on the
+// same `fill` field: click the circle (or the ⟳ button) to step, or choose from the
+// dropdown to jump straight there.
+const chart = Elicit({
+  width: 300, height: 190,
+  margins: { top: 10, right: 10, bottom: 10, left: 10 },
+  schema: {
+    kind: { type: "categorical", domain: ["low", "med", "high"] },
+  },
+  data: [ { kind: "low" } ],
+  marks: [
+    point({
+      size: 26,
+      channels: {
+        x: { value: 150 },
+        y: { value: 90 },
+        fill: {
+          field: "kind",
+          scale: { range: ["#93c5fd", "#3b82f6", "#1e3a8a"] },
+          // Direct choice — a picker writes exactly this value.
+          edit: set({ name: "pick" }),
+        },
+      },
+      // Step-at-a-time — a click (on the circle or a button) advances the category.
+      edits: [ cycle({ name: "step", channel: "fill" }) ],
+    }),
+  ],
+});
+mount(chart);
+
+const controls = document.createElement("div");
+controls.style.cssText = "display:flex;gap:12px;align-items:center;margin-top:10px;font:13px system-ui";
+
+// A picker → `set`: options are exactly the values the fill scale accepts.
+const pick = document.createElement("select");
+for (const v of chart.control("pick", 0).accepts().values) {
+  const o = document.createElement("option");
+  o.value = v; o.textContent = v; pick.append(o);
+}
+pick.value = chart.getData()[0].kind;
+pick.onchange = () => chart.control("pick", 0).set(pick.value);
+const pickWrap = document.createElement("label");
+pickWrap.style.cssText = "display:flex;gap:6px;align-items:center";
+pickWrap.append("pick", pick);
+
+// A button → `fire`: dispatches the cycle edit's own click gesture, no value.
+const step = document.createElement("button");
+step.textContent = "⟳ cycle";
+step.onclick = () => chart.control("step", 0).fire();
+
+controls.append(pickWrap, step);
+mount(controls);
+
+// Keep the picker in step whichever way the category changed.
+chart.on("change", () => { pick.value = chart.getData()[0].kind; });
+10:["$","section",null,{"id":"pick","children":[["$","h2",null,{"className":"section","children":"Pick vs. cycle: driving other gestures"}],[["$","p",".0",{"children":[["$","code",null,{"className":"inline","children":".set(value)"}]," covers the value edits (",["$","code",null,{"className":"inline","children":"set"}],"/",["$","code",null,{"className":"inline","children":"editText"}],") and the positional ones (",["$","code",null,{"className":"inline","children":"move"}],"/",["$","code",null,{"className":"inline","children":"rotate"}],"/",["$","code",null,{"className":"inline","children":"resize"}],"). The click-triggered edits — ",["$","code",null,{"className":"inline","children":"cycle"}],", ",["$","code",null,{"className":"inline","children":"remove"}],", ",["$","code",null,{"className":"inline","children":"toggle"}]," — take no value; they just fire. ",["$","code",null,{"className":"inline","children":".fire()"}]," drives those, dispatching the edit's own gesture on the datum. So one circle can offer a ",["$","strong",null,{"children":"picker"}]," (",["$","code",null,{"className":"inline","children":"set"}]," — jump straight to a value) ",["$","em",null,{"children":"and"}]," a ",["$","strong",null,{"children":"cycle"}]," (",["$","code",null,{"className":"inline","children":"fire"}]," — step to the next), on the same field, alongside the native click."],"className":"intro"}]],["$","div",null,{"className":"grid","children":[["$","$L17",".1",{"code":"$19","title":"A circle: pick or cycle its category","blurb":"A dropdown sets the category (set); a button and the circle itself step it (cycle).","try":"choose from the dropdown, press ⟳, or click the circle — all change the same field."}]]}]]}]
+1a:T8dc,// A face is a row of fields; each facial PARAM is a channel on one of the face's
+// parts. Bind each to a field with a named `set()` edit and an external slider can
+// write it. `.accepts()` reads the range off the very scale the part encodes
+// through — including a group's per-datum FRAME scale — so the slider offers
+// exactly the values the channel accepts. Add a `slide`/`rotate` alongside and the
+// same field is drivable by pointer too: one dataset, two input sources.
+const PARAMS = [
+  { param: "mouthCurve", field: "smile", label: "smile" },
+  { param: "eyeScale",   field: "eyes",  label: "eyes"  },
+  { param: "browTilt",   field: "brow",  label: "brow"  },
+];
+
+const channels = {};
+for (const { param, field } of PARAMS) {
+  channels[param] = { field, edit: set({ name: field }) };
+}
+
+const chart = Elicit({
+  width: 300, height: 300,
+  margins: { top: 12, right: 12, bottom: 12, left: 12 },
+  schema: {
+    smile: { type: "quantitative", domain: [0, 1] },
+    eyes:  { type: "quantitative", domain: [0, 1] },
+    brow:  { type: "quantitative", domain: [0, 1] },
+  },
+  data: [ { smile: 0.7, eyes: 0.5, brow: 0.4 } ],
+  marks: [ face({ channels }) ],
+});
+mount(chart);
+
+const controls = document.createElement("div");
+controls.style.cssText = "display:flex;flex-direction:column;gap:8px;margin-top:10px;font:12px system-ui;max-width:300px";
+
+const sliders = {};
+for (const { field, label } of PARAMS) {
+  // `.accepts()` tells the UI the field's range (from the scale/schema), so the
+  // slider offers only values the channel accepts.
+  const [lo, hi] = chart.control(field).accepts().domain;
+  const row = document.createElement("label");
+  row.style.cssText = "display:grid;grid-template-columns:48px 1fr;gap:8px;align-items:center";
+  const s = document.createElement("input");
+  s.type = "range"; s.min = lo; s.max = hi; s.step = (hi - lo) / 100;
+  s.value = chart.getData()[0][field];
+  s.oninput = () => chart.control(field).set(+s.value);
+  sliders[field] = s;
+  row.append(label, s);
+  controls.append(row);
+}
+mount(controls);
+
+// Dragging the face directly also fires `change` — keep the sliders in step.
+chart.on("change", () => {
+  const d = chart.getData()[0];
+  for (const { field } of PARAMS) sliders[field].value = d[field];
+});
+11:["$","section",null,{"id":"face","children":[["$","h2",null,{"className":"section","children":"Sliders for facial features"}],[["$","p",".0",{"children":["Each facial parameter is a channel; bind it to a field with a named ",["$","code",null,{"className":"inline","children":"set()"}]," edit and a slider can write it — while the face stays directly draggable (grab the mouth, pull a smile). One dataset, two input sources, the same edits. Each slider's range comes from ",["$","code",null,{"className":"inline","children":"control(field).accepts().domain"}],"."],"className":"intro"}]],["$","div",null,{"className":"grid","children":[["$","$L17",".1",{"code":"$1a","title":"Face: parameter sliders","blurb":"Three sliders drive three facial params; dragging the face keeps them in sync.","try":"move a slider, or drag the face directly — both write the same fields."}]]}]]}]
+1b:T7a0,// A rotate icon spins a box. `rotate` is a positional edit — it reads a pointer
+// angle about the mark. Driving it by a DATA value (degrees) is just the inverse:
+// `.set(deg)` forward-encodes the angle to the pointer that would produce it, then
+// runs the ordinary edit. The box is also directly rotatable by dragging it.
+const chart = Elicit({
+  width: 300, height: 260,
+  margins: { top: 20, right: 20, bottom: 20, left: 20 },
+  schema: {
+    x:     { type: "quantitative", domain: [0, 100] },
+    y:     { type: "quantitative", domain: [0, 100] },
+    theta: { type: "quantitative", domain: [0, 360] },
+  },
+  data: [ { x: 50, y: 50, theta: 20 } ],
+  marks: [
+    rect({
+      channels: {
+        x: { field: "x" },
+        y: { field: "y" },
+        width:  { value: 90 },
+        height: { value: 60 },
+        fill: { value: "#6366f1" },
+        stroke: { value: "#3730a3" },
+        angle: {
+          field: "theta",
+          scale: { range: [0, 360] },
+          edit: rotate({ name: "spin", pick: "direct", pivot: "mark", fold: false }),
+        },
+      },
+    }),
+  ],
+});
+mount(chart);
+
+const controls = document.createElement("div");
+controls.style.cssText = "display:flex;gap:8px;align-items:center;margin-top:10px;font:13px system-ui";
+
+const spinBy = (delta) => {
+  const now = chart.getData()[0].theta;
+  const next = ((now + delta) % 360 + 360) % 360;
+  chart.control("spin", 0).set(next);   // forward-encodes deg -> pointer -> rotate
+};
+
+const ccw = document.createElement("button");
+ccw.textContent = "⟲ −15°";
+ccw.onclick = () => spinBy(-15);
+const cw = document.createElement("button");
+cw.textContent = "⟳ +15°";
+cw.onclick = () => spinBy(15);
+
+const readout = document.createElement("span");
+readout.style.cssText = "color:#64748b";
+const sync = () => { readout.textContent = Math.round(chart.getData()[0].theta) + "°"; };
+chart.on("change", sync);
+sync();
+
+controls.append(ccw, cw, readout);
+mount(controls);
+12:["$","section",null,{"id":"rotate","children":[["$","h2",null,{"className":"section","children":"A rotate icon for a box"}],[["$","p",".0",{"children":[["$","code",null,{"className":"inline","children":"rotate"}]," reads a pointer angle about the mark; driving it by degrees is the inverse. ",["$","code",null,{"className":"inline","children":"control(\"spin\", 0).set(deg)"}]," forward-encodes the angle to the pointer that would produce it, then runs the ordinary rotate edit. The box also rotates by direct drag."],"className":"intro"}]],["$","div",null,{"className":"grid","children":[["$","$L17",".1",{"code":"$1b","title":"Rotate a box by an icon","blurb":"Buttons step the angle in data space; the façade forward-encodes to the rotate edit.","try":"press the rotate buttons, or drag the box itself."}]]}]]}]
+1d:Tbf2,// Selection is pipeline state, so it has its own external API beside the data —
+// no `selected` column. `el.select(index)` picks a SPECIFIC ITEM; `el.selectWhere`
+// picks by CATEGORY (the first row matching a field/value). Clicking a bar selects
+// it too (edit.select), and `on("select")` reports whichever way it moved. The
+// legend then edits the SELECTED bar's group.
+const chart = Elicit({
+  width: 360, height: 210,
+  margins: { top: 16, right: 16, bottom: 28, left: 36 },
+  data: [
+    { name: "A", value: 12, group: "North" },
+    { name: "B", value: 8,  group: "South" },
+    { name: "C", value: 15, group: "North" },
+    { name: "D", value: 6,  group: "South" },
+  ],
+  schema: {
+    name: { type: "categorical", domain: ["A", "B", "C", "D"] },
+    group: { type: "categorical", domain: ["North", "South"] },
+    value: { type: "quantitative", domain: [0, 16] },
+  },
+  marks: [
+    barY({
+      channels: {
+        x: { field: "name" },
+        y: { field: "value" },
+        fill: { field: "group" },
+      },
+      edits: [ select() ],           // click a bar to select it
+    }),
+    legendColor({ anchor: "right", title: "group", edit: edit.legend.category() }),
+  ],
+});
+mount(chart);
+
+const controls = document.createElement("div");
+controls.style.cssText = "display:flex;gap:12px;align-items:center;flex-wrap:wrap;margin-top:10px;font:13px system-ui";
+
+// Select a SPECIFIC ITEM by its name (→ el.selectWhere on the `name` field).
+const item = document.createElement("select");
+for (const d of chart.getData()) {
+  const o = document.createElement("option");
+  o.value = d.name; o.textContent = d.name; item.append(o);
+}
+item.onchange = () => chart.selectWhere("name", item.value);
+const itemWrap = document.createElement("label");
+itemWrap.style.cssText = "display:flex;gap:6px;align-items:center";
+itemWrap.append("item", item);
+
+// Select a CATEGORY — the first bar in a group (→ el.selectWhere on `group`).
+const cat = document.createElement("select");
+for (const g of ["North", "South"]) {
+  const o = document.createElement("option");
+  o.value = g; o.textContent = g; cat.append(o);
+}
+const catBtn = document.createElement("button");
+catBtn.textContent = "select group";
+catBtn.onclick = () => chart.selectWhere("group", cat.value);
+const catWrap = document.createElement("label");
+catWrap.style.cssText = "display:flex;gap:6px;align-items:center";
+catWrap.append("group", cat, catBtn);
+
+// Clear.
+const clear = document.createElement("button");
+clear.textContent = "clear";
+clear.onclick = () => chart.clearSelection();
+
+const readout = document.createElement("span");
+readout.style.cssText = "margin-left:auto;color:#6b7280";
+
+controls.append(itemWrap, catWrap, clear, readout);
+mount(controls);
+
+// on("select") hears selection changes — never `change`, since no data moved.
+chart.on("select", (i) => {
+  const d = i == null ? null : chart.getData()[i];
+  readout.textContent = d ? `selected: ${d.name} (${d.group})` : "nothing selected";
+  if (d) item.value = d.name;
+});
+readout.textContent = "nothing selected";
+13:["$","section",null,{"id":"selection","children":[["$","h2",null,{"className":"section","children":"Driving the selection"}],[["$","p",".0",{"children":["Selection is ",["$","strong",null,{"children":"pipeline state"}],", not a data column — so it has its own external API beside ",["$","code",null,{"className":"inline","children":"getData"}],"/",["$","code",null,{"className":"inline","children":"setData"}],", and its own ",["$","code",null,{"className":"inline","children":"select"}]," event. ",["$","code",null,{"className":"inline","children":"el.select(index)"}]," picks a ",["$","strong",null,{"children":"specific item"}],"; ",["$","code",null,{"className":"inline","children":"el.selectWhere(field, value)"}]," picks by ",["$","strong",null,{"children":"category"}]," (the first row matching, or every one with ",["$","code",null,{"className":"inline","children":"{ all: true }"}],"). Both go through the same path a click on a mark does (",["$","code",null,{"className":"inline","children":"edit.select()"}],"), so the selected row gets the highlight outline and a legend picker edits it — whichever input moved the selection. ",["$","code",null,{"className":"inline","children":"on(\"select\")"}]," reports the change; ",["$","code",null,{"className":"inline","children":"getData"}]," and ",["$","code",null,{"className":"inline","children":"on(\"change\")"}]," stay silent, because no belief data moved."],"className":"intro"}],["$","p",".1",{"children":["Pass an array to ",["$","code",null,{"className":"inline","children":"el.select"}]," for several rows at once. See ",["$","$L1c",null,{"href":"/editing/selection","children":"Selection"}]," for the whole model — multi-select, the ",["$","code",null,{"className":"inline","children":"selected"}]," effect, and the edits that read it."],"className":"intro"}]],["$","div",null,{"className":"grid","children":[["$","$L17",".2",{"code":"$1d","title":"Select an item, or a category","blurb":"A dropdown selects a specific bar; a button selects the first bar in a group; the legend edits whichever is selected.","try":"pick an item or a group — or click a bar — then use the legend to change its group."}]]}]]}]
+14:["$","$L1e",null,{"children":["$L1f",["$","$L20",null,{"promise":"$@21"}]]}]
+15:["$","$1","h",{"children":[null,[["$","$L22",null,{"children":"$L23"}],null],["$","$L24",null,{"children":["$","div",null,{"hidden":true,"children":["$","$25",null,{"fallback":null,"children":"$L26"}]}]}]]}]
+23:[["$","meta","0",{"charSet":"utf-8"}],["$","meta","1",{"name":"viewport","content":"width=device-width, initial-scale=1"}]]
+1f:null
+21:{"metadata":[["$","title","0",{"children":"ElicitJS Docs"}],["$","meta","1",{"name":"description","content":"Declarative visual belief elicitation — documentation"}]],"error":null,"digest":"$undefined"}
+26:"$21:metadata"

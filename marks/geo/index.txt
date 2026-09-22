@@ -1,0 +1,230 @@
+1:"$Sreact.fragment"
+2:I[7121,[],""]
+3:I[4581,[],""]
+4:I[6984,["799","static/chunks/799-7af107d40bc88b92.js","3724","static/chunks/3724-d12e76d78a883e63.js","8500","static/chunks/8500-421c3037307d9211.js","637","static/chunks/637-1286b55f42136e00.js","5424","static/chunks/5424-f839d0fc5daf46c0.js","9761","static/chunks/9761-547c4c0c570149b3.js","1098","static/chunks/1098-2ff397ccf5b527da.js","5673","static/chunks/app/marks/geo/page-1cb03cffca8c7bab.js"],"DocShell"]
+5:I[2478,["799","static/chunks/799-7af107d40bc88b92.js","3724","static/chunks/3724-d12e76d78a883e63.js","8500","static/chunks/8500-421c3037307d9211.js","637","static/chunks/637-1286b55f42136e00.js","5424","static/chunks/5424-f839d0fc5daf46c0.js","9761","static/chunks/9761-547c4c0c570149b3.js","1098","static/chunks/1098-2ff397ccf5b527da.js","5673","static/chunks/app/marks/geo/page-1cb03cffca8c7bab.js"],"ApiReference"]
+1c:I[7123,[],""]
+:HL["/_next/static/css/89d8c60f936c1aa1.css","style"]
+0:{"P":null,"b":"tv18AyE76ijOK3suAUb2x","p":"","c":["","marks","geo",""],"i":false,"f":[[["",{"children":["marks",{"children":["geo",{"children":["__PAGE__",{}]}]}]},"$undefined","$undefined",true],["",["$","$1","c",{"children":[[["$","link","0",{"rel":"stylesheet","href":"/_next/static/css/89d8c60f936c1aa1.css","precedence":"next","crossOrigin":"$undefined","nonce":"$undefined"}]],["$","html",null,{"lang":"en","suppressHydrationWarning":true,"children":["$","body",null,{"suppressHydrationWarning":true,"children":["$","$L2",null,{"parallelRouterKey":"children","error":"$undefined","errorStyles":"$undefined","errorScripts":"$undefined","template":["$","$L3",null,{}],"templateStyles":"$undefined","templateScripts":"$undefined","notFound":[[["$","title",null,{"children":"404: This page could not be found."}],["$","div",null,{"style":{"fontFamily":"system-ui,\"Segoe UI\",Roboto,Helvetica,Arial,sans-serif,\"Apple Color Emoji\",\"Segoe UI Emoji\"","height":"100vh","textAlign":"center","display":"flex","flexDirection":"column","alignItems":"center","justifyContent":"center"},"children":["$","div",null,{"children":[["$","style",null,{"dangerouslySetInnerHTML":{"__html":"body{color:#000;background:#fff;margin:0}.next-error-h1{border-right:1px solid rgba(0,0,0,.3)}@media (prefers-color-scheme:dark){body{color:#fff;background:#000}.next-error-h1{border-right:1px solid rgba(255,255,255,.3)}}"}}],["$","h1",null,{"className":"next-error-h1","style":{"display":"inline-block","margin":"0 20px 0 0","padding":"0 23px 0 0","fontSize":24,"fontWeight":500,"verticalAlign":"top","lineHeight":"49px"},"children":404}],["$","div",null,{"style":{"display":"inline-block"},"children":["$","h2",null,{"style":{"fontSize":14,"fontWeight":400,"lineHeight":"49px","margin":0},"children":"This page could not be found."}]}]]}]}]],[]],"forbidden":"$undefined","unauthorized":"$undefined"}]}]}]]}],{"children":["marks",["$","$1","c",{"children":[null,["$","$L2",null,{"parallelRouterKey":"children","error":"$undefined","errorStyles":"$undefined","errorScripts":"$undefined","template":["$","$L3",null,{}],"templateStyles":"$undefined","templateScripts":"$undefined","notFound":"$undefined","forbidden":"$undefined","unauthorized":"$undefined"}]]}],{"children":["geo",["$","$1","c",{"children":[null,["$","$L2",null,{"parallelRouterKey":"children","error":"$undefined","errorStyles":"$undefined","errorScripts":"$undefined","template":["$","$L3",null,{}],"templateStyles":"$undefined","templateScripts":"$undefined","notFound":"$undefined","forbidden":"$undefined","unauthorized":"$undefined"}]]}],{"children":["__PAGE__",["$","$1","c",{"children":[["$","$L4",null,{"children":[["$","h1",null,{"children":"Geo"}],"\n",["$","p",null,{"className":"lead","children":["Geographic marks for map elicitation. Set a chart-level ",["$","code",null,{"className":"inline","children":"projection"}]," — ",["$","code",null,{"className":"inline","children":"\"mercator\""}],", ",["$","code",null,{"className":"inline","children":"{ type, domain, … }"}],", or a live ",["$","code",null,{"className":"inline","children":"d3.geo*"}]," instance. Position goes through that projection's apply/invert, not x/y scales. Provide basemap topology with ",["$","code",null,{"className":"inline","children":"geoBasemap({ geojson })"}],", a GeoJSON FeatureCollection, Feature, or Geometry. Editable overlays live on the dataset, like every other mark. Examples below use Vancouver's 22 local areas (",["$","code",null,{"className":"inline","children":"vancouver"}]," in the docs scope) — swap in your own file."]}],"\n",["$","$L5",null,{"entries":[{"name":"projection (ElicitSpec)","summary":["Chart option. Built once per layout into ",["$","code",null,{"className":"inline","children":"scales.projection"}]," with ",["$","code",null,{"className":"inline","children":"apply"}],", ",["$","code",null,{"className":"inline","children":"invert"}],", and ",["$","code",null,{"className":"inline","children":"path"}],". Fit with ",["$","code",null,{"className":"inline","children":"domain: geojson"}],". Auto axes default off when set."],"signatures":["projection: \"mercator\" | \"albers-usa\" | \"equirectangular\" | …","projection: { type, domain?, rotate?, inset?, … }"]},{"name":"geoBasemap({ geojson, … })","summary":["Inert background map. Pass topology as a mark option — ",["$","code",null,{"className":"inline","children":"geojson"}]," — not as ",["$","code",null,{"className":"inline","children":"Elicit"}]," data. Load your own: ",["$","code",null,{"className":"inline","children":["const map = await fetch(\"…\").then(r =",">"," r.json())"]}]," then ",["$","code",null,{"className":"inline","children":["geoBasemap(","{"," geojson: map ","}",")"]}],". A FeatureCollection draws ",["$","b",null,{"children":"one path per feature"}]," so boundaries show."],"signatures":["geoBasemap({ geojson, fill, stroke, strokeWidth, id }) → Feature"],"options":[{"name":"geojson","type":"GeoJSON","default":"—","desc":"FeatureCollection, Feature, or Geometry. Required for a visible basemap."},{"name":"fill / stroke / strokeWidth","type":"style","default":"'#e2e8f0' / '#94a3b8' / 0.75","desc":"Chrome styling (also via channels)."}]},{"name":"geoTile({ url, … })","summary":"$L6","signatures":["geoTile() → Feature  // OSM standard + attribution","geoTile({ url, subdomains, tileSize, opacity, attribution, attributionSize, minZoom, maxZoom, zoomOffset, id }) → Feature"],"options":[{"name":"url","type":"string | fn","default":"OSM standard","desc":"$L7"},{"name":"subdomains","type":"string[]","default":"[]","desc":"$L8"},{"name":"opacity","type":"number","default":"1","desc":"Dim the imagery so overlaid data reads."},{"name":"attribution","type":"string | null","default":"\"© OpenStreetMap contributors\"","desc":"Drawn bottom-right. A licence condition of every tile service — only pass null if you render the credit yourself."},{"name":"attributionSize","type":"number","default":"9","desc":"Attribution font size in px."},{"name":"zoomOffset / minZoom / maxZoom","type":"number","default":"0 / 0 / 19","desc":"Nudge or clamp the chosen zoom level (picked from the fitted scale)."},{"name":"tileSize","type":"number","default":"256","desc":"Edge length of one tile in px. Set it for a server that serves retina tiles."}],"returns":"A Feature emitting image nodes into the background layer, keyed by {z}/{x}/{y} so on-screen tiles survive a re-render without re-fetching."},{"name":"geoPoint / geoPolygon / geoLine / geoText / geoRect","summary":"$L9","signatures":["geoPoint({ channels: { lon, lat, size, fill }, edits }) → Feature","geoPolygon({ channels: { geometry, fill } }) → Feature","geoLine({ channels: { coordinates }, curve, showVertices }) → Feature  // one line per row","geoLine({ channels: { lon, lat, series, order }, connect }) → Feature  // one path across rows","geoText({ channels: { lon, lat, text }, dx, dy, format }) → Feature","geoRect({ channels: { west, south, east, north } }) → Feature"],"options":[{"name":"showVertices","type":"boolean","default":"row mode: false","desc":"$La"},{"name":"curve","type":"string","default":"'linear'","desc":"$Lb"},{"name":"connect","type":"'sequence' | 'domain'","default":"'sequence'","desc":"$Lc"},{"name":"handles / handleSize / handleColor","type":"boolean | 'hit' / number / string","default":"true / 5 / theme","desc":"$Ld"},{"name":"format","type":"string | fn","default":"String","desc":"$Le"}],"channels":[{"name":"lon / lat","type":"quantitative","desc":"Position in degrees. One dot per row on geoPoint, the anchor on geoText; on geoLine, connects the rows into one path."},{"name":"geometry","type":"GeoJSON","desc":"geoPolygon path geometry on each row."},{"name":"coordinates","type":"[[lon,lat],…]","desc":"geoLine vertex list (one line per row)."},{"name":"text","type":"string","desc":"$Lf"},{"name":"fontSize / textAnchor / lineAnchor / angle","type":"literal","desc":"$L10"},{"name":"dx / dy","type":"px","desc":"geoText visual nudge off the anchor (does not move the lon/lat a drag writes)."},{"name":"west/south/east/north","type":"quantitative","desc":"geoRect geographic AABB."},{"name":"fill / stroke / size","type":"style","desc":"Ordinary style scales (not projected)."}],"returns":"Features emitting path / circle / text / rect nodes in projected pixel space."},{"name":"edit.geo.*","summary":"$L11","signatures":["edit.geo.move() — move a geoPoint","edit.geo.create() — click to place a lon/lat row","edit.geo.draw({ minDist }) — drag to author a coordinates list (minDist: 8 px per vertex)","edit.geo.dragVertex() — move a geoLine vertex handle","edit.geo.removeVertex({ min }) — click a vertex away (min: 2 vertices kept)","edit.geo.brush({ move, edgeInset }) — resize/move a geoRect","edit.geo.createRect({ width, height, edgeInset }) — click open map to mint a bbox (degrees)"]}]}],"\n","$L12","\n","$L13","\n","$L14","\n","$L15","\n","$L16","\n","$L17","\n","$L18","\n","$L19"]}],null,"$L1a"]}],{},null,false]},null,false]},null,false]},null,false],"$L1b",false]],"m":"$undefined","G":["$1c",[]],"s":false,"S":true}
+1d:I[7009,["799","static/chunks/799-7af107d40bc88b92.js","3724","static/chunks/3724-d12e76d78a883e63.js","8500","static/chunks/8500-421c3037307d9211.js","637","static/chunks/637-1286b55f42136e00.js","5424","static/chunks/5424-f839d0fc5daf46c0.js","9761","static/chunks/9761-547c4c0c570149b3.js","1098","static/chunks/1098-2ff397ccf5b527da.js","5673","static/chunks/app/marks/geo/page-1cb03cffca8c7bab.js"],"Example"]
+24:I[484,[],"OutletBoundary"]
+26:I[7837,[],"AsyncMetadataOutlet"]
+28:I[484,[],"ViewportBoundary"]
+2a:I[484,[],"MetadataBoundary"]
+2b:"$Sreact.suspense"
+6:["Raster basemap from a slippy-map tile server (OSM, CARTO, satellite, your own) — the Leaflet model. ",["$","b",null,{"children":["Requires ",["$","code",null,{"className":"inline","children":"projection: \"mercator\""}]]}],": tiles are images baked in Web Mercator and cannot register under another projection (the mark verifies this by ",["$","i",null,{"children":"behaviour"}],", not by name, and warns instead of misaligning). Chrome, like geoBasemap — takes no data. Compose the two to draw boundaries over imagery."]
+7:["Template ",["$","code",null,{"className":"inline","children":["{","s","}","/","{","z","}","/","{","x","}","/","{","y","}"]}],", or a function of the tile."]
+8:["Hosts to rotate ",["$","code",null,{"className":"inline","children":["{","s","}"]}]," across (e.g. a, b, c)."]
+9:["Editable overlays. Import from ",["$","code",null,{"className":"inline","children":"elicit.plot"}],". ",["$","code",null,{"className":"inline","children":"geoText"}]," is ",["$","code",null,{"className":"inline","children":"text"}]," with the projection doing the placement — it shares the node shape, so ",["$","code",null,{"className":"inline","children":"editText"}]," / ",["$","code",null,{"className":"inline","children":"cycle"}]," / ",["$","code",null,{"className":"inline","children":"rotate"}]," work on it unchanged."]
+a:[["$","code",null,{"className":"inline","children":"geoLine"}]," only. Draw a draggable circle at each vertex. On by default for a ",["$","code",null,{"className":"inline","children":"coordinates"}]," line, whose vertices it owns; off for a ",["$","code",null,{"className":"inline","children":"lon"}],"/",["$","code",null,{"className":"inline","children":"lat"}]," line, whose dots belong to a sibling"," ",["$","code",null,{"className":"inline","children":"geoPoint"}],"."]
+b:[["$","code",null,{"className":"inline","children":"geoLine"}]," interpolation between vertices, e.g."," ",["$","code",null,{"className":"inline","children":"\"catmullRom\""}],"."]
+c:[["$","code",null,{"className":"inline","children":"geoLine"}]," row order when no"," ",["$","code",null,{"className":"inline","children":"order"}]," channel is given. A route follows the rows as written, so this is the opposite default to ",["$","code",null,{"className":"inline","children":"line"}],"."]
+d:[["$","code",null,{"className":"inline","children":"geoLine"}]," vertex grips, as on"," ",["$","code",null,{"className":"inline","children":"line"}],"."]
+e:[["$","code",null,{"className":"inline","children":"geoText"}]," display formatter for the"," ",["$","code",null,{"className":"inline","children":"text"}]," channel. Display-only."]
+f:["geoText label content (raw, unscaled). Retype it with ",["$","code",null,{"className":"inline","children":"editText()"}],"."]
+10:["geoText glyph channels — same as the ",["$","code",null,{"className":"inline","children":"text"}]," mark."]
+11:["Geo-scoped edits (",["$","code",null,{"className":"inline","children":"scope: \"geo\""}],"). Invert the pointer through the chart projection."]
+12:["$","section",null,{"id":"basemap","children":[["$","h2",null,{"className":"section","children":"Providing basemap data"}],[["$","p",".0",{"children":["The basemap is chrome. Pass GeoJSON into ",["$","code",null,{"className":"inline","children":"geoBasemap"}],", and fit the projection with that same object as ",["$","code",null,{"className":"inline","children":"domain"}]," so the map fills the frame. Below, ",["$","code",null,{"className":"inline","children":"vancouver"}]," is the docs sample (22 local areas) — your app would import or fetch its own."],"className":"intro"}]],["$","div",null,{"className":"grid","children":[["$","$L1d",".1",{"code":"// docs inject `vancouver`; your app loads GeoJSON then passes it in:\n// const vancouver = await fetch(\"data/vancouver-neighborhoods.json\").then(r => r.json());\n\nmount(Elicit({\n  width: 520, height: 360,\n  margins: { top: 8, right: 8, bottom: 8, left: 8 },\n  projection: { type: \"mercator\", domain: vancouver, inset: 6 },\n  data: [],\n  schema: {},\n  marks: [\n    geoBasemap({\n      geojson: vancouver,\n      fill: \"#e8eef5\",\n      stroke: \"#64748b\",\n      strokeWidth: 0.8,\n    }),\n  ],\n}));\n","title":"Vancouver local areas","blurb":"Pass any FeatureCollection: geoBasemap({ geojson }). Fit with projection.domain. In your app: const map = await fetch(\"…/my-map.geojson\").then(r => r.json())."}]]}]]}]
+1e:T4a2,mount(Elicit({
+  width: 520, height: 360,
+  margins: { top: 8, right: 8, bottom: 8, left: 8 },
+  // No GeoJSON: fit the projection to a lon/lat box. Mind the ring winding —
+  // counterclockwise (RFC 7946). Reversed, d3 reads the box as the whole globe
+  // and the map zooms out to the world.
+  projection: {
+    type: "mercator",
+    domain: {
+      type: "Polygon",
+      coordinates: [[
+        [-123.225, 49.198], [-123.225, 49.297],
+        [-123.023, 49.297], [-123.023, 49.198], [-123.225, 49.198],
+      ]],
+    },
+  },
+  data: [
+    { lon: -123.1207, lat: 49.2827, place: "Downtown" },
+    { lon: -123.1560, lat: 49.2680, place: "Kitsilano" },
+  ],
+  schema: {
+    lon:   { type: "quantitative", domain: [-123.27, -123.02] },
+    lat:   { type: "quantitative", domain: [49.20, 49.32] },
+    place: { type: "categorical" },
+  },
+  marks: [
+    geoTile(),   // defaults to OSM standard + its attribution
+
+    geoPoint({
+      size: 7, fill: "#dc2626", stroke: "#fff", strokeWidth: 2,
+      channels: {
+        lon: { field: "lon" },
+        lat: { field: "lat" },
+      },
+      edits: [edit.geo.move(), edit.geo.create({ defaults: { place: "new pin" } })],
+    }),
+  ],
+}));
+1f:T59b,mount(Elicit({
+  width: 520, height: 360,
+  margins: { top: 8, right: 8, bottom: 8, left: 8 },
+  projection: { type: "mercator", domain: vancouver, inset: 6 },
+  data: [{ name: "study area", west: -123.140, south: 49.275, east: -123.100, north: 49.290 }],
+  schema: {
+    name:  { type: "categorical" },
+    west:  { type: "quantitative", domain: [-123.27, -123.02] },
+    south: { type: "quantitative", domain: [49.20, 49.32] },
+    east:  { type: "quantitative", domain: [-123.27, -123.02] },
+    north: { type: "quantitative", domain: [49.20, 49.32] },
+  },
+  marks: [
+    // A lighter, less busy basemap than OSM standard. Any {z}/{x}/{y} server works.
+    geoTile({
+      url: "https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}.png",
+      subdomains: ["a", "b", "c"],
+      opacity: 0.85,
+      attribution: "© OpenStreetMap · © CARTO",
+    }),
+
+    // Vector boundaries on top of the imagery.
+    geoBasemap({ geojson: vancouver, fill: "none", stroke: "#1e293b", strokeWidth: 0.8 }),
+
+    geoRect({
+      fill: "rgba(37, 99, 235, 0.18)", stroke: "#1d4ed8", strokeWidth: 1.5,
+      channels: {
+        west:  { field: "west" },
+        south: { field: "south" },
+        east:  { field: "east" },
+        north: { field: "north" },
+      },
+      edits: [
+        edit.geo.brush({ edgeInset: 10 }),
+        edit.geo.createRect({ width: 0.024, height: 0.014, defaults: { name: "new area" } }),
+      ],
+    }),
+  ],
+}));
+13:["$","section",null,{"id":"tiles","children":[["$","h2",null,{"className":"section","children":"Real basemaps (OSM raster tiles)"}],[["$","p",".0",{"children":[["$","code",null,{"className":"inline","children":"geoTile()"}]," lays a raster basemap — a pyramid of 256px tiles from a tile server — behind your marks. Tiles are pre-rendered in Web Mercator, so it requires ",["$","code",null,{"className":"inline","children":"projection: \"mercator\""}],"; other projections draw nothing and log a warning instead of a misaligned map. Your lon/lat marks and ",["$","code",null,{"className":"inline","children":"edit.geo.*"}]," gestures work the same on top, since they still go through the same projection. Attribution is a licence condition of every tile service, and is drawn by default. Public OSM tiles are rate-limited — point ",["$","code",null,{"className":"inline","children":"url"}]," at your own server or a paid provider in production."],"className":"intro"}]],["$","div",null,{"className":"grid","children":[["$","$L1d",".1",{"code":"$1e","title":"Pins on OpenStreetMap","blurb":"geoTile() replaces geoBasemap entirely — no GeoJSON needed. The projection still needs a domain to know where to look; a bbox works when you have no topology to fit.","try":[["$","b",null,{"children":"Click"}]," to drop a pin; ",["$","b",null,{"children":"drag"}]," it. Lon/lat come back as data."]}],["$","$L1d",".2",{"code":"$1f","title":"Tiles under the neighborhood outlines","blurb":"Raster and vector chrome compose: geoTile() lays the imagery, geoBasemap() draws the boundaries over it (fill \"none\"), and the elicited marks sit on top of both. Dim the tiles with opacity so your data still reads.","try":"$L20"}]]}]]}]
+14:["$","section",null,{"id":"points","children":[["$","h2",null,{"className":"section","children":"Place / move points on the map"}],[["$","p",".0",{"children":[["$","code",null,{"className":"inline","children":"geoPoint"}]," overlays sit on the same projection. Click empty space to add; drag to move. Lon/lat come back through ",["$","code",null,{"className":"inline","children":"onChange"}]," / ",["$","code",null,{"className":"inline","children":"getData()"}],"."],"className":"intro"}]],["$","div",null,{"className":"grid","children":[["$","$L1d",".1",{"code":"mount(Elicit({\n  width: 520, height: 360,\n  margins: { top: 8, right: 8, bottom: 8, left: 8 },\n  projection: { type: \"mercator\", domain: vancouver, inset: 6 },\n  data: [\n    { lon: -123.1207, lat: 49.2827, label: \"Downtown\" },\n    { lon: -123.1560, lat: 49.2680, label: \"Kits\" },\n  ],\n  schema: {\n    lon: { type: \"quantitative\", domain: [-123.27, -123.02] },\n    lat: { type: \"quantitative\", domain: [49.20, 49.32] },\n    label: { type: \"categorical\" },\n  },\n  marks: [\n    geoBasemap({ geojson: vancouver, fill: \"#e8eef5\", stroke: \"#64748b\", strokeWidth: 0.8 }),\n    geoPoint({\n      size: 8, fill: \"#1d4ed8\", stroke: \"#fff\", strokeWidth: 1.5,\n      channels: {\n        lon: { field: \"lon\" },\n        lat: { field: \"lat\" },\n      },\n      edits: [edit.geo.move(), edit.geo.create()],\n    }),\n  ],\n}));\n","title":"Belief pins on Vancouver","blurb":"Seeded near Downtown & Kitsilano; click elsewhere to add more.","try":[["$","b",null,{"children":"Click"}]," to place a pin; ",["$","b",null,{"children":"drag"}]," an existing one."]}]]}]]}]
+21:T4d4,mount(Elicit({
+  width: 520, height: 360,
+  margins: { top: 8, right: 8, bottom: 8, left: 8 },
+  projection: { type: "mercator", domain: vancouver, inset: 6 },
+  data: [
+    { lon: -123.1207, lat: 49.2827, place: "Downtown" },
+    { lon: -123.1560, lat: 49.2680, place: "Kitsilano" },
+    { lon: -123.1000, lat: 49.2630, place: "Mt Pleasant" },
+  ],
+  schema: {
+    lon:   { type: "quantitative", domain: [-123.27, -123.02] },
+    lat:   { type: "quantitative", domain: [49.20, 49.32] },
+    place: { type: "categorical" },
+  },
+  marks: [
+    geoBasemap({ geojson: vancouver, fill: "#eef2f7", stroke: "#94a3b8", strokeWidth: 0.7 }),
+
+    geoPoint({
+      size: 6, fill: "#0f766e", stroke: "#fff", strokeWidth: 1.5,
+      channels: {
+        lon: { field: "lon" },
+        lat: { field: "lat" },
+      },
+      edits: [edit.geo.move(), edit.geo.create({ defaults: { place: "new place" } })],
+    }),
+
+    // The label: same rows, positioned by the same projection, nudged above the dot.
+    geoText({
+      dy: -12, fontSize: 12, fill: "#0f172a",
+      channels: {
+        lon:  { field: "lon" },
+        lat:  { field: "lat" },
+        text: { field: "place" },
+      },
+      edits: [editText({ channel: "text" })],
+    }),
+  ],
+}));
+15:["$","section",null,{"id":"labels","children":[["$","h2",null,{"className":"section","children":"Label and rename places"}],[["$","p",".0",{"children":[["$","code",null,{"className":"inline","children":"geoText"}]," is a text mark positioned by the projection instead of x/y scales — that's the only geo-specific part, so every other text behaviour carries over: ",["$","code",null,{"className":"inline","children":"editText()"}]," to retype the content, ",["$","code",null,{"className":"inline","children":"cycle()"}]," to advance a categorical label, ",["$","code",null,{"className":"inline","children":"rotate()"}]," on ",["$","code",null,{"className":"inline","children":"angle"}],". Pair it with a ",["$","code",null,{"className":"inline","children":"geoPoint"}]," as a separate mark reading the same rows, and dragging the dot moves the label along with it. ",["$","code",null,{"className":"inline","children":"dx"}],"/",["$","code",null,{"className":"inline","children":"dy"}]," offset the glyph from its anchor without touching the lon/lat a drag writes."],"className":"intro"}]],["$","div",null,{"className":"grid","children":[["$","$L1d",".1",{"code":"$21","title":"Named pins you can rename","blurb":"geoPoint carries the drag; geoText carries the label. editText() opens an inline editor on double-click and writes the string back to the row.","try":[["$","b",null,{"children":"Double-click"}]," a name to retype it · ",["$","b",null,{"children":"drag"}]," a dot (the label follows) · ",["$","b",null,{"children":"click"}]," the map to add a pin."]}]]}]]}]
+16:["$","section",null,{"id":"polygons","children":[["$","h2",null,{"className":"section","children":"Recolour neighborhoods"}],[["$","p",".0",{"children":"Editable regions are dataset rows with a geometry field, a subset of the basemap features promoted into data. The basemap stays inert chrome underneath.","className":"intro"}]],["$","div",null,{"className":"grid","children":[["$","$L1d",".1",{"code":"const editable = vancouver.features\n  .filter(f => [\"Kitsilano\", \"Fairview\", \"Mount Pleasant\", \"Downtown\"].includes(f.properties.name))\n  .map(f => ({\n    name: f.properties.name,\n    geometry: f.geometry,\n    fill: \"A\",\n  }));\n\nmount(Elicit({\n  width: 520, height: 360,\n  margins: { top: 8, right: 8, bottom: 8, left: 8 },\n  projection: { type: \"mercator\", domain: vancouver, inset: 6 },\n  data: editable,\n  schema: {\n    name: { type: \"categorical\" },\n    fill: { type: \"categorical\", domain: [\"A\", \"B\", \"C\"] },\n    geometry: { type: \"categorical\" },\n  },\n  marks: [\n    geoBasemap({ geojson: vancouver, fill: \"#f1f5f9\", stroke: \"#94a3b8\", strokeWidth: 0.7 }),\n    geoPolygon({\n      stroke: \"#0f172a\", strokeWidth: 1.2, fillOpacity: 0.75,\n      channels: {\n        geometry: { field: \"geometry\", scale: null },\n        fill: {\n          field: \"fill\",\n          scale: { scheme: \"tableau10\" },\n          edit: cycle(),\n        },\n      },\n    }),\n  ],\n}));\n","title":"Cycle fill on selected local areas","blurb":"Kitsilano, Fairview, Mount Pleasant, Downtown — click to cycle category.","try":[["$","b",null,{"children":"Click"}]," a shaded neighborhood to cycle its colour."]}]]}]]}]
+17:["$","section",null,{"id":"lines","children":[["$","h2",null,{"className":"section","children":"Draw lines over the city"}],[["$","p",".0",{"children":["Author a route as ",["$","code",null,{"className":"inline","children":"[lon, lat]"}]," pairs on top of the neighborhoods. Reshape vertices with ",["$","code",null,{"className":"inline","children":"edit.geo.dragVertex"}]," on a seeded line. Keep draw and vertex-drag on separate charts — draw raises the plane above the marks."],"className":"intro"}]],["$","div",null,{"className":"grid","children":[["$","$L1d",".1",{"code":"mount(Elicit({\n  width: 520, height: 360,\n  margins: { top: 8, right: 8, bottom: 8, left: 8 },\n  projection: { type: \"mercator\", domain: vancouver, inset: 6 },\n  data: [],\n  schema: {\n    coordinates: { type: \"categorical\" },\n  },\n  marks: [\n    geoBasemap({ geojson: vancouver, fill: \"#e8eef5\", stroke: \"#64748b\", strokeWidth: 0.8 }),\n    geoLine({\n      stroke: \"#b91c1c\", strokeWidth: 2.5, showVertices: true, handleSize: 4,\n      channels: {\n        coordinates: { field: \"coordinates\", scale: null },\n      },\n      edits: [edit.geo.draw()],\n    }),\n  ],\n}));\n","title":"Draw a path across Vancouver","try":[["$","b",null,{"children":"Drag"}]," across the map to sketch a route."]}],["$","$L1d",".2",{"code":"mount(Elicit({\n  width: 520, height: 360,\n  margins: { top: 8, right: 8, bottom: 8, left: 8 },\n  projection: { type: \"mercator\", domain: vancouver, inset: 6 },\n  data: [{\n    coordinates: [\n      [-123.185, 49.264],\n      [-123.155, 49.263],\n      [-123.120, 49.263],\n      [-123.080, 49.262],\n      [-123.050, 49.261],\n    ],\n  }],\n  schema: {\n    coordinates: { type: \"categorical\" },\n  },\n  marks: [\n    geoBasemap({ geojson: vancouver, fill: \"#e8eef5\", stroke: \"#64748b\", strokeWidth: 0.8 }),\n    geoLine({\n      stroke: \"#b91c1c\", strokeWidth: 2.5, handleSize: 6,\n      channels: {\n        coordinates: { field: \"coordinates\", scale: null },\n      },\n      edits: [edit.geo.dragVertex()],\n    }),\n  ],\n}));\n","title":"Reshape a seeded Broadway-ish line","blurb":"Drag vertex handles on a pre-drawn path.","try":[["$","b",null,{"children":"Drag"}]," a vertex handle."]}]]}]]}]
+22:T605,mount(Elicit({
+  width: 520, height: 360,
+  margins: { top: 8, right: 8, bottom: 8, left: 8 },
+  projection: { type: "mercator", domain: vancouver, inset: 6 },
+  data: [
+    { stop: 1, lon: -123.1850, lat: 49.2720, place: "Kitsilano" },
+    { stop: 2, lon: -123.1480, lat: 49.2660, place: "Fairview" },
+    { stop: 3, lon: -123.1150, lat: 49.2640, place: "Mount Pleasant" },
+    { stop: 4, lon: -123.1000, lat: 49.2790, place: "Strathcona" },
+    { stop: 5, lon: -123.1207, lat: 49.2870, place: "Downtown" },
+  ],
+  schema: {
+    stop:  { type: "quantitative" },
+    lon:   { type: "quantitative", domain: [-123.27, -123.02] },
+    lat:   { type: "quantitative", domain: [49.20, 49.32] },
+    place: { type: "categorical" },
+  },
+  marks: [
+    geoBasemap({ geojson: vancouver, fill: "#eef2f7", stroke: "#94a3b8", strokeWidth: 0.7 }),
+
+    // The connector: lon/lat channels -> one path across the rows, in `stop` order.
+    geoLine({
+      stroke: "#b91c1c", strokeWidth: 2, curve: "linear",
+      channels: {
+        lon: { field: "lon" },
+        lat: { field: "lat" },
+        // `order` is a channel: it names the column the trail is sorted by.
+        order: { field: "stop" },
+      },
+    }),
+
+    // The stops: their own feature, so a drag lands on one dot.
+    geoPoint({
+      size: 6, fill: "#b91c1c", stroke: "#fff", strokeWidth: 1.5,
+      channels: {
+        lon: { field: "lon" },
+        lat: { field: "lat" },
+      },
+      edits: [edit.geo.move(), edit.geo.create({ defaults: { place: "new stop" } })],
+    }),
+  ],
+}));
+18:["$","section",null,{"id":"connected","children":[["$","h2",null,{"className":"section","children":"Connected scatter over the map"}],[["$","p",".0",{"children":["Give ",["$","code",null,{"className":"inline","children":"geoLine"}]," ",["$","code",null,{"className":"inline","children":"lon"}],"/",["$","code",null,{"className":"inline","children":"lat"}]," channels instead of ",["$","code",null,{"className":"inline","children":"coordinates"}]," and it connects the dataset's rows into one path, the geographic sibling of ",["$","code",null,{"className":"inline","children":"path"}],". Points are a separate ",["$","code",null,{"className":"inline","children":"geoPoint"}]," mark reading the same rows, so dragging a stop re-derives the trail on the next render. Order defaults to ",["$","code",null,{"className":"inline","children":"\"sequence\""}]," (array order); pass a field name to sort by it, or ",["$","code",null,{"className":"inline","children":"series"}]," to draw one trail per group."],"className":"intro"}]],["$","div",null,{"className":"grid","children":[["$","$L1d",".1",{"code":"$22","title":"A route across Vancouver","blurb":"Five stops connected in `stop` order. The dots are a geoPoint mark with edit.geo.move() — the trail follows because both marks read the same dataset.","try":[["$","b",null,{"children":"Drag"}]," a stop to reroute; ",["$","b",null,{"children":"click"}]," the map to append one."]}]]}]]}]
+23:T4ad,mount(Elicit({
+  width: 520, height: 360,
+  margins: { top: 8, right: 8, bottom: 8, left: 8 },
+  projection: { type: "mercator", domain: vancouver, inset: 6 },
+  data: [
+    { name: "downtown",  west: -123.140, south: 49.275, east: -123.100, north: 49.290 },
+    { name: "west side", west: -123.185, south: 49.245, east: -123.150, north: 49.262 },
+  ],
+  schema: {
+    name:  { type: "categorical" },
+    west:  { type: "quantitative", domain: [-123.27, -123.02] },
+    south: { type: "quantitative", domain: [49.20, 49.32] },
+    east:  { type: "quantitative", domain: [-123.27, -123.02] },
+    north: { type: "quantitative", domain: [49.20, 49.32] },
+  },
+  marks: [
+    geoBasemap({ geojson: vancouver, fill: "#eef2f7", stroke: "#94a3b8", strokeWidth: 0.7 }),
+    geoRect({
+      fill: "rgba(37, 99, 235, 0.18)", stroke: "#1d4ed8", strokeWidth: 1.5,
+      channels: {
+        west:  { field: "west" },
+        south: { field: "south" },
+        east:  { field: "east" },
+        north: { field: "north" },
+      },
+      edits: [
+        edit.geo.brush({ edgeInset: 10 }),
+        edit.geo.createRect({ width: 0.024, height: 0.014, defaults: { name: "new area" } }),
+      ],
+    }),
+  ],
+}));
+19:["$","section",null,{"id":"rects","children":[["$","h2",null,{"className":"section","children":"Geographic rectangles"}],[["$","p",".0",{"children":"Boxes are axis-aligned in lon/lat — they can look slightly curved under Mercator. Grab an edge or corner to reshape, the body to move, or click empty space to mint another. The zone you grab is fixed for the whole gesture, so a move never turns into a resize halfway through. The cursor shows which zone you're in before you press.","className":"intro"}]],["$","div",null,{"className":"grid","children":[["$","$L1d",".1",{"code":"$23","title":"Study areas over the city","blurb":"edit.geo.brush() resizes + moves; edit.geo.createRect() mints a new box on a click in open space (clicking an existing box grabs it instead). Pass move:false for resize-only, or { edgeInset } to widen the grab band.","try":[["$","b",null,{"children":"Drag"}]," a corner or edge to reshape · ",["$","b",null,{"children":"drag"}]," the middle to move · ",["$","b",null,{"children":"click"}]," empty map to add a box."]}]]}]]}]
+1a:["$","$L24",null,{"children":["$L25",["$","$L26",null,{"promise":"$@27"}]]}]
+1b:["$","$1","h",{"children":[null,[["$","$L28",null,{"children":"$L29"}],null],["$","$L2a",null,{"children":["$","div",null,{"hidden":true,"children":["$","$2b",null,{"fallback":null,"children":"$L2c"}]}]}]]}]
+20:[["$","b",null,{"children":"Drag"}]," a study box; ",["$","b",null,{"children":"click"}]," open map to add one."]
+29:[["$","meta","0",{"charSet":"utf-8"}],["$","meta","1",{"name":"viewport","content":"width=device-width, initial-scale=1"}]]
+25:null
+27:{"metadata":[["$","title","0",{"children":"ElicitJS Docs"}],["$","meta","1",{"name":"description","content":"Declarative visual belief elicitation — documentation"}]],"error":null,"digest":"$undefined"}
+2c:"$27:metadata"

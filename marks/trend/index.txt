@@ -1,0 +1,207 @@
+1:"$Sreact.fragment"
+2:I[7121,[],""]
+3:I[4581,[],""]
+4:I[6984,["799","static/chunks/799-7af107d40bc88b92.js","3724","static/chunks/3724-d12e76d78a883e63.js","8500","static/chunks/8500-421c3037307d9211.js","637","static/chunks/637-1286b55f42136e00.js","5424","static/chunks/5424-f839d0fc5daf46c0.js","9761","static/chunks/9761-547c4c0c570149b3.js","1098","static/chunks/1098-2ff397ccf5b527da.js","1251","static/chunks/app/marks/trend/page-1cb03cffca8c7bab.js"],"DocShell"]
+5:I[2478,["799","static/chunks/799-7af107d40bc88b92.js","3724","static/chunks/3724-d12e76d78a883e63.js","8500","static/chunks/8500-421c3037307d9211.js","637","static/chunks/637-1286b55f42136e00.js","5424","static/chunks/5424-f839d0fc5daf46c0.js","9761","static/chunks/9761-547c4c0c570149b3.js","1098","static/chunks/1098-2ff397ccf5b527da.js","1251","static/chunks/app/marks/trend/page-1cb03cffca8c7bab.js"],"ApiReference"]
+15:I[7123,[],""]
+:HL["/_next/static/css/89d8c60f936c1aa1.css","style"]
+0:{"P":null,"b":"tv18AyE76ijOK3suAUb2x","p":"","c":["","marks","trend",""],"i":false,"f":[[["",{"children":["marks",{"children":["trend",{"children":["__PAGE__",{}]}]}]},"$undefined","$undefined",true],["",["$","$1","c",{"children":[[["$","link","0",{"rel":"stylesheet","href":"/_next/static/css/89d8c60f936c1aa1.css","precedence":"next","crossOrigin":"$undefined","nonce":"$undefined"}]],["$","html",null,{"lang":"en","suppressHydrationWarning":true,"children":["$","body",null,{"suppressHydrationWarning":true,"children":["$","$L2",null,{"parallelRouterKey":"children","error":"$undefined","errorStyles":"$undefined","errorScripts":"$undefined","template":["$","$L3",null,{}],"templateStyles":"$undefined","templateScripts":"$undefined","notFound":[[["$","title",null,{"children":"404: This page could not be found."}],["$","div",null,{"style":{"fontFamily":"system-ui,\"Segoe UI\",Roboto,Helvetica,Arial,sans-serif,\"Apple Color Emoji\",\"Segoe UI Emoji\"","height":"100vh","textAlign":"center","display":"flex","flexDirection":"column","alignItems":"center","justifyContent":"center"},"children":["$","div",null,{"children":[["$","style",null,{"dangerouslySetInnerHTML":{"__html":"body{color:#000;background:#fff;margin:0}.next-error-h1{border-right:1px solid rgba(0,0,0,.3)}@media (prefers-color-scheme:dark){body{color:#fff;background:#000}.next-error-h1{border-right:1px solid rgba(255,255,255,.3)}}"}}],["$","h1",null,{"className":"next-error-h1","style":{"display":"inline-block","margin":"0 20px 0 0","padding":"0 23px 0 0","fontSize":24,"fontWeight":500,"verticalAlign":"top","lineHeight":"49px"},"children":404}],["$","div",null,{"style":{"display":"inline-block"},"children":["$","h2",null,{"style":{"fontSize":14,"fontWeight":400,"lineHeight":"49px","margin":0},"children":"This page could not be found."}]}]]}]}]],[]],"forbidden":"$undefined","unauthorized":"$undefined"}]}]}]]}],{"children":["marks",["$","$1","c",{"children":[null,["$","$L2",null,{"parallelRouterKey":"children","error":"$undefined","errorStyles":"$undefined","errorScripts":"$undefined","template":["$","$L3",null,{}],"templateStyles":"$undefined","templateScripts":"$undefined","notFound":"$undefined","forbidden":"$undefined","unauthorized":"$undefined"}]]}],{"children":["trend",["$","$1","c",{"children":[null,["$","$L2",null,{"parallelRouterKey":"children","error":"$undefined","errorStyles":"$undefined","errorScripts":"$undefined","template":["$","$L3",null,{}],"templateStyles":"$undefined","templateScripts":"$undefined","notFound":"$undefined","forbidden":"$undefined","unauthorized":"$undefined"}]]}],{"children":["__PAGE__",["$","$1","c",{"children":[["$","$L4",null,{"children":[["$","h1",null,{"children":"Trend + Band"}],"\n",["$","p",null,{"className":"lead","children":["A ",["$","strong",null,{"children":"parametric line"}]," and its uncertainty. The datum ",["$","code",null,{"className":"inline","children":"{ intercept, slope }"}]," is a linear belief, and ",["$","code",null,{"className":"inline","children":"trend"}]," draws ",["$","code",null,{"className":"inline","children":"y = intercept + slope·x"}]," across the plot with a handle for each parameter: an ",["$","strong",null,{"children":"intercept"}]," handle at ",["$","code",null,{"className":"inline","children":"x = 0"}]," that translates the line, and a ",["$","strong",null,{"children":"slope"}]," grip at each end that rotates it about the anchor. ",["$","code",null,{"className":"inline","children":"trendBand"}]," draws the band — a range on the intercept, a range on the slope, and every line between them."]}],"\n",["$","$L5",null,{"entries":[{"name":"trend(options)","summary":["Import from ",["$","code",null,{"className":"inline","children":"elicit.plot"}],". A single-datum parametric line; the line itself is non-interactive and each handle is a draggable circle claimed by its own parameter."],"signatures":["trend({ channels, anchor, grip, probe, handles, handleSize, handleColor, id }) → Feature"],"options":[{"name":"anchor","type":"number","default":"0 (if in x domain), else the first domain end","desc":"x position of the intercept handle and the slope-rotation pivot. 0 is the classic y-intercept."},{"name":"grip","type":"\"end\" | \"probe\"","default":"\"end\"","desc":"Where the slope grips sit. end mounts a pair on the line's own ends, and a drag passes the line through the pointer — so it swings all the way round. probe pins one at x = probe, sliding vertically at that column, which caps the reachable slope at ySpan / (probe − anchor)."},{"name":"probe","type":"number","default":"the other x-domain end","desc":"The column a pinned slope grip sits at, under grip: \"probe\" only. Setting it under the default grip warns."},{"name":"handles","type":"boolean | \"hit\"","default":"true","desc":"Draw the grab handles. Turn them off when the line is driven from the plane instead; \"hit\" keeps them grabbable but invisible."},{"name":"handleSize","type":"number","default":"5","desc":"Handle circle radius."},{"name":"handleColor","type":"string","default":"the mark's fill","desc":"Handle circle paint."}],"channels":[{"name":"x, y","type":"field","desc":"The plot's AXES, not columns of the datum. Declare their domains in the schema."},{"name":"intercept","type":"field | datum","default":"field \"intercept\"","desc":"The line's value at x = 0. Unscaled — a parameter in its own units, projected through y."},{"name":"slope","type":"field | datum","default":"field \"slope\"","desc":"The line's slope, in y units per x unit. Unscaled. Pin either parameter with { datum: 0 } to make it a constant no edit can write."}],"returns":"$L6"},{"name":"trendBand(options)","summary":"$L7","signatures":["trendBand({ channels, render, levels, samples, seed, sigma, distribution, anchor, grip, probe, handles, handleSize, id }) → Feature"],"options":[{"name":"render","type":"\"region\" | \"gradient\" | \"samples\"","default":"\"region\"","desc":"One exact envelope polygon; nested envelopes stacked so the ink darkens toward the line; or individual sampled lines."},{"name":"levels","type":"number","default":"5","desc":"gradient only — how many nested envelopes. Their opacities compound to fillOpacity at the centre."},{"name":"samples","type":"number","default":"60","desc":"samples only — how many lines to draw from the family."},{"name":"seed","type":"number","default":"7","desc":"samples only — PRNG seed, so the fan is stable across re-renders."},{"name":"distribution","type":"\"normal\" | \"uniform\"","default":"\"normal\"","desc":"samples only — normal treats the bounds as a sigma-wide envelope; uniform spreads flat across them."},{"name":"sigma","type":"number","default":"1.96","desc":"The envelope half-width in standard deviations when sampling normally, so ~95% of draws land inside the band that was pointed at."},{"name":"grip","type":"\"end\" | \"probe\"","default":"\"end\"","desc":"As trend — end mounts the slopeSpread grips on the ends of the band's own upper edge, so opening the cone is not capped by how far one pinned column reaches."},{"name":"handles","type":"boolean | \"hit\"","default":"false","desc":"Draw a grab on each spread: the intercept's at the anchor, the slope's on the upper edge (see grip)."},{"name":"handleSize","type":"number","default":"5","desc":"Handle circle radius."},{"name":"fillOpacity","type":"number","default":"0.18","desc":"region / gradient — the ink of the filled envelope. Gradient divides it across levels so the stack compounds back to it."},{"name":"strokeOpacity","type":"number","default":"0.15","desc":"samples — the ink of ONE line in the fan, so raising samples darkens the overlap and lowering this thins it back out."}],"channels":[{"name":"x, y, intercept, slope","desc":"As trend — the axes, and the line the band surrounds."},{"name":"interceptSpread, slopeSpread","type":"field","desc":"HALF-WIDTHS in the field's own units: the symmetric form, and what one pointer distance sets."},{"name":"intercept1 / intercept2, slope1 / slope2","type":"field","desc":"Explicit asymmetric ranges, the same 1/2 span spelling area and rect use. These win wherever both forms are declared."}],"returns":"$L8"},{"name":"edit.trend.*","summary":"$L9","signatures":["edit.trend.intercept({ anchor, probe, ...EditOptions }) → Edit","edit.trend.slope({ anchor, probe, ...EditOptions }) → Edit","edit.trend.interceptSpread({ anchor, probe, ...EditOptions }) → Edit","edit.trend.slopeSpread({ anchor, probe, ...EditOptions }) → Edit"],"options":[{"name":"anchor","type":"number","default":"the mark's anchor","desc":"The pivot: the x whose value a rotation holds, and where an intercept drag places the line."},{"name":"probe","type":"number","default":"the mark's probe","desc":"The x a PINNED handle drag measures at (one drawn under grip: \"probe\"). An end-mounted grip, and a gesture carrying no node at all (a plane or probe pick), use the pointer's own x instead, so the line follows the cursor."}],"returns":"$La"}]}],"\n","$Lb","\n","$Lc","\n","$Ld","\n","$Le","\n","$Lf","\n","$L10","\n","$L11","\n","$L12"]}],null,"$L13"]}],{},null,false]},null,false]},null,false]},null,false],"$L14",false]],"m":"$undefined","G":["$15",[]],"s":false,"S":true}
+16:I[8500,["799","static/chunks/799-7af107d40bc88b92.js","3724","static/chunks/3724-d12e76d78a883e63.js","8500","static/chunks/8500-421c3037307d9211.js","637","static/chunks/637-1286b55f42136e00.js","5424","static/chunks/5424-f839d0fc5daf46c0.js","9761","static/chunks/9761-547c4c0c570149b3.js","1098","static/chunks/1098-2ff397ccf5b527da.js","1251","static/chunks/app/marks/trend/page-1cb03cffca8c7bab.js"],""]
+17:I[7009,["799","static/chunks/799-7af107d40bc88b92.js","3724","static/chunks/3724-d12e76d78a883e63.js","8500","static/chunks/8500-421c3037307d9211.js","637","static/chunks/637-1286b55f42136e00.js","5424","static/chunks/5424-f839d0fc5daf46c0.js","9761","static/chunks/9761-547c4c0c570149b3.js","1098","static/chunks/1098-2ff397ccf5b527da.js","1251","static/chunks/app/marks/trend/page-1cb03cffca8c7bab.js"],"Example"]
+1d:I[484,[],"OutletBoundary"]
+1f:I[7837,[],"AsyncMetadataOutlet"]
+21:I[484,[],"ViewportBoundary"]
+23:I[484,[],"MetadataBoundary"]
+24:"$Sreact.suspense"
+6:["A ",["$","b",null,{"children":"feature"}]," emitting the ",["$","code",null,{"className":"inline","children":"line"}]," (edge-to-edge through the plot) plus handle ",["$","code",null,{"className":"inline","children":"circle"}],"s tagged ",["$","code",null,{"className":"inline","children":"intercept"}]," / ",["$","code",null,{"className":"inline","children":"slope"}]," — one at the anchor, and one at each end of the line under the default grip. If the chart's ",["$","code",null,{"className":"inline","children":"axes"}]," is left unspecified, chart axes cross at the origin; state it explicitly with ",["$","code",null,{"className":"inline","children":["axes: ","{"," origin: true | false ","}"]}]," either way."]
+7:["Import from ",["$","code",null,{"className":"inline","children":"elicit.plot"}],". The uncertainty around a parametric line: every line the belief’s ranges allow, drawn as one envelope, a stack of nested envelopes, or a fan of samples. Declares no edits of its own — put them on the mark the reader grabs."]
+8:["A ",["$","b",null,{"children":"feature"}]," emitting one ",["$","code",null,{"className":"inline","children":"path"}]," (region), ",["$","code",null,{"className":"inline","children":"levels"}]," paths (gradient), or ",["$","code",null,{"className":"inline","children":"samples"}]," ",["$","code",null,{"className":"inline","children":"line"}],"s — all inert and painted in the background layer — plus the optional spread handles."]
+9:["The trend-scoped edits. Each inverts the pointer through ",["$","code",null,{"className":"inline","children":"x"}],"/",["$","code",null,{"className":"inline","children":"y"}]," and solves for the parameter it owns, writing the column that parameter’s channel names. A pinned parameter is never written."]
+a:["An ",["$","b",null,{"children":"Edit"}]," with ",["$","code",null,{"className":"inline","children":"scope: \"trend\""}],", claiming the handle tagged with its own channel. ",["$","code",null,{"className":"inline","children":"trend()"}]," generates the first two for you; declare them yourself to restage them, retarget them, or drive them from the plane."]
+b:["$","section",null,{"id":"axes","children":[["$","h2",null,{"className":"section","children":"Its channels name the axes, not the columns"}],[["$","p",".0",{"children":["Trend is the one mark whose ",["$","code",null,{"className":"inline","children":"x"}]," and ",["$","code",null,{"className":"inline","children":"y"}]," channels name the plot's ",["$","strong",null,{"children":"axes"}]," rather than columns of its datum. Declare their domains in the schema, typically spanning negatives so the intercept sits in the middle of the frame."],"className":"intro"}],["$","p",".1",{"children":["Left unspecified, ",["$","code",null,{"className":"inline","children":"axes"}]," crosses at the origin when a trend is present. State the frame explicitly with ",["$","code",null,{"className":"inline","children":"axes: { origin: true | false }"}]," — see ",["$","$L16",null,{"href":"/marks/axes#global","children":"Axis, Grid & Rule"}],"."],"className":"intro"}]],null]}]
+c:["$","section",null,{"id":"not-creatable","children":[["$","h2",null,{"className":"section","children":"Trend can't be created by a gesture"}],[["$","p",".0",{"children":["Unlike a ",["$","code",null,{"className":"inline","children":"point"}]," or ",["$","code",null,{"className":"inline","children":"bar"}],", a trend line is ",["$","strong",null,{"children":"derived"}],": its position comes from ",["$","code",null,{"className":"inline","children":"intercept"}],"/",["$","code",null,{"className":"inline","children":"slope"}],", not from an ",["$","code",null,{"className":"inline","children":"x"}],"/",["$","code",null,{"className":"inline","children":"y"}]," you could invert a click into. So a plane ",["$","code",null,{"className":"inline","children":"create"}]," has nothing to place — trend is one of the two exceptions (with guides) in the ",["$","$L16",null,{"href":"/editing/existence#what-can-create","children":"can/can't-create matrix"}],". You author a trend by editing its parameters, not by adding rows."],"className":"intro"}]],null]}]
+d:["$","section",null,{"id":"inert","children":[["$","h2",null,{"className":"section","children":"Inert until an edit names the column"}],[["$","p",".0",{"children":[["$","code",null,{"className":"inline","children":"trend()"}]," draws the line and both handles, and writes nothing. Like every other mark, it is a ",["$","strong",null,{"children":"view"}]," until an ",["$","code",null,{"className":"inline","children":"edit"}]," says which column a gesture sets — ",["$","code",null,{"className":"inline","children":"edit.trend.intercept()"}]," on the intercept channel, ",["$","code",null,{"className":"inline","children":"edit.trend.slope()"}]," on the slope channel. Staging goes on the edit (",["$","code",null,{"className":"inline","children":"edit.trend.slope({ stage: 1 })"}],"), the same way it does everywhere else."],"className":"intro"}]],["$","div",null,{"className":"grid","children":[["$","$L17",".1",{"code":"mount(Elicit({\n  width: 360, height: 260,\n  margins: { top: 16, right: 16, bottom: 28, left: 34 },\n  schema: {\n    x: { type: \"quantitative\", domain: [-10, 10] },\n    y: { type: \"quantitative\", domain: [-10, 10] },\n    intercept: { type: \"quantitative\" },\n    slope:     { type: \"quantitative\" },\n  },\n  data: [{ intercept: 2, slope: 0.5 }],\n  marks: [\n    // No edit anywhere: the line and both handles draw, and nothing you do to\n    // them changes the data. A mark is a VIEW until an edit names the column a\n    // gesture writes — trend is no exception, and used to be.\n    trend({\n      channels: {\n        intercept: { field: \"intercept\" },\n        slope:     { field: \"slope\" },\n      },\n    }),\n  ],\n}));\n","title":"No edit, no writes","blurb":"The handles are drawn but the data never moves.","try":"drag either dot — nothing changes."}]]}]]}]
+e:["$","section",null,{"id":"twostep","children":[["$","h2",null,{"className":"section","children":"Intercept, then slope"}],[["$","p",".0",{"children":"Domains span both sides of zero so the intercept sits on the y-axis in the middle of the frame. Stage 0: drag the intercept handle to set the level. Stage 1: drag either end grip to set the trend, rotating about the anchor.","className":"intro"}],["$","p",".1",{"children":["The parameters are channels like any other, so the columns are renameable — ",["$","code",null,{"className":"inline","children":"channels: { slope: { field: \"r\" } }"}]," — or pinnable to a constant with ",["$","code",null,{"className":"inline","children":"{ datum }"}],". They are unscaled: parameters in their own units, projected through ",["$","code",null,{"className":"inline","children":"x"}],"/",["$","code",null,{"className":"inline","children":"y"}]," rather than encoded themselves."],"className":"intro"}],["$","p",".4",{"children":["That default is an inference, not a fixed rule: it only applies while ",["$","code",null,{"className":"inline","children":"axes"}]," is left unspecified. State the frame instead of relying on it — ",["$","code",null,{"className":"inline","children":"axes: { origin: false }"}]," forces the ordinary left/bottom frame even with a trend mark on the chart."],"className":"intro"}],["$","p",".5",{"children":[["$","code",null,{"className":"inline","children":"axes"}]," only moves the axis spines; it says nothing about where the handles sit. Those follow ",["$","code",null,{"className":"inline","children":"anchor"}],"/",["$","code",null,{"className":"inline","children":"probe"}],", which default for the origin-crossing frame (",["$","code",null,{"className":"inline","children":"anchor"}]," is 0 whenever 0 lies in the x domain). Over a domain that doesn't need to cross zero, that same default places ",["$","code",null,{"className":"inline","children":"anchor"}]," at the domain's own start — exactly where a left/bottom y-axis is drawn — so the intercept handle lands on the axis instead of floating mid-plot. Pair it with ",["$","code",null,{"className":"inline","children":"grip: \"probe\""}]," for a single slope handle at the domain's far end, rather than the default pair, whose near-end grip would otherwise sit on top of the intercept handle."],"className":"intro"}]],["$","div",null,{"className":"grid","children":[["$","$L17",".2",{"code":"const chart = Elicit({\n  width: 360, height: 300,\n  margins: { top: 16, right: 16, bottom: 28, left: 34 },\n  schema: {\n    x: { type: \"quantitative\", domain: [-10, 10] },\n    y: { type: \"quantitative\", domain: [-10, 10] },\n    intercept: { type: \"quantitative\" },\n    slope:     { type: \"quantitative\" },\n  },\n  data: [{ intercept: 0, slope: 0.6 }],\n  marks: [\n    // A trend draws its line and two handles, but writes nothing until an edit\n    // names the column each handle sets. Staging goes on the edit, like any other:\n    // the intercept is live in stage 0, the slope in stage 1.\n    trend({\n      channels: {\n        intercept: { field: \"intercept\", edit: edit.trend.intercept({ stage: 0 }) },\n        slope:     { field: \"slope\",     edit: edit.trend.slope({ stage: 1 }) },\n      },\n    }),\n  ],\n});\nmount(chart);\nconst btn = document.createElement(\"button\");\nbtn.textContent = \"Next: set the slope\";\nbtn.style.marginTop = \"8px\";\nbtn.onclick = () => { chart.nextStage(); btn.disabled = true; };\nmount(btn);\n","title":"Trend line","blurb":"Axes cross at the origin automatically; the line runs edge-to-edge through the plot.","try":"drag the centre (intercept) dot; press Next; drag an end dot."}],["$","$L17",".3",{"code":"mount(Elicit({\n  width: 360, height: 300,\n  margins: { top: 16, right: 16, bottom: 28, left: 34 },\n  schema: {\n    x: { type: \"quantitative\", domain: [-10, 10] },\n    y: { type: \"quantitative\", domain: [-10, 10] },\n    intercept: { type: \"quantitative\" },\n    slope:     { type: \"quantitative\" },\n  },\n  data: [{ intercept: 2, slope: 0.5 }],\n  marks: [\n    // Unstaged: both handles live at once. Each edit claims its own handle, so\n    // dragging the intercept never moves the slope and vice versa.\n    trend({\n      channels: {\n        intercept: { field: \"intercept\", edit: edit.trend.intercept() },\n        slope:     { field: \"slope\",     edit: edit.trend.slope() },\n      },\n    }),\n  ],\n}));\n","title":"Both handles at once","blurb":"Omit the stages (default null) to leave both handles always active."}],"$L18"]}]]}]
+19:T445,const chart = Elicit({
+  width: 340, height: 300,
+  margins: { top: 16, right: 16, bottom: 28, left: 40 },
+  schema: {
+    x: { type: "quantitative", domain: [-10, 10] },
+    y: { type: "quantitative", domain: [-10, 10] },
+    intercept: { type: "quantitative" },
+    slope:     { type: "quantitative" },
+  },
+  data: [{ intercept: 0, slope: 0.6 }],
+  // The slope grows without bound as the line approaches vertical. Bound it the
+  // same way you bound any other column.
+  constraints: [clamp({ field: "slope", min: -20, max: 20 })],
+  marks: [
+    trend({
+      channels: {
+        intercept: { field: "intercept", edit: edit.trend.intercept() },
+        slope:     { field: "slope",     edit: edit.trend.slope() },
+      },
+    }),
+  ],
+});
+mount(chart);
+const out = document.createElement("div");
+out.style.cssText = "font:12px ui-monospace,monospace;margin-top:6px;color:#64748b";
+const show = () => {
+  const d = chart.getData()[0] || {};
+  out.textContent = "intercept " + d.intercept.toFixed(2) +
+    "   slope " + d.slope.toFixed(2);
+};
+chart.on("change", show); show();
+mount(out);
+f:["$","section",null,{"id":"grip","children":[["$","h2",null,{"className":"section","children":"Rotating the line"}],[["$","p",".0",{"children":"The slope grips sit on the line’s own ends, and dragging one passes the line through the pointer. So the line rotates a full turn: drag an end up and over the anchor and the line swings past vertical and comes down the other side. Both ends carry the same edit, and each stays inside the plot at every angle.","className":"intro"}],["$","p",".1",{"children":["A vertical line has no slope. The gesture ",["$","strong",null,{"children":"holds"}]," while the pointer is in the anchor’s own column, and ",["$","code",null,{"className":"inline","children":"slope"}]," grows without bound as you approach it — bound it with a ",["$","code",null,{"className":"inline","children":"clamp"}]," on the column, the same way you would bound any other field."],"className":"intro"}],["$","p",".2",{"children":[["$","code",null,{"className":"inline","children":"grip: \"probe\""}]," pins a single grip at ",["$","code",null,{"className":"inline","children":"x = probe"}]," instead, sliding vertically at that column. Reachable slope is then capped at ",["$","code",null,{"className":"inline","children":"ySpan / (probe − anchor)"}],"."],"className":"intro"}]],["$","div",null,{"className":"grid","children":[["$","$L17",".3",{"code":"$19","title":"Swing it round","blurb":"Both parameters live, with slope clamped to ±20.","try":"drag an end dot up and across the middle of the plot — the line keeps turning."}]]}]]}]
+1a:T47d,mount(Elicit({
+  width: 360, height: 300,
+  margins: { top: 16, right: 16, bottom: 28, left: 34 },
+  schema: {
+    x: { type: "quantitative", domain: [-10, 10] },
+    y: { type: "quantitative", domain: [-10, 10] },
+    // The band's four elicited columns. Every column of the dataset belongs in
+    // the schema — that is the contract of what this chart elicits.
+    intercept: { type: "quantitative" },
+    slope:     { type: "quantitative" },
+    aSd:       { type: "quantitative" },
+    bSd:       { type: "quantitative" },
+  },
+  data: [{ intercept: 1, slope: 0.4, aSd: 1.5, bSd: 0.25 }],
+  marks: [
+    trendBand({
+      fill: "#2563eb",
+      channels: {
+        interceptSpread: { field: "aSd" },
+        slopeSpread:     { field: "bSd" },
+      },
+    }),
+    // Drag either handle to move the line; the band above re-derives from the same
+    // two parameters, so it follows without carrying an edit of its own.
+    trend({
+      stroke: "#2563eb",
+      channels: {
+        intercept: { field: "intercept", edit: edit.trend.intercept() },
+        slope:     { field: "slope",     edit: edit.trend.slope() },
+      },
+    }),
+  ],
+}));
+10:["$","section",null,{"id":"band","children":[["$","h2",null,{"className":"section","children":"The band around the line"}],[["$","p",".0",{"children":[["$","code",null,{"className":"inline","children":"trendBand"}]," takes the same two parameters plus a ",["$","strong",null,{"children":"spread"}]," on each: ",["$","code",null,{"className":"inline","children":"interceptSpread"}]," and ",["$","code",null,{"className":"inline","children":"slopeSpread"}],", half-widths in the field’s own units. The band it draws is the whole family of lines those ranges allow, and its envelope is exact — piecewise linear, with a single kink where ",["$","code",null,{"className":"inline","children":"x"}]," crosses zero (the point where only the intercept range is left)."],"className":"intro"}],["$","p",".1",{"children":["The two marks are views of one dataset. ",["$","code",null,{"className":"inline","children":"trendBand"}]," declares ",["$","strong",null,{"children":"no edits of its own"}],": a whole-dataset gesture declared on two marks would run twice, so put the edit on the mark the reader grabs and let the other re-derive on the next render."],"className":"intro"}],["$","p",".3",{"children":["For an asymmetric band, name the ends instead: ",["$","code",null,{"className":"inline","children":"intercept1"}],"/",["$","code",null,{"className":"inline","children":"intercept2"}]," and ",["$","code",null,{"className":"inline","children":"slope1"}],"/",["$","code",null,{"className":"inline","children":"slope2"}],", the same ",["$","code",null,{"className":"inline","children":"1"}],"/",["$","code",null,{"className":"inline","children":"2"}]," span spelling ",["$","$L16",null,{"href":"/marks/area#band","children":["$","code",null,{"className":"inline","children":"area"}]}]," and ",["$","code",null,{"className":"inline","children":"rect"}]," use. The range form wins wherever both are declared; pair it with ",["$","code",null,{"className":"inline","children":"ordering"}]," to stop it turning inside out."],"className":"intro"}]],["$","div",null,{"className":"grid","children":[["$","$L17",".2",{"code":"$1a","title":"A band around the line","blurb":"Every line whose intercept is within aSd and whose slope is within bSd."}],["$","$L17",".4",{"code":"mount(Elicit({\n  width: 360, height: 300,\n  margins: { top: 16, right: 16, bottom: 28, left: 34 },\n  schema: {\n    x: { type: \"quantitative\", domain: [-10, 10] },\n    y: { type: \"quantitative\", domain: [-10, 10] },\n    intercept: { type: \"quantitative\" },\n    slope:     { type: \"quantitative\" },\n    aSd:       { type: \"quantitative\" },\n    bSd:       { type: \"quantitative\" },\n  },\n  data: [{ intercept: 1, slope: 0.4, aSd: 2, bSd: 0.3 }],\n  marks: [\n    // The band is a VIEW. It draws the spreads; the handles below write them.\n    trendBand({\n      fill: \"#7c3aed\",\n      handles: true,\n      channels: {\n        interceptSpread: { field: \"aSd\", edit: edit.trend.interceptSpread() },\n        slopeSpread:     { field: \"bSd\", edit: edit.trend.slopeSpread() },\n      },\n    }),\n    trend({\n      stroke: \"#7c3aed\",\n      channels: {\n        intercept: { field: \"intercept\", edit: edit.trend.intercept() },\n        slope:     { field: \"slope\",     edit: edit.trend.slope() },\n      },\n    }),\n  ],\n}));\n","title":"Editing the band","blurb":"handles: true puts a grab on each spread — the intercept's at the anchor, the slope's on the ends of the band's upper edge.","try":"drag either band handle, then drag the line's own handles underneath."}]]}]]}]
+1b:T429,const belief = [{ intercept: 1, slope: 0.4, aSd: 1.5, bSd: 0.25 }];
+const spreads = { interceptSpread: { field: "aSd" }, slopeSpread: { field: "bSd" } };
+const lineParams = {
+  intercept: { field: "intercept", edit: edit.trend.intercept() },
+  slope:     { field: "slope",     edit: edit.trend.slope() },
+};
+
+for (const render of ["region", "gradient", "samples"]) {
+  mount(Elicit({
+    width: 200, height: 170,
+    margins: { top: 10, right: 10, bottom: 22, left: 26 },
+    schema: {
+      x: { type: "quantitative", domain: [-10, 10] },
+      y: { type: "quantitative", domain: [-10, 10] },
+      intercept: { type: "quantitative" },
+      slope:     { type: "quantitative" },
+      aSd:       { type: "quantitative" },
+      bSd:       { type: "quantitative" },
+    },
+    data: belief,
+    marks: [
+      trendBand({ render, levels: 6, samples: 80, fill: "#0f766e", stroke: "#0f766e", channels: spreads }),
+      // Three renderings of the SAME belief, so all three share one edit set.
+      trend({ stroke: "#0f766e", channels: lineParams }),
+    ],
+  }));
+}
+11:["$","section",null,{"id":"render","children":[["$","h2",null,{"className":"section","children":"Three readings of one band"}],[["$","p",".0",{"children":[["$","code",null,{"className":"inline","children":"render"}]," picks how the same family is drawn. ",["$","code",null,{"className":"inline","children":"region"}]," (the default) is one polygon: the exact envelope. ",["$","code",null,{"className":"inline","children":"gradient"}]," stacks ",["$","code",null,{"className":"inline","children":"levels"}]," nested envelopes so the ink darkens toward the line. ",["$","code",null,{"className":"inline","children":"samples"}]," draws individual lines from the family — the ensemble reading, where you see the hypotheses rather than their hull. There ",["$","code",null,{"className":"inline","children":"distribution"}]," chooses ",["$","code",null,{"className":"inline","children":"normal"}]," (the bounds are a ",["$","code",null,{"className":"inline","children":"sigma"}],"-wide envelope, so ~95% of draws land inside them) or ",["$","code",null,{"className":"inline","children":"uniform"}]," (every line in the range equally plausible)."],"className":"intro"}],["$","p",".1",{"children":["Each render inks through its own ordinary style channel: ",["$","code",null,{"className":"inline","children":"fillOpacity"}]," (default ",["$","code",null,{"className":"inline","children":"0.18"}],") for the filled forms, ",["$","code",null,{"className":"inline","children":"strokeOpacity"}]," (default ",["$","code",null,{"className":"inline","children":"0.15"}],") for ",["$","strong",null,{"children":"one line"}]," of the fan. So a fan gets denser as you raise ",["$","code",null,{"className":"inline","children":"samples"}]," — drop ",["$","code",null,{"className":"inline","children":"strokeOpacity"}]," to thin it back out, or raise it for a sparse one."],"className":"intro"}]],["$","div",null,{"className":"grid","children":[["$","$L17",".2",{"code":"$1b","title":"region, gradient, samples","blurb":"One belief, three renderings. The polygon and the fan are the same statement."}]]}]]}]
+1c:T6a7,const chart = Elicit({
+  width: 300, height: 300,
+  margins: { top: 14, right: 14, bottom: 14, left: 14 },
+  axes: false,
+  schema: {
+    // Standardized units, matched on both axes, so a slope of 1 is a 45° line.
+    x: { type: "quantitative", domain: [-1, 1] },
+    y: { type: "quantitative", domain: [-1, 1] },
+    r:      { type: "quantitative", domain: [-1, 1], default: 0 },
+    spread: { type: "quantitative", domain: [0, 1],  default: 0 },
+  },
+  data: [{ r: 0, spread: 0 }],
+  // What makes it a CORRELATION rather than a free trend — declared, not baked in.
+  constraints: [
+    clamp({ field: "r",      min: -1, max: 1 }),
+    clamp({ field: "spread", min: 0,  max: 1 }),
+  ],
+  marks: [
+    trendBand({
+      render: "samples",
+      samples: 80,
+      channels: {
+        intercept:   { datum: 0 },       // pinned at the origin
+        slope:       { field: "r" },
+        slopeSpread: { field: "spread" },
+      },
+    }),
+    trend({
+      handles: false,
+      stroke: "#f59e0b",
+      strokeWidth: 5,
+      channels: {
+        intercept: { datum: 0 },
+        slope:       { field: "r",      edit: edit.trend.slope({ pick: "probe", stage: 0 }) },
+        slopeSpread: { field: "spread", edit: edit.trend.slopeSpread({ pick: "probe", stage: 1 }) },
+      },
+    }),
+  ],
+});
+mount(chart);
+const out = document.createElement("div");
+out.style.cssText = "font:12px ui-monospace,monospace;margin-top:6px;color:#64748b";
+const show = () => {
+  const d = chart.getData()[0] || {};
+  out.textContent = "stage " + chart.getStage() +
+    "  ·  r=" + (d.r ?? 0).toFixed(2) + "  spread=" + (d.spread ?? 0).toFixed(2);
+};
+chart.on("change", show); chart.on("stage", show); show();
+mount(out);
+12:["$","section",null,{"id":"correlation","children":[["$","h2",null,{"className":"section","children":"A correlation is a pinned trend"}],[["$","p",".0",{"children":["A correlation belief is this mark with two things said about it: the intercept is ",["$","strong",null,{"children":"pinned"}]," at the origin, and the slope is a coefficient in ",["$","code",null,{"className":"inline","children":"[-1, 1]"}],". Neither needs a mark of its own — pinning is a constant channel (",["$","code",null,{"className":"inline","children":"intercept: { datum: 0 }"}],", which names no column, so no edit can write one), and the range is a ",["$","code",null,{"className":"inline","children":"clamp"}],"."],"className":"intro"}],["$","p",".1",{"children":["Stage 0 aims the line: under ",["$","$L16",null,{"href":"/editing/probe","children":["$","code",null,{"className":"inline","children":"probe"}]}]," there is no handle to grab, so the gesture takes the pointer’s own ",["$","code",null,{"className":"inline","children":"x"}]," and the line follows the cursor; a click sets it and advances. Stage 1 opens the band — ",["$","code",null,{"className":"inline","children":"slopeSpread"}]," is how far the line through the pointer tilts away from the committed one, so the edge of the fan sits under the cursor."],"className":"intro"}],["$","p",".2",{"children":["Both axes span matched ",["$","code",null,{"className":"inline","children":"[-1, 1]"}]," domains over a square plot, which is what makes the line’s screen angle read as ",["$","code",null,{"className":"inline","children":"r"}],". Shipped as ",["$","$L16",null,{"href":"/widgets#linecone","children":["$","code",null,{"className":"inline","children":"widgets.lineCone"}]}],"."],"className":"intro"}]],["$","div",null,{"className":"grid","children":[["$","$L17",".3",{"code":"$1c","title":"Line + Cone, from the general marks","blurb":"Two clicks: aim the line, then open the cone.","try":"move the mouse, click, move again, click."}]]}]]}]
+13:["$","$L1d",null,{"children":["$L1e",["$","$L1f",null,{"promise":"$@20"}]]}]
+14:["$","$1","h",{"children":[null,[["$","$L21",null,{"children":"$L22"}],null],["$","$L23",null,{"children":["$","div",null,{"hidden":true,"children":["$","$24",null,{"fallback":null,"children":"$L25"}]}]}]]}]
+26:T542,mount(Elicit({
+  width: 360, height: 300,
+  margins: { top: 16, right: 16, bottom: 28, left: 34 },
+  // Without this, axes here would still cross at zero — a trend mark is
+  // present and axes was otherwise unspecified. origin: false states the
+  // ordinary left/bottom frame explicitly instead of leaving it inferred.
+  axes: { origin: false },
+  schema: {
+    // A domain that doesn't need to span negative values, so trend's default
+    // anchor (0, whenever 0 lies in the x domain — here that's the domain's
+    // own start) lands exactly where the y-axis is drawn, instead of
+    // floating mid-plot the way it would over a domain like [-10, 10].
+    x: { type: "quantitative", domain: [0, 20] },
+    y: { type: "quantitative", domain: [0, 20] },
+    intercept: { type: "quantitative" },
+    slope:     { type: "quantitative" },
+  },
+  data: [{ intercept: 2, slope: 0.5 }],
+  marks: [
+    trend({
+      // grip: "probe" mounts a single slope handle at the domain's far end.
+      // The default pair (grip: "end") would put its near-end grip on the
+      // same point as the intercept handle now that anchor sits at x = 0.
+      grip: "probe",
+      channels: {
+        intercept: { field: "intercept", edit: edit.trend.intercept() },
+        slope:     { field: "slope",     edit: edit.trend.slope() },
+      },
+    }),
+  ],
+}));
+18:["$","$L17",".6",{"code":"$26","title":"Left/bottom frame","blurb":"axes: { origin: false }, plus a domain starting at 0 and grip: \"probe\" — the intercept handle sits on the y-axis, the one slope handle on the right edge."}]
+22:[["$","meta","0",{"charSet":"utf-8"}],["$","meta","1",{"name":"viewport","content":"width=device-width, initial-scale=1"}]]
+1e:null
+20:{"metadata":[["$","title","0",{"children":"ElicitJS Docs"}],["$","meta","1",{"name":"description","content":"Declarative visual belief elicitation — documentation"}]],"error":null,"digest":"$undefined"}
+25:"$20:metadata"

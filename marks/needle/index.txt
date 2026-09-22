@@ -1,0 +1,239 @@
+1:"$Sreact.fragment"
+2:I[7121,[],""]
+3:I[4581,[],""]
+4:I[6984,["799","static/chunks/799-7af107d40bc88b92.js","3724","static/chunks/3724-d12e76d78a883e63.js","8500","static/chunks/8500-421c3037307d9211.js","637","static/chunks/637-1286b55f42136e00.js","5424","static/chunks/5424-f839d0fc5daf46c0.js","9761","static/chunks/9761-547c4c0c570149b3.js","1098","static/chunks/1098-2ff397ccf5b527da.js","3795","static/chunks/app/marks/needle/page-1cb03cffca8c7bab.js"],"DocShell"]
+5:I[2478,["799","static/chunks/799-7af107d40bc88b92.js","3724","static/chunks/3724-d12e76d78a883e63.js","8500","static/chunks/8500-421c3037307d9211.js","637","static/chunks/637-1286b55f42136e00.js","5424","static/chunks/5424-f839d0fc5daf46c0.js","9761","static/chunks/9761-547c4c0c570149b3.js","1098","static/chunks/1098-2ff397ccf5b527da.js","3795","static/chunks/app/marks/needle/page-1cb03cffca8c7bab.js"],"ApiReference"]
+12:I[7123,[],""]
+:HL["/_next/static/css/89d8c60f936c1aa1.css","style"]
+0:{"P":null,"b":"tv18AyE76ijOK3suAUb2x","p":"","c":["","marks","needle",""],"i":false,"f":[[["",{"children":["marks",{"children":["needle",{"children":["__PAGE__",{}]}]}]},"$undefined","$undefined",true],["",["$","$1","c",{"children":[[["$","link","0",{"rel":"stylesheet","href":"/_next/static/css/89d8c60f936c1aa1.css","precedence":"next","crossOrigin":"$undefined","nonce":"$undefined"}]],["$","html",null,{"lang":"en","suppressHydrationWarning":true,"children":["$","body",null,{"suppressHydrationWarning":true,"children":["$","$L2",null,{"parallelRouterKey":"children","error":"$undefined","errorStyles":"$undefined","errorScripts":"$undefined","template":["$","$L3",null,{}],"templateStyles":"$undefined","templateScripts":"$undefined","notFound":[[["$","title",null,{"children":"404: This page could not be found."}],["$","div",null,{"style":{"fontFamily":"system-ui,\"Segoe UI\",Roboto,Helvetica,Arial,sans-serif,\"Apple Color Emoji\",\"Segoe UI Emoji\"","height":"100vh","textAlign":"center","display":"flex","flexDirection":"column","alignItems":"center","justifyContent":"center"},"children":["$","div",null,{"children":[["$","style",null,{"dangerouslySetInnerHTML":{"__html":"body{color:#000;background:#fff;margin:0}.next-error-h1{border-right:1px solid rgba(0,0,0,.3)}@media (prefers-color-scheme:dark){body{color:#fff;background:#000}.next-error-h1{border-right:1px solid rgba(255,255,255,.3)}}"}}],["$","h1",null,{"className":"next-error-h1","style":{"display":"inline-block","margin":"0 20px 0 0","padding":"0 23px 0 0","fontSize":24,"fontWeight":500,"verticalAlign":"top","lineHeight":"49px"},"children":404}],["$","div",null,{"style":{"display":"inline-block"},"children":["$","h2",null,{"style":{"fontSize":14,"fontWeight":400,"lineHeight":"49px","margin":0},"children":"This page could not be found."}]}]]}]}]],[]],"forbidden":"$undefined","unauthorized":"$undefined"}]}]}]]}],{"children":["marks",["$","$1","c",{"children":[null,["$","$L2",null,{"parallelRouterKey":"children","error":"$undefined","errorStyles":"$undefined","errorScripts":"$undefined","template":["$","$L3",null,{}],"templateStyles":"$undefined","templateScripts":"$undefined","notFound":"$undefined","forbidden":"$undefined","unauthorized":"$undefined"}]]}],{"children":["needle",["$","$1","c",{"children":[null,["$","$L2",null,{"parallelRouterKey":"children","error":"$undefined","errorStyles":"$undefined","errorScripts":"$undefined","template":["$","$L3",null,{}],"templateStyles":"$undefined","templateScripts":"$undefined","notFound":"$undefined","forbidden":"$undefined","unauthorized":"$undefined"}]]}],{"children":["__PAGE__",["$","$1","c",{"children":[["$","$L4",null,{"children":[["$","h1",null,{"children":"Needle"}],"\n",["$","p",null,{"className":"lead","children":["A pivoted ",["$","strong",null,{"children":"needle"}]," (NYT-style gauge or software dial). It encodes a value on the ",["$","code",null,{"className":"inline","children":"theta"}]," channel — the polar angular ",["$","em",null,{"children":"position"}],", in degrees via the channel’s scale — and draws a tapered pointer + hub. The default semicircle is ",["$","strong",null,{"children":"horizontal"}]," (left → right through the top, like a speedometer). Use ",["$","code",null,{"className":"inline","children":"orient"}]," (",["$","code",null,{"className":"inline","children":"top"}],"·",["$","code",null,{"className":"inline","children":"right"}],"·",["$","code",null,{"className":"inline","children":"bottom"}],"·",["$","code",null,{"className":"inline","children":"left"}],"), ",["$","code",null,{"className":"inline","children":"arc: \"full\""}],", or explicit ",["$","code",null,{"className":"inline","children":"start"}],"/",["$","code",null,{"className":"inline","children":"end"}]," — and keep ",["$","code",null,{"className":"inline","children":"scale.range"}]," in sync. Optional ",["$","code",null,{"className":"inline","children":"x"}],"/",["$","code",null,{"className":"inline","children":"y"}]," place the pivot on categorical or linear axes (many small needles in one chart)."]}],"\n",["$","$L5",null,{"entries":[{"name":"needle(options)","summary":["Import from ",["$","code",null,{"className":"inline","children":"elicit.plot"}],". One needle (+ hub) per datum."],"signatures":["needle({ channels, length, handles, handleSize, handleColor, baseWidth, id }) → Feature"],"options":[{"name":"channels","type":"object","default":"{}","desc":["Must include ",["$","code",null,{"className":"inline","children":"theta"}]," — the polar angular position. (",["$","code",null,{"className":"inline","children":"angle"}]," is a mark’s rotation in place and is not read here.) Optional ",["$","code",null,{"className":"inline","children":"x"}],"/",["$","code",null,{"className":"inline","children":"y"}]," place the pivot (default: plot centre)."]},{"name":"length","type":"number","default":"40% of min(w,h)","desc":"$L6"},{"name":"handles","type":"boolean | 'hit'","default":"true","desc":"$L7"},{"name":"handleSize","type":"number","default":"5","desc":"Hub circle radius in px. The hub is the needle's handle."},{"name":"handleColor","type":"string","default":"theme","desc":"$L8"},{"name":"baseWidth","type":"number","default":"10","desc":"Width of the needle base in px."}],"channels":[{"name":"theta","type":"linear | point (deg)","desc":"$L9"},{"name":"x / y","type":"linear | point","desc":"Optional pivot position — categorical or quantitative."},{"name":"fill / stroke","type":"style","desc":"Needle colour."}],"returns":"$La"}]}],"\n","$Lb","\n","$Lc","\n","$Ld","\n","$Le","\n","$Lf"]}],null,"$L10"]}],{},null,false]},null,false]},null,false]},null,false],"$L11",false]],"m":"$undefined","G":["$12",[]],"s":false,"S":true}
+13:I[7009,["799","static/chunks/799-7af107d40bc88b92.js","3724","static/chunks/3724-d12e76d78a883e63.js","8500","static/chunks/8500-421c3037307d9211.js","637","static/chunks/637-1286b55f42136e00.js","5424","static/chunks/5424-f839d0fc5daf46c0.js","9761","static/chunks/9761-547c4c0c570149b3.js","1098","static/chunks/1098-2ff397ccf5b527da.js","3795","static/chunks/app/marks/needle/page-1cb03cffca8c7bab.js"],"Example"]
+15:I[8500,["799","static/chunks/799-7af107d40bc88b92.js","3724","static/chunks/3724-d12e76d78a883e63.js","8500","static/chunks/8500-421c3037307d9211.js","637","static/chunks/637-1286b55f42136e00.js","5424","static/chunks/5424-f839d0fc5daf46c0.js","9761","static/chunks/9761-547c4c0c570149b3.js","1098","static/chunks/1098-2ff397ccf5b527da.js","3795","static/chunks/app/marks/needle/page-1cb03cffca8c7bab.js"],""]
+19:I[484,[],"OutletBoundary"]
+1b:I[7837,[],"AsyncMetadataOutlet"]
+1d:I[484,[],"ViewportBoundary"]
+1f:I[484,[],"MetadataBoundary"]
+20:"$Sreact.suspense"
+6:["Needle length in px. Or drive via the ",["$","code",null,{"className":"inline","children":"size"}]," channel."]
+7:[["$","code",null,{"className":"inline","children":"'hit'"}]," keeps the hub grabbable but draws no circle. ",["$","code",null,{"className":"inline","children":"false"}]," is neither drawn nor grabbable."]
+8:["Hub fill. Defaults to the theme’s ",["$","code",null,{"className":"inline","children":"handle"}]," colour."]
+9:["The elicited value, mapped to degrees by its scale. Default range ",["$","code",null,{"className":"inline","children":"[180, 0]"}],"."]
+a:["A ",["$","b",null,{"children":"feature"}]," emitting a filled needle ",["$","code",null,{"className":"inline","children":"path"}]," and hub ",["$","code",null,{"className":"inline","children":"circle"}]," per datum."]
+b:["$","section",null,{"id":"gauge","children":[["$","h2",null,{"className":"section","children":"Semicircle gauge + center text"}],[["$","p",".0",{"children":["A composite of ",["$","code",null,{"className":"inline","children":"axisRadial"}]," (ticks), ",["$","code",null,{"className":"inline","children":"needle"}],", and ",["$","code",null,{"className":"inline","children":"text"}],". Default orient is top: 0 on the left, max on the right."],"className":"intro"}]],["$","div",null,{"className":"grid","children":[["$","$L13",".1",{"code":"mount(Elicit({\n  width: 320, height: 200,\n  margins: { top: 24, right: 16, bottom: 16, left: 16 },\n  axes: false,\n  data: [{ n: 62 }],\n  schema: { n: { type: \"quantitative\", domain: [0, 100] } },\n  marks: [\n    composite({\n      id: \"gauge\",\n      parts: [\n        axisRadial({\n          orient: \"top\", radius: 100, ticks: 5,\n          channels: { theta: { field: \"n\", scale: { range: [180, 0] } } },\n        }),\n        needle({\n          length: 90, fill: \"#1d4ed8\",\n          channels: {\n            theta: {\n              field: \"n\",\n              scale: { range: [180, 0] },\n              edit: rotate({ pivot: \"mark\", fold: false, pick: \"direct\" }),\n            },\n          },\n        }),\n        text({\n          fontSize: 22, dy: 28,\n          format: \".0f\",\n          channels: {\n            text: { field: \"n\" },\n            textAnchor: { value: \"middle\" },\n            lineAnchor: { value: \"middle\" },\n          },\n        }),\n      ],\n    }),\n  ],\n}));\n","title":"Quantitative gauge","blurb":"Domain [0, 100] maps to [180°, 0°] (left → right). Drag the needle.","try":[["$","b",null,{"children":"Drag"}]," the needle left or right."]}],["$","$L13",".2",{"code":"mount(Elicit({\n  width: 240, height: 280,\n  margins: { top: 16, right: 28, bottom: 16, left: 16 },\n  axes: false,\n  data: [{ n: 62 }],\n  schema: { n: { type: \"quantitative\", domain: [0, 100] } },\n  marks: [\n    axisRadial({\n      orient: \"right\", radius: 100, ticks: 5,\n      channels: { theta: { field: \"n\", scale: { range: [-90, 90] } } },\n    }),\n    needle({\n      length: 90, fill: \"#1d4ed8\",\n      channels: {\n        theta: {\n          field: \"n\",\n          scale: { range: [-90, 90] },\n          edit: rotate({ pivot: \"mark\", fold: false, pick: \"direct\" }),\n        },\n      },\n    }),\n  ],\n}));\n","title":"Right-facing (orient: \"right\")","blurb":"Same data; arc on the right — set scale.range to [-90, 90]."}]]}]]}]
+14:T594,mount(Elicit({
+  width: 420, height: 280,
+  margins: { top: 16, right: 16, bottom: 36, left: 40 },
+  data: [
+    { g: "A", layer: 1, belief: 35 },
+    { g: "B", layer: 1, belief: 62 },
+    { g: "C", layer: 1, belief: 48 },
+    { g: "A", layer: 2, belief: 70 },
+    { g: "B", layer: 2, belief: 44 },
+    { g: "C", layer: 2, belief: 81 },
+  ],
+  schema: {
+    g:      { type: "categorical", domain: ["A", "B", "C"] },
+    layer:  { type: "quantitative", domain: [0.5, 2.5] },
+    belief: { type: "quantitative", domain: [0, 100] },
+  },
+  axes: {
+    x: { title: "group" },
+    y: { title: "layer", ticks: 2 },
+  },
+  marks: [
+    // A mini radial axis rings each pivot, so every needle shows the 0→100 span
+    // it encodes. Same x/y channels as the needle → one ring per row.
+    axisRadial({
+      radius: 22, ticks: 0, tickSize: 0, labelOffset: 6, fontSize: 7,
+      start: 180, end: 0, stroke: "#cbd5e1",
+      channels: {
+        x: { field: "g" },
+        y: { field: "layer" },
+        theta: { field: "belief", scale: { range: [180, 0] } },
+      },
+    }),
+    needle({
+      length: 24, handleSize: 3, baseWidth: 6,
+      channels: {
+        x: { field: "g" },
+        y: { field: "layer" },
+        theta: {
+          field: "belief",
+          scale: { range: [180, 0] },
+          edit: rotate({ pivot: "mark", fold: false, pick: "direct" }),
+        },
+        fill: { field: "g" },
+      },
+    }),
+  ],
+}));
+c:["$","section",null,{"id":"grid","children":[["$","h2",null,{"className":"section","children":"Many needles on x × y"}],[["$","p",".0",{"children":["Each row is a pivot: ",["$","code",null,{"className":"inline","children":"x"}]," categorical, ",["$","code",null,{"className":"inline","children":"y"}]," quantitative, ",["$","code",null,{"className":"inline","children":"theta"}]," a third numeric belief. Drag any needle — direct-pick writes that row only."],"className":"intro"}]],["$","div",null,{"className":"grid","children":[["$","$L13",".1",{"code":"$14","title":"Small needles in a scatter of pivots","blurb":"Group on x, layer on y, belief on theta. Cartesian axes frame the pivots.","try":[["$","b",null,{"children":"Drag"}]," any small needle to change that cell’s belief."]}]]}]]}]
+d:["$","section",null,{"id":"dial","children":[["$","h2",null,{"className":"section","children":"Full-circle dial"}],[["$","p",".0",{"children":["A knob: full 360° with ",["$","code",null,{"className":"inline","children":"fold: false"}],"."],"className":"intro"}]],["$","div",null,{"className":"grid","children":[["$","$L13",".1",{"code":"mount(Elicit({\n  width: 280, height: 280,\n  margins: { top: 20, right: 20, bottom: 20, left: 20 },\n  axes: false,\n  data: [{ n: 0.35 }],\n  schema: { n: { type: \"quantitative\", domain: [0, 1] } },\n  marks: [\n    axisRadial({\n      arc: \"full\", radius: 95, ticks: 8,\n      channels: { theta: { field: \"n\", scale: { range: [-180, 180] } } },\n    }),\n    needle({\n      length: 80, fill: \"#0f172a\",\n      channels: {\n        theta: {\n          field: \"n\",\n          scale: { range: [-180, 180] },\n          edit: rotate({ pivot: \"mark\", fold: false, pick: \"direct\" }),\n        },\n      },\n    }),\n    text({\n      fontSize: 18, format: \".0%\",\n      channels: {\n        text: { field: \"n\" },\n        textAnchor: { value: \"middle\" },\n        lineAnchor: { value: \"middle\" },\n      },\n    }),\n  ],\n}));\n","title":"Quantitative dial","blurb":"Rotate anywhere around the hub.","try":[["$","b",null,{"children":"Drag"}]," around the dial."]}]]}]]}]
+16:Te5c,// Ableton-style knob: a donut-slice ring (track + value fill) plus a needle.
+// The ring is a tiny mark over authoring.arcPath; the needle carries rotate().
+// Stock arc/donut partition a total among rows — a knob's fill is one value
+// swept from the arc's start, so the ring is a short authoring mark instead.
+const START = 225; // ~7 o'clock
+const END = -45;   // ~5 o'clock — 270° clockwise through the top
+
+function knobArc(options = {}) {
+  const opts = authoring.normalizeMarkOptions(options, {
+    mark: "knobArc",
+    allow: ["outerRadius", "innerRadius", "start", "end", "track"],
+  });
+  const {
+    channels = {},
+    outerRadius = 90,
+    innerRadius = 78,
+    start = START,
+    end = END,
+    track = "#1a1a1a",
+  } = opts;
+  return {
+    ...authoring.markCommon(opts),
+    type: "knobArc",
+    channels,
+    build(data, scales, width, height) {
+      const cx = width / 2, cy = height / 2;
+      return data.flatMap((d, i) => {
+        const deg = authoring.encodeAngle(scales, channels, d, start, i, data);
+        const style = authoring.resolveStyle(
+          scales, channels, d, { fill: "#00aebc" }, i, data,
+        );
+        const nodes = [];
+        const trackD = authoring.arcPath(cx, cy, outerRadius, start, end, { innerRadius });
+        if (trackD) {
+          nodes.push({
+            type: "path", d: trackD, fill: track, stroke: "none",
+            data: d, index: i, pointerEvents: "none",
+          });
+        }
+        const fillD = authoring.arcPath(cx, cy, outerRadius, start, deg, { innerRadius });
+        if (fillD) {
+          nodes.push({
+            type: "path", d: fillD, ...style, stroke: "none",
+            data: d, index: i, pointerEvents: "none",
+          });
+        }
+        // Max tick — the small end-cap Ableton puts at 5 o'clock.
+        const tip = authoring.polarToXY(cx, cy, (outerRadius + innerRadius) / 2, end);
+        nodes.push({
+          type: "circle", cx: tip.x, cy: tip.y, r: 2.5,
+          fill: track, stroke: "none",
+          data: d, index: i, pointerEvents: "none",
+        });
+        return nodes;
+      });
+    },
+  };
+}
+
+mount(Elicit({
+  width: 260, height: 280,
+  margins: { top: 40, right: 24, bottom: 44, left: 24 },
+  axes: false,
+  theme: { background: "#323232", ink: "#b4b4b4" },
+  data: [{ level: 25 }],
+  schema: { level: { type: "quantitative", domain: [0, 100] } },
+  marks: [
+    composite({
+      id: "knob",
+      parts: [
+        text({
+          fontSize: 13, dy: -108,
+          channels: {
+            text: { value: "Compress" },
+            fill: { value: "#b4b4b4" },
+            textAnchor: { value: "middle" },
+            lineAnchor: { value: "middle" },
+          },
+        }),
+        knobArc({
+          outerRadius: 88, innerRadius: 76,
+          start: START, end: END,
+          track: "#1a1a1a",
+          channels: {
+            theta: { field: "level", scale: { range: [START, END] } },
+            fill: { value: "#00aebc" },
+          },
+        }),
+        needle({
+          length: 70, baseWidth: 2.5,
+          handles: "hit",
+          fill: "#1a1a1a", stroke: "#1a1a1a",
+          channels: {
+            theta: {
+              field: "level",
+              scale: { range: [START, END] },
+              edit: rotate({ pivot: "mark", fold: false, pick: "direct" }),
+            },
+          },
+        }),
+        text({
+          fontSize: 14, dy: 108,
+          format: (v) => `${Math.round(v)} %`,
+          channels: {
+            text: { field: "level" },
+            fill: { value: "#b4b4b4" },
+            textAnchor: { value: "middle" },
+            lineAnchor: { value: "middle" },
+          },
+        }),
+      ],
+    }),
+  ],
+}))
+e:["$","section",null,{"id":"ableton","children":[["$","h2",null,{"className":"section","children":"Ableton-style knob"}],[["$","p",".0",{"children":["A software knob is a ",["$","$L15",null,{"href":"/marks/composite","children":"composite"}],": a ",["$","strong",null,{"children":"donut-slice ring"}]," (dark track + value fill) and a thin ",["$","strong",null,{"children":"needle"}]," that shares the same ",["$","code",null,{"className":"inline","children":"theta"}]," scale. The ring is a tiny mark over ",["$","code",null,{"className":"inline","children":"authoring.arcPath"}]," — stock ",["$","code",null,{"className":"inline","children":"arc"}]," / ",["$","code",null,{"className":"inline","children":"donut"}]," partition a total among rows, while a knob's fill is one value swept from the arc's start. The needle carries ",["$","code",null,{"className":"inline","children":"rotate({ pivot: \"mark\", fold: false, pick: \"direct\" })"}],"; the ring stays inert and re-derives."],"className":"intro"}],["$","p",".1",{"children":["The span is Ableton's 270° arc with a gap at the bottom: ",["$","code",null,{"className":"inline","children":"start: 225"}]," (~7 o'clock) to ",["$","code",null,{"className":"inline","children":"end: -45"}]," (~5 o'clock). Keep ",["$","code",null,{"className":"inline","children":"scale.range"}]," in sync with that span."],"className":"intro"}]],["$","div",null,{"className":"grid","children":[["$","$L13",".2",{"code":"$16","title":"Compress knob","blurb":"Ring fill + needle over one quantitative field. Drag the needle — the cyan slice follows.","try":"$L17"}]]}]]}]
+18:T577,mount(Elicit({
+  width: 360, height: 220,
+  margins: { top: 40, right: 70, bottom: 20, left: 70 },
+  axes: false,
+  // Let the long band labels ("VERY LIKELY D" …) spill into the margin instead of
+  // being clipped by the plot edge.
+  overflow: "visible",
+  data: [{ chance: "LEANING D" }],
+  schema: {
+    chance: {
+      type: "ordinal",
+      domain: ["VERY LIKELY D", "LIKELY D", "LEANING D", "TOSSUP",
+               "LEANING R", "LIKELY R", "VERY LIKELY R"],
+    },
+  },
+  marks: [
+    axisRadial({
+      orient: "top", radius: 110, bands: true, bandWidth: 22,
+      tickSize: 0, labelOffset: 18, fontSize: 8,
+      channels: {
+        theta: { field: "chance", scale: { range: [180, 0] } },
+        // ColorBrewer RdBu is red→blue; reverse so D (left) is blue and R (right)
+        // is red — a proper 7-class diverging categorical palette.
+        fill: { field: "chance", scale: { scheme: "RdBu", reverse: true } },
+      },
+    }),
+    needle({
+      length: 95, fill: "#b91c1c",
+      channels: {
+        theta: {
+          field: "chance",
+          scale: { range: [180, 0] },
+          edit: rotate({ pivot: "mark", fold: false, pick: "direct" }),
+        },
+      },
+    }),
+    text({
+      fontSize: 14, dy: 32,
+      channels: {
+        text: { field: "chance" },
+        textAnchor: { value: "middle" },
+        lineAnchor: { value: "middle" },
+      },
+    }),
+  ],
+}));
+f:["$","section",null,{"id":"categorical","children":[["$","h2",null,{"className":"section","children":"Categorical needle"}],[["$","p",".0",{"children":["A discrete ",["$","code",null,{"className":"inline","children":"theta"}]," field uses a point scale — drag snaps to the nearest category. Coloured bands come from ",["$","code",null,{"className":"inline","children":"axisRadial({ bands: true })"}],"."],"className":"intro"}]],["$","div",null,{"className":"grid","children":[["$","$L13",".1",{"code":"$18","title":"Likelihood gauge","blurb":"Seven ordered categories across a top-facing arc.","try":[["$","b",null,{"children":"Drag"}]," the needle across categories."]}]]}]]}]
+10:["$","$L19",null,{"children":["$L1a",["$","$L1b",null,{"promise":"$@1c"}]]}]
+11:["$","$1","h",{"children":[null,[["$","$L1d",null,{"children":"$L1e"}],null],["$","$L1f",null,{"children":["$","div",null,{"hidden":true,"children":["$","$20",null,{"fallback":null,"children":"$L21"}]}]}]]}]
+17:[["$","b",null,{"children":"Drag"}]," the needle around the ring."]
+1e:[["$","meta","0",{"charSet":"utf-8"}],["$","meta","1",{"name":"viewport","content":"width=device-width, initial-scale=1"}]]
+1a:null
+1c:{"metadata":[["$","title","0",{"children":"ElicitJS Docs"}],["$","meta","1",{"name":"description","content":"Declarative visual belief elicitation — documentation"}]],"error":null,"digest":"$undefined"}
+21:"$1c:metadata"

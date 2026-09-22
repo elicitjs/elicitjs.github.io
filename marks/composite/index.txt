@@ -1,0 +1,412 @@
+1:"$Sreact.fragment"
+2:I[7121,[],""]
+3:I[4581,[],""]
+4:I[6984,["799","static/chunks/799-7af107d40bc88b92.js","3724","static/chunks/3724-d12e76d78a883e63.js","8500","static/chunks/8500-421c3037307d9211.js","637","static/chunks/637-1286b55f42136e00.js","5424","static/chunks/5424-f839d0fc5daf46c0.js","9761","static/chunks/9761-547c4c0c570149b3.js","1098","static/chunks/1098-2ff397ccf5b527da.js","8519","static/chunks/app/marks/composite/page-1cb03cffca8c7bab.js"],"DocShell"]
+5:I[2478,["799","static/chunks/799-7af107d40bc88b92.js","3724","static/chunks/3724-d12e76d78a883e63.js","8500","static/chunks/8500-421c3037307d9211.js","637","static/chunks/637-1286b55f42136e00.js","5424","static/chunks/5424-f839d0fc5daf46c0.js","9761","static/chunks/9761-547c4c0c570149b3.js","1098","static/chunks/1098-2ff397ccf5b527da.js","8519","static/chunks/app/marks/composite/page-1cb03cffca8c7bab.js"],"ApiReference"]
+1b:I[7123,[],""]
+:HL["/_next/static/css/89d8c60f936c1aa1.css","style"]
+0:{"P":null,"b":"tv18AyE76ijOK3suAUb2x","p":"","c":["","marks","composite",""],"i":false,"f":[[["",{"children":["marks",{"children":["composite",{"children":["__PAGE__",{}]}]}]},"$undefined","$undefined",true],["",["$","$1","c",{"children":[[["$","link","0",{"rel":"stylesheet","href":"/_next/static/css/89d8c60f936c1aa1.css","precedence":"next","crossOrigin":"$undefined","nonce":"$undefined"}]],["$","html",null,{"lang":"en","suppressHydrationWarning":true,"children":["$","body",null,{"suppressHydrationWarning":true,"children":["$","$L2",null,{"parallelRouterKey":"children","error":"$undefined","errorStyles":"$undefined","errorScripts":"$undefined","template":["$","$L3",null,{}],"templateStyles":"$undefined","templateScripts":"$undefined","notFound":[[["$","title",null,{"children":"404: This page could not be found."}],["$","div",null,{"style":{"fontFamily":"system-ui,\"Segoe UI\",Roboto,Helvetica,Arial,sans-serif,\"Apple Color Emoji\",\"Segoe UI Emoji\"","height":"100vh","textAlign":"center","display":"flex","flexDirection":"column","alignItems":"center","justifyContent":"center"},"children":["$","div",null,{"children":[["$","style",null,{"dangerouslySetInnerHTML":{"__html":"body{color:#000;background:#fff;margin:0}.next-error-h1{border-right:1px solid rgba(0,0,0,.3)}@media (prefers-color-scheme:dark){body{color:#fff;background:#000}.next-error-h1{border-right:1px solid rgba(255,255,255,.3)}}"}}],["$","h1",null,{"className":"next-error-h1","style":{"display":"inline-block","margin":"0 20px 0 0","padding":"0 23px 0 0","fontSize":24,"fontWeight":500,"verticalAlign":"top","lineHeight":"49px"},"children":404}],["$","div",null,{"style":{"display":"inline-block"},"children":["$","h2",null,{"style":{"fontSize":14,"fontWeight":400,"lineHeight":"49px","margin":0},"children":"This page could not be found."}]}]]}]}]],[]],"forbidden":"$undefined","unauthorized":"$undefined"}]}]}]]}],{"children":["marks",["$","$1","c",{"children":[null,["$","$L2",null,{"parallelRouterKey":"children","error":"$undefined","errorStyles":"$undefined","errorScripts":"$undefined","template":["$","$L3",null,{}],"templateStyles":"$undefined","templateScripts":"$undefined","notFound":"$undefined","forbidden":"$undefined","unauthorized":"$undefined"}]]}],{"children":["composite",["$","$1","c",{"children":[null,["$","$L2",null,{"parallelRouterKey":"children","error":"$undefined","errorStyles":"$undefined","errorScripts":"$undefined","template":["$","$L3",null,{}],"templateStyles":"$undefined","templateScripts":"$undefined","notFound":"$undefined","forbidden":"$undefined","unauthorized":"$undefined"}]]}],{"children":["__PAGE__",["$","$1","c",{"children":[["$","$L4",null,{"children":[["$","h1",null,{"children":"Composite"}],"\n",["$","p",null,{"className":"lead","children":["A composite is a glyph: a group of ordinary marks over the chart's one dataset. Each part encodes some fields of the same rows, and a part whose channel carries an ",["$","code",null,{"className":"inline","children":"edit"}]," is a handle. Give a part a ",["$","code",null,{"className":"inline","children":"frame:"}]," channel and the composite becomes a box its parts sit inside; ",["$","code",null,{"className":"inline","children":"group"}]," is an alias of ",["$","code",null,{"className":"inline","children":"composite"}],"."]}],"\n",["$","$L5",null,{"entries":[{"name":"composite(options)","summary":["A glyph: a group of marks over the shared dataset. Import from ",["$","code",null,{"className":"inline","children":"elicit.plot"}]," (",["$","code",null,{"className":"inline","children":"group"}]," is an alias). Returns an ",["$","b",null,{"children":"array of features"}],", which ",["$","code",null,{"className":"inline","children":"Elicit"}]," flattens into its ",["$","code",null,{"className":"inline","children":"marks"}]," list. In ",["$","b",null,{"children":"box mode"}]," — switched on by a part stating a ",["$","code",null,{"className":"inline","children":"frame:"}]," channel — the composite’s own ",["$","code",null,{"className":"inline","children":"x"}]," / ",["$","code",null,{"className":"inline","children":"y"}]," / ",["$","code",null,{"className":"inline","children":"size"}]," place and size a per-row box, and the parts are placed inside it."],"signatures":["composite({ parts, channels, edits, discreteScale, id }) → Feature[]"],"options":[{"name":"parts","type":"Mark[]","default":"[]","desc":["The sub-marks, in z-order (later parts paint on top — visual parts first, handles last). Each part is an ordinary mark with its ",["$","b",null,{"children":"own"}]," ",["$","code",null,{"className":"inline","children":"channels"}]," / style shorthands (arm geometry, per-part stroke, a tip’s ",["$","code",null,{"className":"inline","children":"size"}],"). A part with an ",["$","code",null,{"className":"inline","children":"edit"}]," is a handle; a part without one is inert and the engine makes it ","$L6"," so it can’t swallow a sibling’s drag."]},{"name":"channels","type":"object","default":"{}","desc":"$L7"},{"name":"fill, angle, …","type":"shorthand","default":"—","desc":"$L8"},{"name":"edits","type":"Edit[]","default":"—","desc":"$L9"},{"name":"discreteScale","type":"'band' | 'point'","default":"'band'","desc":"Stamped onto any part that doesn’t declare its own. A glyph usually sits in a band slot."},{"name":"id","type":"string","default":"'composite'","desc":"$La"}],"channels":[{"name":"frame: -0.4  (on x / y)","type":"local position","desc":"$Lb"},{"name":"frame: 1  (on size / rx / ry / strokeWidth)","type":"local magnitude","desc":"$Lc"},{"name":"frame: [lo, hi]  (with a field)","type":"field → box","desc":"$Ld"},{"name":"frame on angle / curvature","type":"private scale","desc":"$Le"}],"returns":"$Lf"}]}],"\n","$L10","\n","$L11","\n","$L12","\n","$L13","\n","$L14","\n","$L15","\n","$L16","\n","$L17","\n","$L18"]}],null,"$L19"]}],{},null,false]},null,false]},null,false]},null,false],"$L1a",false]],"m":"$undefined","G":["$1b",[]],"s":false,"S":true}
+1c:I[7009,["799","static/chunks/799-7af107d40bc88b92.js","3724","static/chunks/3724-d12e76d78a883e63.js","8500","static/chunks/8500-421c3037307d9211.js","637","static/chunks/637-1286b55f42136e00.js","5424","static/chunks/5424-f839d0fc5daf46c0.js","9761","static/chunks/9761-547c4c0c570149b3.js","1098","static/chunks/1098-2ff397ccf5b527da.js","8519","static/chunks/app/marks/composite/page-1cb03cffca8c7bab.js"],"Example"]
+23:I[8500,["799","static/chunks/799-7af107d40bc88b92.js","3724","static/chunks/3724-d12e76d78a883e63.js","8500","static/chunks/8500-421c3037307d9211.js","637","static/chunks/637-1286b55f42136e00.js","5424","static/chunks/5424-f839d0fc5daf46c0.js","9761","static/chunks/9761-547c4c0c570149b3.js","1098","static/chunks/1098-2ff397ccf5b527da.js","8519","static/chunks/app/marks/composite/page-1cb03cffca8c7bab.js"],""]
+2a:I[484,[],"OutletBoundary"]
+2c:I[7837,[],"AsyncMetadataOutlet"]
+2e:I[484,[],"ViewportBoundary"]
+30:I[484,[],"MetadataBoundary"]
+31:"$Sreact.suspense"
+6:["$","code",null,{"className":"inline","children":"pointerEvents:\"none\""}]
+7:["Shared channel map merged into every part. Use it for glyph-wide bindings (",["$","code",null,{"className":"inline","children":"x"}],"/",["$","code",null,{"className":"inline","children":"y"}],"/",["$","code",null,{"className":"inline","children":"angle"}],"/",["$","code",null,{"className":"inline","children":"fill"}],"). A part’s own channel for the same name ",["$","b",null,{"children":"wins"}]," (shallow replace). Inherited ",["$","code",null,{"className":"inline","children":"edit"}],"s land on the last part only. In ",["$","b",null,{"children":"box mode"}]," ",["$","code",null,{"className":"inline","children":"x"}]," / ",["$","code",null,{"className":"inline","children":"y"}]," / ",["$","code",null,{"className":"inline","children":"size"}]," are withheld — they define the box, not each part’s position — and everything else still trickles."]
+8:["Constant shorthands desugared into ",["$","b",null,{"children":"composite"}]," channels (shared by every part unless a part overrides). Parts keep their own shorthands too — e.g. a composite ",["$","code",null,{"className":"inline","children":"angle"}],", per-part ",["$","code",null,{"className":"inline","children":"stroke"}],"."]
+9:["Mark-level edits. They ride the ",["$","b",null,{"children":"last"}]," part — one dataset, so a whole-dataset edit declared on every part would fire once per part. In box mode they ride the ",["$","b",null,{"children":"box"}],", whose channel map holds the glyph’s placement columns."]
+a:["Prefix for the parts’ generated ids (",["$","code",null,{"className":"inline","children":"id/0"}],", ",["$","code",null,{"className":"inline","children":"id/1"}],", …), so each part keeps a stable identity across renders."]
+b:["Local range ",["$","code",null,{"className":"inline","children":"[-1, 1]"}]," from the box’s centre, ",["$","b",null,{"children":"y up"}]," — so ",["$","code",null,{"className":"inline","children":["{"," frame: -0.4 ","}"]}]," is 40% of the way to the left edge. A local part that states ",["$","b",null,{"children":"no"}]," x/y sits at the origin, so parts never repeat the composite’s own position. Long form: ",["$","code",null,{"className":"inline","children":["{"," datum: -0.4, scale: \"frame\" ","}"]}],"."]
+c:["Local range ",["$","code",null,{"className":"inline","children":"[0, 1]"}],": a fraction of the box’s half-size, so the part scales with the glyph."]
+d:["Maps the field’s ",["$","b",null,{"children":"schema domain"}]," onto that slice of the box. The range is on the channel, the domain on the schema — the same division as everywhere else. Long form: ",["$","code",null,{"className":"inline","children":["scale: ","{"," type: \"frame\", range: […] ","}"]}],"."]
+e:"No local box — the units are the channel’s own (degrees, half-chords). The scale is still per part, which is how two mirrored parts get opposite ranges without colliding on a global axis."
+f:["An ",["$","b",null,{"children":"array of features"}]," — the parts, with ids assigned, composite channels merged in. In box mode the array is led by the ",["$","b",null,{"children":"box"}],", which carries the composite’s x/y/size and covers the whole glyph — so a ",["$","code",null,{"className":"inline","children":"move()"}]," / ",["$","code",null,{"className":"inline","children":"resize()"}]," on those channels picks the glyph up from anywhere on it. Nothing about the glyph reaches the engine: it sees ordinary marks reading the one dataset."]
+10:["$","section",null,{"id":"lollipop","children":[["$","h2",null,{"className":"section","children":"Lollipop — drag the tip"}],[["$","p",".0",{"children":["A stem (a span rule from the baseline to the value) plus a draggable tip. Two marks: the ",["$","code",null,{"className":"inline","children":"ruleX"}]," draws the stem and carries no edit, so it is inert; the ",["$","code",null,{"className":"inline","children":"point"}]," is the handle and edits ",["$","code",null,{"className":"inline","children":"value"}],". Drag a tip and its stem re-derives, because both marks read the same row."],"className":"intro"}]],["$","div",null,{"className":"grid","children":[["$","$L1c",".1",{"code":"mount(Elicit({\n  width: 380, height: 260,\n  margins: { top: 14, right: 14, bottom: 26, left: 30 },\n  data: [\n    { g: \"A\", value: 40 }, { g: \"B\", value: 62 },\n    { g: \"C\", value: 48 }, { g: \"D\", value: 75 },\n  ],\n  schema: {\n    g:     { type: \"categorical\" },\n    value: { type: \"quantitative\", domain: [0, 100] },\n  },\n  marks: [\n    composite({\n      id: \"lollipop\",\n      parts: [\n        ruleX({\n          stroke: \"#94a3b8\", strokeWidth: 2,\n          channels: { x: { field: \"g\" }, y2: { field: \"value\" } },\n        }),\n        point({\n          fill: \"steelblue\", size: 7,\n          channels: {\n            x: { field: \"g\" },\n            y: { field: \"value\", edit: move() },\n          },\n        }),\n      ],\n    }),\n  ],\n}))\n","title":"One editable field (the tip)","blurb":"The stem is a span ruleX (baseline → value); the tip point edits value.","try":[["$","b",null,{"children":"Drag"}]," a lollipop tip up or down."]}]]}]]}]
+1d:T590,mount(Elicit({
+  width: 380, height: 280,
+  margins: { top: 14, right: 14, bottom: 26, left: 30 },
+  data: [
+    { g: "A", mean: 50, lo: 35, hi: 65 },
+    { g: "B", mean: 62, lo: 55, hi: 72 },
+    { g: "C", mean: 44, lo: 28, hi: 58 },
+  ],
+  // lo, mean and hi all land on the y axis. The axis spans the UNION of their
+  // declared domains, so no chart-level y scale is needed.
+  schema: {
+    g:    { type: "categorical",  domain: ["A", "B", "C"] },
+    lo:   { type: "quantitative", domain: [0, 60] },
+    mean: { type: "quantitative", domain: [0, 80] },
+    hi:   { type: "quantitative", domain: [20, 100] },
+  },
+  marks: [
+    composite({
+      id: "errorbar",
+      parts: [
+        // Inert visual: no edit, so the engine makes it pointer-transparent.
+        ruleX({
+          stroke: "#64748b", strokeWidth: 1.5,
+          channels: { x: { field: "g" }, y1: { field: "lo" }, y2: { field: "hi" } },
+        }),
+        point({
+          fill: "steelblue", size: 6,
+          channels: {
+            x: { field: "g" },
+            y: { field: "mean", edit: move() },
+          },
+        }),
+        tick({
+          stroke: "#334155", strokeWidth: 2,
+          channels: { x: { field: "g" }, y: { field: "lo", edit: move() } },
+        }),
+        tick({
+          stroke: "#334155", strokeWidth: 2,
+          channels: { x: { field: "g" }, y: { field: "hi", edit: move() } },
+        }),
+      ],
+    }),
+  ],
+}))
+1e:T7b0,mount(Elicit({
+  width: 380, height: 280,
+  margins: { top: 14, right: 14, bottom: 26, left: 30 },
+  data: [
+    { g: "A", mean: 50, lo: 35, hi: 65 },
+    { g: "B", mean: 62, lo: 55, hi: 72 },
+  ],
+  schema: {
+    g:    { type: "categorical",  domain: ["A", "B"] },
+    lo:   { type: "quantitative", domain: [0, 100] },
+    mean: { type: "quantitative", domain: [0, 100] },
+    hi:   { type: "quantitative", domain: [0, 100] },
+  },
+  // Invariant on the DATA: the centre stays within the ends. A cap drag and a dot
+  // drag are different marks, but one rule gates both — which is exactly why a
+  // constraint is declared here, on the spec, and not inside either mark.
+  constraints: [
+    custom(({ active }) => active
+      ? { hi: Math.max(active.hi, active.mean), lo: Math.min(active.lo, active.mean) }
+      : undefined),
+  ],
+  marks: [
+    composite({
+      id: "errorbar",
+      parts: [
+        ruleX({
+          stroke: "#64748b", strokeWidth: 1.5,
+          channels: { x: { field: "g" }, y1: { field: "lo" }, y2: { field: "hi" } },
+        }),
+        point({
+          fill: "steelblue", size: 6,
+          channels: {
+            x: { field: "g" },
+            // Coupled move: the dot shifts lo/hi by the mean's delta.
+            y: { field: "mean",
+                 edit: edit.custom((ctx) => {
+                   const d = ctx.datum;
+                   const s = ctx.channels[0].scale;
+                   const mean = s.invertValue(ctx.pointer.y);
+                   const delta = mean - d.mean;
+                   return { ...d, mean, lo: d.lo + delta, hi: d.hi + delta };
+                 }) },
+          },
+        }),
+        tick({
+          stroke: "#334155", strokeWidth: 2,
+          channels: { x: { field: "g" }, y: { field: "lo", edit: move() } },
+        }),
+        tick({
+          stroke: "#334155", strokeWidth: 2,
+          channels: { x: { field: "g" }, y: { field: "hi", edit: move() } },
+        }),
+      ],
+    }),
+  ],
+}))
+11:["$","section",null,{"id":"error-bar","children":[["$","h2",null,{"className":"section","children":"Error bar — move the dot, resize the interval"}],[["$","p",".0",{"children":["Three editable fields on one row: ",["$","code",null,{"className":"inline","children":"mean"}]," (the dot), ",["$","code",null,{"className":"inline","children":"lo"}]," and ",["$","code",null,{"className":"inline","children":"hi"}]," (the caps). Each is a separate mark, so each edits a plain ",["$","code",null,{"className":"inline","children":"y"}]," channel and dragging a cap moves only that end — no handle arbitration to write. The whisker is a ",["$","code",null,{"className":"inline","children":"ruleX"}]," spanning lo..hi; it follows the caps because it reads the same rows."],"className":"intro"}]],["$","div",null,{"className":"grid","children":[["$","$L1c",".1",{"code":"$1d","title":"Independent handles per field","blurb":"Each handle is its own mark. The whisker spans lo..hi and follows the caps.","try":[["$","b",null,{"children":"Drag"}]," the centre dot to move the mean, or a cap to move an end."]}],["$","$L1c",".2",{"code":"$1e","title":"Coupled move + center-within-ends","blurb":"Two behaviours, two layers. The dot uses a joint edit (edit.custom): its new value comes from the pointer, and it shifts lo/hi by the same delta, so moving the centre carries the whole bar. \"Centre stays within the ends\" is a constraint — a pure data rule on the dataset. Declared once on the composite, it runs on every commit from every part, so a cap can never cross the centre, no matter which handle you grabbed.","try":"$L1f"}]]}]]}]
+20:T48c,mount(Elicit({
+  width: 380, height: 280,
+  margins: { top: 14, right: 14, bottom: 26, left: 30 },
+  data: [
+    { x: 25, y: 35, theta: -15 },
+    { x: 55, y: 60, theta: 40 },
+    { x: 78, y: 28, theta: 75 },
+    { x: 40, y: 78, theta: -50 },
+  ],
+  schema: {
+    x:     { type: "quantitative", domain: [0, 100] },
+    y:     { type: "quantitative", domain: [0, 100] },
+    theta: { type: "quantitative", domain: [-180, 180] },
+  },
+  marks: [
+    composite({
+      id: "plus",
+      discreteScale: "point",
+      // Glyph-wide: every part inherits these (unless it overrides).
+      channels: {
+        x: { field: "x" },
+        y: { field: "y" },
+        angle: {
+          field: "theta",
+          scale: { range: [-180, 180] },
+          edit: rotate({ pivot: "mark", fold: false, pick: "direct" }),
+        },
+      },
+      parts: [
+        // Horizontal arm — own stroke/length; inherits x/y/angle (edit stripped).
+        tickY({ length: 28, stroke: "#93c5fd", strokeWidth: 5 }),
+        // Vertical arm — own stroke; last part keeps the inherited rotate().
+        tickX({ length: 28, stroke: "#1d4ed8", strokeWidth: 5 }),
+      ],
+    }),
+  ],
+}))
+21:T470,mount(Elicit({
+  width: 380, height: 280,
+  margins: { top: 14, right: 14, bottom: 26, left: 30 },
+  data: [
+    { x: 30, y: 40, theta: 20 },
+    { x: 60, y: 65, theta: -35 },
+    { x: 75, y: 25, theta: 55 },
+  ],
+  schema: {
+    x:     { type: "quantitative", domain: [0, 100] },
+    y:     { type: "quantitative", domain: [0, 100] },
+    theta: { type: "quantitative", domain: [-180, 180] },
+  },
+  marks: [
+    composite({
+      id: "crosshair",
+      discreteScale: "point",
+      channels: {
+        x: { field: "x" },
+        y: { field: "y" },
+        angle: {
+          field: "theta",
+          scale: { range: [-180, 180] },
+          edit: rotate({ pivot: "mark", fold: false, pick: "direct" }),
+        },
+      },
+      parts: [
+        tickY({ length: 32, stroke: "#94a3b8", strokeWidth: 3 }),
+        tickX({ length: 32, stroke: "#94a3b8", strokeWidth: 3 }),
+        // Hub: own shape/fill/size; inherits x/y/angle; keeps rotate() (last).
+        point({
+          shape: "square",
+          size: 6,
+          fill: "#fbbf24",
+          stroke: "#92400e",
+          strokeWidth: 1,
+        }),
+      ],
+    }),
+  ],
+}))
+12:["$","section",null,{"id":"plus","children":[["$","h2",null,{"className":"section","children":"Composite channels + per-part channels"}],[["$","p",".0",{"children":["Two layers of binding. ",["$","strong",null,{"children":"Composite"}]," ",["$","code",null,{"className":"inline","children":"channels"}]," (here ",["$","code",null,{"className":"inline","children":"x"}],", ",["$","code",null,{"className":"inline","children":"y"}],", ",["$","code",null,{"className":"inline","children":"angle"}],") trickle into every part so the glyph shares one position and one orientation. ",["$","strong",null,{"children":"Each part"}]," still declares its own channels and shorthands — arm length, stroke colour, a hub’s ",["$","code",null,{"className":"inline","children":"fill"}]," / ",["$","code",null,{"className":"inline","children":"size"}],". A part key wins on conflict. Inherited ",["$","code",null,{"className":"inline","children":"edit"}],"s attach to the last part only, so one ",["$","code",null,{"className":"inline","children":"rotate()"}]," spins the whole glyph without double-applying."],"className":"intro"}]],["$","div",null,{"className":"grid","children":[["$","$L1c",".1",{"code":"$20","title":"Shared x/y/angle; per-part stroke on crossing ticks","blurb":"A + from tickY (horizontal) + tickX (vertical). Composite channels bind position and angle once; each tick keeps its own stroke / length. The last part holds the inherited rotate() edit.","try":[["$","b",null,{"children":"Drag"}]," the darker (vertical) arm of a + to spin it."]}],["$","$L1c",".2",{"code":"$21","title":"Same composite angle; hub point with its own fill/size","blurb":"Add a square hub as a third part. It inherits x/y/angle from the composite but sets its own shape, fill, and size — part channels win for those names. rotate() still lives on the last part.","try":"$L22"}]]}]]}]
+24:T4e3,mount(Elicit({
+  width: 380, height: 260,
+  margins: { top: 14, right: 14, bottom: 26, left: 30 },
+  data: [
+    { x: 20, value: 45 },
+    { x: 55, value: 70 },
+    { x: 80, value: 30 },
+  ],
+  schema: {
+    x:     { type: "quantitative", domain: [0, 100] },
+    value: { type: "quantitative", domain: [0, 100] },
+  },
+  constraints: [ count({ max: 8 }) ],
+  marks: [
+    composite({
+      id: "lollipop",
+      parts: [
+        // The stem: inert, so it stays pointer-transparent and carries no create.
+        ruleX({
+          stroke: "#94a3b8", strokeWidth: 2,
+          channels: { x: { field: "x" }, y2: { field: "value" } },
+        }),
+        // The tip: the ONE part that owns the create. A plane gesture fans to every
+        // feature, so declaring create on a single part appends exactly one row —
+        // and because both parts read that row, a whole lollipop (stem + tip) appears.
+        // dblclick, since a move-drag also lives on this handle.
+        point({
+          fill: "steelblue", size: 7,
+          channels: {
+            x: { field: "x" },
+            y: { field: "value", edit: move() },
+          },
+          edits: [ create({ gesture: "dblclick", channels: ["x", "y"] }) ],
+        }),
+      ],
+    }),
+  ],
+}))
+13:["$","section",null,{"id":"creating","children":[["$","h2",null,{"className":"section","children":"Creating a whole glyph at once"}],[["$","p",".0",{"children":["Creation is ",["$","$L23",null,{"href":"/editing/existence#what-can-create","children":"mark-agnostic"}],": a plane gesture mints one row, and every part of the glyph encodes it — so one create makes a whole composite appear. The rule that a whole-dataset edit belongs on ",["$","strong",null,{"children":"exactly one mark"}]," is what makes this clean: put ",["$","code",null,{"className":"inline","children":"create"}]," on a ",["$","strong",null,{"children":"single part"}]," (here the tip), and a click appends one row, not one per part. The inert stem re-derives from the same row, so the stem and tip show up together."],"className":"intro"}]],["$","div",null,{"className":"grid","children":[["$","$L1c",".1",{"code":"$24","title":"Double-click to add a lollipop","blurb":"create() lives on the tip only; the stem (an inert ruleX from baseline → value) re-derives from the same new row. One row in, a whole glyph out. count({ max }) caps the dataset.","try":[["$","b",null,{"children":"Double-click"}]," empty space to add a lollipop · ",["$","b",null,{"children":"drag"}]," a tip to move it."]}]]}]]}]
+25:T6cc,mount(Elicit({
+  width: 480, height: 300,
+  margins: { top: 20, right: 24, bottom: 40, left: 44 },
+  axes: { x: {}, y: {} },
+  data: [
+    { site: "North", capacity: 30, load: 0.7 },
+    { site: "South", capacity: 72, load: 0.3 },
+  ],
+  schema: {
+    site:     { type: "categorical", domain: ["North", "South"] },
+    capacity: { type: "quantitative", domain: [0, 100] },
+    load:     { type: "quantitative", domain: [0, 1] },
+  },
+  marks: [
+    // One part states a channel in LOCAL units (`frame:`), so the composite
+    // becomes a BOX: its x / y / size place and size one per row. Inside it,
+    // x and y run [-1, 1] from the centre with y UP, and magnitudes are a
+    // fraction of the half-size.
+    composite({
+      id: "gauge",
+      channels: {
+        x: { field: "capacity" },
+        y: { value: 150 },
+        size: { value: 46 },
+      },
+      parts: [
+        // The dial: exactly the box's half-size. It states no position at all —
+        // inside a box, saying nothing means "here, at the glyph".
+        point({ channels: {
+          size: { frame: 1 },
+          fill: { value: "#eef2f7" }, stroke: { value: "#9aa7b4" },
+        } }),
+        // The needle: a tick spanning the box's full width, rotated by `load`.
+        // The angle is a PRIVATE frame scale, so this glyph's degrees can't
+        // collide with another mark's — and the rotate inverts back through it.
+        tickY({ channels: {
+          x1: { frame: -0.85 },
+          x2: { frame: 0.85 },
+          angle: { field: "load", frame: [-80, 80],
+                   edit: rotate({ pivot: "mark", pick: "direct" }) },
+          stroke: { value: "#e15759" },
+          strokeWidth: { frame: 0.09 },
+        } }),
+      ],
+    }),
+  ],
+}))
+14:["$","section",null,{"id":"box","children":[["$","h2",null,{"className":"section","children":"A glyph with its own units"}],[["$","p",".0",{"children":["The parts above sit on the chart's axes. Some glyphs need the opposite: a face's eye is 16% of the way up ",["$","em",null,{"children":"the face"}],", not at ",["$","code",null,{"className":"inline","children":"y = 0.16"}]," of the data."],"className":"intro"}],["$","p",".1",{"children":["Give a part a ",["$","code",null,{"className":"inline","children":"frame:"}]," channel and the composite becomes a ",["$","strong",null,{"children":"box"}],". Its own ",["$","code",null,{"className":"inline","children":"x"}]," / ",["$","code",null,{"className":"inline","children":"y"}]," / ",["$","code",null,{"className":"inline","children":"size"}]," set that box's centre and half-size for each row, and ",["$","code",null,{"className":"inline","children":"frame:"}]," values are read inside it:"],"className":"intro"}],["$","ul",".2",{"children":["\n",["$","li",null,{"children":[["$","code",null,{"className":"inline","children":"x"}]," / ",["$","code",null,{"className":"inline","children":"y"}]," — ",["$","code",null,{"className":"inline","children":"[-1, 1]"}]," from the centre, y up. ",["$","code",null,{"className":"inline","children":"{ frame: -0.4 }"}]," is 40% of the way to the left edge."]}],"\n",["$","li",null,{"children":[["$","code",null,{"className":"inline","children":"size"}]," / ",["$","code",null,{"className":"inline","children":"rx"}]," / ",["$","code",null,{"className":"inline","children":"ry"}]," / ",["$","code",null,{"className":"inline","children":"strokeWidth"}]," — ",["$","code",null,{"className":"inline","children":"[0, 1]"}],", a fraction of the half-size."]}],"\n",["$","li",null,{"children":[["$","code",null,{"className":"inline","children":"angle"}]," / ",["$","code",null,{"className":"inline","children":"curvature"}]," — the channel's own units. The scale belongs to its own part, so two parts can take opposite ranges."]}],"\n",["$","li",null,{"children":[["$","code",null,{"className":"inline","children":"{ field: \"f\", frame: [lo, hi] }"}]," maps the field's schema domain onto that slice of the box. The domain stays on the schema."]}],"\n"]}],["$","p",".3",{"children":[["$","code",null,{"className":"inline","children":"x"}]," / ",["$","code",null,{"className":"inline","children":"y"}]," / ",["$","code",null,{"className":"inline","children":"size"}]," describe the box, so they don't trickle into the parts. A part that states no position sits at the centre. ",["$","code",null,{"className":"inline","children":"{ value }"}]," still means pixels, so use ",["$","code",null,{"className":"inline","children":"frame:"}]," for anything that should scale with the glyph."],"className":"intro"}],["$","p",".5",{"children":["For a single software knob — donut-slice ring fill + needle, Ableton-style — see ",["$","$L23",null,{"href":"/marks/needle#ableton","children":"Needle → Ableton-style knob"}],"."],"className":"intro"}]],["$","div",null,{"className":"grid","children":[["$","$L1c",".4",{"code":"$25","title":"A dial per row","blurb":"The composite's x and size place a box. The dial states no position, so it sits at the centre at the box's full half-size; the needle spans it in local units and rotates through its own angle scale.","try":"$L26"}]]}]]}]
+15:["$","section",null,{"id":"why-scales","children":[["$","h2",null,{"className":"section","children":"Why they're real scales"}],[["$","p",".0",{"children":["A ",["$","code",null,{"className":"inline","children":"frame:"}]," channel is a real scale, built once per row. So the ordinary edits work inside a box unchanged: ",["$","code",null,{"className":"inline","children":"move"}],", ",["$","code",null,{"className":"inline","children":"slide"}],", ",["$","code",null,{"className":"inline","children":"rotate"}]," and ",["$","code",null,{"className":"inline","children":"resize"}]," invert a gesture back through the same mapping that placed the part, and ",["$","code",null,{"className":"inline","children":".accepts()"}]," reports the field's real range to an ",["$","$L23",null,{"href":"/editing/external-controls","children":"external control"}],"."],"className":"intro"}],["$","p",".1",{"children":["A ",["$","code",null,{"className":"inline","children":"frame:"}]," channel is also invisible to the chart's axes. An eye at ",["$","code",null,{"className":"inline","children":"{ frame: -0.4 }"}]," never widens the x domain or adds an axis for coordinates that aren't in the data's units."],"className":"intro"}]],null]}]
+27:T66c,mount(Elicit({
+  width: 480, height: 300,
+  margins: { top: 20, right: 24, bottom: 40, left: 44 },
+  axes: { x: {}, y: false },
+  data: [
+    { town: "Ayr",  weight: 26, share: 0.7 },
+    { town: "Bede", weight: 58, share: 0.3 },
+    { town: "Cara", weight: 40, share: 0.5 },
+  ],
+  schema: {
+    town:   { type: "categorical", domain: ["Ayr", "Bede", "Cara"] },
+    weight: { type: "quantitative", domain: [10, 70] },
+    share:  { type: "quantitative", domain: [0, 1] },
+  },
+  marks: [
+    composite({
+      id: "pip",
+      channels: {
+        x: { field: "town" },
+        // `size` is the box's HALF-SIZE, so resizing the glyph resizes everything
+        // placed in it. The edit lives here, on the glyph itself: the box is a
+        // real grab target covering the whole pip, so this picks it up bodily.
+        size: { field: "weight", scale: { range: [18, 54] }, edit: resize() },
+      },
+      parts: [
+        // The outer disc IS the box — full half-size, at the origin. It carries
+        // no edit of its own, so it is pointer-transparent and a drag on it
+        // reaches the box underneath.
+        point({ channels: {
+          size: { frame: 1 },
+          fill: { value: "#f2f5f9" }, stroke: { value: "#9aa7b4" },
+        } }),
+        // The inner disc is 0..0.8 of the half-size — a FRACTION, so it grows with
+        // the glyph and its edit still writes `share` on the same [0, 1] domain.
+        point({ channels: {
+          size: { field: "share", frame: [0, 0.8],
+                  edit: slide({ axis: "y", increase: "up" }) },
+          fill: { value: "#4e79a7" },
+        } }),
+      ],
+    }),
+  ],
+}))
+16:["$","section",null,{"id":"scaling","children":[["$","h2",null,{"className":"section","children":"Everything scales together"}],[["$","p",".0",{"children":"A part's geometry is a fraction of the box, so resizing the glyph resizes its contents. An edit on an inner part still writes its own field on its own domain.","className":"intro"}],["$","p",".1",{"children":["An edit on the composite's own ",["$","code",null,{"className":"inline","children":"x"}]," / ",["$","code",null,{"className":"inline","children":"y"}]," / ",["$","code",null,{"className":"inline","children":"size"}]," moves or resizes the whole glyph. The box covers the glyph, so you can grab it anywhere, including between the parts. A part carrying its own edit takes the drag first."],"className":"intro"}]],["$","div",null,{"className":"grid","children":[["$","$L1c",".2",{"code":"$27","title":"Resize the glyph, the contents follow","blurb":"The outer disc is the box's half-size; the inner one is 0..0.8 of it. resize() is on the composite, so dragging the outer ring grows the whole glyph and the share stays put.","try":[["$","b",null,{"children":"Drag the inner disc"}]," up to raise its share · ",["$","b",null,{"children":"drag the outer ring"}]," outward to grow the glyph."]}]]}]]}]
+17:["$","section",null,{"id":"parts","children":[["$","h2",null,{"className":"section","children":"What box mode returns"}],[["$","p",".0",{"children":["The box first, then the parts, all as plain marks. The box carries the composite's ",["$","code",null,{"className":"inline","children":"x"}]," / ",["$","code",null,{"className":"inline","children":"y"}]," / ",["$","code",null,{"className":"inline","children":"size"}],", so those fields still build the chart's axes; a composite with no edit on them draws nothing you can grab."],"className":"intro"}],["$","p",".1",{"children":"Two limits apply to a part placed in the box:","className":"intro"}],["$","ul",".2",{"children":["\n",["$","li",null,{"children":["A ",["$","code",null,{"className":"inline","children":"{ fn }"}]," channel is called once per row, as ",["$","code",null,{"className":"inline","children":"(d, 0, [d])"}],", so it can't look across rows. Read the field instead."]}],"\n",["$","li",null,{"children":"A line-family mark can't span rows inside a box. Position it on the global scales, or move it out of the composite."}],"\n"]}],["$","p",".3",{"children":["A part with no ",["$","code",null,{"className":"inline","children":"frame:"}]," channel keeps the global scales, so one part of a glyph can still span to a data value."],"className":"intro"}]],null]}]
+28:Ta00,mount(Elicit({
+  width: 520, height: 300,
+  margins: { top: 20, right: 24, bottom: 40, left: 24 },
+  axes: { x: {}, y: false },
+  data: [
+    { who: "Ada",  grump: 0.15, mood: 0.85 },
+    { who: "Brun", grump: 0.55, mood: 0.50 },
+    { who: "Cyd",  grump: 0.95, mood: 0.10 },
+  ],
+  schema: {
+    who:   { type: "categorical",  domain: ["Ada", "Brun", "Cyd"] },
+    grump: { type: "quantitative", domain: [0, 1] },
+    mood:  { type: "quantitative", domain: [0, 1] },
+  },
+  marks: [
+    // A face is nothing but a composite in box mode — so if you want a face with
+    // ONE brow, you just use one part. Two `curveY`s do all the expression here:
+    // a unibrow across both eyes and a mouth under them.
+    composite({
+      id: "unibrow",
+      // Where the glyph goes and how big it is. Nothing inside restates this.
+      channels: { x: { field: "who" }, size: { value: 56 } },
+      parts: [
+        // Head: the box itself, at the origin.
+        point({ channels: {
+          size: { frame: 1 },
+          fill: { value: "#FFD666" }, stroke: { value: "#B7791F" },
+        } }),
+        // Eyes: pinned local positions, radius a fraction of the half-size.
+        point({ channels: {
+          x: { frame: -0.34 }, y: { frame: 0.12 }, size: { frame: 0.11 },
+          fill: { value: "#1f2937" },
+        } }),
+        point({ channels: {
+          x: { frame: 0.34 }, y: { frame: 0.12 }, size: { frame: 0.11 },
+          fill: { value: "#1f2937" },
+        } }),
+        // THE UNIBROW. `curvature` is the apex's offset from the chord as a
+        // fraction of the half-chord, and positive bows to the LEFT of travel —
+        // so on this rightward chord positive arches UP. The descending range
+        // turns a rising `grump` into a brow that dips toward the nose.
+        curveY({ channels: {
+          x1: { frame: -0.60 }, x2: { frame: 0.60 },
+          y:  { frame: 0.46 },
+          curvature: { field: "grump", frame: [0.45, -0.35],
+                       edit: slide({ axis: "y", increase: "down" }) },
+          stroke: { value: "#1f2937" },
+          strokeWidth: { frame: 0.10 },
+        } }),
+        // The mouth, same mark and the same trick with the sign reversed.
+        curveY({ channels: {
+          x1: { frame: -0.34 }, x2: { frame: 0.34 },
+          y:  { frame: -0.36 },
+          curvature: { field: "mood", frame: [0.6, -0.6],
+                       edit: slide({ axis: "y", increase: "up" }) },
+          stroke: { value: "#1f2937" },
+          strokeWidth: { frame: 0.06 },
+        } }),
+      ],
+    }),
+  ],
+}))
+18:["$","section",null,{"id":"face","children":[["$","h2",null,{"className":"section","children":"Build a face with one brow"}],[["$","p",".0",{"children":[["$","$L23",null,{"href":"/marks/face","children":["$","code",null,{"className":"inline","children":"face()"}]}]," is a composite in box mode: a ",["$","code",null,{"className":"inline","children":"point"}]," head, two ",["$","$L23",null,{"href":"/marks/ellipse","children":["$","code",null,{"className":"inline","children":"ellipse"}]}]," eyes, two ",["$","code",null,{"className":"inline","children":"tickY"}]," brows and a ",["$","$L23",null,{"href":"/marks/curve","children":["$","code",null,{"className":"inline","children":"curveY"}]}]," mouth. It's a preset, so you can assemble a different anatomy from the same parts — here, one brow instead of two."],"className":"intro"}],["$","p",".1",{"children":["The brow and the mouth are both ",["$","$L23",null,{"href":"/marks/curve","children":["$","code",null,{"className":"inline","children":"curve"}]}]," marks. ",["$","code",null,{"className":"inline","children":"curvature"}]," is the apex's offset from the chord, as a fraction of the half-chord, so it scales with the glyph. Positive curvature bows to the left of travel, which arches a rightward chord upward. A descending ",["$","code",null,{"className":"inline","children":"frame:"}]," range reverses that, so a rising ",["$","code",null,{"className":"inline","children":"grump"}]," dips the brow and a rising ",["$","code",null,{"className":"inline","children":"mood"}]," deepens the smile."],"className":"intro"}],["$","p",".3",{"children":["The ",["$","$L23",null,{"href":"/marks/face","children":"face page"}]," writes the preset's own anatomy out the same way."],"className":"intro"}]],["$","div",null,{"className":"grid","children":[["$","$L1c",".2",{"code":"$28","title":"One brow, two curves","blurb":"Head, eyes, brow and mouth, all placed in the glyph's local units. The brow and the mouth are the same mark with opposite frame ranges.","try":"$L29"}]]}]]}]
+19:["$","$L2a",null,{"children":["$L2b",["$","$L2c",null,{"promise":"$@2d"}]]}]
+1a:["$","$1","h",{"children":[null,[["$","$L2e",null,{"children":"$L2f"}],null],["$","$L30",null,{"children":["$","div",null,{"hidden":true,"children":["$","$31",null,{"fallback":null,"children":"$L32"}]}]}]]}]
+1f:[["$","b",null,{"children":"Drag the dot"}]," — the whole bar travels. ",["$","b",null,{"children":"Drag a cap"}]," past the dot — it stops at the centre."]
+22:[["$","b",null,{"children":"Drag"}]," the hub (last part) to spin the whole glyph."]
+26:[["$","b",null,{"children":"Drag"}]," a needle around its own centre."]
+29:[["$","b",null,{"children":"Drag the unibrow down"}]," to make a face grumpier · ",["$","b",null,{"children":"drag a mouth up"}]," to cheer it up."]
+2f:[["$","meta","0",{"charSet":"utf-8"}],["$","meta","1",{"name":"viewport","content":"width=device-width, initial-scale=1"}]]
+2b:null
+2d:{"metadata":[["$","title","0",{"children":"ElicitJS Docs"}],["$","meta","1",{"name":"description","content":"Declarative visual belief elicitation — documentation"}]],"error":null,"digest":"$undefined"}
+32:"$2d:metadata"

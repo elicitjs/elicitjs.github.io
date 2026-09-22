@@ -1,0 +1,95 @@
+1:"$Sreact.fragment"
+2:I[7121,[],""]
+3:I[4581,[],""]
+4:I[6984,["799","static/chunks/799-7af107d40bc88b92.js","3724","static/chunks/3724-d12e76d78a883e63.js","8500","static/chunks/8500-421c3037307d9211.js","637","static/chunks/637-1286b55f42136e00.js","5424","static/chunks/5424-f839d0fc5daf46c0.js","9761","static/chunks/9761-547c4c0c570149b3.js","1098","static/chunks/1098-2ff397ccf5b527da.js","5435","static/chunks/app/marks/curve/page-1cb03cffca8c7bab.js"],"DocShell"]
+5:I[2478,["799","static/chunks/799-7af107d40bc88b92.js","3724","static/chunks/3724-d12e76d78a883e63.js","8500","static/chunks/8500-421c3037307d9211.js","637","static/chunks/637-1286b55f42136e00.js","5424","static/chunks/5424-f839d0fc5daf46c0.js","9761","static/chunks/9761-547c4c0c570149b3.js","1098","static/chunks/1098-2ff397ccf5b527da.js","5435","static/chunks/app/marks/curve/page-1cb03cffca8c7bab.js"],"ApiReference"]
+f:I[7123,[],""]
+:HL["/_next/static/css/89d8c60f936c1aa1.css","style"]
+0:{"P":null,"b":"tv18AyE76ijOK3suAUb2x","p":"","c":["","marks","curve",""],"i":false,"f":[[["",{"children":["marks",{"children":["curve",{"children":["__PAGE__",{}]}]}]},"$undefined","$undefined",true],["",["$","$1","c",{"children":[[["$","link","0",{"rel":"stylesheet","href":"/_next/static/css/89d8c60f936c1aa1.css","precedence":"next","crossOrigin":"$undefined","nonce":"$undefined"}]],["$","html",null,{"lang":"en","suppressHydrationWarning":true,"children":["$","body",null,{"suppressHydrationWarning":true,"children":["$","$L2",null,{"parallelRouterKey":"children","error":"$undefined","errorStyles":"$undefined","errorScripts":"$undefined","template":["$","$L3",null,{}],"templateStyles":"$undefined","templateScripts":"$undefined","notFound":[[["$","title",null,{"children":"404: This page could not be found."}],["$","div",null,{"style":{"fontFamily":"system-ui,\"Segoe UI\",Roboto,Helvetica,Arial,sans-serif,\"Apple Color Emoji\",\"Segoe UI Emoji\"","height":"100vh","textAlign":"center","display":"flex","flexDirection":"column","alignItems":"center","justifyContent":"center"},"children":["$","div",null,{"children":[["$","style",null,{"dangerouslySetInnerHTML":{"__html":"body{color:#000;background:#fff;margin:0}.next-error-h1{border-right:1px solid rgba(0,0,0,.3)}@media (prefers-color-scheme:dark){body{color:#fff;background:#000}.next-error-h1{border-right:1px solid rgba(255,255,255,.3)}}"}}],["$","h1",null,{"className":"next-error-h1","style":{"display":"inline-block","margin":"0 20px 0 0","padding":"0 23px 0 0","fontSize":24,"fontWeight":500,"verticalAlign":"top","lineHeight":"49px"},"children":404}],["$","div",null,{"style":{"display":"inline-block"},"children":["$","h2",null,{"style":{"fontSize":14,"fontWeight":400,"lineHeight":"49px","margin":0},"children":"This page could not be found."}]}]]}]}]],[]],"forbidden":"$undefined","unauthorized":"$undefined"}]}]}]]}],{"children":["marks",["$","$1","c",{"children":[null,["$","$L2",null,{"parallelRouterKey":"children","error":"$undefined","errorStyles":"$undefined","errorScripts":"$undefined","template":["$","$L3",null,{}],"templateStyles":"$undefined","templateScripts":"$undefined","notFound":"$undefined","forbidden":"$undefined","unauthorized":"$undefined"}]]}],{"children":["curve",["$","$1","c",{"children":[null,["$","$L2",null,{"parallelRouterKey":"children","error":"$undefined","errorStyles":"$undefined","errorScripts":"$undefined","template":["$","$L3",null,{}],"templateStyles":"$undefined","templateScripts":"$undefined","notFound":"$undefined","forbidden":"$undefined","unauthorized":"$undefined"}]]}],{"children":["__PAGE__",["$","$1","c",{"children":[["$","$L4",null,{"children":[["$","h1",null,{"children":"Curve"}],"\n",["$","p",null,{"className":"lead","children":[["$","code",null,{"className":"inline","children":"curve"}]," is a segment that ",["$","strong",null,{"children":"bends"}],". A ",["$","code",null,{"className":"inline","children":"tick"}]," draws a straight line between two points; a curve draws the same span bowed off its chord by an amount that is itself a channel — so ",["$","em",null,{"children":"how much does this bend, and which way"}]," becomes an elicited number. A mouth's smile, an annotation's arc, a utility curve's convexity, a flow's deflection."]}],"\n",["$","$L5",null,{"entries":[{"name":"curve(options) · curveX · curveY","summary":["Import from ",["$","code",null,{"className":"inline","children":"elicit.plot"}],". A segment that ",["$","b",null,{"children":"bends"}],". A ",["$","code",null,{"className":"inline","children":"tick"}]," draws a straight line between two points; a curve draws the same span bowed off its chord by an amount that is itself a channel — so “how much does this bend, and which way” becomes an elicited number. ",["$","code",null,{"className":"inline","children":"curveY"}]," spans x and sits on y; ",["$","code",null,{"className":"inline","children":"curveX"}]," spans y and sits on x; bare ",["$","code",null,{"className":"inline","children":"curve"}]," reads the declared channels."],"signatures":["curve({ channels, orientation, length, edits, id }) → Mark","curveY(options) → Mark   // value on y (chord along x)","curveX(options) → Mark   // value on x (chord along y)"],"options":[{"name":"channels","type":"Channels","default":"{}","desc":"The chord endpoints (x1/x2 or y1/y2), the position on the other axis, curvature, angle, plus the standard style channels."},{"name":"orientation","type":"'vertical' | 'horizontal'","default":"auto","desc":["Which axis the value runs along (",["$","code",null,{"className":"inline","children":"'vertical'"}]," = y). Inferred from the declared chord pair, a band scale or the lone bound channel; ","$L6"," pin it."]},{"name":"length","type":"number","default":"min(w,h)·0.25","desc":"Chord length in px, centred on the span axis' own channel. Used only when no endpoint pair is declared."}],"channels":[{"name":"curvature","type":"linear","desc":"$L7"},{"name":"x1, x2 (curveY)","type":"linear | band | point","desc":"The chord's two ends. Without them the chord is `length` px centred on the `x` channel."},{"name":"y (curveY)","type":"linear","desc":"Where the chord sits. curveX swaps the two families: y1/y2 span, x positions."},{"name":"angle","type":"linear","desc":"$L8"}],"returns":"$L9"}]}],"\n","$La","\n","$Lb","\n","$Lc"]}],null,"$Ld"]}],{},null,false]},null,false]},null,false]},null,false],"$Le",false]],"m":"$undefined","G":["$f",[]],"s":false,"S":true}
+10:I[7009,["799","static/chunks/799-7af107d40bc88b92.js","3724","static/chunks/3724-d12e76d78a883e63.js","8500","static/chunks/8500-421c3037307d9211.js","637","static/chunks/637-1286b55f42136e00.js","5424","static/chunks/5424-f839d0fc5daf46c0.js","9761","static/chunks/9761-547c4c0c570149b3.js","1098","static/chunks/1098-2ff397ccf5b527da.js","5435","static/chunks/app/marks/curve/page-1cb03cffca8c7bab.js"],"Example"]
+13:I[484,[],"OutletBoundary"]
+15:I[7837,[],"AsyncMetadataOutlet"]
+17:I[484,[],"ViewportBoundary"]
+19:I[484,[],"MetadataBoundary"]
+1a:"$Sreact.suspense"
+6:["$","code",null,{"className":"inline","children":"curveY / curveX"}]
+7:["How far the apex sits off the chord, as a fraction of the HALF-chord: 0 is a straight segment, ±1 bows out by half the span’s length. Positive bows to the ",["$","b",null,{"children":"left of travel"}]," (a rightward chord bows up). It scales with the chord, so a glyph’s curve stays proportional when the glyph resizes. Natural edit: ",["$","code",null,{"className":"inline","children":["slide(","{"," axis: 'y' ","}",")"]}],"."]
+8:["Tilt about the chord midpoint, in math degrees. Baked into the geometry (neither renderer rotates a path node), so it works everywhere. Natural edit: ",["$","code",null,{"className":"inline","children":["rotate(","{"," pivot: 'mark', pick: 'direct' ","}",")"]}],"."]
+9:["A ",["$","b",null,{"children":"mark"}]," emitting two path nodes per datum: the visible curve, and a fat transparent ",["$","b",null,{"children":"hit path"}]," over it so a few-pixel stroke is actually grabbable. The hit path leaves ",["$","code",null,{"className":"inline","children":"pointerEvents"}]," unset, so an inert curve is silenced by the engine and can’t swallow a neighbour’s drag."]
+11:T54b,mount(Elicit({
+  width: 480, height: 300,
+  margins: { top: 20, right: 24, bottom: 40, left: 44 },
+  axes: { x: {}, y: false },
+  data: [
+    { option: "A", convexity: 0.6 },
+    { option: "B", convexity: -0.3 },
+    { option: "C", convexity: 0.0 },
+  ],
+  schema: {
+    option:    { type: "categorical", domain: ["A", "B", "C"] },
+    convexity: { type: "quantitative", domain: [-1, 1] },
+  },
+  marks: [
+    // "How does value grow between the two ends?" — a straight line means steadily,
+    // a bow means front- or back-loaded. The chord is fixed (both ends are agreed);
+    // only the SHAPE between them is elicited, which is exactly one number.
+    curveY({
+      length: 110,
+      channels: {
+        x: { field: "option" },
+        // No y scale here, so the height is a visual constant: `{ value }` is in
+        // pixels, and skips the scale by definition.
+        y: { value: 150 },
+        // Positive curvature bows to the LEFT of travel — up, for a chord that runs
+        // left to right. So an ascending range plus increase:"up" makes dragging up
+        // arch it and dragging down cup it.
+        curvature: { field: "convexity", scale: { range: [-0.8, 0.8] },
+                     edit: slide({ axis: "y", increase: "up" }) },
+        stroke: { value: "#4e79a7" },
+        strokeWidth: { value: 3 },
+      },
+    }),
+  ],
+}))
+a:["$","section",null,{"id":"bend","children":[["$","h2",null,{"className":"section","children":"One number: how much it bends"}],[["$","p",".0",{"children":[["$","code",null,{"className":"inline","children":"curvature"}]," is dimensionless — the apex's offset from the chord as a fraction of the ",["$","strong",null,{"children":"half-chord"}],". So 0 is a straight segment, ±1 bows out by half the span's length, and the shape stays proportional when the span changes. That last part is what makes it usable inside a glyph: a face's mouth keeps its expression when the head is resized."],"className":"intro"}],["$","p",".1",{"children":["The sign convention is one rule: ",["$","strong",null,{"children":"positive bows to the left of travel"}],", from the first endpoint to the second. A rightward chord bows up. Which way ",["$","em",null,{"children":"more"}]," should bend is the author's decision, and it belongs on the scale — a descending ",["$","code",null,{"className":"inline","children":"range"}]," turns a rising field into a deepening cup."],"className":"intro"}]],["$","div",null,{"className":"grid","children":[["$","$L10",".2",{"code":"$11","title":"How does value grow between the ends?","blurb":"The chord is fixed — both ends are agreed — and only the shape between them is elicited. That's exactly one number.","try":[["$","b",null,{"children":"Drag"}]," a curve up to arch it, down to cup it."]}]]}]]}]
+12:T551,mount(Elicit({
+  width: 420, height: 300,
+  margins: { top: 20, right: 30, bottom: 40, left: 44 },
+  axes: { x: {}, y: {} },
+  data: [ { from: 15, to: 85, at: 55, bow: 0.5, lean: 12 } ],
+  schema: {
+    from: { type: "quantitative", domain: [0, 100] },
+    to:   { type: "quantitative", domain: [0, 100] },
+    at:   { type: "quantitative", domain: [0, 100] },
+    bow:  { type: "quantitative", domain: [-1, 1] },
+    lean: { type: "quantitative", domain: [-45, 45] },
+  },
+  marks: [
+    // An explicit endpoint PAIR states the chord: x1 → x2 at height y. Both edits
+    // sit on one mark, so ONE drag drives both: its vertical component bends the
+    // curve, its horizontal one tilts it. Reading two components of a gesture is
+    // what lets two params share a mark without fighting — an angular edit here
+    // would fire off both, since you are standing on the pivot.
+    curveY({
+      channels: {
+        x1: { field: "from" },
+        x2: { field: "to" },
+        y:  { field: "at" },
+        curvature: { field: "bow", scale: { range: [-0.8, 0.8] },
+                     edit: slide({ axis: "y", increase: "up" }) },
+        angle: { field: "lean", scale: { range: [-45, 45] },
+                 edit: slide({ axis: "x", increase: "right" }) },
+        stroke: { value: "#e15759" },
+        strokeWidth: { value: 3 },
+      },
+    }),
+  ],
+}))
+b:["$","section",null,{"id":"tilt","children":[["$","h2",null,{"className":"section","children":"Bend and tilt"}],[["$","p",".0",{"children":[["$","code",null,{"className":"inline","children":"angle"}]," tilts the whole curve about its chord midpoint. It is baked into the ",["$","strong",null,{"children":"geometry"}]," rather than left on the node, because neither renderer rotates a ",["$","code",null,{"className":"inline","children":"path"}]," — a curve that couldn't tilt would lose the one gesture that distinguishes it from a bent tick."],"className":"intro"}],["$","p",".1",{"children":["Both edits can live on the same mark, because they read different ",["$","strong",null,{"children":"components"}]," of one drag: ",["$","code",null,{"className":"inline","children":"slide({ axis: \"y\" })"}]," on ",["$","code",null,{"className":"inline","children":"curvature"}]," and ",["$","code",null,{"className":"inline","children":"slide({ axis: \"x\" })"}]," on ",["$","code",null,{"className":"inline","children":"angle"}],". That is the rule for sharing a mark — two edits reading the same component would fight. An angular edit (",["$","code",null,{"className":"inline","children":"rotate"}],") is the wrong tool here even though the channel is an angle: you grab the curve at its own pivot, so a few pixels of travel swing the pointer through most of a half-turn and the value pins to an extreme."],"className":"intro"}]],["$","div",null,{"className":"grid","children":[["$","$L10",".2",{"code":"$12","title":"An explicit chord, bent and leaning","blurb":"x1 → x2 states the chord outright; curvature bends it and angle leans it.","try":[["$","b",null,{"children":"Drag"}]," the curve up and down to bend it · around to tilt it."]}]]}]]}]
+c:["$","section",null,{"id":"grabbing","children":[["$","h2",null,{"className":"section","children":"Why there are two paths"}],[["$","p",".0",{"children":["A stroked curve is a few pixels wide and would be nearly impossible to grab, so the mark lays a fat ",["$","strong",null,{"children":"transparent hit path"}]," over the same geometry. It also carries a sampled polyline, because the proximity layer measures distance along points and cannot hit a bare path string at all — without it, a canvas-rendered curve would be undraggable."],"className":"intro"}],["$","p",".1",{"children":["Both nodes stamp ",["$","code",null,{"className":"inline","children":"cx"}],"/",["$","code",null,{"className":"inline","children":"cy"}]," at the chord midpoint, which is what gives an edit a centre to work from on a path mark — ",["$","code",null,{"className":"inline","children":"markCenter"}]," reads no geometry out of a bare ",["$","code",null,{"className":"inline","children":"d"}]," string. And the hit path deliberately leaves ",["$","code",null,{"className":"inline","children":"pointerEvents"}]," unset: the engine silences a mark with no direct-pick edit, so an inert curve can't swallow a neighbouring handle's drag, while an editable one gets the pointer back automatically."],"className":"intro"}]],null]}]
+d:["$","$L13",null,{"children":["$L14",["$","$L15",null,{"promise":"$@16"}]]}]
+e:["$","$1","h",{"children":[null,[["$","$L17",null,{"children":"$L18"}],null],["$","$L19",null,{"children":["$","div",null,{"hidden":true,"children":["$","$1a",null,{"fallback":null,"children":"$L1b"}]}]}]]}]
+18:[["$","meta","0",{"charSet":"utf-8"}],["$","meta","1",{"name":"viewport","content":"width=device-width, initial-scale=1"}]]
+14:null
+16:{"metadata":[["$","title","0",{"children":"ElicitJS Docs"}],["$","meta","1",{"name":"description","content":"Declarative visual belief elicitation — documentation"}]],"error":null,"digest":"$undefined"}
+1b:"$16:metadata"

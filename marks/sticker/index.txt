@@ -1,0 +1,225 @@
+1:"$Sreact.fragment"
+2:I[7121,[],""]
+3:I[4581,[],""]
+4:I[6984,["799","static/chunks/799-7af107d40bc88b92.js","3724","static/chunks/3724-d12e76d78a883e63.js","8500","static/chunks/8500-421c3037307d9211.js","637","static/chunks/637-1286b55f42136e00.js","5424","static/chunks/5424-f839d0fc5daf46c0.js","9761","static/chunks/9761-547c4c0c570149b3.js","1098","static/chunks/1098-2ff397ccf5b527da.js","8123","static/chunks/app/marks/sticker/page-1cb03cffca8c7bab.js"],"DocShell"]
+5:I[2478,["799","static/chunks/799-7af107d40bc88b92.js","3724","static/chunks/3724-d12e76d78a883e63.js","8500","static/chunks/8500-421c3037307d9211.js","637","static/chunks/637-1286b55f42136e00.js","5424","static/chunks/5424-f839d0fc5daf46c0.js","9761","static/chunks/9761-547c4c0c570149b3.js","1098","static/chunks/1098-2ff397ccf5b527da.js","8123","static/chunks/app/marks/sticker/page-1cb03cffca8c7bab.js"],"ApiReference"]
+20:I[7123,[],""]
+:HL["/_next/static/css/89d8c60f936c1aa1.css","style"]
+0:{"P":null,"b":"tv18AyE76ijOK3suAUb2x","p":"","c":["","marks","sticker",""],"i":false,"f":[[["",{"children":["marks",{"children":["sticker",{"children":["__PAGE__",{}]}]}]},"$undefined","$undefined",true],["",["$","$1","c",{"children":[[["$","link","0",{"rel":"stylesheet","href":"/_next/static/css/89d8c60f936c1aa1.css","precedence":"next","crossOrigin":"$undefined","nonce":"$undefined"}]],["$","html",null,{"lang":"en","suppressHydrationWarning":true,"children":["$","body",null,{"suppressHydrationWarning":true,"children":["$","$L2",null,{"parallelRouterKey":"children","error":"$undefined","errorStyles":"$undefined","errorScripts":"$undefined","template":["$","$L3",null,{}],"templateStyles":"$undefined","templateScripts":"$undefined","notFound":[[["$","title",null,{"children":"404: This page could not be found."}],["$","div",null,{"style":{"fontFamily":"system-ui,\"Segoe UI\",Roboto,Helvetica,Arial,sans-serif,\"Apple Color Emoji\",\"Segoe UI Emoji\"","height":"100vh","textAlign":"center","display":"flex","flexDirection":"column","alignItems":"center","justifyContent":"center"},"children":["$","div",null,{"children":[["$","style",null,{"dangerouslySetInnerHTML":{"__html":"body{color:#000;background:#fff;margin:0}.next-error-h1{border-right:1px solid rgba(0,0,0,.3)}@media (prefers-color-scheme:dark){body{color:#fff;background:#000}.next-error-h1{border-right:1px solid rgba(255,255,255,.3)}}"}}],["$","h1",null,{"className":"next-error-h1","style":{"display":"inline-block","margin":"0 20px 0 0","padding":"0 23px 0 0","fontSize":24,"fontWeight":500,"verticalAlign":"top","lineHeight":"49px"},"children":404}],["$","div",null,{"style":{"display":"inline-block"},"children":["$","h2",null,{"style":{"fontSize":14,"fontWeight":400,"lineHeight":"49px","margin":0},"children":"This page could not be found."}]}]]}]}]],[]],"forbidden":"$undefined","unauthorized":"$undefined"}]}]}]]}],{"children":["marks",["$","$1","c",{"children":[null,["$","$L2",null,{"parallelRouterKey":"children","error":"$undefined","errorStyles":"$undefined","errorScripts":"$undefined","template":["$","$L3",null,{}],"templateStyles":"$undefined","templateScripts":"$undefined","notFound":"$undefined","forbidden":"$undefined","unauthorized":"$undefined"}]]}],{"children":["sticker",["$","$1","c",{"children":[null,["$","$L2",null,{"parallelRouterKey":"children","error":"$undefined","errorStyles":"$undefined","errorScripts":"$undefined","template":["$","$L3",null,{}],"templateStyles":"$undefined","templateScripts":"$undefined","notFound":"$undefined","forbidden":"$undefined","unauthorized":"$undefined"}]]}],{"children":["__PAGE__",["$","$1","c",{"children":[["$","$L4",null,{"children":[["$","h1",null,{"children":"Sticker"}],"\n",["$","p",null,{"className":"lead","children":[["$","code",null,{"className":"inline","children":"sticker()"}]," draws a rounded box with text inside, and ",["$","strong",null,{"children":"sizes the box to the text"}],": a long note wraps at ",["$","code",null,{"className":"inline","children":"maxWidth"}]," and grows taller instead of wider. Pair it with ",["$","code",null,{"className":"inline","children":"editText({ multiline: true })"}]," to double-click and type into it. It is a preset over ",["$","code",null,{"className":"inline","children":"composite"}]," — an ordinary ",["$","code",null,{"className":"inline","children":"rect"}]," and ",["$","code",null,{"className":"inline","children":"text"}]," — so every channel, scale, edit and constraint works as elsewhere."]}],"\n",["$","$L5",null,{"entries":[{"name":"sticker(options)","summary":["Import from ",["$","code",null,{"className":"inline","children":"elicit.plot"}],". A rounded box with text inside, sized by the text. A preset over"," ",["$","code",null,{"className":"inline","children":"composite"}],", so it desugars into an ordinary"," ",["$","code",null,{"className":"inline","children":"rect"}]," and ",["$","code",null,{"className":"inline","children":"text"}],"."],"signatures":["sticker({ channels, padding, radius, maxWidth, minWidth, minHeight, lineHeight, fontFamily, format, table, edits, id }) → Feature[]"],"options":[{"name":"channels","type":"object","default":"{}","desc":[["$","code",null,{"className":"inline","children":"x"}],"/",["$","code",null,{"className":"inline","children":"y"}]," place the box and are shared by both parts. ",["$","code",null,{"className":"inline","children":"text"}]," is the string it holds. Label channels (",["$","code",null,{"className":"inline","children":"fontSize"}],","," ",["$","code",null,{"className":"inline","children":"textAnchor"}],", ",["$","code",null,{"className":"inline","children":"dx"}],","," ",["$","code",null,{"className":"inline","children":"dy"}],") go to the text; every other channel (",["$","code",null,{"className":"inline","children":"fill"}],", ",["$","code",null,{"className":"inline","children":"stroke"}],","," ","$L6",", ","$L7",") goes to the box. ","$L8"," and"," ","$L9"," pin a dimension and turn auto-sizing off for that axis; a pinned ","$La"," is also the width the text wraps at, so a note resized narrower re-flows and grows taller."]},{"name":"padding","type":"number","default":"10","desc":"$Lb"},{"name":"radius","type":"number","default":"6","desc":"$Lc"},{"name":"maxWidth","type":"number","default":"160","desc":"$Ld"},{"name":"minWidth","type":"number","default":"60","desc":"$Le"},{"name":"minHeight","type":"number","default":"0","desc":"$Lf"},{"name":"lineHeight","type":"number","default":"1.35 × fontSize","desc":"$L10"},{"name":"fontSize","type":"number","default":"13","desc":"$L11"},{"name":"fontFamily","type":"string","default":"the theme’s font","desc":"$L12"},{"name":"format","type":"string | fn","default":"String","desc":"$L13"}],"returns":"$L14"},{"name":"editText(options)","summary":"$L15","signatures":["editText({ multiline, channels, when, stage }) → Edit"],"options":[{"name":"multiline","type":"boolean","default":"false","desc":"$L16"},{"name":"channels","type":"string[]","default":"[\"text\"]","desc":"$L17"}]}]}],"\n","$L18","\n","$L19","\n","$L1a","\n","$L1b","\n","$L1c","\n","$L1d"]}],null,"$L1e"]}],{},null,false]},null,false]},null,false]},null,false],"$L1f",false]],"m":"$undefined","G":["$20",[]],"s":false,"S":true}
+21:I[7009,["799","static/chunks/799-7af107d40bc88b92.js","3724","static/chunks/3724-d12e76d78a883e63.js","8500","static/chunks/8500-421c3037307d9211.js","637","static/chunks/637-1286b55f42136e00.js","5424","static/chunks/5424-f839d0fc5daf46c0.js","9761","static/chunks/9761-547c4c0c570149b3.js","1098","static/chunks/1098-2ff397ccf5b527da.js","8123","static/chunks/app/marks/sticker/page-1cb03cffca8c7bab.js"],"Example"]
+24:I[8500,["799","static/chunks/799-7af107d40bc88b92.js","3724","static/chunks/3724-d12e76d78a883e63.js","8500","static/chunks/8500-421c3037307d9211.js","637","static/chunks/637-1286b55f42136e00.js","5424","static/chunks/5424-f839d0fc5daf46c0.js","9761","static/chunks/9761-547c4c0c570149b3.js","1098","static/chunks/1098-2ff397ccf5b527da.js","8123","static/chunks/app/marks/sticker/page-1cb03cffca8c7bab.js"],""]
+28:I[484,[],"OutletBoundary"]
+2a:I[7837,[],"AsyncMetadataOutlet"]
+2c:I[484,[],"ViewportBoundary"]
+2e:I[484,[],"MetadataBoundary"]
+2f:"$Sreact.suspense"
+6:["$","code",null,{"className":"inline","children":"opacity"}]
+7:["$","code",null,{"className":"inline","children":"angle"}]
+8:["$","code",null,{"className":"inline","children":"width"}]
+9:["$","code",null,{"className":"inline","children":"height"}]
+a:["$","code",null,{"className":"inline","children":"width"}]
+b:"Space between the text and the box’s edge, in px."
+c:["Corner radius in px. Set ",["$","code",null,{"className":"inline","children":"0"}]," for square corners."]
+d:["The box stops growing here and the text wraps instead. Also the wrap width, so a long note gets taller rather than wider. A ",["$","code",null,{"className":"inline","children":"width"}]," ","channel replaces it on both counts."]
+e:"Keeps an empty or one-word note from collapsing to nothing."
+f:"A floor for the box’s height, in px."
+10:"Baseline step between wrapped lines, in px."
+11:["Used to measure as well as to draw, so the box matches what is painted. A"," ",["$","code",null,{"className":"inline","children":"fontSize"}]," channel still reaches the label, but the box is measured at this value."]
+12:"Measured with, when your page font differs from the theme’s."
+13:["Display formatter for the ",["$","code",null,{"className":"inline","children":"text"}]," channel: a d3-format string, or ",["$","code",null,{"className":"inline","children":["(v) =",">"," string"]}],". Display-only — the column stays raw, so"," ",["$","code",null,{"className":"inline","children":"editText"}]," still writes the real value."]
+14:["Carries no edits of its own, like every mark. Put"," ",["$","code",null,{"className":"inline","children":["move(","{ channels: [\"x\", \"y\"], mode: \"relative\" }",")"]}]," on"," ",["$","code",null,{"className":"inline","children":"x"}]," and"," ",["$","code",null,{"className":"inline","children":["editText(","{ multiline: true }",")"]}]," in"," ",["$","code",null,{"className":"inline","children":"edits"}],". Both land on the box: you drag and double-click the note, not its letters. Prefer"," ",["$","code",null,{"className":"inline","children":"mode: \"relative\""}]," — an absolute move puts the box’s centre at the pointer, which snaps a note you grabbed by its corner."]
+15:["Write a typed string back into the ",["$","code",null,{"className":"inline","children":"text"}]," channel’s field. Double-click opens an editor over the mark; Enter or clicking away commits, Escape cancels."]
+16:["Use a textarea, in which Enter inserts a newline and Cmd/Ctrl+Enter commits. Pair it with ",["$","code",null,{"className":"inline","children":"sticker"}],", whose text wraps."]
+17:"Which channel’s field to write. The default is right almost always."
+18:["$","section",null,{"id":"sizing","children":[["$","h2",null,{"className":"section","children":"Sizing"}],[["$","p",".0",{"children":["The box is measured from the ",["$","code",null,{"className":"inline","children":"text"}]," channel string, at the ",["$","code",null,{"className":"inline","children":"fontSize"}]," and ",["$","code",null,{"className":"inline","children":"fontFamily"}]," it will be drawn in, plus ",["$","code",null,{"className":"inline","children":"padding"}]," on every side. Size does not live in your data."],"className":"intro"}],["$","p",".1",{"children":[["$","code",null,{"className":"inline","children":"maxWidth"}]," is both the ceiling and the wrap width. A longer note breaks onto more lines and the box gets taller. ",["$","code",null,{"className":"inline","children":"minWidth"}]," keeps a one-word note from collapsing."],"className":"intro"}],["$","p",".2",{"children":["State a ",["$","code",null,{"className":"inline","children":"width"}]," or ",["$","code",null,{"className":"inline","children":"height"}]," channel to pin that dimension instead:"],"className":"intro"}],["$","pre",".3",{"className":"code","children":["$","code",null,{"className":"language-js","children":"sticker({ channels: { width: { value: 120 }, text: { field: \"note\" } } })\n"}]}],["$","p",".4",{"children":["Auto-sizing stops for that axis only, so a pinned width still lets height follow the wrapped text. Size from the row with ",["$","code",null,{"className":"inline","children":"{ fn }"}],", or read a column of pixel widths with ",["$","code",null,{"className":"inline","children":"{ field: \"w\", scale: null }"}],"."],"className":"intro"}],["$","p",".5",{"children":["A pinned ",["$","code",null,{"className":"inline","children":"width"}]," is also the wrap width, in place of ",["$","code",null,{"className":"inline","children":"maxWidth"}],". Narrow a note and the text re-flows; with height still auto-sized, the box grows taller to fit."],"className":"intro"}]],null]}]
+22:T438,mount(Elicit({
+  width: 460, height: 300,
+  margins: { top: 20, right: 20, bottom: 20, left: 20 },
+  axes: false,
+  schema: {
+    note: { type: "categorical", open: true },
+    w: { type: "quantitative", domain: [70, 260] },
+    x: { type: "quantitative", domain: [0, 100] },
+    y: { type: "quantitative", domain: [0, 100] },
+  },
+  data: [
+    { note: "Shift-drag my edge sideways. The text re-wraps to whatever width I end up.", w: 170, x: 32, y: 62 },
+    { note: "Narrow notes get taller.", w: 100, x: 72, y: 28 },
+  ],
+  marks: [
+    sticker({
+      fill: "#fde68a",
+      stroke: "#00000022",
+      maxWidth: 260,
+      edits: [editText({ multiline: true })],
+      channels: {
+        x: {
+          field: "x",
+          edit: move({ channels: ["x", "y"], mode: "relative", when: when.noShift }),
+        },
+        y: { field: "y" },
+        width: {
+          field: "w",
+          scale: { range: [70, 260] },
+          edit: slide({ axis: "x", increase: "right", extent: 95, when: when.shift }),
+        },
+        text: { field: "note" },
+      },
+    }),
+  ],
+}));
+19:["$","section",null,{"id":"resizing","children":[["$","h2",null,{"className":"section","children":"Resizing"}],[["$","p",".0",{"children":["A ",["$","code",null,{"className":"inline","children":"width"}]," channel with a field behind it is a resize handle. The channel is in pixels, so give it an identity scale — a ",["$","code",null,{"className":"inline","children":"range"}]," matching the field's domain — and the column holds the box's width directly:"],"className":"intro"}],["$","pre",".1",{"className":"code","children":["$","code",null,{"className":"language-js","children":"width: {\n  field: \"w\",\n  scale: { range: [70, 260] },\n  edit: slide({ axis: \"x\", increase: \"right\", extent: 95, when: when.shift }),\n}\n"}]}],["$","p",".2",{"children":[["$","code",null,{"className":"inline","children":"slide"}]," moves the value by how far you drag, so the box does not jump when you press it. ",["$","code",null,{"className":"inline","children":"extent"}]," is the drag distance that sweeps the whole domain. The box grows about its centre, so half the domain's span (",["$","code",null,{"className":"inline","children":"95"}]," for a 190-wide domain) makes the edge you are dragging track the pointer."],"className":"intro"}],["$","p",".3",{"children":["Gate the two drags with ",["$","code",null,{"className":"inline","children":"when"}],". A ",["$","code",null,{"className":"inline","children":"move"}]," on ",["$","code",null,{"className":"inline","children":"x"}]," and a ",["$","code",null,{"className":"inline","children":"slide"}]," on ",["$","code",null,{"className":"inline","children":"width"}]," both read horizontal travel, so without ",["$","code",null,{"className":"inline","children":"when.shift"}]," / ",["$","code",null,{"className":"inline","children":"when.noShift"}]," they fight over the same gesture."],"className":"intro"}],["$","p",".4",{"children":["Pin ",["$","code",null,{"className":"inline","children":"height"}]," the same way for a fixed-size card. Leave it off and height keeps following the text."],"className":"intro"}]],["$","div",null,{"className":"grid","children":[["$","$L21",".5",{"code":"$22","title":"Resizable notes","blurb":"Drag the width, and the text re-wraps to fit.","try":[["$","b",null,{"children":"Shift-drag"}]," a note sideways to resize it — the text re-wraps and the box gets taller as it narrows. ",["$","b",null,{"children":"Drag"}]," without Shift to move it, and"," ",["$","b",null,{"children":"double-click"}]," to retype."]}]]}]]}]
+1a:["$","section",null,{"id":"typing","children":[["$","h2",null,{"className":"section","children":"Typing"}],[["$","p",".0",{"children":[["$","code",null,{"className":"inline","children":"editText()"}]," writes what you type back into the ",["$","code",null,{"className":"inline","children":"text"}]," channel's field. Put it in ",["$","code",null,{"className":"inline","children":"edits"}],":"],"className":"intro"}],["$","pre",".1",{"className":"code","children":["$","code",null,{"className":"language-js","children":"sticker({\n  edits: [editText({ multiline: true })],\n  channels: { x: { field: \"x\" }, y: { field: \"y\" }, text: { field: \"note\" } },\n})\n"}]}],["$","p",".2",{"children":["Double-click a note to open an editor filling the box. ",["$","code",null,{"className":"inline","children":"multiline: true"}]," makes it a textarea: Enter inserts a newline, and Cmd/Ctrl+Enter or clicking away commits. Escape cancels either way. Without it you get a single-line field where Enter commits."],"className":"intro"}],["$","p",".3",{"children":["Both the drag and the double-click land on the ",["$","strong",null,{"children":"box"}],", not the letters, so you can pick up a note by any part of it — including the gaps between words."],"className":"intro"}],["$","p",".4",{"children":["Typing is only wired in the SVG renderer. Under ",["$","code",null,{"className":"inline","children":"CanvasRenderer"}]," a sticker draws and drags, but double-click does nothing."],"className":"intro"}]],null]}]
+23:T453,mount(Elicit({
+  width: 460, height: 300,
+  margins: { top: 20, right: 20, bottom: 20, left: 20 },
+  axes: false,
+  schema: {
+    note: { type: "categorical", open: true },
+    tone: { type: "categorical", domain: ["#fde68a", "#bbf7d0", "#bfdbfe"] },
+    x: { type: "quantitative", domain: [0, 100] },
+    y: { type: "quantitative", domain: [0, 100] },
+  },
+  data: [
+    { note: "Drag me", tone: "#fde68a", x: 25, y: 75 },
+    { note: "Double-click to rewrite. Long notes wrap and the box grows.", tone: "#bbf7d0", x: 70, y: 45 },
+    { note: "Click empty space for a new one", tone: "#bfdbfe", x: 25, y: 22 },
+  ],
+  marks: [
+    sticker({
+      stroke: "#00000022",
+      maxWidth: 140,
+      edits: [
+        editText({ multiline: true }),
+        create({ defaults: { note: "New note", tone: "#fde68a" } }),
+        remove({ when: when.alt }),
+      ],
+      channels: {
+        x: { field: "x", edit: move({ channels: ["x", "y"], mode: "relative" }) },
+        y: { field: "y" },
+        text: { field: "note" },
+        fill: { field: "tone", scale: null, edit: cycle() },
+      },
+    }),
+  ],
+}));
+1b:["$","section",null,{"id":"editing","children":[["$","h2",null,{"className":"section","children":"Editing a board"}],[["$","p",".0",{"children":"Nothing here is sticker-specific. The universal edits do the rest:","className":"intro"}],["$","ul",".1",{"children":["\n",["$","li",null,{"children":[["$","code",null,{"className":"inline","children":"move({ channels: [\"x\", \"y\"], mode: \"relative\" })"}]," on ",["$","code",null,{"className":"inline","children":"x"}]," drags a note. Use ",["$","code",null,{"className":"inline","children":"mode: \"relative\""}]," on anything with area: it moves by how far you drag, keeping the grab point under the pointer. The default ",["$","code",null,{"className":"inline","children":"\"absolute\""}]," puts the note's centre at the pointer, which snaps a big box the moment you press it."]}],"\n",["$","li",null,{"children":[["$","code",null,{"className":"inline","children":"create()"}]," in ",["$","code",null,{"className":"inline","children":"edits"}]," mints one where you click. Give it ",["$","code",null,{"className":"inline","children":"defaults"}]," so a new note arrives with a colour and a placeholder."]}],"\n",["$","li",null,{"children":[["$","code",null,{"className":"inline","children":"remove({ when: when.alt })"}]," deletes the note under the pointer."]}],"\n",["$","li",null,{"children":[["$","code",null,{"className":"inline","children":"cycle()"}]," on ",["$","code",null,{"className":"inline","children":"fill"}]," steps through the colours in that field's domain."]}],"\n"]}]],["$","div",null,{"className":"grid","children":[["$","$L21",".2",{"code":"$23","title":"Sticky notes","blurb":"Boxes sized by what you type.","try":[["$","b",null,{"children":"Drag"}]," a note. ",["$","b",null,{"children":"Double-click"}]," one and type — Enter makes a new line, Cmd/Ctrl+Enter commits, and the box resizes. ",["$","b",null,{"children":"Click"}]," a note to recolour it,",["$","b",null,{"children":"click"}]," empty space to add one, and ",["$","b",null,{"children":"Alt-click"}]," to delete."]}]]}]]}]
+25:T8f6,mount(Elicit({
+  width: 520, height: 360,
+  margins: { top: 24, right: 24, bottom: 24, left: 24 },
+  axes: false,
+  schema: {
+    structure: "network",
+    tables: {
+      steps: {
+        role: "nodes",
+        fields: {
+          id: { type: "categorical", key: true, open: true },
+          label: { type: "categorical", open: true },
+          x: { type: "quantitative", domain: [0, 100] },
+          y: { type: "quantitative", domain: [0, 100] },
+        },
+      },
+      flows: {
+        role: "links",
+        directed: true,
+        fields: {
+          source: { type: "ref" },
+          target: { type: "ref" },
+          kind: { type: "categorical", domain: ["orthogonal", "bezier"] },
+        },
+      },
+    },
+  },
+  data: {
+    steps: [
+      { id: "s1", label: "Draft the question", x: 22, y: 82 },
+      { id: "s2", label: "Pilot it with five readers", x: 74, y: 60 },
+      { id: "s3", label: "Ship", x: 30, y: 18 },
+    ],
+    flows: [
+      { source: "s1", target: "s2", kind: "orthogonal" },
+      { source: "s2", target: "s1", kind: "orthogonal" },
+      { source: "s2", target: "s3", kind: "bezier" },
+    ],
+  },
+  marks: [
+    link({
+      cornerRadius: 8,
+      inset: 6,
+      stroke: "#94a3b8",
+      strokeWidth: 1.5,
+      channels: {
+        curve: { field: "kind" },
+        // The box each connector docks to. A sticker sizes itself from its text,
+        // so `noteBox` measures the same note the same way.
+        nodeWidth: { fn: (d) => noteBox(d.label, { maxWidth: 130 }).width },
+        nodeHeight: { fn: (d) => noteBox(d.label, { maxWidth: 130 }).height },
+      },
+      edits: [
+        edit.network.reverse({ when: when.alt }),
+        cycle({ channels: ["curve"], when: when.noAlt }),
+      ],
+    }),
+    sticker({
+      fill: "#fef3c7",
+      stroke: "#f59e0b",
+      maxWidth: 130,
+      radius: 8,
+      edits: [
+        editText({ multiline: true }),
+        edit.network.connect({ when: when.shift, defaults: { kind: "orthogonal" } }),
+        create({ defaults: { label: "New step" } }),
+        remove({ when: when.alt }),
+      ],
+      channels: {
+        x: { field: "x", edit: move({ channels: ["x", "y"], mode: "relative", when: when.noShift }) },
+        y: { field: "y" },
+        text: { field: "label" },
+      },
+    }),
+  ],
+}));
+1c:["$","section",null,{"id":"diagram","children":[["$","h2",null,{"className":"section","children":"Diagram board"}],[["$","p",".0",{"children":["A board you draw on is a ",["$","code",null,{"className":"inline","children":"network"}]," schema with a ",["$","code",null,{"className":"inline","children":"sticker"}]," over the nodes and a ",["$","code",null,{"className":"inline","children":"link"}]," over the links — there is no diagram mark. Draw ",["$","code",null,{"className":"inline","children":"link()"}]," first so connectors sit behind the boxes."],"className":"intro"}],["$","p",".1",{"children":["Give the connectors ",["$","code",null,{"className":"inline","children":"curve: \"orthogonal\""}]," and tell them how big a note is, and each one leaves a box square out of one of its edges rather than crossing a corner. A sticker measures its box from its own text, so measure it the same way with ",["$","code",null,{"className":"inline","children":"noteBox"}]," and pass the options you gave the sticker. ",["$","code",null,{"className":"inline","children":"inset"}]," is then the gap between the edge and the line, and ",["$","code",null,{"className":"inline","children":"cornerRadius"}]," rounds the turns."],"className":"intro"}],["$","p",".2",{"children":[["$","code",null,{"className":"inline","children":"connect"}]," and ",["$","code",null,{"className":"inline","children":"move"}]," both fire on a drag from a box, so split them with ",["$","code",null,{"className":"inline","children":"when.shift"}]," / ",["$","code",null,{"className":"inline","children":"when.noShift"}],". Deleting a box drops its connectors: ",["$","code",null,{"className":"inline","children":"source"}]," and ",["$","code",null,{"className":"inline","children":"target"}]," are ",["$","code",null,{"className":"inline","children":"ref"}]," columns, so a link naming a missing node is removed from the dataset. See ",["$","$L24",null,{"href":"/marks/network","children":"Network"}]," for the topology edits and connector styles."],"className":"intro"}]],["$","div",null,{"className":"grid","children":[["$","$L21",".3",{"code":"$25","title":"Flowchart","blurb":"Boxes you type into, connectors you drag, flip and restyle.","try":"$L26"}]]}]]}]
+27:T40f,mount(Elicit({
+  width: 480, height: 320,
+  margins: { top: 24, right: 16, bottom: 30, left: 16 },
+  axes: { x: {}, y: false },
+  schema: {
+    note: { type: "categorical", open: true },
+    lane: { type: "categorical", domain: ["Now", "Next", "Later"] },
+    rank: { type: "quantitative", domain: [0, 100] },
+  },
+  data: [
+    { note: "Measure the text", lane: "Now", rank: 80 },
+    { note: "Wrap long notes", lane: "Now", rank: 40 },
+    { note: "Resize a note by its edge", lane: "Next", rank: 65 },
+    { note: "Wire notes together", lane: "Later", rank: 55 },
+  ],
+  marks: [
+    grid({ channel: "x" }),
+    sticker({
+      fill: "#e0f2fe",
+      stroke: "#0284c7",
+      maxWidth: 120,
+      edits: [
+        editText({ multiline: true }),
+        create({ defaults: { note: "New card" } }),
+        remove({ when: when.alt }),
+      ],
+      channels: {
+        x: { field: "lane", edit: move({ channels: ["x", "y"], mode: "relative" }) },
+        y: { field: "rank" },
+        text: { field: "note" },
+      },
+    }),
+  ],
+}));
+1d:["$","section",null,{"id":"lanes","children":[["$","h2",null,{"className":"section","children":"Notes on a scale"}],[["$","p",".0",{"children":["A sticker places itself through the same scales as any other mark, so point ",["$","code",null,{"className":"inline","children":"x"}]," at a categorical field and the notes sit in columns. ",["$","code",null,{"className":"inline","children":"move"}]," inverts the drag back through that band scale, so dropping a note in another column writes the new category into the row."],"className":"intro"}],["$","p",".1",{"children":["Which lane a note ends in is the belief — ",["$","code",null,{"className":"inline","children":"getData()"}]," returns it as ",["$","code",null,{"className":"inline","children":"lane"}],". Sort within a lane by pointing ",["$","code",null,{"className":"inline","children":"y"}]," at a quantitative field, as here with ",["$","code",null,{"className":"inline","children":"rank"}],"."],"className":"intro"}]],["$","div",null,{"className":"grid","children":[["$","$L21",".2",{"code":"$27","title":"Lanes","blurb":"A band scale on x, so a drag re-files a card.","try":[["$","b",null,{"children":"Drag"}]," a card into another lane — it snaps to the column and the row’s"," ",["$","code",null,{"className":"inline","children":"lane"}]," changes. ",["$","b",null,{"children":"Double-click"}]," to retype, ",["$","b",null,{"children":"click"}]," empty space to add a card, and ",["$","b",null,{"children":"Alt-click"}]," to delete."]}]]}]]}]
+1e:["$","$L28",null,{"children":["$L29",["$","$L2a",null,{"promise":"$@2b"}]]}]
+1f:["$","$1","h",{"children":[null,[["$","$L2c",null,{"children":"$L2d"}],null],["$","$L2e",null,{"children":["$","div",null,{"hidden":true,"children":["$","$2f",null,{"fallback":null,"children":"$L30"}]}]}]]}]
+26:[["$","b",null,{"children":"Double-click"}]," a box and type — Enter makes a new line, Cmd/Ctrl+Enter commits, and the box grows to fit. ",["$","b",null,{"children":"Shift-drag"}]," from one box to another to connect them. ",["$","b",null,{"children":"Drag"}]," a box past another and the connectors re-route to the edges now facing. ",["$","b",null,{"children":"Click"}]," a connector to switch it between an elbow and a curve, and ",["$","b",null,{"children":"Alt-click"}]," one to reverse it. ",["$","b",null,{"children":"Click"}]," empty space for a new box, and ",["$","b",null,{"children":"Alt-click"}]," a box to delete it — its connectors go too."]
+2d:[["$","meta","0",{"charSet":"utf-8"}],["$","meta","1",{"name":"viewport","content":"width=device-width, initial-scale=1"}]]
+29:null
+2b:{"metadata":[["$","title","0",{"children":"ElicitJS Docs"}],["$","meta","1",{"name":"description","content":"Declarative visual belief elicitation — documentation"}]],"error":null,"digest":"$undefined"}
+30:"$2b:metadata"

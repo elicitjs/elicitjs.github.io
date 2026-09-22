@@ -1,0 +1,219 @@
+1:"$Sreact.fragment"
+2:I[7121,[],""]
+3:I[4581,[],""]
+4:I[6984,["799","static/chunks/799-7af107d40bc88b92.js","3724","static/chunks/3724-d12e76d78a883e63.js","8500","static/chunks/8500-421c3037307d9211.js","637","static/chunks/637-1286b55f42136e00.js","5424","static/chunks/5424-f839d0fc5daf46c0.js","9761","static/chunks/9761-547c4c0c570149b3.js","1098","static/chunks/1098-2ff397ccf5b527da.js","7697","static/chunks/app/marks/face/page-1cb03cffca8c7bab.js"],"DocShell"]
+5:I[8500,["799","static/chunks/799-7af107d40bc88b92.js","3724","static/chunks/3724-d12e76d78a883e63.js","8500","static/chunks/8500-421c3037307d9211.js","637","static/chunks/637-1286b55f42136e00.js","5424","static/chunks/5424-f839d0fc5daf46c0.js","9761","static/chunks/9761-547c4c0c570149b3.js","1098","static/chunks/1098-2ff397ccf5b527da.js","7697","static/chunks/app/marks/face/page-1cb03cffca8c7bab.js"],""]
+6:I[2478,["799","static/chunks/799-7af107d40bc88b92.js","3724","static/chunks/3724-d12e76d78a883e63.js","8500","static/chunks/8500-421c3037307d9211.js","637","static/chunks/637-1286b55f42136e00.js","5424","static/chunks/5424-f839d0fc5daf46c0.js","9761","static/chunks/9761-547c4c0c570149b3.js","1098","static/chunks/1098-2ff397ccf5b527da.js","7697","static/chunks/app/marks/face/page-1cb03cffca8c7bab.js"],"ApiReference"]
+19:I[7123,[],""]
+:HL["/_next/static/css/89d8c60f936c1aa1.css","style"]
+0:{"P":null,"b":"tv18AyE76ijOK3suAUb2x","p":"","c":["","marks","face",""],"i":false,"f":[[["",{"children":["marks",{"children":["face",{"children":["__PAGE__",{}]}]}]},"$undefined","$undefined",true],["",["$","$1","c",{"children":[[["$","link","0",{"rel":"stylesheet","href":"/_next/static/css/89d8c60f936c1aa1.css","precedence":"next","crossOrigin":"$undefined","nonce":"$undefined"}]],["$","html",null,{"lang":"en","suppressHydrationWarning":true,"children":["$","body",null,{"suppressHydrationWarning":true,"children":["$","$L2",null,{"parallelRouterKey":"children","error":"$undefined","errorStyles":"$undefined","errorScripts":"$undefined","template":["$","$L3",null,{}],"templateStyles":"$undefined","templateScripts":"$undefined","notFound":[[["$","title",null,{"children":"404: This page could not be found."}],["$","div",null,{"style":{"fontFamily":"system-ui,\"Segoe UI\",Roboto,Helvetica,Arial,sans-serif,\"Apple Color Emoji\",\"Segoe UI Emoji\"","height":"100vh","textAlign":"center","display":"flex","flexDirection":"column","alignItems":"center","justifyContent":"center"},"children":["$","div",null,{"children":[["$","style",null,{"dangerouslySetInnerHTML":{"__html":"body{color:#000;background:#fff;margin:0}.next-error-h1{border-right:1px solid rgba(0,0,0,.3)}@media (prefers-color-scheme:dark){body{color:#fff;background:#000}.next-error-h1{border-right:1px solid rgba(255,255,255,.3)}}"}}],["$","h1",null,{"className":"next-error-h1","style":{"display":"inline-block","margin":"0 20px 0 0","padding":"0 23px 0 0","fontSize":24,"fontWeight":500,"verticalAlign":"top","lineHeight":"49px"},"children":404}],["$","div",null,{"style":{"display":"inline-block"},"children":["$","h2",null,{"style":{"fontSize":14,"fontWeight":400,"lineHeight":"49px","margin":0},"children":"This page could not be found."}]}]]}]}]],[]],"forbidden":"$undefined","unauthorized":"$undefined"}]}]}]]}],{"children":["marks",["$","$1","c",{"children":[null,["$","$L2",null,{"parallelRouterKey":"children","error":"$undefined","errorStyles":"$undefined","errorScripts":"$undefined","template":["$","$L3",null,{}],"templateStyles":"$undefined","templateScripts":"$undefined","notFound":"$undefined","forbidden":"$undefined","unauthorized":"$undefined"}]]}],{"children":["face",["$","$1","c",{"children":[null,["$","$L2",null,{"parallelRouterKey":"children","error":"$undefined","errorStyles":"$undefined","errorScripts":"$undefined","template":["$","$L3",null,{}],"templateStyles":"$undefined","templateScripts":"$undefined","notFound":"$undefined","forbidden":"$undefined","unauthorized":"$undefined"}]]}],{"children":["__PAGE__",["$","$1","c",{"children":[["$","$L4",null,{"children":[["$","h1",null,{"children":"Face (emotion)"}],"\n",["$","p",null,{"className":"lead","children":[["$","code",null,{"className":"inline","children":"face"}]," encodes emotion — a datum's fields — into a face, and lets you ",["$","strong",null,{"children":"directly manipulate the features"}]," to write them back: pull the mouth into a smile, widen an eye, tilt a brow. It is a ",["$","strong",null,{"children":"preset, not a mark"}],": it returns a ",["$","$L5",null,{"href":"/marks/composite#box","children":"composite in box mode"}]," — a ",["$","code",null,{"className":"inline","children":"point"}]," head, two ",["$","code",null,{"className":"inline","children":"ellipse"}]," eyes, two ",["$","code",null,{"className":"inline","children":"tickY"}]," brows and a ",["$","code",null,{"className":"inline","children":"curveY"}]," mouth — each placed in the glyph's own local units. Each parameter is a channel on one of those parts, so it takes the ordinary edits and is only editable when you ",["$","strong",null,{"children":"bind it to a field"}],"."]}],"\n",["$","$L6",null,{"entries":[{"name":"face(options)","summary":["Import from ",["$","code",null,{"className":"inline","children":"elicit.plot"}],". A ",["$","b",null,{"children":"preset, not a mark"}],": it returns a ",["$","a",null,{"href":"/marks/composite#box","children":"composite in box mode"}]," — a head ",["$","code",null,{"className":"inline","children":"point"}],", two ",["$","code",null,{"className":"inline","children":"ellipse"}]," eyes, two ",["$","code",null,{"className":"inline","children":"tickY"}]," brows and a ",["$","code",null,{"className":"inline","children":"curveY"}]," mouth — each placed in the glyph’s own local units. So every feature is its own drag target, and every parameter takes the universal edits. Its centre is placed by the x/y channels when present, else parked at the plot centre."],"signatures":["face({ channels, size, ink, edits, id }) → Feature[]"],"options":[{"name":"channels","type":"FaceChannels","default":"emotion preset","desc":["The channel map. The ",["$","b",null,{"children":"six face params are channels"}]," — bind a field with ","$L7",", or pin a constant with ","$L8"," (a fraction of that param’s travel). Bind none and you get the emotion preset (mouthCurve ← valence, eyeScale ← arousal); binding any one replaces it."]},{"name":"size","type":"number | ChannelSpec","default":"band slot, else min(w,h)·0.35","desc":"The box's half-size, which the head is drawn at — so every feature scales with it. Set it when drawing many faces so they don't overlap."},{"name":"ink","type":"string","default":"'#1f2937'","desc":"The colour of the drawn features (eyes, brows, mouth)."},{"name":"channels.x / .y","type":"ChannelSpec","default":"—","desc":"Optional: place the face centre in a plot (small-multiples, or an emotion-space scatter). An edit here rides on the box, which covers the whole glyph — so move() picks the face up from anywhere on it."},{"name":"fill, stroke","type":"style","default":"'#FFD666' / '#B7791F'","desc":"The head's colour."},{"name":"edits","type":"Edit[]","default":"—","desc":"Mark-level edits. They ride on the HEAD part, so a whole-dataset edit (create) fires once per gesture rather than once per facial feature."}],"channels":[{"name":"mouthCurve","type":"→ mouth curvature","desc":"$L9"},{"name":"mouthAsym","type":"→ mouth angle","desc":"$La"},{"name":"eyeScale","type":"→ eye rx","desc":"$Lb"},{"name":"eyeSquint","type":"→ eye ry","desc":"$Lc"},{"name":"browHeight","type":"→ brow y","desc":"$Ld"},{"name":"browTilt","type":"→ brow angle","desc":"$Le"},{"name":"x, y","type":"→ box x, y","desc":"Face centre; omitted parks it at the plot centre. move() on either picks the whole face up."},{"name":"size","type":"→ box size","desc":"The box's half-size, drawn as the head. resize() on it scales the whole glyph."}],"returns":"$Lf"}]}],"\n","$L10","\n","$L11","\n","$L12","\n","$L13","\n","$L14","\n","$L15","\n","$L16"]}],null,"$L17"]}],{},null,false]},null,false]},null,false]},null,false],"$L18",false]],"m":"$undefined","G":["$19",[]],"s":false,"S":true}
+1a:I[7009,["799","static/chunks/799-7af107d40bc88b92.js","3724","static/chunks/3724-d12e76d78a883e63.js","8500","static/chunks/8500-421c3037307d9211.js","637","static/chunks/637-1286b55f42136e00.js","5424","static/chunks/5424-f839d0fc5daf46c0.js","9761","static/chunks/9761-547c4c0c570149b3.js","1098","static/chunks/1098-2ff397ccf5b527da.js","7697","static/chunks/app/marks/face/page-1cb03cffca8c7bab.js"],"Example"]
+20:I[484,[],"OutletBoundary"]
+22:I[7837,[],"AsyncMetadataOutlet"]
+24:I[484,[],"ViewportBoundary"]
+26:I[484,[],"MetadataBoundary"]
+27:"$Sreact.suspense"
+7:["$","code",null,{"className":"inline","children":["mouthCurve: ","{"," field: 'joy', edit: slide(","{"," axis: 'y' ","}",") ","}"]}]
+8:["$","code",null,{"className":"inline","children":["{"," value: 0.8 ","}"]}]
+9:["Deep frown ∩ ↔ deep smile ∪. Natural edit: ",["$","code",null,{"className":"inline","children":["slide(","{"," axis: 'y', increase: 'up' ","}",")"]}],". (Preset: ← ",["$","code",null,{"className":"inline","children":"valence"}],".)"]
+a:["Centred ↔ smirk. Natural edit: ",["$","code",null,{"className":"inline","children":["rotate(","{"," pivot: 'mark', pick: 'direct' ","}",")"]}],"."]
+b:["Pinpricks ↔ wide. Natural edit: ",["$","code",null,{"className":"inline","children":["slide(","{"," axis: 'x', increase: 'right' ","}",")"]}],". (Preset: ← ",["$","code",null,{"className":"inline","children":"arousal"}],".)"]
+c:["Round ↔ flat. Natural edit: ",["$","code",null,{"className":"inline","children":["slide(","{"," axis: 'y', increase: 'down' ","}",")"]}],". Unbound, the eyes stay round as they widen."]
+d:["Slammed down ↔ high arch. Natural edit: ",["$","code",null,{"className":"inline","children":["slide(","{"," axis: 'y', increase: 'up' ","}",")"]}],"."]
+e:["Sad (outer-down) ↔ angry (inner-down); the two brows mirror each other. Natural edit: ",["$","code",null,{"className":"inline","children":["rotate(","{"," pivot: 'mark', pick: 'direct' ","}",")"]}],"."]
+f:["An ",["$","b",null,{"children":"array of features"}]," (Elicit flattens it): the composite’s ",["$","b",null,{"children":"box"}]," — which draws one invisible hit circle per row, so ",["$","code",null,{"className":"inline","children":"move()"}]," / ",["$","code",null,{"className":"inline","children":"resize()"}]," on x/y/size picks the whole face up — then head, eyes, brows and mouth."]
+10:["$","section",null,{"id":"emotion","children":[["$","h2",null,{"className":"section","children":"One face — drag to feel"}],[["$","p",".0",{"children":["The emotion preset binds ",["$","code",null,{"className":"inline","children":"mouthCurve"}]," to ",["$","code",null,{"className":"inline","children":"valence"}]," and ",["$","code",null,{"className":"inline","children":"eyeScale"}]," to ",["$","code",null,{"className":"inline","children":"arousal"}],". Grab the mouth and pull it up to smile, or drag an eye to widen it — each gesture inverts through the field's scale, and the whole face re-derives."],"className":"intro"}],["$","p",".1",{"children":["Because every feature is its own mark, the edits are the ones you already know: a ",["$","code",null,{"className":"inline","children":"slide"}]," on the mouth's curvature, a ",["$","code",null,{"className":"inline","children":"slide"}]," on an eye's radius. There is no ",["$","code",null,{"className":"inline","children":"edit.face.*"}]," namespace."],"className":"intro"}]],["$","div",null,{"className":"grid","children":[["$","$L1a",".2",{"code":"mount(Elicit({\n  width: 320, height: 320,\n  margins: { top: 12, right: 12, bottom: 12, left: 12 },\n  data: [ { valence: 0.3, arousal: 0.1 } ],\n  schema: {\n    valence: { type: \"quantitative\", domain: [-1, 1] },\n    arousal: { type: \"quantitative\", domain: [-1, 1] },\n  },\n  marks: [\n    // A face draws its features but writes nothing until an edit says so. The\n    // emotion preset binds mouthCurve ← valence and eyeScale ← arousal; declaring\n    // them here is what makes those two columns editable — and says which they are.\n    // Each param is a channel on a real part, so it takes the ordinary edits.\n    face({\n      channels: {\n        mouthCurve: { field: \"valence\", edit: slide({ axis: \"y\", increase: \"up\" }) },\n        eyeScale:   { field: \"arousal\", edit: slide({ axis: \"x\", increase: \"right\" }) },\n      },\n    }),\n  ],\n}))\n","title":"Valence × arousal","blurb":"The two-field emotion preset. The mouth and eyes are the drag targets themselves.","try":[["$","b",null,{"children":"Drag the mouth"}]," up/down (valence) or ",["$","b",null,{"children":"drag an eye"}]," sideways (arousal)."]}]]}]]}]
+1b:T677,mount(Elicit({
+  width: 340, height: 340,
+  margins: { top: 12, right: 12, bottom: 12, left: 12 },
+  data: [ {
+    curve: 0.7, smirk: 0.5,
+    aperture: 0.6, squint: 0.2, browH: 0.5, browT: 0.4,
+  } ],
+  schema: {
+    curve:    { type: "quantitative", domain: [0, 1] },
+    smirk:    { type: "quantitative", domain: [0, 1] },
+    aperture: { type: "quantitative", domain: [0, 1] },
+    squint:   { type: "quantitative", domain: [0, 1] },
+    browH:    { type: "quantitative", domain: [0, 1] },
+    browT:    { type: "quantitative", domain: [0, 1] },
+  },
+  marks: [
+    face({
+      channels: {
+        // The mouth is one part, so one drag drives both of its params: the
+        // vertical component bends it, the horizontal one tilts it into a smirk.
+        mouthCurve: { field: "curve", edit: slide({ axis: "y", increase: "up" }) },
+        mouthAsym:  { field: "smirk", edit: slide({ axis: "x", increase: "right" }) },
+        // Each eye is one ellipse: rx opens it, ry squints it. Horizontal and
+        // vertical drag, so one gesture on an eye reads as reshaping it.
+        eyeScale:  { field: "aperture", edit: slide({ axis: "x", increase: "right" }) },
+        eyeSquint: { field: "squint",   edit: slide({ axis: "y", increase: "down" }) },
+        // Each brow is one tick: height is where it SITS — a positional channel in
+        // the face's frame, so `move()` inverts straight back through it — and tilt
+        // is a magnitude, so it slides.
+        browHeight: { field: "browH", edit: move({ channels: ["y"] }) },
+        browTilt:   { field: "browT", edit: slide({ axis: "x", increase: "right" }) },
+      },
+    }),
+  ],
+}))
+11:["$","section",null,{"id":"expressive","children":[["$","h2",null,{"className":"section","children":"Turn on more expressions"}],[["$","p",".0",{"children":["Bind any subset of the six params in ",["$","code",null,{"className":"inline","children":"channels"}],", each a plain ",["$","code",null,{"className":"inline","children":"{ field }"}]," with the edit you want. Unbound params stay neutral. Here every param is live: the mouth (↕ curve, ↔ smirk), the eyes (↔ aperture, ↕ squint), and the brows (↕ height, ↔ tilt)."],"className":"intro"}],["$","p",".1",{"children":["Two params on one part means one gesture drives both — dragging an eye sideways opens it and dragging it down squints it, because ",["$","code",null,{"className":"inline","children":"rx"}]," and ",["$","code",null,{"className":"inline","children":"ry"}]," are two channels on one ",["$","code",null,{"className":"inline","children":"ellipse"}],". The rule for sharing a part is that the two edits must read ",["$","strong",null,{"children":"different components"}]," of the drag: one on ",["$","code",null,{"className":"inline","children":"axis: \"x\""}],", one on ",["$","code",null,{"className":"inline","children":"axis: \"y\""}],". That is also why a brow's tilt slides rather than rotating, even though it drives an ",["$","code",null,{"className":"inline","children":"angle"}],". You grab a brow at its own pivot, so an angular edit would swing through most of a half-turn in a few pixels and pin the value to an extreme — the sensitivity of ",["$","code",null,{"className":"inline","children":"rotate"}]," comes from the pointer's distance to the pivot, and inside a glyph that distance is nearly zero."],"className":"intro"}]],["$","div",null,{"className":"grid","children":[["$","$L1a",".2",{"code":"$1b","title":"Full Chernoff face","blurb":"All six parameters bound to fields; grab any feature to sculpt the expression.","try":[["$","b",null,{"children":"Drag"}]," the mouth, an eye, or a brow — each is a separate mark."]}]]}]]}]
+1c:T445,mount(Elicit({
+  width: 540, height: 260,
+  margins: { top: 16, right: 20, bottom: 34, left: 20 },
+  axes: { x: {}, y: false },
+  data: [
+    { who: "Ana", valence: 0.6, arousal: 0.4 },
+    { who: "Ben", valence: -0.5, arousal: -0.2 },
+    { who: "Cy",  valence: 0.1, arousal: 0.8 },
+  ],
+  schema: {
+    who:     { type: "categorical", domain: ["Ana", "Ben", "Cy"] },
+    valence: { type: "quantitative", domain: [-1, 1] },
+    arousal: { type: "quantitative", domain: [-1, 1] },
+  },
+  marks: [
+    face({
+      size: 46,
+      channels: {
+        x: { field: "who" },
+        // Declared, not implied: these are the two columns a drag on this face
+        // writes. (The emotion preset would DRAW the same binding, but a mark is
+        // inert until an edit names the column it touches.) Every face's parts are
+        // separate features, so a drag on Ana's mouth cannot reach Ben's.
+        mouthCurve: { field: "valence", edit: slide({ axis: "y", increase: "up" }) },
+        eyeScale:   { field: "arousal", edit: slide({ axis: "x", increase: "right" }) },
+      },
+    }),
+  ],
+}))
+12:["$","section",null,{"id":"multiples","children":[["$","h2",null,{"className":"section","children":"Many faces in a plot"}],[["$","p",".0",{"children":["Give the face an ",["$","code",null,{"className":"inline","children":"x"}]," (or ",["$","code",null,{"className":"inline","children":"y"}],") channel and it is placed like a ",["$","code",null,{"className":"inline","children":"point"}]," — one editable face per row, each with its own frame. Set ",["$","code",null,{"className":"inline","children":"x: { field: 'valence' }, y: { field: 'arousal' }"}]," instead and the faces become an emotion-space scatter that moves as you edit them."],"className":"intro"}]],["$","div",null,{"className":"grid","children":[["$","$L1a",".1",{"code":"$1c","title":"A mood per person","blurb":"Faces positioned along a categorical x; drag each one's mouth or eyes to set that person's emotion.","try":[["$","b",null,{"children":"Drag"}]," any face's mouth or an eye."]}]]}]]}]
+13:["$","section",null,{"id":"head","children":[["$","h2",null,{"className":"section","children":"Move and resize the head"}],[["$","p",".0",{"children":["The head is an ordinary ",["$","code",null,{"className":"inline","children":"point"}],", so it takes an ordinary ",["$","code",null,{"className":"inline","children":"move()"}],": bind ",["$","code",null,{"className":"inline","children":"x"}]," and ",["$","code",null,{"className":"inline","children":"y"}]," to fields, attach the edit, and grabbing the head drags the glyph through the plane. The eyes, brows and mouth are separate features drawn on top of it, so grabbing one of ",["$","em",null,{"children":"them"}]," still edits the expression — direct-pick dispatch routes a gesture to the touched node's feature, and nothing has to arbitrate."],"className":"intro"}],["$","p",".2",{"children":[["$","code",null,{"className":"inline","children":"size"}]," is both the head's radius and the frame's half-size, so a ",["$","code",null,{"className":"inline","children":"resize()"}]," on it scales every feature with it. Keep it off a face that is also movable, though: both would be direct edits on the same head, and one drag would fire both."],"className":"intro"}]],["$","div",null,{"className":"grid","children":[["$","$L1a",".1",{"code":"mount(Elicit({\n  width: 340, height: 320,\n  margins: { top: 12, right: 12, bottom: 12, left: 12 },\n  data: [ { px: 0.1, py: 0.1, valence: 0.4, arousal: 0.2 } ],\n  schema: {\n    px:      { type: \"quantitative\", domain: [-1, 1] },\n    py:      { type: \"quantitative\", domain: [-1, 1] },\n    valence: { type: \"quantitative\", domain: [-1, 1] },\n    arousal: { type: \"quantitative\", domain: [-1, 1] },\n  },\n  marks: [\n    face({\n      size: 62,\n      channels: {\n        // The head is an ordinary `point`, so it takes an ordinary `move()`. The\n        // eyes, brows and mouth are separate features drawn on top of it, so\n        // grabbing one of them edits the expression instead — no arbitration.\n        x: { field: \"px\", edit: move({ channels: [\"x\", \"y\"] }) },\n        y: { field: \"py\" },\n        mouthCurve: { field: \"valence\", edit: slide({ axis: \"y\", increase: \"up\" }) },\n        eyeScale:   { field: \"arousal\", edit: slide({ axis: \"x\", increase: \"right\" }) },\n      },\n    }),\n  ],\n}))\n","title":"Drag the head to move it","blurb":"x + y bound with move() on the head part. The mouth and eyes still edit the emotion preset.","try":[["$","b",null,{"children":"Drag"}]," the head to move it · the mouth/eyes still work."]}],["$","$L1a",".3",{"code":"mount(Elicit({\n  width: 340, height: 320,\n  margins: { top: 12, right: 12, bottom: 12, left: 12 },\n  data: [ { mag: 55, valence: 0.4 } ],\n  schema: {\n    mag:     { type: \"quantitative\", domain: [30, 90] },\n    valence: { type: \"quantitative\", domain: [-1, 1] },\n  },\n  marks: [\n    face({\n      channels: {\n        // `size` is the head's radius AND the frame's half-size, so resizing it\n        // scales every feature with it. Give it a radius range — the default size\n        // range is the small [3, 18] a dot uses.\n        size: { field: \"mag\", scale: { range: [30, 92] }, edit: resize() },\n        mouthCurve: { field: \"valence\", edit: slide({ axis: \"y\", increase: \"up\" }) },\n      },\n    }),\n  ],\n}))\n","title":"Resize the whole glyph","blurb":"size bound with resize(): the head grows and the eyes, brows and mouth grow with it, because they are placed in fractions of the frame.","try":[["$","b",null,{"children":"Drag"}]," the head outward to grow it, inward to shrink it."]}]]}]]}]
+14:["$","section",null,{"id":"track","children":[["$","h2",null,{"className":"section","children":"Showing a handle's track"}],[["$","p",".0",{"children":["A positional channel in the frame is a real scale, so an edit that inverts the pointer through it — ",["$","code",null,{"className":"inline","children":"move()"}]," — travels exactly the range the scale spans, and no further. ",["$","code",null,{"className":"inline","children":"guide: \\{ track: true \\}"}]," draws that range: the dashed segment is the mapping itself, not a redrawing of it. Opt-in, because where the range is obvious it is only extra ink."],"className":"intro"}]],["$","div",null,{"className":"grid","children":[["$","$L1a",".1",{"code":"mount(Elicit({\n  width: 320, height: 300,\n  margins: { top: 12, right: 12, bottom: 12, left: 12 },\n  data: [ { brow: 0.5 } ],\n  schema: {\n    brow: { type: \"quantitative\", domain: [0, 1] },\n  },\n  marks: [\n    face({\n      channels: {\n        // A brow's height is a POSITIONAL channel in the face's local frame, so\n        // `move()` inverts the pointer straight back through the very scale that\n        // placed it — and the frame scale's pixel range IS the travel range.\n        // `guide: { track: true }` draws that range, so what you see is the mapping.\n        browHeight: {\n          field: \"brow\",\n          edit: move({ channels: [\"y\"], guide: { track: true } }),\n        },\n      },\n    }),\n  ],\n}))\n","title":"A handle's travel range","blurb":"The dashed segment is exactly the range the edit maps the pointer onto — drag past either end and the value stops.","try":[["$","b",null,{"children":"Drag"}]," a brow up and down along its dashed track."]}]]}]]}]
+1d:T62b,mount(Elicit({
+  width: 560, height: 300,
+  margins: { top: 16, right: 20, bottom: 32, left: 34 },
+  axes: { x: {}, y: {} },
+  data: [
+    { day: "Mon", mood: 0.7 },
+    { day: "Wed", mood: 0.4 },
+    { day: "Sat", mood: 0.9 },
+  ],
+  schema: {
+    // Ordinal x: the week runs Mon → Sun in this order (a band axis).
+    day:  { type: "ordinal", domain: ["Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun"] },
+    // Numeric y in [0, 1]: how good the day felt. It also drives the smile.
+    mood: { type: "quantitative", domain: [0, 1] },
+  },
+  constraints: [ unique({ field: "day" }) ],
+  marks: [
+    face({
+      size: 24,
+      channels: {
+        x: { field: "day" },
+        y: { field: "mood" },
+        // Bind the smile to the SAME field as y: click higher → happier face,
+        // and a created face's expression derives from the mood create mints —
+        // no extra field to seed. The edit makes pulling the mouth write `mood`
+        // too, so the smile and the y position stay two views of one column.
+        mouthCurve: { field: "mood", edit: slide({ axis: "y", increase: "up" }) },
+      },
+      // A click on an empty day's column inverts the pointer to (day, mood) and
+      // mints one face there. Mark-level edits ride on the HEAD part, so the
+      // create fires once per click, not once per facial feature. A click that
+      // lands ON a face carries a node, so it never fires the plane create — and
+      // a click in a day that's already taken is rejected by `unique`.
+      edits: [ create({ channels: ["x", "y"] }) ],
+    }),
+  ],
+}))
+15:["$","section",null,{"id":"creating","children":[["$","h2",null,{"className":"section","children":"One face per day — click to add"}],[["$","p",".0",{"children":["A face is a data glyph, so it's ",["$","$L5",null,{"href":"/editing/existence#what-can-create","children":"creatable"}]," like a ",["$","code",null,{"className":"inline","children":"point"}],": a plane click inverts the pointer through the x and y scales to mint a datum, and every part draws itself from it. Mark-level ",["$","code",null,{"className":"inline","children":"edits"}]," ride on the head part, so the create fires ",["$","strong",null,{"children":"once"}]," per click rather than once per facial feature."],"className":"intro"}],["$","p",".1",{"children":["Here the week starts with three days filled; click an empty day to add its face — the click's height sets the ",["$","code",null,{"className":"inline","children":"mood"}],", which also drives the smile. ",["$","code",null,{"className":"inline","children":"unique({ field: \"day\" })"}]," makes the day the identity, so each day holds ",["$","strong",null,{"children":"at most one"}]," face."],"className":"intro"}]],["$","div",null,{"className":"grid","children":[["$","$L1a",".2",{"code":"$1d","title":"Click an empty day to add a face","blurb":"create() on an ordinal x (days) × numeric y (mood); unique({ field: \"day\" }) caps each day at one face. mouthCurve reads the same mood field, so a created face's smile matches where you clicked.","try":[["$","b",null,{"children":"Click"}]," an empty day to add its face · ",["$","b",null,{"children":"drag"}]," a mouth to adjust the mood."]}]]}]]}]
+1e:Td8f,mount(Elicit({
+  width: 320, height: 300,
+  margins: { top: 12, right: 12, bottom: 12, left: 12 },
+  data: [ { openness: 0.7, mood: 0.8, worry: 0.35 } ],
+  schema: {
+    openness: { type: "quantitative", domain: [0, 1] },
+    mood:     { type: "quantitative", domain: [0, 1] },
+    worry:    { type: "quantitative", domain: [0, 1] },
+  },
+  marks: [
+    // This is what `face()` returns. A part stating a `frame:` channel turns the
+    // composite into a BOX: its x / y / size say where the box is and how big,
+    // and a `frame:` channel is placed inside it — x and y in [-1, 1] from the
+    // centre with y UP, radii as a fraction of the half-size.
+    composite({
+      id: "myface",
+      channels: { size: { value: 92 } },
+      parts: [
+        // The head IS the box: radius 1 in local units, and no position at all —
+        // inside a box, saying nothing means "here, at the glyph".
+        point({ channels: {
+          size:   { frame: 1 },
+          fill:   { value: "#FFD666" },
+          stroke: { value: "#B7791F" },
+        } }),
+        // Two eyes. `rx` maps the field's domain onto a slice of the box, so the
+        // same drag means the same thing however big the head is.
+        ellipse({ channels: {
+          x:  { frame: -0.4 },
+          y:  { frame: 0.16 },
+          rx: { field: "openness", frame: [0.05, 0.19],
+                edit: slide({ axis: "x", increase: "right" }) },
+          ry: { frame: 0.12 },
+          fill: { value: "#1f2937" },
+        } }),
+        ellipse({ channels: {
+          x:  { frame: 0.4 },
+          y:  { frame: 0.16 },
+          rx: { field: "openness", frame: [0.05, 0.19],
+                edit: slide({ axis: "x", increase: "right" }) },
+          ry: { frame: 0.12 },
+          fill: { value: "#1f2937" },
+        } }),
+        // Two brows, each a tickY spanning a chord in the box. `worry` drives
+        // BOTH the height (a slide on y) and the tilt — and the two tilt ranges
+        // are MIRRORED, so one rising field tilts them into the same expression
+        // rather than the same direction. That only works because each part's
+        // frame scale is PRIVATE: a single global angle scale could not hold
+        // [45, -45] and [-45, 45] at once.
+        tickY({ channels: {
+          x1: { frame: -0.14 }, x2: { frame: -0.50 },
+          y:  { field: "worry", frame: [0.57, 0.23],
+                edit: slide({ axis: "y", increase: "down" }) },
+          angle: { field: "worry", frame: [45, -45] },
+          stroke: { value: "#1f2937" },
+          strokeWidth: { frame: 0.055 },
+        } }),
+        tickY({ channels: {
+          x1: { frame: 0.14 }, x2: { frame: 0.50 },
+          y:  { field: "worry", frame: [0.57, 0.23],
+                edit: slide({ axis: "y", increase: "down" }) },
+          angle: { field: "worry", frame: [-45, 45] },
+          stroke: { value: "#1f2937" },
+          strokeWidth: { frame: 0.055 },
+        } }),
+        // The mouth is a `curve`: a chord in the box plus a curvature. Positive
+        // bows up, so a descending range turns a rising mood into a deeper smile.
+        curveY({ channels: {
+          x1: { frame: -0.36 },
+          x2: { frame: 0.36 },
+          y:  { frame: -0.34 },
+          curvature: { field: "mood", frame: [0.6, -0.6],
+                       edit: slide({ axis: "y", increase: "up" }) },
+          stroke: { value: "#1f2937" },
+          strokeWidth: { frame: 0.055 },
+        } }),
+      ],
+    }),
+  ],
+}))
+16:["$","section",null,{"id":"build","children":[["$","h2",null,{"className":"section","children":"It's just a composite"}],[["$","p",".0",{"children":[["$","code",null,{"className":"inline","children":"face()"}]," builds nothing you couldn't assemble yourself. Below is a smaller version written out in full — a ",["$","code",null,{"className":"inline","children":"point"}]," head, two ",["$","code",null,{"className":"inline","children":"ellipse"}]," eyes, two ",["$","code",null,{"className":"inline","children":"tickY"}]," brows and a ",["$","code",null,{"className":"inline","children":"curveY"}]," mouth, each placed in the ",["$","$L5",null,{"href":"/marks/composite#box","children":"composite's box"}],"."],"className":"intro"}],["$","p",".1",{"children":["Read ",["$","code",null,{"className":"inline","children":"frame:"}]," as \"this number is in the glyph's own coordinates\": ",["$","code",null,{"className":"inline","children":"x"}]," and ",["$","code",null,{"className":"inline","children":"y"}]," in ",["$","code",null,{"className":"inline","children":"[-1, 1]"}]," from the centre with y ",["$","strong",null,{"children":"up"}],", radii as a fraction of the half-size. A part that states no position sits at the centre, which is where the head goes. A field-bound channel maps the field's declared domain onto a slice of the box (",["$","code",null,{"className":"inline","children":"frame: [0.05, 0.19]"}],"), and the edit inverts back through it."],"className":"intro"}],["$","p",".2",{"children":["Each brow is a ",["$","code",null,{"className":"inline","children":"tickY"}]," spanning a chord, with ",["$","code",null,{"className":"inline","children":"worry"}]," driving its height and its tilt. The two tilt ranges are mirrored — ",["$","code",null,{"className":"inline","children":"[45, -45]"}]," on the left, ",["$","code",null,{"className":"inline","children":"[-45, 45]"}]," on the right — so a rising ",["$","code",null,{"className":"inline","children":"worry"}]," tilts both brows into the same expression rather than the same direction. A ",["$","code",null,{"className":"inline","children":"frame:"}]," scale belongs to its own part, so the two ranges don't collide."],"className":"intro"}]],["$","div",null,{"className":"grid","children":[["$","$L1a",".3",{"code":"$1e","title":"A face, written out","blurb":"The same construction face() performs, spelled out with composite + point + ellipse + tick + curve.","try":"$L1f"}]]}]]}]
+17:["$","$L20",null,{"children":["$L21",["$","$L22",null,{"promise":"$@23"}]]}]
+18:["$","$1","h",{"children":[null,[["$","$L24",null,{"children":"$L25"}],null],["$","$L26",null,{"children":["$","div",null,{"hidden":true,"children":["$","$27",null,{"fallback":null,"children":"$L28"}]}]}]]}]
+1f:[["$","b",null,{"children":"Drag"}]," an eye sideways · ",["$","b",null,{"children":"drag a brow"}]," down to worry it · ",["$","b",null,{"children":"drag"}]," the mouth up and down."]
+25:[["$","meta","0",{"charSet":"utf-8"}],["$","meta","1",{"name":"viewport","content":"width=device-width, initial-scale=1"}]]
+21:null
+23:{"metadata":[["$","title","0",{"children":"ElicitJS Docs"}],["$","meta","1",{"name":"description","content":"Declarative visual belief elicitation — documentation"}]],"error":null,"digest":"$undefined"}
+28:"$23:metadata"

@@ -1,0 +1,137 @@
+1:"$Sreact.fragment"
+2:I[7121,[],""]
+3:I[4581,[],""]
+4:I[6984,["799","static/chunks/799-7af107d40bc88b92.js","3724","static/chunks/3724-d12e76d78a883e63.js","8500","static/chunks/8500-421c3037307d9211.js","637","static/chunks/637-1286b55f42136e00.js","5424","static/chunks/5424-f839d0fc5daf46c0.js","9761","static/chunks/9761-547c4c0c570149b3.js","1098","static/chunks/1098-2ff397ccf5b527da.js","8974","static/chunks/app/page-5b45568734a4a07e.js"],"DocShell"]
+5:I[7009,["799","static/chunks/799-7af107d40bc88b92.js","3724","static/chunks/3724-d12e76d78a883e63.js","8500","static/chunks/8500-421c3037307d9211.js","637","static/chunks/637-1286b55f42136e00.js","5424","static/chunks/5424-f839d0fc5daf46c0.js","9761","static/chunks/9761-547c4c0c570149b3.js","1098","static/chunks/1098-2ff397ccf5b527da.js","8974","static/chunks/app/page-5b45568734a4a07e.js"],"Example"]
+f:I[7123,[],""]
+:HL["/_next/static/css/89d8c60f936c1aa1.css","style"]
+0:{"P":null,"b":"tv18AyE76ijOK3suAUb2x","p":"","c":["",""],"i":false,"f":[[["",{"children":["__PAGE__",{}]},"$undefined","$undefined",true],["",["$","$1","c",{"children":[[["$","link","0",{"rel":"stylesheet","href":"/_next/static/css/89d8c60f936c1aa1.css","precedence":"next","crossOrigin":"$undefined","nonce":"$undefined"}]],["$","html",null,{"lang":"en","suppressHydrationWarning":true,"children":["$","body",null,{"suppressHydrationWarning":true,"children":["$","$L2",null,{"parallelRouterKey":"children","error":"$undefined","errorStyles":"$undefined","errorScripts":"$undefined","template":["$","$L3",null,{}],"templateStyles":"$undefined","templateScripts":"$undefined","notFound":[[["$","title",null,{"children":"404: This page could not be found."}],["$","div",null,{"style":{"fontFamily":"system-ui,\"Segoe UI\",Roboto,Helvetica,Arial,sans-serif,\"Apple Color Emoji\",\"Segoe UI Emoji\"","height":"100vh","textAlign":"center","display":"flex","flexDirection":"column","alignItems":"center","justifyContent":"center"},"children":["$","div",null,{"children":[["$","style",null,{"dangerouslySetInnerHTML":{"__html":"body{color:#000;background:#fff;margin:0}.next-error-h1{border-right:1px solid rgba(0,0,0,.3)}@media (prefers-color-scheme:dark){body{color:#fff;background:#000}.next-error-h1{border-right:1px solid rgba(255,255,255,.3)}}"}}],["$","h1",null,{"className":"next-error-h1","style":{"display":"inline-block","margin":"0 20px 0 0","padding":"0 23px 0 0","fontSize":24,"fontWeight":500,"verticalAlign":"top","lineHeight":"49px"},"children":404}],["$","div",null,{"style":{"display":"inline-block"},"children":["$","h2",null,{"style":{"fontSize":14,"fontWeight":400,"lineHeight":"49px","margin":0},"children":"This page could not be found."}]}]]}]}]],[]],"forbidden":"$undefined","unauthorized":"$undefined"}]}]}]]}],{"children":["__PAGE__",["$","$1","c",{"children":[["$","$L4",null,{"children":[["$","h1",null,{"children":"What you can elicit"}],"\n",[["$","p",".0",{"children":"ElicitJS lets you build charts you can use to elicit information (beliefs,\npreferences, and other things) from people. drag a bar, place a point, turn a\ndial — and you get structured data back (see the panel next to each chart).\nTry the questions below.","className":"lead"}]],"\n",["$","section",null,{"id":"allocate","children":[["$","h2",null,{"className":"section","children":"How would you allocate 100% across these categories?"}],[["$","p",".0",{"children":"Use a bar chart when the pieces have to add up. Drag any bar; the others adjust so the total stays 100.","className":"intro"}]],["$","div",null,{"className":"grid","children":[["$","$L5",".1",{"code":"mount(Elicit({\n  width: 560, height: 280,\n  responsive: \"reflow\",\n  margins: { top: 24, right: 20, bottom: 44, left: 48 },\n  guides: [ guides.rule({ y: 25, label: \"even split\" }) ],\n  data: [\n    { category: \"Product\", share: 25 },\n    { category: \"Marketing\", share: 25 },\n    { category: \"Ops\", share: 25 },\n    { category: \"R&D\", share: 25 },\n  ],\n  constraints: [\n    clamp({ field: \"share\", min: 0 }),\n    maintainSum({ field: \"share\", total: 100 }),\n  ],\n  schema: {\n    category: { type: \"categorical\", domain: [\"Product\", \"Marketing\", \"Ops\", \"R&D\"] },\n    share: { type: \"quantitative\", domain: [0, 100] },\n  },\n  marks: [\n    bar({\n      fill: \"#6366f1\",\n      channels: {\n        x: { field: \"category\" },\n        y: { field: \"share\", edit: move({ guide: true }) },\n      },\n    }),\n  ],\n}))\n","title":"Allocate a budget","blurb":"Drag the bars to split 100% across categories. Raising one lowers the others.","try":[["$","b",null,{"children":"Drag"}]," any bar. The shares always add up to 100."],"codeMode":"collapsed"}]]}]]}],"\n",["$","section",null,{"id":"scatter","children":[["$","h2",null,{"className":"section","children":"Where do people sit on age vs immigration attitude?"}],[["$","p",".0",{"children":"Use a scatter plot to ask a two-part question. The chart starts empty — double-click to add someone, then drag them into place.","className":"intro"}]],["$","div",null,{"className":"grid","children":[["$","$L5",".1",{"code":"mount(Elicit({\n  width: 560, height: 280,\n  responsive: \"reflow\",\n  margins: { top: 20, right: 24, bottom: 48, left: 110 },\n  schema: {\n    age: { type: \"quantitative\", domain: [18, 80] },\n    immigration: {\n      type: \"quantitative\",\n      domain: [-1, 1],\n      default: 0,\n    },\n  },\n  axes: {\n    x: { title: \"Age\" },\n    y: {\n      tickValues: [-1, 0, 1],\n      tickFormat: (v) =>\n        v === -1 ? \"−1 (anti immigration)\"\n        : v === 1 ? \"1 (pro immigration)\"\n        : \"0 (neutral)\",\n    },\n  },\n  data: [],\n  marks: [\n    point({\n      size: 7, stroke: \"#1f2733\", strokeWidth: 1,\n      channels: {\n        x: { field: \"age\" },\n        y: { field: \"immigration\" },\n        // RdYlGn: low → red (anti), high → green (pro)\n        fill: { field: \"immigration\", scale: { scheme: \"RdYlGn\" } },\n      },\n      edits: [\n        create({ gesture: \"dblclick\" }),\n        move({ channels: [\"x\", \"y\"] }),\n      ],\n    }),\n  ],\n}))\n","title":"Age vs immigration attitude","blurb":"An empty scatter plot. Double-click to place people; drag to move them. Colour runs from red (anti) to green (pro).","try":"$L6","codeMode":"collapsed"}]]}]]}],"\n","$L7","\n","$L8","\n","$L9","\n","$La","\n","$Lb","\n","$Lc"]}],null,"$Ld"]}],{},null,false]},null,false],"$Le",false]],"m":"$undefined","G":["$f",[]],"s":false,"S":true}
+12:I[484,[],"OutletBoundary"]
+14:I[7837,[],"AsyncMetadataOutlet"]
+16:I[484,[],"ViewportBoundary"]
+18:I[484,[],"MetadataBoundary"]
+19:"$Sreact.suspense"
+6:[["$","b",null,{"children":"Double-click"}]," to add a person · ",["$","b",null,{"children":"drag"}]," to move them."]
+7:["$","section",null,{"id":"forecast","children":[["$","h2",null,{"className":"section","children":"What trend do you expect over time?"}],[["$","p",".0",{"children":"Use a line chart when you want someone to draw a path. Drag across the chart to sketch the forecast you have in mind.","className":"intro"}]],["$","div",null,{"className":"grid","children":[["$","$L5",".1",{"code":"mount(Elicit({\n  width: 560, height: 280,\n  responsive: \"reflow\",\n  margins: { top: 24, right: 24, bottom: 48, left: 56 },\n  data: [\n    { month: 0, demand: 50 }, { month: 1, demand: 50 },\n    { month: 2, demand: 50 }, { month: 3, demand: 50 },\n    { month: 4, demand: 50 }, { month: 5, demand: 50 },\n    { month: 6, demand: 50 }, { month: 7, demand: 50 },\n  ],\n  schema: {\n    month:  { type: \"quantitative\", domain: [0, 7] },\n    demand: { type: \"quantitative\", domain: [0, 100] },\n  },\n  axes: { x: { title: \"Month\" }, y: { title: \"Demand\" } },\n  marks: [\n    lineY({\n      stroke: \"#4f46e5\", strokeWidth: 3, curve: \"catmullRom\",\n      channels: {\n        x: { field: \"month\" },\n        y: { field: \"demand\",\n             edit: move({ pick: \"sweep\", guide: true }) },\n      },\n    }),\n  ],\n}))\n","title":"Draw the trend you expect","blurb":"Sketch the line with your mouse — like drawing a forecast by hand.","try":[["$","b",null,{"children":"Drag"}]," left-to-right across the chart to reshape the line."],"codeMode":"collapsed"}]]}]]}]
+10:T483,mount(Elicit({
+  width: 560, height: 240,
+  responsive: "reflow",
+  margins: { top: 80, right: 72, bottom: 28, left: 72 },
+  axes: false,
+  overflow: "visible",
+  data: [{ chance: "LEANING D" }],
+  schema: {
+    chance: {
+      type: "ordinal",
+      domain: [
+        "VERY LIKELY D", "LIKELY D", "LEANING D", "TOSSUP",
+        "LEANING R", "LIKELY R", "VERY LIKELY R",
+      ],
+    },
+  },
+  marks: [
+    axisRadial({
+      orient: "top", radius: 110, bands: true, bandWidth: 22,
+      tickSize: 0, labelOffset: 18, fontSize: 8,
+      channels: {
+        theta: { field: "chance", scale: { range: [180, 0] } },
+        fill: { field: "chance", scale: { scheme: "RdBu", reverse: true } },
+      },
+    }),
+    needle({
+      length: 95, fill: "#b91c1c",
+      channels: {
+        theta: {
+          field: "chance",
+          scale: { range: [180, 0] },
+          edit: rotate({ pivot: "mark", fold: false, pick: "direct" }),
+        },
+      },
+    }),
+    text({
+      fontSize: 14, dy: 32,
+      channels: {
+        text: { field: "chance" },
+        textAnchor: { value: "middle" },
+        lineAnchor: { value: "middle" },
+      },
+    }),
+  ],
+}))
+8:["$","section",null,{"id":"needle","children":[["$","h2",null,{"className":"section","children":"How likely is Candidate D to win?"}],[["$","p",".0",{"children":"Use a needle dial for a single choice on a scale — from “very likely D” to “very likely R.” Drag the needle to answer.","className":"intro"}]],["$","div",null,{"className":"grid","children":[["$","$L5",".1",{"code":"$10","title":"Likelihood gauge","blurb":"A dial you can turn — drag the needle to pick how likely something feels.","try":[["$","b",null,{"children":"Drag"}]," the needle left or right."],"codeMode":"collapsed"}]]}]]}]
+9:["$","section",null,{"id":"geo","children":[["$","h2",null,{"className":"section","children":"Where do you think is the best place to live in Vancouver?"}],[["$","p",".0",{"children":"Place pins on a map to answer. Click to drop a pin; drag one to move it.","className":"intro"}]],["$","div",null,{"className":"grid","children":[["$","$L5",".1",{"code":"mount(Elicit({\n  width: 560, height: 320,\n  responsive: \"reflow\",\n  margins: { top: 12, right: 12, bottom: 12, left: 12 },\n  projection: { type: \"mercator\", domain: vancouver, inset: 6 },\n  data: [],\n  schema: {\n    lon: { type: \"quantitative\", domain: [-123.27, -123.02] },\n    lat: { type: \"quantitative\", domain: [49.20, 49.32] },\n  },\n  marks: [\n    geoBasemap({\n      geojson: vancouver,\n      fill: \"#e8eef5\", stroke: \"#64748b\", strokeWidth: 0.8,\n    }),\n    geoPoint({\n      size: 8, fill: \"#1d4ed8\", stroke: \"#fff\", strokeWidth: 1.5,\n      channels: {\n        lon: { field: \"lon\" },\n        lat: { field: \"lat\" },\n      },\n      edits: [edit.geo.move(), edit.geo.create()],\n    }),\n  ],\n}))\n","title":"Best place to live","blurb":"Click the map to drop pins for places you’d live; drag a pin to fine-tune.","try":[["$","b",null,{"children":"Click"}]," to place a pin · ",["$","b",null,{"children":"drag"}]," an existing one."],"codeMode":"collapsed"}]]}]]}]
+a:["$","section",null,{"id":"survey","children":[["$","h2",null,{"className":"section","children":"How easy is this tool to use?"}],[["$","p",".0",{"children":"Classic survey scales work too. Hover to preview, then click to lock in an answer.","className":"intro"}]],["$","div",null,{"className":"grid","children":[["$","$L5",".1",{"code":"mount(Elicit({\n  ...widgets.likert({\n    question: \"This tool is easy to use\",\n    options: [\n      \"Strongly disagree\",\n      \"Disagree\",\n      \"Neutral\",\n      \"Agree\",\n      \"Strongly agree\",\n    ],\n  }),\n  responsive: \"reflow\",\n}));\n","title":"Answer a survey scale","blurb":"A familiar agree/disagree question — hover, then click your answer.","try":["Hover across the scale, then ",["$","b",null,{"children":"click"}]," your answer."],"codeMode":"collapsed"}]]}]]}]
+11:T9ee,// U.S. motor-vehicle deaths per year (NHTSA/FARS, rounded).
+// 1968-1990 is the record; the rest is what you believe happened.
+const record = [
+  [1968, 52725], [1969, 53543], [1970, 52627], [1971, 52542],
+  [1972, 54589], [1973, 54052], [1974, 45196], [1975, 44525],
+  [1976, 45523], [1977, 47878], [1978, 50331], [1979, 51093],
+  [1980, 51091], [1981, 49301], [1982, 43945], [1983, 42589],
+  [1984, 44257], [1985, 43825], [1986, 46087], [1987, 46390],
+  [1988, 47087], [1989, 45582], [1990, 44599],
+].map(([year, deaths]) => ({ year, deaths }));
+
+const truth = [
+  [1991, 41508], [1992, 39250], [1993, 40150], [1994, 40716],
+  [1995, 41817], [1996, 42065], [1997, 42013], [1998, 41501],
+  [1999, 41717], [2000, 41945], [2001, 42196], [2002, 43005],
+  [2003, 42884], [2004, 42836], [2005, 43510], [2006, 42708],
+  [2007, 41259], [2008, 37423], [2009, 33883], [2010, 32999],
+  [2011, 32479], [2012, 33782], [2013, 32893], [2014, 32744],
+  [2015, 35485], [2016, 37806],
+].map(([year, deaths]) => ({ year, deaths }));
+
+const chart = mount(Elicit({
+  width: 560, height: 340,
+  margins: { top: 20, right: 24, bottom: 32, left: 56 },
+  schema: {
+    year:   { type: "quantitative", domain: [1968, 2016] },
+    deaths: { type: "quantitative", domain: [0, 60000] },
+  },
+  data: record,
+  lock: "seed",
+  axes: {
+    x: { tickFormat: "d",  grid: true },
+    y: { tickFormat: "~s", grid: true },
+  },
+  stageLabels: ["draw", "revealed"],
+  guides: [
+    guides.region({ x: [1968, 1990], fill: "#94a3b8", opacity: 0.12 }),
+    guides.custom(({ data, scales }) => [1968, 1990]
+      .map((y) => data.find((d) => d.year === y))
+      .filter(Boolean)
+      .map((d) => ({
+        type: "text", text: d3.format(",")(d.deaths),
+        x: scales.x.encode(d.year), y: scales.y.encode(d.deaths) - 12,
+        fontSize: 12, textAnchor: "middle", fill: "#0f172a",
+      }))),
+    guides.custom(({ scales, stage }) => stage < 1 ? [] : [{
+      type: "path", fill: "none", stroke: "#e8833a", strokeWidth: 2.5,
+      points: truth.map((d) => [scales.x.encode(d.year),
+                                scales.y.encode(d.deaths)]),
+    }]),
+  ],
+  marks: [
+    lineY({
+      stroke: "#7f9dc9", strokeWidth: 3, curve: "catmullRom", handleSize: 3,
+      channels: {
+        x: { field: "year" },
+        y: { field: "deaths" },
+      },
+      edits: [ edit.line.draw({ samples: d3.range(1991, 2017), stage: 0 }) ],
+    }),
+  ],
+}));
+
+const btn = mount(document.createElement("button"));
+btn.textContent = "Show me how I did";
+btn.onclick = () => chart.nextStage();
+b:["$","section",null,{"id":"you-draw-it","children":[["$","h2",null,{"className":"section","children":"What happened to U.S. traffic deaths after 1990?"}],[["$","p",".0",{"children":"The New York Times' “You Draw It” format: 1968–1990 is historical record (locked), 1991–2016 is what you draw. When you finish, press the button to reveal the answer key.","className":"intro"}]],["$","div",null,{"className":"grid","children":[["$","$L5",".1",{"code":"$11","title":"Draw the missing years","blurb":"Drag across the empty space to draw 1991–2016, then advance to reveal the truth.","try":[["$","b",null,{"children":"Drag"}]," left-to-right to draw the missing years · then press ",["$","b",null,{"children":"Show me how I did"}],"."],"codeMode":"collapsed"}]]}]]}]
+c:["$","section",null,{"id":"anatomy","children":[["$","h2",null,{"className":"section","children":"How a chart is built"}],[["$","p",".0",{"children":"Under the hood it’s a short recipe: starting data, what each field means, and a chart type with dragging turned on. The panel on the right is the answer you collect.","className":"intro"}]],["$","div",null,{"className":"grid","children":[["$","$L5",".1",{"code":"mount(Elicit({\n  width: 560, height: 280,\n  responsive: \"reflow\",\n  margins: { top: 24, right: 20, bottom: 44, left: 48 },\n  // 1. Starting numbers\n  data: [\n    { cat: \"A\", n: 30 },\n    { cat: \"B\", n: 55 },\n    { cat: \"C\", n: 22 },\n    { cat: \"D\", n: 44 },\n  ],\n  // 2. What each column means (and its range)\n  schema: {\n    cat: { type: \"categorical\", domain: [\"A\", \"B\", \"C\", \"D\"] },\n    n:   { type: \"quantitative\", domain: [0, 60] },\n  },\n  // 3. Draw bars; dragging a bar changes its number\n  marks: [\n    bar({\n      fill: \"#4f46e5\",\n      channels: {\n        x: { field: \"cat\" },\n        y: { field: \"n\", edit: move() },\n      },\n    }),\n  ],\n}))\n","title":"One editable bar chart","blurb":"The chart on the left and the numbers on the right are the same thing — drag a bar and watch the data update.","try":[["$","b",null,{"children":"Drag"}]," a bar — the panel on the right is what your app would read."],"codeMode":"readonly"}]]}]]}]
+d:["$","$L12",null,{"children":["$L13",["$","$L14",null,{"promise":"$@15"}]]}]
+e:["$","$1","h",{"children":[null,[["$","$L16",null,{"children":"$L17"}],null],["$","$L18",null,{"children":["$","div",null,{"hidden":true,"children":["$","$19",null,{"fallback":null,"children":"$L1a"}]}]}]]}]
+17:[["$","meta","0",{"charSet":"utf-8"}],["$","meta","1",{"name":"viewport","content":"width=device-width, initial-scale=1"}]]
+13:null
+15:{"metadata":[["$","title","0",{"children":"ElicitJS Docs"}],["$","meta","1",{"name":"description","content":"Declarative visual belief elicitation — documentation"}]],"error":null,"digest":"$undefined"}
+1a:"$15:metadata"
