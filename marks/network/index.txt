@@ -1,65 +1,72 @@
 1:"$Sreact.fragment"
 2:I[7121,[],""]
 3:I[4581,[],""]
-4:I[6984,["9756","static/chunks/9756-774bfe52807a90d2.js","799","static/chunks/799-7af107d40bc88b92.js","2172","static/chunks/2172-cb2795254ef6d392.js","7185","static/chunks/7185-2496758399a70106.js","2102","static/chunks/2102-ed3306c8dc8671c3.js","5382","static/chunks/app/marks/network/page-124c879f101268aa.js"],"DocShell"]
-5:I[2478,["9756","static/chunks/9756-774bfe52807a90d2.js","799","static/chunks/799-7af107d40bc88b92.js","2172","static/chunks/2172-cb2795254ef6d392.js","7185","static/chunks/7185-2496758399a70106.js","2102","static/chunks/2102-ed3306c8dc8671c3.js","5382","static/chunks/app/marks/network/page-124c879f101268aa.js"],"ApiReference"]
-3e:I[7123,[],""]
+4:I[6984,["9756","static/chunks/9756-774bfe52807a90d2.js","799","static/chunks/799-7af107d40bc88b92.js","2172","static/chunks/2172-cb2795254ef6d392.js","5945","static/chunks/5945-74490978a4301a96.js","2102","static/chunks/2102-8ba2b1ea0ac7f6ff.js","5382","static/chunks/app/marks/network/page-0a162df30d33d920.js"],"DocShell"]
+5:I[2478,["9756","static/chunks/9756-774bfe52807a90d2.js","799","static/chunks/799-7af107d40bc88b92.js","2172","static/chunks/2172-cb2795254ef6d392.js","5945","static/chunks/5945-74490978a4301a96.js","2102","static/chunks/2102-8ba2b1ea0ac7f6ff.js","5382","static/chunks/app/marks/network/page-0a162df30d33d920.js"],"ApiReference"]
+4b:I[7123,[],""]
 :HL["/_next/static/css/edd20583ae5e4f5d.css","style"]
-0:{"P":null,"b":"VwvC5uqN3hd8HWq6uUJ0U","p":"","c":["","marks","network",""],"i":false,"f":[[["",{"children":["marks",{"children":["network",{"children":["__PAGE__",{}]}]}]},"$undefined","$undefined",true],["",["$","$1","c",{"children":[[["$","link","0",{"rel":"stylesheet","href":"/_next/static/css/edd20583ae5e4f5d.css","precedence":"next","crossOrigin":"$undefined","nonce":"$undefined"}]],["$","html",null,{"lang":"en","suppressHydrationWarning":true,"children":["$","body",null,{"suppressHydrationWarning":true,"children":["$","$L2",null,{"parallelRouterKey":"children","error":"$undefined","errorStyles":"$undefined","errorScripts":"$undefined","template":["$","$L3",null,{}],"templateStyles":"$undefined","templateScripts":"$undefined","notFound":[[["$","title",null,{"children":"404: This page could not be found."}],["$","div",null,{"style":{"fontFamily":"system-ui,\"Segoe UI\",Roboto,Helvetica,Arial,sans-serif,\"Apple Color Emoji\",\"Segoe UI Emoji\"","height":"100vh","textAlign":"center","display":"flex","flexDirection":"column","alignItems":"center","justifyContent":"center"},"children":["$","div",null,{"children":[["$","style",null,{"dangerouslySetInnerHTML":{"__html":"body{color:#000;background:#fff;margin:0}.next-error-h1{border-right:1px solid rgba(0,0,0,.3)}@media (prefers-color-scheme:dark){body{color:#fff;background:#000}.next-error-h1{border-right:1px solid rgba(255,255,255,.3)}}"}}],["$","h1",null,{"className":"next-error-h1","style":{"display":"inline-block","margin":"0 20px 0 0","padding":"0 23px 0 0","fontSize":24,"fontWeight":500,"verticalAlign":"top","lineHeight":"49px"},"children":404}],["$","div",null,{"style":{"display":"inline-block"},"children":["$","h2",null,{"style":{"fontSize":14,"fontWeight":400,"lineHeight":"49px","margin":0},"children":"This page could not be found."}]}]]}]}]],[]],"forbidden":"$undefined","unauthorized":"$undefined"}]}]}]]}],{"children":["marks",["$","$1","c",{"children":[null,["$","$L2",null,{"parallelRouterKey":"children","error":"$undefined","errorStyles":"$undefined","errorScripts":"$undefined","template":["$","$L3",null,{}],"templateStyles":"$undefined","templateScripts":"$undefined","notFound":"$undefined","forbidden":"$undefined","unauthorized":"$undefined"}]]}],{"children":["network",["$","$1","c",{"children":[null,["$","$L2",null,{"parallelRouterKey":"children","error":"$undefined","errorStyles":"$undefined","errorScripts":"$undefined","template":["$","$L3",null,{}],"templateStyles":"$undefined","templateScripts":"$undefined","notFound":"$undefined","forbidden":"$undefined","unauthorized":"$undefined"}]]}],{"children":["__PAGE__",["$","$1","c",{"children":[["$","$L4",null,{"children":[["$","h1",null,{"children":"Network"}],"\n",["$","p",null,{"className":"lead","children":["A ",["$","strong",null,{"children":"network"}]," is two tables — nodes and the links between them — declared with ",["$","code",null,{"className":"inline","children":"structure: \"network\""}],". ",["$","code",null,{"className":"inline","children":"node()"}]," draws a labelled dot; ",["$","code",null,{"className":"inline","children":"link()"}]," draws one connector per link row, straight or curved, with arrowheads when directed. ",["$","code",null,{"className":"inline","children":"edit.network.connect"}],", ",["$","code",null,{"className":"inline","children":"rewire"}]," and ",["$","code",null,{"className":"inline","children":"reverse"}]," build the topology; ",["$","code",null,{"className":"inline","children":"create"}],", ",["$","code",null,{"className":"inline","children":"move"}],", ",["$","code",null,{"className":"inline","children":"editText"}]," and ",["$","code",null,{"className":"inline","children":"remove"}]," work as on any other mark."]}],"\n",["$","$L5",null,{"entries":[{"name":"link(options)","summary":["Import from ",["$","code",null,{"className":"inline","children":"elicit.plot"}],". One line per row of the links table, drawn between the two nodes it references."],"signatures":["link({ channels, curve, curvature, spread, arrow, arrowSize, inset, sourceInset, targetInset, loopRadius, nodeWidth, nodeHeight, cornerRadius, sourceSide, targetSide, labelBackground, labelPadding, labelRadius, labelOpacity, format, handles, handleSize, handleColor, table, edits, id }) → Feature"],"options":[{"name":"channels","type":"object","default":"{}","desc":["All optional. ",["$","code",null,{"className":"inline","children":"source"}],"/",["$","code",null,{"className":"inline","children":"target"}]," name the reference columns (default: the link table’s two ",["$","code",null,{"className":"inline","children":"ref"}]," fields).",["$","code",null,{"className":"inline","children":"x"}],"/",["$","code",null,{"className":"inline","children":"y"}]," say how a ",["$","em",null,{"children":"node"}]," is positioned (default: the node table’s ","$L6"," and"," ","$L7","). ","$L8"," draws a label on the path. ","$L9"," and ","$La"," take a column, so one mark can draw several kinds of connector. Style channels (","$Lb",", ","$Lc",","," ","$Ld",") read the link row."]},{"name":"curve","type":"\"line\" | \"step\" | \"stepBefore\" | \"stepAfter\" | \"orthogonal\" | \"arc\" | \"bezier\"","default":"\"line\"","desc":"$Le"},{"name":"curvature","type":"number | \"auto\"","default":"\"auto\"","desc":"$Lf"},{"name":"spread","type":"number","default":"0.16","desc":"$L10"},{"name":"arrow","type":"\"auto\" | \"none\" | \"target\" | \"source\" | \"both\"","default":"\"auto\"","desc":"$L11"},{"name":"arrowSize","type":"number","default":"6","desc":"$L12"},{"name":"loopRadius","type":"number","default":"22","desc":"$L13"},{"name":"inset","type":"number","default":"0","desc":"$L14"},{"name":"nodeWidth","type":"number | channel","default":"—","desc":"$L15"},{"name":"nodeHeight","type":"number | channel","default":"—","desc":"$L16"},{"name":"cornerRadius","type":"number","default":"0","desc":"$L17"},{"name":"sourceSide","type":"\"auto\" | \"top\" | \"right\" | \"bottom\" | \"left\"","default":"\"auto\"","desc":"$L18"},{"name":"labelBackground","type":"boolean | string","default":"off","desc":"$L19"},{"name":"labelOpacity","type":"number","default":"0.9","desc":"$L1a"},{"name":"labelPadding","type":"number","default":"3","desc":"$L1b"},{"name":"labelRadius","type":"number","default":"3","desc":"$L1c"},{"name":"sourceInset / targetInset","type":"number","default":"inset","desc":"$L1d"},{"name":"targetSide","type":"\"auto\" | \"top\" | \"right\" | \"bottom\" | \"left\"","default":"\"auto\"","desc":"$L1e"},{"name":"format","type":"string | fn","default":"String","desc":"$L1f"},{"name":"handles","type":"boolean | 'hit'","default":"true","desc":"$L20"},{"name":"handleSize","type":"number","default":"5","desc":"Pixel radius of each endpoint grip."},{"name":"handleColor","type":"string","default":"theme","desc":"$L21"},{"name":"table","type":"string","default":"the links-role table","desc":"$L22"}]},{"name":"node(options)","summary":"$L23","signatures":["node({ channels, dy, shape, size, format, table, edits, id }) → Feature[]"],"options":[{"name":"channels","type":"object","default":"{}","desc":"$L24"},{"name":"dy","type":"number","default":"-16","desc":"$L25"},{"name":"shape","type":"\"circle\" | \"square\"","default":"\"circle\"","desc":"$L26"},{"name":"format","type":"string | fn","default":"String","desc":"$L27"}],"returns":"$L28"},{"name":"edit.network.connect(options)","summary":"$L29","signatures":["connect({ source, target, defaults, threshold, selfLoops, when, stage }) → Edit"],"options":[{"name":"source, target","type":"string","default":"the link table’s ref columns","desc":"$L2a"},{"name":"defaults","type":"object","default":"{}","desc":"$L2b"},{"name":"threshold","type":"number","default":"28","desc":"$L2c"},{"name":"selfLoops","type":"boolean","default":"false","desc":"$L2d"},{"name":"when","type":"(ctx) => boolean","default":"null","desc":"$L2e"}]},{"name":"edit.network.rewire(options)","summary":"$L2f","signatures":["rewire({ threshold, when, stage }) → Edit"],"options":[{"name":"threshold","type":"number","default":"28","desc":"$L30"}]},{"name":"edit.network.reverse(options)","summary":"$L31","signatures":["reverse({ source, target, when, stage }) → Edit"],"options":[{"name":"source, target","type":"string","default":"the link table’s ref columns","desc":"$L32"},{"name":"when","type":"(ctx) => boolean","default":"null","desc":"$L33"}]}]}],"\n","$L34","\n","$L35","\n","$L36","\n","$L37","\n","$L38","\n","$L39","\n","$L3a","\n","$L3b"]}],null,"$L3c"]}],{},null,false]},null,false]},null,false]},null,false],"$L3d",false]],"m":"$undefined","G":["$3e",[]],"s":false,"S":true}
-3f:I[7009,["9756","static/chunks/9756-774bfe52807a90d2.js","799","static/chunks/799-7af107d40bc88b92.js","2172","static/chunks/2172-cb2795254ef6d392.js","7185","static/chunks/7185-2496758399a70106.js","2102","static/chunks/2102-ed3306c8dc8671c3.js","5382","static/chunks/app/marks/network/page-124c879f101268aa.js"],"Example"]
-43:I[8500,["9756","static/chunks/9756-774bfe52807a90d2.js","799","static/chunks/799-7af107d40bc88b92.js","2172","static/chunks/2172-cb2795254ef6d392.js","7185","static/chunks/7185-2496758399a70106.js","2102","static/chunks/2102-ed3306c8dc8671c3.js","5382","static/chunks/app/marks/network/page-124c879f101268aa.js"],""]
-52:I[484,[],"OutletBoundary"]
-54:I[7837,[],"AsyncMetadataOutlet"]
-56:I[484,[],"ViewportBoundary"]
-58:I[484,[],"MetadataBoundary"]
-59:"$Sreact.suspense"
-6:["$","code",null,{"className":"inline","children":"x"}]
-7:["$","code",null,{"className":"inline","children":"y"}]
-8:["$","code",null,{"className":"inline","children":"text"}]
-9:["$","code",null,{"className":"inline","children":"curve"}]
-a:["$","code",null,{"className":"inline","children":"arrow"}]
-b:["$","code",null,{"className":"inline","children":"stroke"}]
-c:["$","code",null,{"className":"inline","children":"strokeWidth"}]
-d:["$","code",null,{"className":"inline","children":"opacity"}]
-e:["The connector’s shape. ",["$","code",null,{"className":"inline","children":"step"}]," and its two variants are right-angled elbows drawn between node centres; ",["$","code",null,{"className":"inline","children":"orthogonal"}],"is the flowchart elbow, docked to each node’s box edge."," ",["$","code",null,{"className":"inline","children":"arc"}]," is a quadratic bow and"," ",["$","code",null,{"className":"inline","children":"bezier"}]," a cubic with square tangents."," ",["$","code",null,{"className":"inline","children":"\"smooth\""}]," is an alias of"," ",["$","code",null,{"className":"inline","children":"bezier"}],". A link whose source and target are the same node draws a loop whatever you set here."]
-f:["How far a link bows, as a fraction of its length."," ",["$","code",null,{"className":"inline","children":"\"auto\""}]," reads it off the data: links sharing a pair of nodes fan apart, and a pair joined by one link stays straight. A number applies to every link instead."]
-10:["The gap between adjacent links of one pair under"," ",["$","code",null,{"className":"inline","children":"curvature: \"auto\""}],"."]
-11:["Which ends carry a filled triangle. ",["$","code",null,{"className":"inline","children":"\"auto\""}]," draws one at the target end when the links table declares"," ",["$","code",null,{"className":"inline","children":"directed: true"}],", and none otherwise."," ",["$","code",null,{"className":"inline","children":"true"}]," and ",["$","code",null,{"className":"inline","children":"false"}]," ","are accepted for ",["$","code",null,{"className":"inline","children":"\"target\""}]," and"," ",["$","code",null,{"className":"inline","children":"\"none\""}],"."]
-12:"Arrowhead length in px. The end it caps is inset by the same amount."
-13:"How far a self-loop reaches from its node, in px."
-14:["Pull both ends in by this many px, so the line stops short of the node marks instead of running under them. ",["$","code",null,{"className":"inline","children":"sourceInset"}]," and"," ",["$","code",null,{"className":"inline","children":"targetInset"}]," set each end separately. Under"," ",["$","code",null,{"className":"inline","children":"curve: \"orthogonal\""}]," it is the clearance from the node's edge rather than from its centre."]
-15:["How wide a node is, in px, for ",["$","code",null,{"className":"inline","children":"curve: \"orthogonal\""}]," ","to dock to. Read against the node rows, so it takes a constant, a column, or"," ",["$","code",null,{"className":"inline","children":"{ fn: d => … }"}]," — use"," ",["$","code",null,{"className":"inline","children":"noteBox"}]," for an auto-sized"," ",["$","code",null,{"className":"inline","children":"sticker"}],". With neither this nor"," ",["$","code",null,{"className":"inline","children":"nodeHeight"}]," set, connectors dock to a small square around the node's position."]
-16:["How tall a node is, in px. Read the same way as ",["$","code",null,{"className":"inline","children":"nodeWidth"}],"."]
-17:["Rounds the turns of a ",["$","code",null,{"className":"inline","children":"\"orthogonal\""}]," connector, in px."]
-18:["Which edge the connector leaves the source node by."," ",["$","code",null,{"className":"inline","children":"\"auto\""}]," chooses from where the two nodes sit."," ",["$","code",null,{"className":"inline","children":"targetSide"}]," does the same for the other end. Both read per row like ",["$","code",null,{"className":"inline","children":"curve"}],", and neither writes to the dataset."]
-19:["A plate behind ",["$","code",null,{"className":"inline","children":"channels.text"}],", so a label sitting on its own connector stays readable."," ",["$","code",null,{"className":"inline","children":"true"}]," uses the theme’s backdrop, which reads as a gap in the line; a colour string sets it outright."]
-1a:"The plate’s fill opacity — lower it to let the connector show through."
-1b:"Space between the label and the plate’s edge, in px."
-1c:"The plate’s corner radius, in px."
-1d:["Override ",["$","code",null,{"className":"inline","children":"inset"}]," for one end only."]
-1e:["Which edge the connector enters the target node by, under ",["$","code",null,{"className":"inline","children":"curve: \"orthogonal\""}],"."]
-1f:["Display formatter for ",["$","code",null,{"className":"inline","children":"channels.text"}],": a d3-format string, or ",["$","code",null,{"className":"inline","children":["(v) =",">"," string"]}],". Display-only — the column stays raw."]
-20:["Endpoint grips. Drawn only where a channel carries an edit, so an inert link shows none. ",["$","code",null,{"className":"inline","children":"'hit'"}]," keeps the grip grabbable but draws nothing."]
-21:["Grip fill. Defaults to the theme’s ",["$","code",null,{"className":"inline","children":"handle"}]," colour."]
-22:["Which table to draw, by name — the universal option every mark takes. You rarely need it here: ",["$","code",null,{"className":"inline","children":"link"}]," resolves the table filling the ",["$","code",null,{"className":"inline","children":"links"}]," role, whatever you called it."]
-23:["Import from ",["$","code",null,{"className":"inline","children":"elicit.plot"}],". A dot with a label, as one mark — a preset over ",["$","code",null,{"className":"inline","children":"composite"}],", so it desugars into an ordinary ",["$","code",null,{"className":"inline","children":"point"}]," and"," ",["$","code",null,{"className":"inline","children":"text"}],". Not network-specific: point it at any table."]
-24:[["$","code",null,{"className":"inline","children":"x"}],"/",["$","code",null,{"className":"inline","children":"y"}]," are stated once and shared by both parts — that is the repetition it removes. A"," ",["$","code",null,{"className":"inline","children":"text"}]," channel draws the label; without one, no label is drawn. Label channels (",["$","code",null,{"className":"inline","children":"fontSize"}],","," ",["$","code",null,{"className":"inline","children":"textAnchor"}],", ",["$","code",null,{"className":"inline","children":"dx"}],") go to the text; every other channel (",["$","code",null,{"className":"inline","children":"fill"}],","," ",["$","code",null,{"className":"inline","children":"stroke"}],", ",["$","code",null,{"className":"inline","children":"size"}],","," ",["$","code",null,{"className":"inline","children":"symbol"}],") goes to the dot."]
-25:"Label offset in px, positive downwards."
-26:"Passed to the dot."
-27:["Display formatter for the label: a d3-format string, or"," ",["$","code",null,{"className":"inline","children":["(v) =",">"," string"]}],". Display-only."]
-28:["Carries no edits of its own, like every mark. Put"," ",["$","code",null,{"className":"inline","children":"move()"}]," on ",["$","code",null,{"className":"inline","children":"x"}],","," ",["$","code",null,{"className":"inline","children":"editText()"}]," on ",["$","code",null,{"className":"inline","children":"text"}],", and ",["$","code",null,{"className":"inline","children":"edit.network.connect()"}]," in"," ",["$","code",null,{"className":"inline","children":"edits"}],". An edit on"," ",["$","code",null,{"className":"inline","children":"x"}],"/",["$","code",null,{"className":"inline","children":"y"}]," grabs the dot."]
-29:"Drag from one node to another to create a link. Put it on the node mark."
-2a:"Which columns to write the two node identities into."
-2b:"Extra fields to seed the new link row with, over the schema’s defaults."
-2c:"How near the pointer must land to a node, in px, for the drag to connect."
-2d:["Allow a link from a node to itself, by releasing on the node you started from. Off by default; ",["$","code",null,{"className":"inline","children":"link()"}]," draws it as a loop."]
-2e:["Required when the same mark also carries a plain drag such as"," ",["$","code",null,{"className":"inline","children":"move"}]," — pair"," ",["$","code",null,{"className":"inline","children":"when.shift"}]," with"," ",["$","code",null,{"className":"inline","children":"when.noShift"}],"."]
-2f:["Drag a link’s endpoint onto a different node. Put it on the"," ",["$","code",null,{"className":"inline","children":"source"}]," or ",["$","code",null,{"className":"inline","children":"target"}]," channel of a ",["$","code",null,{"className":"inline","children":"link"}]," mark."]
-30:"How near the release must land to a node, in px."
-31:["Swap a link’s two ends. Put it on the ",["$","code",null,{"className":"inline","children":"link"}]," mark; it fires on a click anywhere along the line."]
-32:"Which two columns to swap."
-33:["Needed when the link mark carries another click edit, such as"," ",["$","code",null,{"className":"inline","children":"remove"}],". It logs a warning and does nothing on a links table declared ",["$","code",null,{"className":"inline","children":"directed: false"}],", where the two ends already mean the same thing."]
-40:T4c7,mount(Elicit({
+0:{"P":null,"b":"phz5kJRW9ebEMPFaT09wF","p":"","c":["","marks","network",""],"i":false,"f":[[["",{"children":["marks",{"children":["network",{"children":["__PAGE__",{}]}]}]},"$undefined","$undefined",true],["",["$","$1","c",{"children":[[["$","link","0",{"rel":"stylesheet","href":"/_next/static/css/edd20583ae5e4f5d.css","precedence":"next","crossOrigin":"$undefined","nonce":"$undefined"}]],["$","html",null,{"lang":"en","suppressHydrationWarning":true,"children":["$","body",null,{"suppressHydrationWarning":true,"children":["$","$L2",null,{"parallelRouterKey":"children","error":"$undefined","errorStyles":"$undefined","errorScripts":"$undefined","template":["$","$L3",null,{}],"templateStyles":"$undefined","templateScripts":"$undefined","notFound":[[["$","title",null,{"children":"404: This page could not be found."}],["$","div",null,{"style":{"fontFamily":"system-ui,\"Segoe UI\",Roboto,Helvetica,Arial,sans-serif,\"Apple Color Emoji\",\"Segoe UI Emoji\"","height":"100vh","textAlign":"center","display":"flex","flexDirection":"column","alignItems":"center","justifyContent":"center"},"children":["$","div",null,{"children":[["$","style",null,{"dangerouslySetInnerHTML":{"__html":"body{color:#000;background:#fff;margin:0}.next-error-h1{border-right:1px solid rgba(0,0,0,.3)}@media (prefers-color-scheme:dark){body{color:#fff;background:#000}.next-error-h1{border-right:1px solid rgba(255,255,255,.3)}}"}}],["$","h1",null,{"className":"next-error-h1","style":{"display":"inline-block","margin":"0 20px 0 0","padding":"0 23px 0 0","fontSize":24,"fontWeight":500,"verticalAlign":"top","lineHeight":"49px"},"children":404}],["$","div",null,{"style":{"display":"inline-block"},"children":["$","h2",null,{"style":{"fontSize":14,"fontWeight":400,"lineHeight":"49px","margin":0},"children":"This page could not be found."}]}]]}]}]],[]],"forbidden":"$undefined","unauthorized":"$undefined"}]}]}]]}],{"children":["marks",["$","$1","c",{"children":[null,["$","$L2",null,{"parallelRouterKey":"children","error":"$undefined","errorStyles":"$undefined","errorScripts":"$undefined","template":["$","$L3",null,{}],"templateStyles":"$undefined","templateScripts":"$undefined","notFound":"$undefined","forbidden":"$undefined","unauthorized":"$undefined"}]]}],{"children":["network",["$","$1","c",{"children":[null,["$","$L2",null,{"parallelRouterKey":"children","error":"$undefined","errorStyles":"$undefined","errorScripts":"$undefined","template":["$","$L3",null,{}],"templateStyles":"$undefined","templateScripts":"$undefined","notFound":"$undefined","forbidden":"$undefined","unauthorized":"$undefined"}]]}],{"children":["__PAGE__",["$","$1","c",{"children":[["$","$L4",null,{"children":[["$","h1",null,{"children":"Network"}],"\n",["$","p",null,{"className":"lead","children":["A ",["$","strong",null,{"children":"network"}]," is two tables — nodes and the links between them — declared with ",["$","code",null,{"className":"inline","children":"structure: \"network\""}],". ",["$","code",null,{"className":"inline","children":"node()"}]," draws a labelled dot; ",["$","code",null,{"className":"inline","children":"link()"}]," draws one connector per link row, straight or curved, with arrowheads when directed. A ",["$","code",null,{"className":"inline","children":"ports"}]," channel on the node mark shows where links can meet a node. ",["$","code",null,{"className":"inline","children":"edit.network.connect"}],", ",["$","code",null,{"className":"inline","children":"rewire"}]," and ",["$","code",null,{"className":"inline","children":"reverse"}]," build the topology; ",["$","code",null,{"className":"inline","children":"create"}],", ",["$","code",null,{"className":"inline","children":"move"}],", ",["$","code",null,{"className":"inline","children":"editText"}]," and ",["$","code",null,{"className":"inline","children":"remove"}]," work as on any other mark."]}],"\n",["$","$L5",null,{"entries":[{"name":"link(options)","summary":["Import from ",["$","code",null,{"className":"inline","children":"elicit.plot"}],". One line per row of the links table, drawn between the two nodes it references."],"signatures":["link({ channels, curve, curvature, spread, arrow, arrowSize, inset, sourceInset, targetInset, loopRadius, cornerRadius, sourceSide, targetSide, sourceOffset, targetOffset, labelBackground, labelPadding, labelRadius, labelOpacity, format, handles, handleSize, handleColor, table, edits, id }) → Feature"],"options":[{"name":"channels","type":"object","default":"{}","desc":["All optional. ",["$","code",null,{"className":"inline","children":"source"}],"/",["$","code",null,{"className":"inline","children":"target"}]," name the reference columns (default: the link table’s two ",["$","code",null,{"className":"inline","children":"ref"}]," fields).",["$","code",null,{"className":"inline","children":"x"}],"/","$L6"," say how a ","$L7"," is positioned (default: the node table’s ","$L8"," and"," ","$L9","). ","$La"," draws a label on the path. ","$Lb"," and ","$Lc"," take a column, so one mark can draw several kinds of connector. Style channels (","$Ld",", ","$Le",","," ","$Lf",") read the link row."," ","$L10","/","$L11"," ","with a ","$L12"," name the columns a connection writes its sides to."]},{"name":"curve","type":"\"line\" | \"step\" | \"stepBefore\" | \"stepAfter\" | \"orthogonal\" | \"arc\" | \"bezier\"","default":"\"line\"","desc":"$L13"},{"name":"curvature","type":"number | \"auto\"","default":"\"auto\"","desc":"$L14"},{"name":"spread","type":"number","default":"0.16","desc":"$L15"},{"name":"arrow","type":"\"auto\" | \"none\" | \"target\" | \"source\" | \"both\"","default":"\"auto\"","desc":"$L16"},{"name":"arrowSize","type":"number","default":"6","desc":"$L17"},{"name":"loopRadius","type":"number","default":"22","desc":"$L18"},{"name":"inset","type":"number","default":"0","desc":"$L19"},{"name":"cornerRadius","type":"number","default":"8","desc":"$L1a"},{"name":"sourceSide","type":"null | \"top\" | \"right\" | \"bottom\" | \"left\"","default":"null","desc":"$L1b"},{"name":"sourceOffset","type":"number | channel","default":"0","desc":"$L1c"},{"name":"labelBackground","type":"boolean | string","default":"off","desc":"$L1d"},{"name":"labelOpacity","type":"number","default":"0.9","desc":"$L1e"},{"name":"labelPadding","type":"number","default":"3","desc":"$L1f"},{"name":"labelRadius","type":"number","default":"3","desc":"$L20"},{"name":"sourceInset / targetInset","type":"number","default":"inset","desc":"$L21"},{"name":"targetOffset","type":"number | channel","default":"0","desc":"$L22"},{"name":"targetSide","type":"null | \"top\" | \"right\" | \"bottom\" | \"left\"","default":"null","desc":"$L23"},{"name":"format","type":"string | fn","default":"String","desc":"$L24"},{"name":"handles","type":"boolean | 'hit'","default":"true","desc":"$L25"},{"name":"handleSize","type":"number","default":"5","desc":"Pixel radius of each endpoint grip."},{"name":"handleColor","type":"string","default":"theme","desc":"$L26"},{"name":"table","type":"string","default":"the links-role table","desc":"$L27"}]},{"name":"node(options)","summary":"$L28","signatures":["node({ channels, dy, shape, size, format, table, edits, id }) → Feature[]"],"options":[{"name":"channels","type":"object","default":"{}","desc":"$L29"},{"name":"dy","type":"number","default":"-16","desc":"$L2a"},{"name":"shape","type":"\"circle\" | \"square\"","default":"\"circle\"","desc":"$L2b"},{"name":"format","type":"string | fn","default":"String","desc":"$L2c"}],"returns":"$L2d"},{"name":"channels.ports","summary":"$L2e","signatures":["ports: { value | fn | field, edit }"],"options":[{"name":"value","type":"true | side | side[] | { out, in }","default":"—","desc":"$L2f"},{"name":"edit","type":"Edit","default":"none","desc":"$L30"}],"returns":"$L31"},{"name":"edit.network.connect(options)","summary":"$L32","signatures":["connect({ defaults, threshold, when, stage }) → Edit"],"options":[{"name":"defaults","type":"object","default":"{}","desc":"$L33"},{"name":"threshold","type":"number","default":"28","desc":"$L34"},{"name":"when","type":"(ctx) => boolean","default":"null","desc":"$L35"}]},{"name":"edit.network.rewire(options)","summary":"$L36","signatures":["rewire({ channels, threshold, when, stage }) → Edit"],"options":[{"name":"channels","type":"string[]","default":"[\"source\", \"target\"]","desc":"$L37"},{"name":"threshold","type":"number","default":"28","desc":"$L38"}]},{"name":"edit.network.reverse(options)","summary":"$L39","signatures":["reverse({ when, stage }) → Edit"],"options":[{"name":"when","type":"(ctx) => boolean","default":"null","desc":"$L3a"}]}]}],"\n","$L3b","\n","$L3c","\n","$L3d","\n","$L3e","\n","$L3f","\n","$L40","\n","$L41","\n","$L42","\n","$L43","\n","$L44","\n","$L45","\n","$L46","\n","$L47","\n","$L48"]}],null,"$L49"]}],{},null,false]},null,false]},null,false]},null,false],"$L4a",false]],"m":"$undefined","G":["$4b",[]],"s":false,"S":true}
+4c:I[7009,["9756","static/chunks/9756-774bfe52807a90d2.js","799","static/chunks/799-7af107d40bc88b92.js","2172","static/chunks/2172-cb2795254ef6d392.js","5945","static/chunks/5945-74490978a4301a96.js","2102","static/chunks/2102-8ba2b1ea0ac7f6ff.js","5382","static/chunks/app/marks/network/page-0a162df30d33d920.js"],"Example"]
+54:I[8500,["9756","static/chunks/9756-774bfe52807a90d2.js","799","static/chunks/799-7af107d40bc88b92.js","2172","static/chunks/2172-cb2795254ef6d392.js","5945","static/chunks/5945-74490978a4301a96.js","2102","static/chunks/2102-8ba2b1ea0ac7f6ff.js","5382","static/chunks/app/marks/network/page-0a162df30d33d920.js"],""]
+68:I[484,[],"OutletBoundary"]
+6a:I[7837,[],"AsyncMetadataOutlet"]
+6c:I[484,[],"ViewportBoundary"]
+6e:I[484,[],"MetadataBoundary"]
+6f:"$Sreact.suspense"
+6:["$","code",null,{"className":"inline","children":"y"}]
+7:["$","em",null,{"children":"node"}]
+8:["$","code",null,{"className":"inline","children":"x"}]
+9:["$","code",null,{"className":"inline","children":"y"}]
+a:["$","code",null,{"className":"inline","children":"text"}]
+b:["$","code",null,{"className":"inline","children":"curve"}]
+c:["$","code",null,{"className":"inline","children":"arrow"}]
+d:["$","code",null,{"className":"inline","children":"stroke"}]
+e:["$","code",null,{"className":"inline","children":"strokeWidth"}]
+f:["$","code",null,{"className":"inline","children":"opacity"}]
+10:["$","code",null,{"className":"inline","children":"sourceSide"}]
+11:["$","code",null,{"className":"inline","children":"targetSide"}]
+12:["$","code",null,{"className":"inline","children":"field"}]
+13:["The connector’s shape. ",["$","code",null,{"className":"inline","children":"step"}]," and its two variants are right-angled elbows drawn between node centres; ",["$","code",null,{"className":"inline","children":"orthogonal"}],"is the flowchart elbow, docked to each node’s box edge."," ",["$","code",null,{"className":"inline","children":"arc"}]," is a quadratic bow and"," ",["$","code",null,{"className":"inline","children":"bezier"}]," a cubic with square tangents."," ",["$","code",null,{"className":"inline","children":"\"smooth\""}]," is an alias of"," ",["$","code",null,{"className":"inline","children":"bezier"}],". A link whose source and target are the same node draws a loop whatever you set here."]
+14:["How far a link bows, as a fraction of its length."," ",["$","code",null,{"className":"inline","children":"\"auto\""}]," reads it off the data: links sharing a pair of nodes fan apart, and a pair joined by one link stays straight. A number bows every link by that amount."]
+15:["The gap between adjacent links of one pair under"," ",["$","code",null,{"className":"inline","children":"curvature: \"auto\""}],"."]
+16:["Which ends carry a filled triangle. ",["$","code",null,{"className":"inline","children":"\"auto\""}]," draws one at the target end when the links table declares"," ",["$","code",null,{"className":"inline","children":"directed: true"}],", and none otherwise."," ",["$","code",null,{"className":"inline","children":"true"}]," and ",["$","code",null,{"className":"inline","children":"false"}]," ","are accepted for ",["$","code",null,{"className":"inline","children":"\"target\""}]," and"," ",["$","code",null,{"className":"inline","children":"\"none\""}],"."]
+17:"Arrowhead length in px. The end it caps is inset by the same amount."
+18:"How far a self-loop reaches out from its node, in px. More loops on one node take other edges, then nest."
+19:["The connection buffer: how far from a node’s shape a link stops, in px."," ",["$","code",null,{"className":"inline","children":"sourceInset"}]," and"," ",["$","code",null,{"className":"inline","children":"targetInset"}]," set each end separately. An end at a port touches the port. With no node mark, it is measured from the node’s position."]
+1a:["Rounds the turns of a ",["$","code",null,{"className":"inline","children":"\"orthogonal\""}]," connector, in px. ",["$","code",null,{"className":"inline","children":"0"}]," draws square corners."]
+1b:["Which edge the connector leaves the source node by. ",["$","code",null,{"className":"inline","children":"null"}]," ","(the default) leaves it unpinned: it meets the facing port, or slides along a node that has no ports. A named edge pins it at that edge’s midpoint."," ",["$","code",null,{"className":"inline","children":"targetSide"}]," does the same for the other end. Both read per row like ",["$","code",null,{"className":"inline","children":"curve"}],". As a channel with a"," ",["$","code",null,{"className":"inline","children":"field"}],", the column is also what"," ",["$","code",null,{"className":"inline","children":"connect"}]," and ",["$","code",null,{"className":"inline","children":"rewire"}]," ","write."]
+1c:["Where along its edge the source end docks, as a fraction of the edge from the midpoint, ",["$","code",null,{"className":"inline","children":"-0.4"}]," to ",["$","code",null,{"className":"inline","children":"0.4"}],". Positive runs clockwise around the box."," ",["$","code",null,{"className":"inline","children":"targetOffset"}]," does the same for the other end. Both read per row like a side, and neither writes to the dataset."]
+1d:["A plate behind ",["$","code",null,{"className":"inline","children":"channels.text"}],", so a label sitting on its own connector stays readable."," ",["$","code",null,{"className":"inline","children":"true"}]," uses the theme’s backdrop, which reads as a gap in the line; a colour string sets it outright."]
+1e:"The plate’s fill opacity — lower it to let the connector show through."
+1f:"Space between the label and the plate’s edge, in px."
+20:"The plate’s corner radius, in px."
+21:["Override ",["$","code",null,{"className":"inline","children":"inset"}]," for one end only."]
+22:["Where along its edge the target end docks; see ",["$","code",null,{"className":"inline","children":"sourceOffset"}],"."]
+23:["Which edge the connector enters the target node by; see ",["$","code",null,{"className":"inline","children":"sourceSide"}],"."]
+24:["Display formatter for ",["$","code",null,{"className":"inline","children":"channels.text"}],": a d3-format string, or ",["$","code",null,{"className":"inline","children":["(v) =",">"," string"]}],". It formats the label; the column keeps its value."]
+25:["Endpoint grips, drawn where a channel carries an edit. ",["$","code",null,{"className":"inline","children":"'hit'"}]," keeps the grip grabbable and invisible."]
+26:["Grip fill. Defaults to the theme’s ",["$","code",null,{"className":"inline","children":"handle"}]," colour."]
+27:["Which table to draw, by name — the universal option every mark takes. You rarely need it here: ",["$","code",null,{"className":"inline","children":"link"}]," resolves the table filling the ",["$","code",null,{"className":"inline","children":"links"}]," role, whatever you called it."]
+28:["Import from ",["$","code",null,{"className":"inline","children":"elicit.plot"}],". A dot with a label, as one mark — a preset over ",["$","code",null,{"className":"inline","children":"composite"}],", so it desugars into an ordinary ",["$","code",null,{"className":"inline","children":"point"}]," and"," ",["$","code",null,{"className":"inline","children":"text"}],". Not network-specific: point it at any table."]
+29:[["$","code",null,{"className":"inline","children":"x"}],"/",["$","code",null,{"className":"inline","children":"y"}]," are stated once for both parts. A ",["$","code",null,{"className":"inline","children":"text"}]," channel draws the label. Label channels (",["$","code",null,{"className":"inline","children":"fontSize"}],","," ",["$","code",null,{"className":"inline","children":"textAnchor"}],", ",["$","code",null,{"className":"inline","children":"dx"}],") go to the text; every other channel (",["$","code",null,{"className":"inline","children":"fill"}],","," ",["$","code",null,{"className":"inline","children":"stroke"}],", ",["$","code",null,{"className":"inline","children":"size"}],","," ",["$","code",null,{"className":"inline","children":"symbol"}],") goes to the dot."]
+2a:"Label offset in px, positive downwards."
+2b:"Passed to the dot."
+2c:["Display formatter for the label: a d3-format string, or"," ",["$","code",null,{"className":"inline","children":["(v) =",">"," string"]}],". Display-only."]
+2d:["Add the edits you want. Put"," ",["$","code",null,{"className":"inline","children":"move()"}]," on ",["$","code",null,{"className":"inline","children":"x"}],","," ",["$","code",null,{"className":"inline","children":"editText()"}]," on ",["$","code",null,{"className":"inline","children":"text"}],", and ",["$","code",null,{"className":"inline","children":"edit.network.connect()"}]," on a"," ",["$","code",null,{"className":"inline","children":"ports"}]," channel. An edit on"," ",["$","code",null,{"className":"inline","children":"x"}],"/",["$","code",null,{"className":"inline","children":"y"}]," grabs the dot."]
+2e:["A channel on the mark that draws the nodes — ",["$","code",null,{"className":"inline","children":"point"}],","," ",["$","code",null,{"className":"inline","children":"ellipse"}],", ",["$","code",null,{"className":"inline","children":"rect"}],","," ",["$","code",null,{"className":"inline","children":"text"}],", ",["$","code",null,{"className":"inline","children":"sticker"}],","," ",["$","code",null,{"className":"inline","children":"node"}],", ",["$","code",null,{"className":"inline","children":"face"}]," or a"," ",["$","code",null,{"className":"inline","children":"composite"}],". It puts a dot on the edges a link may use, on the shape the mark draws. Put ",["$","code",null,{"className":"inline","children":"edit.network.connect()"}]," ","on it to drag new links from the dots."]
+2f:["Which edges get a dot. ",["$","code",null,{"className":"inline","children":"true"}]," is all four, either way. A side or a list of sides is those edges, either way."," ",["$","code",null,{"className":"inline","children":"{ out, in }"}]," splits them on a directed network: links leave by ",["$","code",null,{"className":"inline","children":"out"}]," and arrive by"," ",["$","code",null,{"className":"inline","children":"in"}],". ",["$","code",null,{"className":"inline","children":"false"}]," is none. Use ",["$","code",null,{"className":"inline","children":"fn"}]," or ",["$","code",null,{"className":"inline","children":"field"}]," to vary it per node."]
+30:[["$","code",null,{"className":"inline","children":"edit.network.connect()"}]," starts a link from a dot. With no edit, the dots appear while you drag a link’s end, as places to drop it."]
+31:"Dots show where a link can go. Hover a node to see the edges a link can leave by. During a drag, the dots that accept the link light up."
+32:["Drag from a dot to another node to create a link. Put it on the node mark’s"," ",["$","code",null,{"className":"inline","children":"ports"}]," channel, or on the node mark itself. A dashed band follows the pointer. The row gets the columns the"," ",["$","code",null,{"className":"inline","children":"link"}]," mark’s channels name. A second link between one pair needs ",["$","code",null,{"className":"inline","children":"multi: true"}]," on the links table, and a link from a node to itself needs"," ",["$","code",null,{"className":"inline","children":"selfLoops: true"}],"."]
+33:"Extra fields to seed the new link row with, over the schema’s defaults."
+34:"How near a node’s centre a drop connects, in px, when the nodes draw no shape. With a shape, a drop anywhere on the node connects, and a dot pins its edge."
+35:["Splits drags on a node mark that also carries"," ",["$","code",null,{"className":"inline","children":"move"}],": pair"," ",["$","code",null,{"className":"inline","children":"when.shift"}]," with"," ",["$","code",null,{"className":"inline","children":"when.noShift"}],". Leave it out on a"," ",["$","code",null,{"className":"inline","children":"ports"}]," channel."]
+36:["Drag a link’s end to reconnect it. Put it in a"," ",["$","code",null,{"className":"inline","children":"link"}]," mark’s ",["$","code",null,{"className":"inline","children":"edits"}],". Hover a connector to see a handle at each end. Drop the end on a dot to re-point it and pin that edge, on a node’s body to re-point it, or on empty space to remove the link. It follows the links table’s"," ",["$","code",null,{"className":"inline","children":"multi"}]," and ",["$","code",null,{"className":"inline","children":"selfLoops"}]," ","like ",["$","code",null,{"className":"inline","children":"connect"}],"."]
+37:"Which ends get a handle."
+38:"How near the release must land to a node, in px."
+39:["Swap a link’s two ends. Put it on the ",["$","code",null,{"className":"inline","children":"link"}]," mark; it fires on a click anywhere along the line."]
+3a:["Needed when the link mark carries another click edit, such as"," ",["$","code",null,{"className":"inline","children":"remove"}],". On a links table declared"," ",["$","code",null,{"className":"inline","children":"directed: false"}]," it logs a warning and leaves the row as it is."]
+4d:T4c6,mount(Elicit({
   width: 460, height: 280,
   margins: { top: 24, right: 24, bottom: 24, left: 24 },
   axes: false,
@@ -87,7 +94,7 @@ f:["How far a link bows, as a fraction of its length."," ",["$","code",null,{"cl
     links: [],
   },
   marks: [
-    link({ inset: 16, stroke: "#94a3b8", strokeWidth: 1.5 }),
+    link({ inset: 3, stroke: "#94a3b8", strokeWidth: 1.5 }),
     node({
       size: 10,
       fill: "#4e79a7",
@@ -104,8 +111,8 @@ f:["How far a link bows, as a fraction of its length."," ",["$","code",null,{"cl
     }),
   ],
 }));
-34:["$","section",null,{"id":"schema","children":[["$","h2",null,{"className":"section","children":"Declaring the structure"}],[["$","p",".0",{"children":[["$","code",null,{"className":"inline","children":"structure: \"network\""}]," gives the dataset two tables in the roles ",["$","code",null,{"className":"inline","children":"nodes"}]," and ",["$","code",null,{"className":"inline","children":"links"}],". The default ",["$","code",null,{"className":"inline","children":"\"table\""}]," is one table — a bare field map, as on every other chart here."],"className":"intro"}],["$","pre",".1",{"className":"code","children":["$","code",null,{"className":"language-js","children":"schema: {\n  structure: \"network\",\n  tables: {\n    nodes: {\n      id: { type: \"categorical\", key: true, open: true },\n      label: { type: \"categorical\", open: true },\n      x: { type: \"quantitative\", domain: [0, 100] },\n      y: { type: \"quantitative\", domain: [0, 100] },\n    },\n    links: {\n      source: { type: \"ref\" },\n      target: { type: \"ref\" },\n      weight: { type: \"quantitative\", domain: [0, 1] },\n    },\n  },\n}\n"}]}],["$","p",".2",{"children":[["$","code",null,{"className":"inline","children":"key: true"}]," marks the column that identifies a node. ",["$","code",null,{"className":"inline","children":"type: \"ref\""}]," marks a column that names one; its domain comes from the key, so you never list node ids twice."],"className":"intro"}],["$","p",".3",{"children":["Pair ",["$","code",null,{"className":"inline","children":"key"}]," with ",["$","code",null,{"className":"inline","children":"open: true"}]," so a gesture that mints a node can take a fresh identity."],"className":"intro"}],["$","p",".4",{"children":[["$","code",null,{"className":"inline","children":"data"}]," is keyed by table name. Omit a table and it starts empty — a diagram built entirely by gesture needs no ",["$","code",null,{"className":"inline","children":"data"}]," at all."],"className":"intro"}],["$","pre",".5",{"className":"code","children":["$","code",null,{"className":"language-js","children":"data: {\n  nodes: [{ id: \"a\", label: \"Ana\", x: 20, y: 70 }],\n  links: [],\n}\n"}]}],["$","p",".6",{"children":[["$","code",null,{"className":"inline","children":"getData()"}],", ",["$","code",null,{"className":"inline","children":"onChange"}]," and ",["$","code",null,{"className":"inline","children":"setData"}]," use the same shape."],"className":"intro"}]],["$","div",null,{"className":"grid","children":[["$","$L3f",".7",{"code":"$40","title":"Nodes, no links","blurb":"links: [] — the topology is drawn by gesture.","try":"$L41"}]]}]]}]
-42:T543,mount(Elicit({
+3b:["$","section",null,{"id":"schema","children":[["$","h2",null,{"className":"section","children":"Declaring the structure"}],[["$","p",".0",{"children":[["$","code",null,{"className":"inline","children":"structure: \"network\""}]," gives the dataset two tables in the roles ",["$","code",null,{"className":"inline","children":"nodes"}]," and ",["$","code",null,{"className":"inline","children":"links"}],". The default ",["$","code",null,{"className":"inline","children":"\"table\""}]," is one table — a bare field map, as on every other chart here."],"className":"intro"}],["$","pre",".1",{"className":"code","children":["$","code",null,{"className":"language-js","children":"schema: {\n  structure: \"network\",\n  tables: {\n    nodes: {\n      id: { type: \"categorical\", key: true, open: true },\n      label: { type: \"categorical\", open: true },\n      x: { type: \"quantitative\", domain: [0, 100] },\n      y: { type: \"quantitative\", domain: [0, 100] },\n    },\n    links: {\n      source: { type: \"ref\" },\n      target: { type: \"ref\" },\n      weight: { type: \"quantitative\", domain: [0, 1] },\n    },\n  },\n}\n"}]}],["$","p",".2",{"children":[["$","code",null,{"className":"inline","children":"key: true"}]," marks the column that identifies a node. ",["$","code",null,{"className":"inline","children":"type: \"ref\""}]," marks a column that names one. Its domain is the key column's values."],"className":"intro"}],["$","p",".3",{"children":["Pair ",["$","code",null,{"className":"inline","children":"key"}]," with ",["$","code",null,{"className":"inline","children":"open: true"}]," so a gesture that mints a node can take a fresh identity."],"className":"intro"}],["$","p",".4",{"children":[["$","code",null,{"className":"inline","children":"data"}]," is keyed by table name. A table you leave out starts empty."],"className":"intro"}],["$","pre",".5",{"className":"code","children":["$","code",null,{"className":"language-js","children":"data: {\n  nodes: [{ id: \"a\", label: \"Ana\", x: 20, y: 70 }],\n  links: [],\n}\n"}]}],["$","p",".6",{"children":[["$","code",null,{"className":"inline","children":"getData()"}],", ",["$","code",null,{"className":"inline","children":"onChange"}]," and ",["$","code",null,{"className":"inline","children":"setData"}]," use the same shape."],"className":"intro"}]],["$","div",null,{"className":"grid","children":[["$","$L4c",".7",{"code":"$4d","title":"Nodes, no links","blurb":"links: [] — the topology is drawn by gesture.","try":[["$","b",null,{"children":"Shift-drag"}]," from one node to another to connect them. ",["$","b",null,{"children":"Drag"}]," a node to move it, ",["$","b",null,{"children":"double-click"}]," its label to rename it, ","$L4e"," empty space to add one, and ","$L4f"," to delete."]}]]}]]}]
+50:T542,mount(Elicit({
   width: 460, height: 280,
   margins: { top: 24, right: 24, bottom: 24, left: 24 },
   axes: false,
@@ -142,7 +149,7 @@ f:["How far a link bows, as a fraction of its length."," ",["$","code",null,{"cl
   },
   marks: [
     link({
-      inset: 14,
+      inset: 3,
       stroke: "#94a3b8",
       strokeWidth: 1.5,
       edits: [edit.network.reverse({ when: when.alt })],
@@ -159,9 +166,79 @@ f:["How far a link bows, as a fraction of its length."," ",["$","code",null,{"cl
     }),
   ],
 }));
-35:["$","section",null,{"id":"directed","children":[["$","h2",null,{"className":"section","children":"Directed or undirected"}],[["$","p",".0",{"children":[["$","code",null,{"className":"inline","children":"directed"}]," on the links table says whether ",["$","code",null,{"className":"inline","children":"source"}]," → ",["$","code",null,{"className":"inline","children":"target"}]," is ordered. Declare it on the long form:"],"className":"intro"}],["$","pre",".1",{"className":"code","children":["$","code",null,{"className":"language-js","children":"tables: {\n  nodes: { fields: { … } },\n  links: {\n    directed: true,\n    fields: { source: { type: \"ref\" }, target: { type: \"ref\" } },\n  },\n}\n"}]}],["$","p",".2",{"children":[["$","code",null,{"className":"inline","children":"directed: true"}]," draws an arrowhead at the target, bows reciprocal links apart so ",["$","code",null,{"className":"inline","children":"a → b"}]," and ",["$","code",null,{"className":"inline","children":"b → a"}]," stay readable, and enables ",["$","code",null,{"className":"inline","children":"edit.network.reverse"}],"."],"className":"intro"}],["$","p",".3",{"children":[["$","code",null,{"className":"inline","children":"directed: false"}]," treats the pair as unordered: ",["$","code",null,{"className":"inline","children":"edit.network.connect"}]," refuses ",["$","code",null,{"className":"inline","children":"b → a"}]," once ",["$","code",null,{"className":"inline","children":"a → b"}]," exists."],"className":"intro"}],["$","p",".4",{"children":["Leave it out for no arrowheads, and ",["$","code",null,{"className":"inline","children":"connect"}]," rejects only the exact pair you already have."],"className":"intro"}]],["$","div",null,{"className":"grid","children":[["$","$L3f",".5",{"code":"$42","title":"Directed links","blurb":"directed: true — arrowheads, and a reciprocal pair that bows apart.","try":[["$","b",null,{"children":"Alt-click"}]," a connector to reverse it. ",["$","b",null,{"children":"Shift-drag"}]," between two nodes to add another — connect them the other way round too, and the pair separates instead of drawing over itself. ",["$","b",null,{"children":"Drag"}]," a node to move it."]}]]}]]}]
-36:["$","section",null,{"id":"naming","children":[["$","h2",null,{"className":"section","children":"Naming the tables"}],[["$","p",".0",{"children":["Name the tables for your data. Give each a ",["$","code",null,{"className":"inline","children":"role"}],":"],"className":"intro"}],["$","pre",".1",{"className":"code","children":["$","code",null,{"className":"language-js","children":"tables: {\n  claims:   { role: \"nodes\", fields: { … } },\n  supports: { role: \"links\", fields: { … } },\n}\n"}]}],["$","p",".2",{"children":[["$","code",null,{"className":"inline","children":"data"}]," and ",["$","code",null,{"className":"inline","children":"getData()"}]," are then keyed ",["$","code",null,{"className":"inline","children":"claims"}]," and ",["$","code",null,{"className":"inline","children":"supports"}],". Marks and edits find their table by role, so ",["$","code",null,{"className":"inline","children":"link()"}]," still draws ",["$","code",null,{"className":"inline","children":"supports"}]," with no ",["$","code",null,{"className":"inline","children":"table"}]," option. The ",["$","a",null,{"href":"#draw","children":"argument map"}]," below is written that way."],"className":"intro"}]],null]}]
-44:T599,mount(Elicit({
+3c:["$","section",null,{"id":"directed","children":[["$","h2",null,{"className":"section","children":"Kinds of network"}],[["$","p",".0",{"children":"Three flags on the links table say what its pairs mean. Declare them on the long form:","className":"intro"}],["$","pre",".1",{"className":"code","children":["$","code",null,{"className":"language-js","children":"tables: {\n  nodes: { fields: { … } },\n  links: {\n    directed: true,\n    multi: true,\n    selfLoops: true,\n    fields: { source: { type: \"ref\" }, target: { type: \"ref\" } },\n  },\n}\n"}]}],["$","p",".2",{"children":[["$","code",null,{"className":"inline","children":"directed"}]," and ",["$","code",null,{"className":"inline","children":"multi"}]," together give the four usual kinds of network:"],"className":"intro"}],["$","div",".3",{"className":"api-table-wrap","children":["$","table",null,{"className":"api-table","children":[["$","thead",null,{"children":["$","tr",null,{"children":[["$","th",null,{"children":"kind"}],["$","th",null,{"children":["$","code",null,{"children":"directed"}]}],["$","th",null,{"children":["$","code",null,{"children":"multi"}]}],["$","th",null,{"children":"one pair may have"}]]}]}],["$","tbody",null,{"children":[["$","tr",null,{"children":[["$","td",null,{"children":"graph"}],["$","td",null,{"children":["$","code",null,{"children":"false"}]}],["$","td",null,{"children":"—"}],["$","td",null,{"children":"one link"}]]}],["$","tr",null,{"children":[["$","td",null,{"children":"digraph"}],["$","td",null,{"children":["$","code",null,{"children":"true"}]}],["$","td",null,{"children":"—"}],["$","td",null,{"children":"one link each way"}]]}],["$","tr",null,{"children":[["$","td",null,{"children":"multigraph"}],["$","td",null,{"children":["$","code",null,{"children":"false"}]}],["$","td",null,{"children":["$","code",null,{"children":"true"}]}],["$","td",null,{"children":"any number of links"}]]}],["$","tr",null,{"children":[["$","td",null,{"children":"multidigraph"}],["$","td",null,{"children":["$","code",null,{"children":"true"}]}],["$","td",null,{"children":["$","code",null,{"children":"true"}]}],["$","td",null,{"children":"any number, either way"}]]}]]}]]}]}],["$","p",".4",{"children":[["$","code",null,{"className":"inline","children":"selfLoops: true"}]," adds links from a node to itself to any of the four. See ",["$","a",null,{"href":"#multi","children":"Parallel links and loops"}],"."],"className":"intro"}],["$","p",".5",{"children":[["$","code",null,{"className":"inline","children":"directed: true"}]," draws an arrowhead at the target, bows reciprocal links apart so ",["$","code",null,{"className":"inline","children":"a → b"}]," and ",["$","code",null,{"className":"inline","children":"b → a"}]," stay readable, and enables ",["$","code",null,{"className":"inline","children":"edit.network.reverse"}],"."],"className":"intro"}],["$","p",".6",{"children":[["$","code",null,{"className":"inline","children":"directed: false"}]," treats the pair as unordered: ",["$","code",null,{"className":"inline","children":"b → a"}]," is the same link as ",["$","code",null,{"className":"inline","children":"a → b"}],"."],"className":"intro"}],["$","p",".7",{"children":["Leave ",["$","code",null,{"className":"inline","children":"directed"}]," out and links draw without arrowheads. ",["$","code",null,{"className":"inline","children":"a → b"}]," and ",["$","code",null,{"className":"inline","children":"b → a"}]," are then two different links."],"className":"intro"}]],["$","div",null,{"className":"grid","children":[["$","$L4c",".8",{"code":"$50","title":"Directed links","blurb":"directed: true — arrowheads, and a reciprocal pair that bows apart.","try":"$L51"}]]}]]}]
+52:T85c,mount(Elicit({
+  width: 560, height: 240,
+  margins: { top: 24, right: 24, bottom: 24, left: 24 },
+  axes: false,
+  schema: {
+    structure: "network",
+    tables: {
+      states: {
+        role: "nodes",
+        fields: {
+          id: { type: "categorical", key: true, open: true },
+          label: { type: "categorical", open: true },
+          x: { type: "quantitative", domain: [0, 100] },
+          y: { type: "quantitative", domain: [0, 100] },
+        },
+      },
+      transitions: {
+        role: "links",
+        // A multidigraph with loops: two events may join the same pair of
+        // states, and an event may leave a state where it was.
+        directed: true,
+        multi: true,
+        selfLoops: true,
+        fields: {
+          source: { type: "ref" },
+          target: { type: "ref" },
+          event: { type: "categorical", open: true },
+        },
+      },
+    },
+  },
+  data: {
+    states: [
+      { id: "locked", label: "Locked", x: 12, y: 62 },
+      { id: "closed", label: "Closed", x: 50, y: 62 },
+      { id: "open", label: "Open", x: 88, y: 62 },
+    ],
+    transitions: [
+      { source: "closed", target: "open", event: "open" },
+      { source: "open", target: "closed", event: "close" },
+      { source: "open", target: "closed", event: "slam" },
+      { source: "closed", target: "locked", event: "lock" },
+      { source: "locked", target: "closed", event: "unlock" },
+      { source: "locked", target: "locked", event: "wrong key" },
+      { source: "closed", target: "closed", event: "knock" },
+    ],
+  },
+  marks: [
+    link({
+      stroke: "#475569",
+      strokeWidth: 1.5,
+      labelBackground: true,
+      channels: { text: { field: "event" } },
+      edits: [edit.network.rewire(), editText()],
+    }),
+    sticker({
+      fill: "#f0f9ff",
+      stroke: "#0369a1",
+      radius: 14,
+      maxWidth: 90,
+      channels: {
+        x: { field: "x", edit: move({ channels: ["x", "y"], mode: "relative" }) },
+        y: { field: "y" },
+        text: { field: "label" },
+        ports: { value: true, edit: edit.network.connect({ defaults: { event: "event" } }) },
+      },
+    }),
+  ],
+}));
+3d:["$","section",null,{"id":"multi","children":[["$","h2",null,{"className":"section","children":"Parallel links and loops"}],[["$","p",".0",{"children":[["$","code",null,{"className":"inline","children":"multi: true"}]," lets ",["$","code",null,{"className":"inline","children":"connect"}]," and ",["$","code",null,{"className":"inline","children":"rewire"}]," add a link between two nodes that already share one. Links between the same two nodes fan apart (",["$","code",null,{"className":"inline","children":"curvature: \"auto\""}],")."],"className":"intro"}],["$","p",".1",{"children":[["$","code",null,{"className":"inline","children":"selfLoops: true"}]," lets them link a node to itself. Drag from a port to another port of the same node, or move off the port and release on the node's body."],"className":"intro"}],["$","p",".2",{"children":["A link from a node to itself draws as a loop. It leaves and returns by one edge, or goes round the node from an ",["$","code",null,{"className":"inline","children":"out"}]," port to an ",["$","code",null,{"className":"inline","children":"in"}]," port. Further loops on one node take the free edges first, then nest outward. ",["$","code",null,{"className":"inline","children":"loopRadius"}]," sets how far a loop reaches (default ",["$","code",null,{"className":"inline","children":"22"}],")."],"className":"intro"}],["$","p",".3",{"children":["Rows holding a parallel pair or a loop always draw. ",["$","code",null,{"className":"inline","children":"multi: false"}]," or ",["$","code",null,{"className":"inline","children":"selfLoops: false"}]," also logs a warning for them."],"className":"intro"}]],["$","div",null,{"className":"grid","children":[["$","$L4c",".4",{"code":"$52","title":"A state machine","blurb":"directed, multi and selfLoops: two events from Open to Closed, and events that leave a state where it was.","try":"$L53"}]]}]]}]
+3e:["$","section",null,{"id":"naming","children":[["$","h2",null,{"className":"section","children":"Naming the tables"}],[["$","p",".0",{"children":["Name the tables for your data. Give each a ",["$","code",null,{"className":"inline","children":"role"}],":"],"className":"intro"}],["$","pre",".1",{"className":"code","children":["$","code",null,{"className":"language-js","children":"tables: {\n  claims:   { role: \"nodes\", fields: { … } },\n  supports: { role: \"links\", fields: { … } },\n}\n"}]}],["$","p",".2",{"children":[["$","code",null,{"className":"inline","children":"data"}]," and ",["$","code",null,{"className":"inline","children":"getData()"}]," are then keyed ",["$","code",null,{"className":"inline","children":"claims"}]," and ",["$","code",null,{"className":"inline","children":"supports"}],". Marks and edits find their table by role, so ",["$","code",null,{"className":"inline","children":"link()"}]," draws ",["$","code",null,{"className":"inline","children":"supports"}]," by default. The ",["$","a",null,{"href":"#draw","children":"argument map"}]," below is written that way."],"className":"intro"}]],null]}]
+55:T598,mount(Elicit({
   width: 460, height: 300,
   margins: { top: 24, right: 24, bottom: 24, left: 24 },
   axes: false,
@@ -198,7 +275,7 @@ f:["How far a link bows, as a fraction of its length."," ",["$","code",null,{"cl
     ],
   },
   marks: [
-    link({ arrow: true, inset: 16, stroke: "#94a3b8" }),
+    link({ arrow: true, inset: 3, stroke: "#94a3b8" }),
     node({
       size: 11,
       fill: "#4e79a7",
@@ -215,9 +292,259 @@ f:["How far a link bows, as a fraction of its length."," ",["$","code",null,{"cl
     }),
   ],
 }));
-37:["$","section",null,{"id":"draw","children":[["$","h2",null,{"className":"section","children":"Drawing a network"}],[["$","p",".0",{"children":["A node is an ordinary mark — ",["$","code",null,{"className":"inline","children":"point"}],", ",["$","code",null,{"className":"inline","children":"rect"}],", ",["$","code",null,{"className":"inline","children":"text"}],", or a ",["$","code",null,{"className":"inline","children":"composite"}]," over the node table. Every channel, scale and edit works as usual: a mark with no ",["$","code",null,{"className":"inline","children":"table"}]," draws the primary table, which for a network is the nodes. See ",["$","$L43",null,{"href":"/schema#table","children":"which table a mark draws"}]," to point one at the links instead."],"className":"intro"}],["$","p",".1",{"children":[["$","code",null,{"className":"inline","children":"node()"}]," is the shorthand: a dot with a label above it. It states ",["$","code",null,{"className":"inline","children":"x"}]," and ",["$","code",null,{"className":"inline","children":"y"}]," once and shares them, and draws a label only when you give it a ",["$","code",null,{"className":"inline","children":"text"}]," channel. It is a preset over ",["$","code",null,{"className":"inline","children":"composite"}],", not a network mark — point it at any table."],"className":"intro"}],["$","p",".2",{"children":[["$","code",null,{"className":"inline","children":"link()"}]," draws the link table. It reads endpoints from the node rows via the schema's ",["$","code",null,{"className":"inline","children":"key"}]," and ",["$","code",null,{"className":"inline","children":"ref"}]," columns, so it needs no endpoint configuration."],"className":"intro"}],["$","p",".3",{"children":[["$","code",null,{"className":"inline","children":"inset"}]," pulls both ends in so the line stops short of the node marks."],"className":"intro"}]],["$","div",null,{"className":"grid","children":[["$","$L3f",".4",{"code":"$44","title":"Argument map","blurb":"Nodes carry a claim; links point from a reason to what it supports.","try":[["$","b",null,{"children":"Drag"}]," a node to move it. ",["$","b",null,{"children":"Shift-drag"}]," from one node to another to connect them. ",["$","b",null,{"children":"Click"}]," empty space to add a claim, ",["$","b",null,{"children":"double-click"}]," its label to write it, and ",["$","b",null,{"children":"Alt-click"}]," a node to delete it."]}]]}]]}]
-38:["$","section",null,{"id":"curves","children":[["$","h2",null,{"className":"section","children":"Connector styles"}],[["$","p",".0",{"children":[["$","code",null,{"className":"inline","children":"curve"}]," sets a link's shape:"],"className":"intro"}],["$","div",".1",{"className":"api-table-wrap","children":["$","table",null,{"className":"api-table","children":[["$","thead",null,{"children":["$","tr",null,{"children":[["$","th",null,{"children":["$","code",null,{"children":"curve"}]}],["$","th",null,{"children":"shape"}]]}]}],["$","tbody",null,{"children":[["$","tr",null,{"children":[["$","td",null,{"children":["$","code",null,{"children":"\"line\""}]}],["$","td",null,{"children":"straight segment (the default)"}]]}],["$","tr",null,{"children":[["$","td",null,{"children":["$","code",null,{"children":"\"step\""}]}],["$","td",null,{"children":"right-angled elbow, turning midway"}]]}],["$","tr",null,{"children":[["$","td",null,{"children":[["$","code",null,{"children":"\"stepBefore\""}]," / ",["$","code",null,{"children":"\"stepAfter\""}]]}],["$","td",null,{"children":"elbow turning at one end instead"}]]}],["$","tr",null,{"children":[["$","td",null,{"children":["$","code",null,{"children":"\"orthogonal\""}]}],["$","td",null,{"children":"elbow that leaves each node square out of one of its edges"}]]}],["$","tr",null,{"children":[["$","td",null,{"children":["$","code",null,{"children":"\"arc\""}]}],["$","td",null,{"children":"quadratic bow to one side"}]]}],["$","tr",null,{"children":[["$","td",null,{"children":["$","code",null,{"children":"\"bezier\""}]}],["$","td",null,{"children":["cubic with square tangents; ",["$","code",null,{"children":"\"smooth\""}]," is an alias"]}]]}]]}]]}]}],["$","p",".2",{"children":["The ",["$","code",null,{"className":"inline","children":"\"step\""}]," kinds turn on the straight line between two node positions, so a connector meets a box wherever that line happens to cross it. ",["$","code",null,{"className":"inline","children":"\"orthogonal\""}]," docks to the box instead. It leaves and arrives perpendicular to an edge, and picks which edges from where the two nodes sit — left and right when they are side by side, top and bottom when they are stacked. ",["$","code",null,{"className":"inline","children":"cornerRadius"}]," rounds the turns."],"className":"intro"}],["$","p",".3",{"children":[["$","code",null,{"className":"inline","children":"nodeWidth"}]," and ",["$","code",null,{"className":"inline","children":"nodeHeight"}]," tell it how big a node is, in px. They read the node rows, so a constant sizes every node, a column sizes each one, and ",["$","code",null,{"className":"inline","children":"{ fn: d => … }"}]," derives it. A ",["$","$L43",null,{"href":"/marks/sticker","children":"sticker"}]," measures its box from its own text, and ",["$","code",null,{"className":"inline","children":"noteBox"}]," measures it the same way:"],"className":"intro"}],["$","pre",".4",{"className":"code","children":["$","code",null,{"className":"language-js","children":"link({\n  curve: \"orthogonal\",\n  cornerRadius: 8,\n  channels: {\n    nodeWidth: { fn: (d) => noteBox(d.label, { maxWidth: 130 }).width },\n    nodeHeight: { fn: (d) => noteBox(d.label, { maxWidth: 130 }).height },\n  },\n})\n"}]}],["$","p",".5",{"children":["Pass ",["$","code",null,{"className":"inline","children":"noteBox"}]," the same sizing options you gave the sticker — it measures text, it does not read the mark. With neither channel set the connector docks to a small square around the node's position, so it still leaves square-on."],"className":"intro"}],["$","p",".6",{"children":["Give ",["$","code",null,{"className":"inline","children":"curve"}]," a column to mix them in one mark:"],"className":"intro"}],["$","pre",".7",{"className":"code","children":["$","code",null,{"className":"language-js","children":"link({ channels: { curve: { field: \"kind\" } } })\n"}]}],["$","p",".8",{"children":["Any column works, or ",["$","code",null,{"className":"inline","children":"{ fn: d => … }"}]," to map one. ",["$","code",null,{"className":"inline","children":"arrow"}]," reads a column the same way, so one field can drive both shape and arrowheads."],"className":"intro"}],["$","p",".9",{"children":[["$","code",null,{"className":"inline","children":"curvature"}]," sets how far a link bows; default ",["$","code",null,{"className":"inline","children":"\"auto\""}]," fans links that share a pair of nodes and keeps a lone link straight. On a directed network every link bows to the same side of its travel, so ","$L45"," and ","$L46"," separate. Pass a number to bow every link equally, and ","$L47"," to change the gap ","$L48"," leaves between siblings."],"className":"intro"}],"$L49","$L4a","$L4b"],"$L4c"]}]
-4d:T759,mount(Elicit({
+3f:["$","section",null,{"id":"draw","children":[["$","h2",null,{"className":"section","children":"Drawing a network"}],[["$","p",".0",{"children":["Any ordinary mark draws the nodes — ",["$","code",null,{"className":"inline","children":"point"}],", ",["$","code",null,{"className":"inline","children":"rect"}],", ",["$","code",null,{"className":"inline","children":"text"}],", or a ",["$","code",null,{"className":"inline","children":"composite"}],". Channels, scales and edits work as usual. A mark draws the nodes table by default; see ",["$","$L54",null,{"href":"/schema#table","children":"which table a mark draws"}]," to point one at the links."],"className":"intro"}],["$","p",".1",{"children":[["$","code",null,{"className":"inline","children":"node()"}]," is the shorthand: a dot with a label above it. It takes ",["$","code",null,{"className":"inline","children":"x"}]," and ",["$","code",null,{"className":"inline","children":"y"}]," once for both, and draws the label from a ",["$","code",null,{"className":"inline","children":"text"}]," channel. It is a preset over ",["$","code",null,{"className":"inline","children":"composite"}]," and works on any table."],"className":"intro"}],["$","p",".2",{"children":[["$","code",null,{"className":"inline","children":"link()"}]," draws the links table. Each end sits at the node its ",["$","code",null,{"className":"inline","children":"ref"}]," column names."],"className":"intro"}]],["$","div",null,{"className":"grid","children":[["$","$L4c",".3",{"code":"$55","title":"Argument map","blurb":"Nodes carry a claim; links point from a reason to what it supports.","try":[["$","b",null,{"children":"Drag"}]," a node to move it. ",["$","b",null,{"children":"Shift-drag"}]," from one node to another to connect them. ",["$","b",null,{"children":"Click"}]," empty space to add a claim, ",["$","b",null,{"children":"double-click"}]," its label to write it, and ",["$","b",null,{"children":"Alt-click"}]," a node to delete it."]}]]}]]}]
+56:T71a,mount(Elicit({
+  width: 460, height: 330,
+  margins: { top: 18, right: 34, bottom: 18, left: 34 },
+  axes: false,
+  schema: {
+    structure: "network",
+    tables: {
+      nodes: {
+        id: { type: "categorical", key: true, open: true },
+        x: { type: "quantitative", domain: [0, 100] },
+        y: { type: "quantitative", domain: [0, 100] },
+      },
+      links: {
+        source: { type: "ref" },
+        target: { type: "ref" },
+        kind: {
+          type: "categorical",
+          domain: ["line", "step", "stepBefore", "stepAfter", "orthogonal", "arc", "bezier"],
+        },
+      },
+    },
+  },
+  data: {
+    nodes: [
+      { id: "l1", x: 6, y: 92 }, { id: "r1", x: 94, y: 82 },
+      { id: "l2", x: 6, y: 73 }, { id: "r2", x: 94, y: 63 },
+      { id: "l3", x: 6, y: 54 }, { id: "r3", x: 94, y: 44 },
+      { id: "l4", x: 6, y: 35 }, { id: "r4", x: 94, y: 25 },
+      { id: "l5", x: 6, y: 16 }, { id: "r5", x: 94, y: 6 },
+    ],
+    links: [
+      { source: "l1", target: "r1", kind: "step" },
+      { source: "l2", target: "r2", kind: "stepBefore" },
+      { source: "l3", target: "r3", kind: "stepAfter" },
+      { source: "l4", target: "r4", kind: "arc" },
+      { source: "l5", target: "r5", kind: "bezier" },
+    ],
+  },
+  marks: [
+    link({
+      inset: 4,
+      stroke: "#4e79a7",
+      strokeWidth: 2,
+      // A fixed bow. These links share no pair of nodes, so "auto" would leave
+      // every one of them flat — including the arc, whose only parameter this is.
+      curvature: 0.1,
+      fontSize: 11,
+      labelBackground: true,
+      channels: {
+        curve: { field: "kind" },
+        text: { field: "kind" },
+      },
+      edits: [cycle({ channels: ["curve"] })],
+    }),
+    point({ size: 4, fill: "#94a3b8", channels: { x: { field: "x" }, y: { field: "y" } } }),
+  ],
+}));
+40:["$","section",null,{"id":"curves","children":[["$","h2",null,{"className":"section","children":"Connector styles"}],[["$","p",".0",{"children":[["$","code",null,{"className":"inline","children":"curve"}]," sets a link's shape:"],"className":"intro"}],["$","div",".1",{"className":"api-table-wrap","children":["$","table",null,{"className":"api-table","children":[["$","thead",null,{"children":["$","tr",null,{"children":[["$","th",null,{"children":["$","code",null,{"children":"curve"}]}],["$","th",null,{"children":"shape"}]]}]}],["$","tbody",null,{"children":[["$","tr",null,{"children":[["$","td",null,{"children":["$","code",null,{"children":"\"line\""}]}],["$","td",null,{"children":"straight segment (the default)"}]]}],["$","tr",null,{"children":[["$","td",null,{"children":["$","code",null,{"children":"\"step\""}]}],["$","td",null,{"children":"right-angled elbow, turning midway"}]]}],["$","tr",null,{"children":[["$","td",null,{"children":[["$","code",null,{"children":"\"stepBefore\""}]," / ",["$","code",null,{"children":"\"stepAfter\""}]]}],["$","td",null,{"children":"elbow turning at the source / at the target"}]]}],["$","tr",null,{"children":[["$","td",null,{"children":["$","code",null,{"children":"\"orthogonal\""}]}],["$","td",null,{"children":"elbow that leaves each node square out of one of its edges"}]]}],["$","tr",null,{"children":[["$","td",null,{"children":["$","code",null,{"children":"\"arc\""}]}],["$","td",null,{"children":"quadratic bow to one side"}]]}],["$","tr",null,{"children":[["$","td",null,{"children":["$","code",null,{"children":"\"bezier\""}]}],["$","td",null,{"children":["cubic with square tangents; ",["$","code",null,{"children":"\"smooth\""}]," is an alias"]}]]}]]}]]}]}],["$","p",".2",{"children":["The ",["$","code",null,{"className":"inline","children":"\"step\""}]," kinds turn on the straight line between two node positions. ",["$","code",null,{"className":"inline","children":"\"orthogonal\""}]," leaves and arrives perpendicular to an edge of the node's shape — see ",["$","a",null,{"href":"#routing","children":"where a link meets a node"}],". ",["$","code",null,{"className":"inline","children":"cornerRadius"}]," rounds its turns (default ",["$","code",null,{"className":"inline","children":"8"}],"; ",["$","code",null,{"className":"inline","children":"0"}]," is square)."],"className":"intro"}],["$","p",".3",{"children":["Give ",["$","code",null,{"className":"inline","children":"curve"}]," a column to mix them in one mark:"],"className":"intro"}],["$","pre",".4",{"className":"code","children":["$","code",null,{"className":"language-js","children":"link({ channels: { curve: { field: \"kind\" } } })\n"}]}],["$","p",".5",{"children":["Any column works, or ",["$","code",null,{"className":"inline","children":"{ fn: d => … }"}]," to map one. ",["$","code",null,{"className":"inline","children":"arrow"}]," reads a column the same way, so one field can drive both shape and arrowheads."],"className":"intro"}],["$","p",".6",{"children":[["$","code",null,{"className":"inline","children":"curvature"}]," sets how far a link bows; default ",["$","code",null,{"className":"inline","children":"\"auto\""}]," fans links that share a pair of nodes and keeps a lone link straight. On a directed network every link bows to the same side of its travel, so ",["$","code",null,{"className":"inline","children":"a → b"}]," and ",["$","code",null,{"className":"inline","children":"b → a"}]," separate. Pass a number to bow every link equally, and ",["$","code",null,{"className":"inline","children":"spread"}]," to change the gap ",["$","code",null,{"className":"inline","children":"\"auto\""}]," leaves between siblings."],"className":"intro"}],["$","p",".7",{"children":["Under ",["$","code",null,{"className":"inline","children":"\"auto\""}]," a lone ",["$","code",null,{"className":"inline","children":"\"arc\""}]," draws straight. A ",["$","code",null,{"className":"inline","children":"\"line\""}]," with curvature draws as an arc, so links sharing a pair fan apart on a plain ",["$","code",null,{"className":"inline","children":"link()"}],"."],"className":"intro"}],["$","p",".8",{"children":["A link whose source and target are the same node draws a loop — see ",["$","a",null,{"href":"#multi","children":"Parallel links and loops"}],"."],"className":"intro"}],["$","p",".9",{"children":["A ",["$","code",null,{"className":"inline","children":"click"}]," edit like ",["$","code",null,{"className":"inline","children":"reverse"}]," or ",["$","code",null,{"className":"inline","children":"remove"}]," lands anywhere along the line."],"className":"intro"}]],["$","div",null,{"className":"grid","children":[["$","$L4c",".a",{"code":"$56","title":"Connector shapes","blurb":"One link() mark, a kind column driving curve, at a fixed curvature: 0.1.","try":"$L57"}]]}]]}]
+58:T7ca,mount(Elicit({
+  width: 520, height: 360,
+  margins: { top: 20, right: 20, bottom: 20, left: 20 },
+  axes: false,
+  schema: {
+    structure: "network",
+    tables: {
+      steps: {
+        role: "nodes",
+        fields: {
+          id: { type: "categorical", key: true, open: true },
+          label: { type: "categorical", open: true },
+          x: { type: "quantitative", domain: [0, 480] },
+          y: { type: "quantitative", domain: [0, 320] },
+          w: { type: "quantitative", domain: [40, 200] },
+          h: { type: "quantitative", domain: [24, 200] },
+        },
+      },
+      flows: {
+        role: "links",
+        directed: true,
+        fields: { source: { type: "ref" }, target: { type: "ref" } },
+      },
+    },
+  },
+  data: {
+    steps: [
+      // Collect sits 8px out of line with Score: close enough to join straight.
+      { id: "collect", label: "Collect", x: 60, y: 220, w: 92, h: 40 },
+      { id: "score", label: "Score", x: 68, y: 110, w: 92, h: 40 },
+      // Review stands in the corridor between Score and Publish.
+      { id: "review", label: "Legal review", x: 200, y: 150, w: 72, h: 180 },
+      // Ship is up and to the right of Publish, with a tight gap between them.
+      { id: "publish", label: "Publish", x: 300, y: 120, w: 80, h: 40 },
+      { id: "ship", label: "Ship", x: 430, y: 46, w: 80, h: 40 },
+    ],
+    flows: [
+      { source: "collect", target: "score" },
+      { source: "score", target: "publish" },
+      { source: "publish", target: "ship" },
+    ],
+  },
+  marks: [
+    link({
+      curve: "orthogonal",
+      inset: 4,
+      stroke: "#4e79a7",
+      strokeWidth: 2,
+    }),
+    sticker({
+      fill: "#eef2ff",
+      stroke: "#4e79a7",
+      radius: 6,
+      channels: {
+        x: { field: "x", edit: move({ channels: ["x", "y"], mode: "relative" }) },
+        y: { field: "y" },
+        width: { field: "w", scale: null },
+        height: { field: "h", scale: null },
+        text: { field: "label" },
+      },
+    }),
+  ],
+}));
+41:["$","section",null,{"id":"routing","children":[["$","h2",null,{"className":"section","children":"Where a link meets a node"}],[["$","p",".0",{"children":"A link meets the shape the node mark draws: a dot's circle, a rect's edges, a sticker's paper. With no node mark, it ends at each node's position.","className":"intro"}],["$","p",".1",{"children":["How an end meets the shape depends on whether the node has ",["$","a",null,{"href":"#ports","children":"ports"}],":"],"className":"intro"}],["$","ul",".2",{"children":["\n",["$","li",null,{"children":[["$","strong",null,{"children":"With ports"}],", an end connects to a port. A pinned end uses the port on its side. An unpinned end uses the usable port facing the other node, and moves to another port when the nodes pass each other."]}],"\n",["$","li",null,{"children":[["$","strong",null,{"children":"Without ports"}],", an unpinned end slides. It sits where the line between the two centres leaves the shape, and moves smoothly as the nodes move. A pinned end sits at the middle of its edge."]}],"\n"]}],["$","p",".3",{"children":[["$","code",null,{"className":"inline","children":"inset"}]," is the connection buffer: how far from a node's shape a link stops, in px (default ",["$","code",null,{"className":"inline","children":"0"}],"). ",["$","code",null,{"className":"inline","children":"sourceInset"}]," and ",["$","code",null,{"className":"inline","children":"targetInset"}]," set each end. An end at a port touches the port. An arrowhead fits in the gap."],"className":"intro"}],["$","p",".4",{"children":["An ",["$","code",null,{"className":"inline","children":"\"orthogonal\""}]," connector leaves each end square to its edge and joins the two with the fewest turns. Two sliding ends nearly in line join with one straight leg; further apart they get a Z. It routes around a node in the way. Overlapping nodes get the plain route. A ",["$","code",null,{"className":"inline","children":"\"line\""}]," or ",["$","code",null,{"className":"inline","children":"\"bezier\""}]," connector meets the shape too, and a bezier leaves a pinned edge square-on."],"className":"intro"}],["$","p",".5",{"children":[["$","code",null,{"className":"inline","children":"sourceOffset"}]," and ",["$","code",null,{"className":"inline","children":"targetOffset"}]," move a pinned end along its edge, as a fraction from ",["$","code",null,{"className":"inline","children":"-0.4"}]," to ",["$","code",null,{"className":"inline","children":"0.4"}],". Positive runs clockwise: right along the top, down the right, left along the bottom, up the left."],"className":"intro"}]],["$","div",null,{"className":"grid","children":[["$","$L4c",".6",{"code":"$58","title":"Routing","blurb":"Notes without ports: one connector straightened, one detouring around a node, one taking the perpendicular edges.","try":"$L59"}]]}]]}]
+5a:T846,mount(Elicit({
+  width: 520, height: 320,
+  margins: { top: 24, right: 24, bottom: 24, left: 24 },
+  axes: false,
+  schema: {
+    structure: "network",
+    tables: {
+      notes: {
+        role: "nodes",
+        fields: {
+          id: { type: "categorical", key: true, open: true },
+          label: { type: "categorical", open: true },
+          x: { type: "quantitative", domain: [0, 100] },
+          y: { type: "quantitative", domain: [0, 100] },
+        },
+      },
+      flows: {
+        role: "links",
+        directed: true,
+        fields: {
+          source: { type: "ref" },
+          target: { type: "ref" },
+          // The edge each end meets, or null to slide along the box.
+          fromSide: { type: "categorical", domain: ["top", "right", "bottom", "left"] },
+          toSide: { type: "categorical", domain: ["top", "right", "bottom", "left"] },
+        },
+      },
+    },
+  },
+  data: {
+    notes: [
+      { id: "idea", label: "Idea", x: 14, y: 72 },
+      { id: "draft", label: "Draft", x: 48, y: 72 },
+      { id: "review", label: "Review", x: 84, y: 24 },
+      { id: "ship", label: "Ship", x: 84, y: 80 },
+    ],
+    flows: [
+      { source: "idea", target: "draft", fromSide: "right", toSide: "left" },
+      { source: "draft", target: "review", fromSide: "right", toSide: "left" },
+    ],
+  },
+  marks: [
+    link({
+      curve: "orthogonal",
+      stroke: "#4e79a7",
+      strokeWidth: 2,
+      // The columns a connection writes.
+      channels: {
+        sourceSide: { field: "fromSide" },
+        targetSide: { field: "toSide" },
+      },
+      edits: [edit.network.rewire(), remove({ when: when.alt })],
+    }),
+    sticker({
+      fill: "#eef2ff",
+      stroke: "#4e79a7",
+      radius: 6,
+      maxWidth: 110,
+      channels: {
+        x: { field: "x", edit: move({ channels: ["x", "y"], mode: "relative" }) },
+        y: { field: "y" },
+        text: { field: "label" },
+        // Links leave by the right edge and enter by the left.
+        ports: {
+          value: { out: ["right"], in: ["left"] },
+          edit: edit.network.connect(),
+        },
+      },
+    }),
+  ],
+}));
+42:["$","section",null,{"id":"ports","children":[["$","h2",null,{"className":"section","children":"Ports"}],[["$","p",".0",{"children":["A ",["$","strong",null,{"children":"port"}]," is a dot on a node's edge where a link starts or ends. Declare ports with a ",["$","code",null,{"className":"inline","children":"ports"}]," channel on the mark that draws the nodes — any mark in ",["$","a",null,{"href":"#node-marks","children":"What can be a node"}]," — and put ",["$","code",null,{"className":"inline","children":"edit.network.connect()"}]," on it:"],"className":"intro"}],["$","pre",".1",{"className":"code","children":["$","code",null,{"className":"language-js","children":"sticker({\n  channels: {\n    x: { field: \"x\", edit: move({ channels: [\"x\", \"y\"], mode: \"relative\" }) },\n    y: { field: \"y\" },\n    text: { field: \"label\" },\n    ports: {\n      value: { out: [\"right\"], in: [\"left\"] },\n      edit: edit.network.connect(),\n    },\n  },\n})\n"}]}],["$","p",".2",{"children":["The value says which edges a link may use. Use ",["$","code",null,{"className":"inline","children":"fn"}]," or ",["$","code",null,{"className":"inline","children":"field"}]," instead of ",["$","code",null,{"className":"inline","children":"value"}]," to vary it per node."],"className":"intro"}],["$","div",".3",{"className":"api-table-wrap","children":["$","table",null,{"className":"api-table","children":[["$","thead",null,{"children":["$","tr",null,{"children":[["$","th",null,{"children":["$","code",null,{"children":"value"}]}],["$","th",null,{"children":"ports"}]]}]}],["$","tbody",null,{"children":[["$","tr",null,{"children":[["$","td",null,{"children":["$","code",null,{"children":"true"}]}],["$","td",null,{"children":"all four edges, either way"}]]}],["$","tr",null,{"children":[["$","td",null,{"children":[["$","code",null,{"children":"\"right\""}]," or ",["$","code",null,{"children":"[\"left\", \"right\"]"}]]}],["$","td",null,{"children":"those edges, either way"}]]}],["$","tr",null,{"children":[["$","td",null,{"children":["$","code",null,{"children":"{ out: [\"right\"], in: [\"left\"] }"}]}],["$","td",null,{"children":"links leave by the right and arrive by the left (directed networks)"}]]}],["$","tr",null,{"children":[["$","td",null,{"children":["$","code",null,{"children":"false"}]}],["$","td",null,{"children":"none"}]]}]]}]]}]}],["$","p",".4",{"children":["Ports show where a link can go. Hover a node to see the ports a link can leave by. Start a drag and the ports that accept it light up. Both follow the ",["$","code",null,{"className":"inline","children":"out"}]," and ",["$","code",null,{"className":"inline","children":"in"}]," edges and the dataset's constraints."],"className":"intro"}],["$","p",".5",{"children":"Drag from a port and a dashed connector follows the pointer. Release on a port to connect there, or on a node's body to connect at its facing port. Release on empty space to cancel. Drag the body to move the node.","className":"intro"}],["$","p",".7",{"children":[["$","code",null,{"className":"inline","children":"ports: true"}]," lets any edge connect to any edge, for a diagram you lay out freely."],"className":"intro"}]],["$","div",null,{"className":"grid","children":[["$","$L4c",".6",{"code":"$5a","title":"Connecting from ports","blurb":"Stickers whose links leave by the right and arrive by the left.","try":"$L5b"}],"$L5c"]}]]}]
+5d:T64a,mount(Elicit({
+  width: 460, height: 280,
+  margins: { top: 28, right: 24, bottom: 24, left: 24 },
+  axes: false,
+  schema: {
+    structure: "network",
+    tables: {
+      nodes: {
+        id: { type: "categorical", key: true, open: true },
+        name: { type: "categorical", open: true },
+        x: { type: "quantitative", domain: [0, 100] },
+        y: { type: "quantitative", domain: [0, 100] },
+      },
+      links: {
+        source: { type: "ref" },
+        target: { type: "ref" },
+        sourceSide: { type: "categorical", domain: ["left", "right"] },
+        targetSide: { type: "categorical", domain: ["left", "right"] },
+      },
+    },
+  },
+  data: {
+    nodes: [
+      { id: "a", name: "Ana", x: 16, y: 70 },
+      { id: "b", name: "Ben", x: 84, y: 70 },
+      { id: "c", name: "Cleo", x: 50, y: 20 },
+    ],
+    links: [
+      { source: "a", target: "c", sourceSide: "right", targetSide: "left" },
+      { source: "c", target: "b", sourceSide: "right", targetSide: "left" },
+    ],
+  },
+  marks: [
+    link({
+      curve: "bezier",
+      stroke: "#94a3b8",
+      strokeWidth: 1.5,
+      channels: {
+        sourceSide: { field: "sourceSide" },
+        targetSide: { field: "targetSide" },
+      },
+      // Hover a connector for a handle at each end.
+      edits: [edit.network.rewire()],
+    }),
+    node({
+      size: 10,
+      fill: "#4e79a7",
+      channels: {
+        x: { field: "x", edit: move({ channels: ["x", "y"] }) },
+        y: { field: "y" },
+        text: { field: "name" },
+        ports: { value: ["left", "right"], edit: edit.network.connect() },
+      },
+    }),
+  ],
+}));
+43:["$","section",null,{"id":"recording","children":[["$","h2",null,{"className":"section","children":"Recording sides"}],[["$","p",".0",{"children":["To record which edge each end uses, name the columns on the ",["$","code",null,{"className":"inline","children":"link"}]," mark. Declare them in the links table as ",["$","code",null,{"className":"inline","children":"categorical"}]," over ",["$","code",null,{"className":"inline","children":"\"top\""}],", ",["$","code",null,{"className":"inline","children":"\"right\""}],", ",["$","code",null,{"className":"inline","children":"\"bottom\""}]," and ",["$","code",null,{"className":"inline","children":"\"left\""}],":"],"className":"intro"}],["$","pre",".1",{"className":"code","children":["$","code",null,{"className":"language-js","children":"link({\n  channels: {\n    sourceSide: { field: \"fromSide\" },\n    targetSide: { field: \"toSide\" },\n  },\n})\n"}]}],["$","p",".2",{"children":["The gestures write those columns, and ",["$","code",null,{"className":"inline","children":"source"}],"/",["$","code",null,{"className":"inline","children":"target"}]," to the link table's ",["$","code",null,{"className":"inline","children":"ref"}]," columns:"],"className":"intro"}],["$","div",".3",{"className":"api-table-wrap","children":["$","table",null,{"className":"api-table","children":[["$","thead",null,{"children":["$","tr",null,{"children":[["$","th",null,{"children":"gesture"}],["$","th",null,{"children":"the links table"}]]}]}],["$","tbody",null,{"children":[["$","tr",null,{"children":[["$","td",null,{"children":"port to port"}],["$","td",null,{"children":"a new row, with both sides"}]]}],["$","tr",null,{"children":[["$","td",null,{"children":"port to a node’s body"}],["$","td",null,{"children":["a new row; the target side is ",["$","code",null,{"children":"null"}]]}]]}],["$","tr",null,{"children":[["$","td",null,{"children":"a link’s end to another node"}],["$","td",null,{"children":"that row re-pointed, with its new side"}]]}],["$","tr",null,{"children":[["$","td",null,{"children":"a link’s end to empty space"}],["$","td",null,{"children":"that row removed"}]]}]]}]]}]}],["$","p",".4",{"children":["A ",["$","code",null,{"className":"inline","children":"null"}]," side is unpinned. It meets the facing port, or slides along a node that has no ports. With no side channels, every end is unpinned."],"className":"intro"}],["$","p",".5",{"children":[["$","code",null,{"className":"inline","children":"edit.network.rewire()"}]," in the ",["$","code",null,{"className":"inline","children":"link"}]," mark's ",["$","code",null,{"className":"inline","children":"edits"}]," puts a handle on each end while you hover the connector. Drag one to another node to reconnect it, or into empty space to disconnect it. ",["$","code",null,{"className":"inline","children":"rewire({ channels: [\"target\"] })"}]," handles one end only."],"className":"intro"}],["$","p",".7",{"children":["Constraints decide which ports show. Here each step shows an ",["$","code",null,{"className":"inline","children":"out"}]," port until it has one outgoing link."],"className":"intro"}]],["$","div",null,{"className":"grid","children":[["$","$L4c",".6",{"code":"$5d","title":"Reconnect and disconnect","blurb":"node() dots with ports on the left and right, and rewire on the link.","try":"$L5e"}],"$L5f"]}]]}]
+60:T6f7,mount(Elicit({
   width: 460, height: 320,
   margins: { top: 20, right: 20, bottom: 20, left: 20 },
   axes: false,
@@ -264,10 +591,6 @@ f:["How far a link bows, as a fraction of its length."," ",["$","code",null,{"cl
       // wherever the two boxes end up. Drop the two sides to let position choose.
       sourceSide: "right",
       targetSide: "left",
-      channels: {
-        nodeWidth: { field: "w" },
-        nodeHeight: { field: "h" },
-      },
     }),
     sticker({
       fill: "#eef2ff",
@@ -283,8 +606,121 @@ f:["How far a link bows, as a fraction of its length."," ",["$","code",null,{"cl
     }),
   ],
 }));
-39:["$","section",null,{"id":"sides","children":[["$","h2",null,{"className":"section","children":"Pinned sides"}],[["$","p",".0",{"children":[["$","code",null,{"className":"inline","children":"sourceSide"}]," and ",["$","code",null,{"className":"inline","children":"targetSide"}]," pin an end to ",["$","code",null,{"className":"inline","children":"\"top\""}],", ",["$","code",null,{"className":"inline","children":"\"right\""}],", ",["$","code",null,{"className":"inline","children":"\"bottom\""}]," or ",["$","code",null,{"className":"inline","children":"\"left\""}]," instead of choosing one, so a diagram reads the same way however the boxes are arranged. Both default to ",["$","code",null,{"className":"inline","children":"\"auto\""}],"."],"className":"intro"}],["$","p",".1",{"children":["They are drawing options rather than data. Give one a ",["$","code",null,{"className":"inline","children":"{ fn: d => … }"}]," to derive a side from a column you already have — the flow's own ",["$","code",null,{"className":"inline","children":"kind"}],", say — and nothing new is written to the dataset."],"className":"intro"}]],["$","div",null,{"className":"grid","children":[["$","$L3f",".2",{"code":"$4d","title":"Pinned sides","blurb":"curve: orthogonal with sourceSide and targetSide fixed, so flow reads left to right.","try":[["$","b",null,{"children":"Drag"}]," a stage anywhere. Every connector still leaves the right edge and enters the left one, and ",["$","code",null,{"className":"inline","children":"getData()"}]," gains nothing but the new"," ",["$","code",null,{"className":"inline","children":"x"}]," and ",["$","code",null,{"className":"inline","children":"y"}],"."]}]]}]]}]
-4e:T5f8,mount(Elicit({
+44:["$","section",null,{"id":"sides","children":[["$","h2",null,{"className":"section","children":"Pinned sides"}],[["$","p",".0",{"children":[["$","code",null,{"className":"inline","children":"sourceSide"}]," and ",["$","code",null,{"className":"inline","children":"targetSide"}]," as options pin every link's ends to ",["$","code",null,{"className":"inline","children":"\"top\""}],", ",["$","code",null,{"className":"inline","children":"\"right\""}],", ",["$","code",null,{"className":"inline","children":"\"bottom\""}]," or ",["$","code",null,{"className":"inline","children":"\"left\""}],", so a diagram reads the same way however the boxes are arranged. Both default to ",["$","code",null,{"className":"inline","children":"null"}],". A pinned end leaves its edge square-on and routes around its own box if the other node is behind it."],"className":"intro"}],["$","p",".1",{"children":["As options they set how links draw. Give one ",["$","code",null,{"className":"inline","children":"{ fn: d => … }"}]," to derive a side from a column you already have."],"className":"intro"}]],["$","div",null,{"className":"grid","children":[["$","$L4c",".2",{"code":"$60","title":"Pinned sides","blurb":"curve: orthogonal with sourceSide and targetSide fixed, so flow reads left to right.","try":[["$","b",null,{"children":"Drag"}]," a stage anywhere. Every connector still leaves the right edge and enters the left one, and ",["$","code",null,{"className":"inline","children":"getData()"}]," changes only"," ",["$","code",null,{"className":"inline","children":"x"}]," and ",["$","code",null,{"className":"inline","children":"y"}],"."]}]]}]]}]
+61:T651,mount(Elicit({
+  width: 540, height: 260,
+  margins: { top: 24, right: 24, bottom: 24, left: 24 },
+  axes: false,
+  schema: {
+    structure: "network",
+    tables: {
+      feelings: {
+        role: "nodes",
+        fields: {
+          id: { type: "categorical", key: true, open: true },
+          emoji: { type: "categorical", open: true },
+          x: { type: "quantitative", domain: [0, 100] },
+          y: { type: "quantitative", domain: [0, 100] },
+        },
+      },
+      leadsTo: {
+        role: "links",
+        directed: true,
+        fields: { source: { type: "ref" }, target: { type: "ref" } },
+      },
+    },
+  },
+  data: {
+    feelings: [
+      { id: "tired", emoji: "😴", x: 12, y: 50 },
+      { id: "stressed", emoji: "😟", x: 40, y: 82 },
+      { id: "angry", emoji: "😠", x: 68, y: 82 },
+      { id: "calm", emoji: "😌", x: 40, y: 18 },
+      { id: "happy", emoji: "😀", x: 88, y: 50 },
+    ],
+    leadsTo: [
+      { source: "tired", target: "stressed" },
+      { source: "stressed", target: "angry" },
+      { source: "tired", target: "calm" },
+      { source: "calm", target: "happy" },
+    ],
+  },
+  marks: [
+    link({ curve: "arc", curvature: 0.15, stroke: "#94a3b8", strokeWidth: 1.5, edits: [edit.network.rewire()] }),
+    // A plain text mark is the node: its glyph's box is where links meet it.
+    text({
+      fontSize: 36,
+      channels: {
+        x: { field: "x", edit: move({ channels: ["x", "y"], mode: "relative" }) },
+        y: { field: "y" },
+        text: { field: "emoji" },
+        ports: { value: true, edit: edit.network.connect() },
+      },
+    }),
+  ],
+}));
+45:["$","section",null,{"id":"node-marks","children":[["$","h2",null,{"className":"section","children":"What can be a node"}],[["$","p",".0",{"children":["Any mark that draws a shape at an ",["$","code",null,{"className":"inline","children":"x"}]," and a ",["$","code",null,{"className":"inline","children":"y"}]," can draw the nodes. Point it at the nodes table. Links meet the shape it draws, and a ",["$","a",null,{"href":"#ports","children":["$","code",null,{"className":"inline","children":"ports"}]}]," channel puts ports on that shape's edges:"],"className":"intro"}],["$","div",".1",{"className":"api-table-wrap","children":["$","table",null,{"className":"api-table","children":[["$","thead",null,{"children":["$","tr",null,{"children":[["$","th",null,{"children":"mark"}],["$","th",null,{"children":"a link meets"}]]}]}],["$","tbody",null,{"children":[["$","tr",null,{"children":[["$","td",null,{"children":[["$","code",null,{"children":"point"}],", ",["$","code",null,{"children":"node"}]]}],["$","td",null,{"children":"the dot's circle, or a square symbol's edges"}]]}],["$","tr",null,{"children":[["$","td",null,{"children":["$","code",null,{"children":"ellipse"}]}],["$","td",null,{"children":["the ellipse, at ",["$","code",null,{"children":"rx"}]," and ",["$","code",null,{"children":"ry"}]]}]]}],["$","tr",null,{"children":[["$","td",null,{"children":[["$","code",null,{"children":"rect"}],", ",["$","code",null,{"children":"sticker"}]]}],["$","td",null,{"children":"the box's edges"}]]}],["$","tr",null,{"children":[["$","td",null,{"children":["$","code",null,{"children":"text"}]}],["$","td",null,{"children":"the box around the measured text, so an emoji or a word works"}]]}],["$","tr",null,{"children":[["$","td",null,{"children":[["$","code",null,{"children":"face"}],", any ",["$","code",null,{"children":"composite"}]," placing parts in its ",["$","a",null,{"href":"/marks/composite#box","children":"box"}]]}],["$","td",null,{"children":"the box's circle"}]]}],["$","tr",null,{"children":[["$","td",null,{"children":["any other ",["$","code",null,{"children":"composite"}]]}],["$","td",null,{"children":"its first part that draws a shape"}]]}]]}]]}]}],["$","p",".2",{"children":["A glyph puts ",["$","code",null,{"className":"inline","children":"ports"}]," on its main shape: the box's circle, or its first shape part. When a glyph draws a shape and a label, links meet the shape, so a ",["$","code",null,{"className":"inline","children":"node()"}],"'s links meet its dot. Links treat a rotated shape as unrotated."],"className":"intro"}]],["$","div",null,{"className":"grid","children":[["$","$L4c",".3",{"code":"$61","title":"Emoji as nodes","blurb":"A plain text() mark draws the nodes, with ports on every side of each emoji.","try":"$L62"}]]}]]}]
+63:T6c6,mount(Elicit({
+  width: 540, height: 320,
+  margins: { top: 24, right: 24, bottom: 24, left: 24 },
+  axes: false,
+  schema: {
+    structure: "network",
+    tables: {
+      people: {
+        role: "nodes",
+        fields: {
+          id: { type: "categorical", key: true, open: true },
+          x: { type: "quantitative", domain: [0, 100] },
+          y: { type: "quantitative", domain: [0, 100] },
+          valence: { type: "quantitative", domain: [-1, 1] },
+          arousal: { type: "quantitative", domain: [-1, 1] },
+        },
+      },
+      sways: {
+        role: "links",
+        // Whose mood rubs off on whom.
+        directed: true,
+        fields: { source: { type: "ref" }, target: { type: "ref" } },
+      },
+    },
+  },
+  data: {
+    people: [
+      { id: "ana", x: 16, y: 72, valence: 0.7, arousal: 0.3 },
+      { id: "ben", x: 50, y: 22, valence: -0.6, arousal: 0.5 },
+      { id: "cy", x: 84, y: 72, valence: 0.1, arousal: -0.4 },
+    ],
+    sways: [
+      { source: "ana", target: "ben" },
+      { source: "ben", target: "cy" },
+    ],
+  },
+  marks: [
+    link({
+      curve: "bezier",
+      stroke: "#94a3b8",
+      strokeWidth: 1.5,
+      edits: [edit.network.rewire()],
+    }),
+    face({
+      size: 34,
+      channels: {
+        x: { field: "x", edit: move({ channels: ["x", "y"], mode: "relative" }) },
+        y: { field: "y" },
+        mouthCurve: { field: "valence", edit: slide({ axis: "y", increase: "up" }) },
+        eyeScale: { field: "arousal" },
+        // A link leaves a face on the right or below, and arrives on the left or above.
+        ports: {
+          value: { out: ["right", "bottom"], in: ["left", "top"] },
+          edit: edit.network.connect(),
+        },
+      },
+    }),
+  ],
+}));
+46:["$","section",null,{"id":"faces","children":[["$","h2",null,{"className":"section","children":"Faces as nodes"}],[["$","p",".0",{"children":["A ",["$","$L54",null,{"href":"/marks/face","children":["$","code",null,{"className":"inline","children":"face"}]}]," can draw the nodes too. Give it ",["$","code",null,{"className":"inline","children":"x"}]," and ",["$","code",null,{"className":"inline","children":"y"}]," columns on the nodes table. Links meet the head's circle."],"className":"intro"}],["$","p",".1",{"children":["Put the ",["$","code",null,{"className":"inline","children":"ports"}]," channel on the face. Here a link leaves by the right or the bottom and arrives by the left or the top. The face keeps its own edits: ",["$","code",null,{"className":"inline","children":"move"}]," on the head, and ",["$","code",null,{"className":"inline","children":"slide"}]," on the mouth."],"className":"intro"}]],["$","div",null,{"className":"grid","children":[["$","$L4c",".2",{"code":"$63","title":"Whose mood rubs off on whom","blurb":"face() over a network's nodes table, with ports out on the right and bottom and in on the left and top.","try":[["$","b",null,{"children":"Hover"}]," a face and drag from a port to another face to link them."," ",["$","b",null,{"children":"Drag"}]," a mouth to change the mood, or a face to move it."]}]]}]]}]
+64:T63f,mount(Elicit({
   width: 440, height: 280,
   margins: { top: 24, right: 24, bottom: 24, left: 24 },
   axes: false,
@@ -320,12 +756,13 @@ f:["How far a link bows, as a fraction of its length."," ",["$","code",null,{"cl
   },
   marks: [
     link({
-      inset: 12,
+      inset: 3,
       channels: {
         strokeWidth: { field: "strength", scale: { range: [1, 7] } },
         stroke: { field: "strength", scale: { scheme: "blues" } },
-        source: { field: "source", edit: edit.network.rewire() },
       },
+      // A handle at each link's source end, shown when you hover the link.
+      edits: [edit.network.rewire({ channels: ["source"] })],
     }),
     node({
       size: 10,
@@ -338,8 +775,8 @@ f:["How far a link bows, as a fraction of its length."," ",["$","code",null,{"cl
     }),
   ],
 }));
-3a:["$","section",null,{"id":"gestures","children":[["$","h2",null,{"className":"section","children":"Building the topology"}],[["$","p",".0",{"children":"Only three gestures are network-specific; the rest is ordinary editing.","className":"intro"}],["$","p",".1",{"children":[["$","code",null,{"className":"inline","children":"edit.network.connect()"}]," goes on the ",["$","strong",null,{"children":"node"}]," mark: drag from one node and release on another to create a link. A ghost connector follows the pointer; release off a reachable node creates nothing."],"className":"intro"}],["$","p",".2",{"children":["Pair it with ",["$","code",null,{"className":"inline","children":"when"}]," if the node mark also carries a plain drag — otherwise both fire, ",["$","code",null,{"className":"inline","children":"move"}]," pulls the source under the pointer, and the release lands back where it started. ",["$","code",null,{"className":"inline","children":"connect({ when: when.shift })"}]," beside ",["$","code",null,{"className":"inline","children":"move({ when: when.noShift })"}]," is the usual split."],"className":"intro"}],["$","p",".3",{"children":["Release on the node you started from creates nothing, unless ",["$","code",null,{"className":"inline","children":"selfLoops: true"}]," — then you get a loop."],"className":"intro"}],["$","p",".4",{"children":[["$","code",null,{"className":"inline","children":"edit.network.rewire()"}]," on a ",["$","code",null,{"className":"inline","children":"link"}]," mark's ",["$","code",null,{"className":"inline","children":"source"}]," or ",["$","code",null,{"className":"inline","children":"target"}]," channel turns that end into a handle. Drag it onto another node to re-point the link. Both ends can carry one at once."],"className":"intro"}],["$","p",".5",{"children":[["$","code",null,{"className":"inline","children":"edit.network.reverse()"}]," on the ",["$","code",null,{"className":"inline","children":"link"}]," mark swaps the two ends on a click, keeping every other column. Give it a ",["$","code",null,{"className":"inline","children":"when"}]," if the mark carries another click edit. On ",["$","code",null,{"className":"inline","children":"directed: false"}]," it does nothing and logs a warning."],"className":"intro"}],["$","p",".6",{"children":[["$","code",null,{"className":"inline","children":"create()"}]," mints a node where you click — the plain creation edit. The node table's ",["$","code",null,{"className":"inline","children":"key"}]," gives the new row an identity, so you can link it straight away. Name it separately with ",["$","code",null,{"className":"inline","children":"editText()"}]," on the ",["$","code",null,{"className":"inline","children":"text"}]," channel."],"className":"intro"}],["$","p",".7",{"children":[["$","code",null,{"className":"inline","children":"remove()"}]," deletes a node and takes its links with it. A ",["$","code",null,{"className":"inline","children":"ref"}]," must name a node that exists, so links to a removed node are dropped from the dataset, not just hidden."],"className":"intro"}]],["$","div",null,{"className":"grid","children":[["$","$L3f",".8",{"code":"$4e","title":"Weighted links","blurb":"A link's own columns drive its width and colour. Drag a link's source handle onto another node.","try":"$L4f"}]]}]]}]
-50:T649,mount(Elicit({
+47:["$","section",null,{"id":"gestures","children":[["$","h2",null,{"className":"section","children":"Building the topology"}],[["$","p",".0",{"children":"Three gestures are network-specific; the rest is ordinary editing.","className":"intro"}],["$","p",".1",{"children":[["$","code",null,{"className":"inline","children":"edit.network.connect()"}]," creates a link. Put it on a ",["$","a",null,{"href":"#ports","children":["$","code",null,{"className":"inline","children":"ports"}]}]," channel, or in the node mark's ",["$","code",null,{"className":"inline","children":"edits"}]," to drag from a node's body. On the body, give it and ",["$","code",null,{"className":"inline","children":"move"}]," different drags with ",["$","code",null,{"className":"inline","children":"when"}],": ",["$","code",null,{"className":"inline","children":"connect({ when: when.shift })"}]," beside ",["$","code",null,{"className":"inline","children":"move({ when: when.noShift })"}],". With ",["$","code",null,{"className":"inline","children":"selfLoops: true"}],", release on the node you started from to draw a loop. When the nodes draw no shape, a drop within ",["$","code",null,{"className":"inline","children":"threshold"}]," px of a node's centre connects."],"className":"intro"}],["$","p",".2",{"children":[["$","code",null,{"className":"inline","children":"edit.network.rewire()"}]," moves a link's ends — see ",["$","a",null,{"href":"#recording","children":"Recording sides"}],"."],"className":"intro"}],["$","p",".3",{"children":[["$","code",null,{"className":"inline","children":"edit.network.reverse()"}]," on the ",["$","code",null,{"className":"inline","children":"link"}]," mark swaps the two ends on a click, keeping every other column. Give it a ",["$","code",null,{"className":"inline","children":"when"}]," if the mark carries another click edit. On ",["$","code",null,{"className":"inline","children":"directed: false"}]," it logs a warning and leaves the row as it is."],"className":"intro"}],["$","p",".4",{"children":[["$","code",null,{"className":"inline","children":"create()"}]," mints a node where you click. The node table's ",["$","code",null,{"className":"inline","children":"key"}]," gives it an identity, so you can link it straight away."],"className":"intro"}],["$","p",".5",{"children":[["$","code",null,{"className":"inline","children":"remove()"}]," deletes a node and every link to it."],"className":"intro"}]],["$","div",null,{"className":"grid","children":[["$","$L4c",".6",{"code":"$64","title":"Weighted links","blurb":"A link's own columns drive its width and colour, and rewire moves its source end.","try":"$L65"}]]}]]}]
+66:T648,mount(Elicit({
   width: 460, height: 290,
   margins: { top: 24, right: 24, bottom: 24, left: 24 },
   axes: false,
@@ -379,7 +816,7 @@ f:["How far a link bows, as a fraction of its length."," ",["$","code",null,{"cl
   },
   marks: [
     link({
-      inset: 16,
+      inset: 3,
       fontSize: 11,
       labelBackground: true,
       channels: {
@@ -400,78 +837,167 @@ f:["How far a link bows, as a fraction of its length."," ",["$","code",null,{"cl
     }),
   ],
 }));
-3b:["$","section",null,{"id":"attributes","children":[["$","h2",null,{"className":"section","children":"Link attributes"}],[["$","p",".0",{"children":["A link row is a row like any other. Give the link table columns and encode them on ",["$","code",null,{"className":"inline","children":"link()"}],"'s style channels, or edit them with ",["$","code",null,{"className":"inline","children":"set"}],", ",["$","code",null,{"className":"inline","children":"cycle"}]," and ",["$","code",null,{"className":"inline","children":"editText"}],"."],"className":"intro"}],["$","p",".1",{"children":[["$","code",null,{"className":"inline","children":"channels.text"}]," draws a label at the midpoint and takes ",["$","code",null,{"className":"inline","children":"editText()"}]," the same way a ",["$","code",null,{"className":"inline","children":"text"}]," mark does. Double-click anywhere along the connector to open the editor."],"className":"intro"}],["$","p",".2",{"children":[["$","code",null,{"className":"inline","children":"stroke"}]," and ",["$","code",null,{"className":"inline","children":"strokeWidth"}]," paint the connector and its arrowhead. ",["$","code",null,{"className":"inline","children":"fill"}]," paints the label (default: the theme's ink). Stroke never reaches the label, so a thick line does not outline the text."],"className":"intro"}],["$","p",".3",{"children":["A label sits on its connector, so the line runs through it. ",["$","code",null,{"className":"inline","children":"labelBackground"}]," puts a plate underneath:"],"className":"intro"}],["$","pre",".4",{"className":"code","children":["$","code",null,{"className":"language-js","children":"link({ labelBackground: true, channels: { text: { field: \"note\" } } })\n"}]}],["$","p",".5",{"children":[["$","code",null,{"className":"inline","children":"true"}]," uses the theme's backdrop, which reads as a gap in the line; pass a colour string for anything else. ",["$","code",null,{"className":"inline","children":"labelOpacity"}]," (default ",["$","code",null,{"className":"inline","children":"0.9"}],") sets how much of the connector shows through; ",["$","code",null,{"className":"inline","children":"labelPadding"}]," and ",["$","code",null,{"className":"inline","children":"labelRadius"}]," size the plate."],"className":"intro"}]],["$","div",null,{"className":"grid","children":[["$","$L3f",".6",{"code":"$50","title":"Link attributes","blurb":"A link's own columns drive its width, its colour and its label.","try":"$L51"}]]}]]}]
-3c:["$","$L52",null,{"children":["$L53",["$","$L54",null,{"promise":"$@55"}]]}]
-3d:["$","$1","h",{"children":[null,[["$","$L56",null,{"children":"$L57"}],null],["$","$L58",null,{"children":["$","div",null,{"hidden":true,"children":["$","$59",null,{"fallback":null,"children":"$L5a"}]}]}]]}]
-41:[["$","b",null,{"children":"Shift-drag"}]," from one node to another to connect them. ",["$","b",null,{"children":"Drag"}]," a node to move it, ",["$","b",null,{"children":"double-click"}]," its label to rename it, ",["$","b",null,{"children":"click"}]," empty space to add one, and ",["$","b",null,{"children":"Alt-click"}]," to delete."]
-45:["$","code",null,{"className":"inline","children":"a → b"}]
-46:["$","code",null,{"className":"inline","children":"b → a"}]
-47:["$","code",null,{"className":"inline","children":"spread"}]
-48:["$","code",null,{"className":"inline","children":"\"auto\""}]
-49:["$","p",".a",{"children":["An ",["$","code",null,{"className":"inline","children":"\"arc\""}]," at curvature ",["$","code",null,{"className":"inline","children":"0"}]," is a straight chord, so under ",["$","code",null,{"className":"inline","children":"\"auto\""}]," a lone arc draws flat. A ",["$","code",null,{"className":"inline","children":"\"line\""}]," with a bow is drawn as an arc — a straight segment cannot bend, so curvature wins over the named shape. That is why ",["$","code",null,{"className":"inline","children":"\"auto\""}]," is visible on a plain ",["$","code",null,{"className":"inline","children":"link()"}]," that names no curve."],"className":"intro"}]
-4a:["$","p",".b",{"children":["A link whose source and target are the same node draws a loop, whatever ",["$","code",null,{"className":"inline","children":"curve"}]," says. ",["$","code",null,{"className":"inline","children":"loopRadius"}]," sets how far it reaches; ",["$","code",null,{"className":"inline","children":"edit.network.connect({ selfLoops: true })"}]," lets you draw one."],"className":"intro"}]
-4b:["$","p",".c",{"children":[["$","code",null,{"className":"inline","children":"link()"}]," is pickable along its whole length, so a ",["$","code",null,{"className":"inline","children":"click"}]," edit like ",["$","code",null,{"className":"inline","children":"reverse"}]," or ",["$","code",null,{"className":"inline","children":"remove"}]," lands anywhere on the line."],"className":"intro"}]
-5b:T71a,mount(Elicit({
-  width: 460, height: 330,
-  margins: { top: 18, right: 34, bottom: 18, left: 34 },
+48:["$","section",null,{"id":"attributes","children":[["$","h2",null,{"className":"section","children":"Link attributes"}],[["$","p",".0",{"children":["A link row is a row like any other. Give the link table columns and encode them on ",["$","code",null,{"className":"inline","children":"link()"}],"'s style channels, or edit them with ",["$","code",null,{"className":"inline","children":"set"}],", ",["$","code",null,{"className":"inline","children":"cycle"}]," and ",["$","code",null,{"className":"inline","children":"editText"}],"."],"className":"intro"}],["$","p",".1",{"children":[["$","code",null,{"className":"inline","children":"channels.text"}]," draws a label at the midpoint and takes ",["$","code",null,{"className":"inline","children":"editText()"}]," the same way a ",["$","code",null,{"className":"inline","children":"text"}]," mark does. Double-click anywhere along the connector to open the editor."],"className":"intro"}],["$","p",".2",{"children":[["$","code",null,{"className":"inline","children":"stroke"}]," and ",["$","code",null,{"className":"inline","children":"strokeWidth"}]," paint the connector and its arrowhead. ",["$","code",null,{"className":"inline","children":"fill"}]," paints the label (default: the theme's ink)."],"className":"intro"}],["$","p",".3",{"children":["A label sits on its connector. ",["$","code",null,{"className":"inline","children":"labelBackground"}]," puts a plate behind it:"],"className":"intro"}],["$","pre",".4",{"className":"code","children":["$","code",null,{"className":"language-js","children":"link({ labelBackground: true, channels: { text: { field: \"note\" } } })\n"}]}],["$","p",".5",{"children":[["$","code",null,{"className":"inline","children":"true"}]," uses the theme's backdrop, which reads as a gap in the line; pass a colour string for anything else. ",["$","code",null,{"className":"inline","children":"labelOpacity"}]," (default ",["$","code",null,{"className":"inline","children":"0.9"}],") sets how much of the connector shows through; ",["$","code",null,{"className":"inline","children":"labelPadding"}]," and ",["$","code",null,{"className":"inline","children":"labelRadius"}]," size the plate."],"className":"intro"}]],["$","div",null,{"className":"grid","children":[["$","$L4c",".6",{"code":"$66","title":"Link attributes","blurb":"A link's own columns drive its width, its colour and its label.","try":"$L67"}]]}]]}]
+49:["$","$L68",null,{"children":["$L69",["$","$L6a",null,{"promise":"$@6b"}]]}]
+4a:["$","$1","h",{"children":[null,[["$","$L6c",null,{"children":"$L6d"}],null],["$","$L6e",null,{"children":["$","div",null,{"hidden":true,"children":["$","$6f",null,{"fallback":null,"children":"$L70"}]}]}]]}]
+4e:["$","b",null,{"children":"click"}]
+4f:["$","b",null,{"children":"Alt-click"}]
+51:[["$","b",null,{"children":"Alt-click"}]," a connector to reverse it. ",["$","b",null,{"children":"Shift-drag"}]," between two nodes to add another — connect them the other way round too, and the pair bows apart. ",["$","b",null,{"children":"Drag"}]," a node to move it."]
+53:[["$","b",null,{"children":"Hover"}]," a state and drag from a port to another state to add a transition, even where one already runs. Drag to another port of the same state to add a loop."," ",["$","b",null,{"children":"Double-click"}]," a label to rename the event. ",["$","b",null,{"children":"Hover"}]," a transition and drag an end to move it, or into empty space to delete it."]
+57:[["$","b",null,{"children":"Click"}]," a connector to step it to the next shape in the"," ",["$","code",null,{"className":"inline","children":"kind"}]," domain. The label is the column, so it changes with it — and stepping one to ",["$","code",null,{"className":"inline","children":"line"}]," draws an arc, since this mark sets a curvature."]
+59:[["$","b",null,{"children":"Drag"}]," ",["$","i",null,{"children":"Legal review"}]," out of the way and the long connector takes the direct route. ",["$","b",null,{"children":"Drag"}]," ",["$","i",null,{"children":"Score"}]," sideways and its connector from"," ",["$","i",null,{"children":"Collect"}]," goes from straight to a Z. ",["$","b",null,{"children":"Drag"}]," ",["$","i",null,{"children":"Ship"}]," in a circle round ",["$","i",null,{"children":"Publish"}]," and watch the ends slide along the boxes."]
+5b:[["$","b",null,{"children":"Hover"}]," a note: one port, on the right. ",["$","b",null,{"children":"Drag"}]," from it and only left-hand ports appear. Drop on one and ",["$","code",null,{"className":"inline","children":"getData()"}]," gains a row with both sides."]
+71:T906,mount(Elicit({
+  width: 560, height: 340,
+  margins: { top: 24, right: 24, bottom: 24, left: 24 },
   axes: false,
   schema: {
     structure: "network",
     tables: {
-      nodes: {
-        id: { type: "categorical", key: true, open: true },
-        x: { type: "quantitative", domain: [0, 100] },
-        y: { type: "quantitative", domain: [0, 100] },
+      ideas: {
+        role: "nodes",
+        fields: {
+          id: { type: "categorical", key: true, open: true },
+          label: { type: "categorical", open: true },
+          x: { type: "quantitative", domain: [0, 100] },
+          y: { type: "quantitative", domain: [0, 100] },
+        },
       },
-      links: {
-        source: { type: "ref" },
-        target: { type: "ref" },
-        kind: {
-          type: "categorical",
-          domain: ["line", "step", "stepBefore", "stepAfter", "orthogonal", "arc", "bezier"],
+      ties: {
+        role: "links",
+        directed: false,
+        fields: {
+          source: { type: "ref" },
+          target: { type: "ref" },
+          fromSide: { type: "categorical", domain: ["top", "right", "bottom", "left"] },
+          toSide: { type: "categorical", domain: ["top", "right", "bottom", "left"] },
         },
       },
     },
   },
   data: {
-    nodes: [
-      { id: "l1", x: 6, y: 92 }, { id: "r1", x: 94, y: 82 },
-      { id: "l2", x: 6, y: 73 }, { id: "r2", x: 94, y: 63 },
-      { id: "l3", x: 6, y: 54 }, { id: "r3", x: 94, y: 44 },
-      { id: "l4", x: 6, y: 35 }, { id: "r4", x: 94, y: 25 },
-      { id: "l5", x: 6, y: 16 }, { id: "r5", x: 94, y: 6 },
+    ideas: [
+      { id: "trust", label: "Trust in forecasts", x: 50, y: 50 },
+      { id: "past", label: "Past accuracy", x: 14, y: 18 },
+      { id: "source", label: "Who made it", x: 86, y: 18 },
+      { id: "range", label: "Shown as a range", x: 14, y: 84 },
+      { id: "stakes", label: "What is at stake", x: 86, y: 84 },
     ],
-    links: [
-      { source: "l1", target: "r1", kind: "step" },
-      { source: "l2", target: "r2", kind: "stepBefore" },
-      { source: "l3", target: "r3", kind: "stepAfter" },
-      { source: "l4", target: "r4", kind: "arc" },
-      { source: "l5", target: "r5", kind: "bezier" },
+    ties: [
+      { source: "trust", target: "past", fromSide: "top", toSide: "right" },
+      { source: "trust", target: "source", fromSide: "right", toSide: "bottom" },
+      // Unpinned: each end meets the port facing the other note.
+      { source: "trust", target: "range", fromSide: null, toSide: null },
+      { source: "trust", target: "stakes", fromSide: null, toSide: null },
     ],
   },
   marks: [
     link({
-      inset: 9,
-      stroke: "#4e79a7",
-      strokeWidth: 2,
-      // A fixed bow. These links share no pair of nodes, so "auto" would leave
-      // every one of them flat — including the arc, whose only parameter this is.
-      curvature: 0.1,
-      fontSize: 11,
-      labelBackground: true,
+      curve: "bezier",
+      stroke: "#7c3aed",
+      strokeWidth: 1.5,
       channels: {
-        curve: { field: "kind" },
-        text: { field: "kind" },
+        sourceSide: { field: "fromSide" },
+        targetSide: { field: "toSide" },
       },
-      edits: [cycle({ channels: ["curve"] })],
+      edits: [edit.network.rewire(), remove({ when: when.alt })],
     }),
-    point({ size: 4, fill: "#94a3b8", channels: { x: { field: "x" }, y: { field: "y" } } }),
+    sticker({
+      fill: "#f5f3ff",
+      stroke: "#7c3aed",
+      radius: 8,
+      maxWidth: 120,
+      edits: [editText(), create({ defaults: { label: "New idea" } })],
+      channels: {
+        x: { field: "x", edit: move({ channels: ["x", "y"], mode: "relative" }) },
+        y: { field: "y" },
+        text: { field: "label" },
+        // Every edge, either way.
+        ports: { value: true, edit: edit.network.connect() },
+      },
+    }),
   ],
 }));
-4c:["$","div",null,{"className":"grid","children":[["$","$L3f",".d",{"code":"$5b","title":"Connector shapes","blurb":"One link() mark, a kind column driving curve, at a fixed curvature: 0.1.","try":[["$","b",null,{"children":"Click"}]," a connector to step it to the next shape in the"," ",["$","code",null,{"className":"inline","children":"kind"}]," domain. The label is the column, so it changes with it — and stepping one to ",["$","code",null,{"className":"inline","children":"line"}]," draws an arc, since this mark sets a curvature."]}]]}]
-4f:[["$","b",null,{"children":"Drag"}]," a name to move it. ",["$","b",null,{"children":"Drag"}]," the small handle at a link's source end onto a different person to re-point it."]
-51:[["$","b",null,{"children":"Double-click"}]," a connector to retype its label. ",["$","b",null,{"children":"Drag"}]," a name to move it — the connectors and their labels follow."]
-57:[["$","meta","0",{"charSet":"utf-8"}],["$","meta","1",{"name":"viewport","content":"width=device-width, initial-scale=1"}]]
-53:null
-55:{"metadata":[["$","title","0",{"children":"ElicitJS Docs"}],["$","meta","1",{"name":"description","content":"Declarative visual belief elicitation — documentation"}]],"error":null,"digest":"$undefined"}
-5a:"$55:metadata"
+5c:["$","$L4c",".8",{"code":"$71","title":"Any side to any side","blurb":"An undirected concept map. Two ties are pinned to edges; two meet whichever port faces the other note.","try":[["$","b",null,{"children":"Drag"}]," ",["$","i",null,{"children":"What is at stake"}]," above ",["$","i",null,{"children":"Trust in forecasts"}],": its unpinned tie moves to the facing ports. ",["$","b",null,{"children":"Drag"}]," from any port to any other note."," ",["$","b",null,{"children":"Click"}]," empty space for a new idea, ",["$","b",null,{"children":"double-click"}]," one to rename it."]}]
+5e:[["$","b",null,{"children":"Drag"}]," from a port to another node’s port. ",["$","b",null,{"children":"Hover"}]," a connector, then drag its end onto another node to reconnect it, or into space to disconnect it."]
+72:T8f6,mount(Elicit({
+  width: 520, height: 300,
+  margins: { top: 24, right: 24, bottom: 24, left: 24 },
+  axes: false,
+  schema: {
+    structure: "network",
+    tables: {
+      steps: {
+        role: "nodes",
+        fields: {
+          id: { type: "categorical", key: true, open: true },
+          label: { type: "categorical", open: true },
+          kind: { type: "categorical", domain: ["step", "end"] },
+          x: { type: "quantitative", domain: [0, 100] },
+          y: { type: "quantitative", domain: [0, 100] },
+        },
+      },
+      next: {
+        role: "links",
+        directed: true,
+        fields: {
+          source: { type: "ref" },
+          target: { type: "ref" },
+          fromSide: { type: "categorical", domain: ["top", "right", "bottom", "left"] },
+          toSide: { type: "categorical", domain: ["top", "right", "bottom", "left"] },
+        },
+      },
+    },
+  },
+  data: {
+    steps: [
+      { id: "ask", label: "Ask", kind: "step", x: 12, y: 50 },
+      { id: "check", label: "Check", kind: "step", x: 42, y: 20 },
+      { id: "fix", label: "Fix", kind: "step", x: 42, y: 80 },
+      { id: "done", label: "Done", kind: "end", x: 86, y: 50 },
+    ],
+    next: [{ source: "ask", target: "check", fromSide: "right", toSide: "left" }],
+  },
+  // Each step leads to one next step.
+  constraints: [
+    constraints.custom(({ data }) => {
+      const sources = data.map((d) => d.source);
+      return new Set(sources).size === sources.length;
+    }, { table: "links" }),
+  ],
+  marks: [
+    link({
+      curve: "orthogonal",
+      stroke: "#64748b",
+      strokeWidth: 1.5,
+      channels: {
+        sourceSide: { field: "fromSide" },
+        targetSide: { field: "toSide" },
+      },
+      edits: [edit.network.rewire()],
+    }),
+    sticker({
+      radius: 6,
+      maxWidth: 100,
+      channels: {
+        x: { field: "x", edit: move({ channels: ["x", "y"], mode: "relative" }) },
+        y: { field: "y" },
+        text: { field: "label" },
+        fill: { field: "kind", scale: { range: ["#fef3c7", "#dcfce7"] } },
+        // An end step takes links in but sends none out.
+        ports: {
+          fn: (d) => (d.kind === "end" ? { in: ["left"] } : { out: ["right"], in: ["left"] }),
+          edit: edit.network.connect(),
+        },
+      },
+    }),
+  ],
+}));
+5f:["$","$L4c",".8",{"code":"$72","title":"Only usable ports","blurb":"An end step takes links in but sends none out, and a constraint allows each step one outgoing link.","try":[["$","b",null,{"children":"Hover"}]," ",["$","i",null,{"children":"Ask"}],": no port, since it already leads somewhere. ",["$","b",null,{"children":"Hover"}]," ",["$","i",null,{"children":"Done"}],": no port either. ",["$","b",null,{"children":"Drag"}]," from ",["$","i",null,{"children":"Check"}]," and only the left-hand ports of the other steps appear. Drag the end of ",["$","i",null,{"children":"Ask"}],"’s link into space and its port comes back."]}]
+62:[["$","b",null,{"children":"Hover"}]," an emoji and drag from a port to another to link them."," ",["$","b",null,{"children":"Drag"}]," an emoji to move it. ",["$","b",null,{"children":"Hover"}]," a link and drag its end to re-point it, or into empty space to remove it."]
+65:[["$","b",null,{"children":"Drag"}]," a name to move it. ",["$","b",null,{"children":"Hover"}]," a link, then drag the handle at its source end onto a different person to re-point it."]
+67:[["$","b",null,{"children":"Double-click"}]," a connector to retype its label. ",["$","b",null,{"children":"Drag"}]," a name to move it — the connectors and their labels follow."]
+6d:[["$","meta","0",{"charSet":"utf-8"}],["$","meta","1",{"name":"viewport","content":"width=device-width, initial-scale=1"}]]
+69:null
+6b:{"metadata":[["$","title","0",{"children":"ElicitJS Docs"}],["$","meta","1",{"name":"description","content":"Declarative visual belief elicitation — documentation"}]],"error":null,"digest":"$undefined"}
+70:"$6b:metadata"
