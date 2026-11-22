@@ -1,0 +1,122 @@
+import { DocShell } from '../../components/DocShell';
+import { ApiReference } from '../../components/ApiReference';
+import { Section } from '../../components/Section';
+import { Example } from '../../components/Example';
+import { Lead } from '../../components/Lead';
+import { api } from './api';
+
+import flatDodge from './_examples/flat-dodge.example.txt';
+import flatPack from './_examples/flat-pack.example.txt';
+import boardTwoLevel from './_examples/board-two-level.example.txt';
+
+export default function Layout({ children }) {
+  return <DocShell>{children}</DocShell>;
+}
+
+# Layout
+
+<Lead>A **layout** settles marks in pixel space after an edit commits, then writes the settled positions and sizes back into the dataset. Declare layouts in `layout: [...]` on the `Elicit` spec. `layout.dodge` keeps marks from overlapping, `layout.row`, `layout.column`, `layout.grid` and `layout.pack` arrange them into slots or clusters, `layout.contain` sizes containers and bounds their contents in a [hierarchy](/marks/hierarchy), and `layout.custom` runs your own pixel-space pass. Every layout except `contain` works on flat tables, networks and hierarchies alike.</Lead>
+
+<ApiReference entries={api} />
+
+<Section id="model" title="Layout vs constraints">
+
+[Constraints](/constraints) and layouts enforce two different kinds of rule:
+
+- A **constraint** is a pure-data invariant (`maintainSum`, `clamp`, `ordering`, `constraints.contain`). It runs on committed data rows and applies across every chart sharing a dataset.
+- A **layout** works in **pixel space**. It measures each mark's drawn box (its width, height, radius or label extent), resolves overlaps, slots or container fits, and inverts the settled pixels back into the data columns within the same undo step.
+
+While you drag, overlapping or slotted neighbours preview live and ease with `motion`; the settled positions commit once on release.
+
+</Section>
+
+<Section id="dodge" title="dodge — keep marks apart">
+
+`layout.dodge({ gap, where, in })` pushes overlapping marks apart by `gap` pixels (default `8`). It works on any table of positioned marks — cards, scatter points, or network nodes — with no hierarchy required.
+
+```js
+layout: [
+  layout.dodge({ gap: 10 }),
+]
+```
+
+When you drop a mark on top of another, the dropped mark holds its place and the others move the shortest distance that clears it. Locked rows stay put.
+
+<Example
+  code={flatDodge}
+  title="Non-overlapping cards on a flat table"
+  blurb="layout.dodge({ gap: 10 }) keeps draggable cards apart without a hierarchy."
+  try={(
+    <>
+      <b>Drag</b> any card onto another and release: the others make room.
+    </>
+  )}
+/>
+
+</Section>
+
+<Section id="arrange" title="row, column, grid and pack">
+
+Arrangement rules place marks into slots or tight clusters:
+
+- `layout.row({ gap, in })` arranges left to right, wrapping at the available width.
+- `layout.column({ gap, in })` arranges top to bottom, wrapping at the available height.
+- `layout.grid({ columns, gap, in })` places equal cells in reading order.
+- `layout.pack({ gap, keep, in })` draws marks together until they touch, edge to edge for boxes and circumference to circumference for circles.
+
+On a flat table or a network, every row in the table takes part.
+
+<Example
+  code={flatPack}
+  title="Packed circles on a flat table"
+  blurb="layout.pack({ gap: 4 }) gathers dragged circles into a tight cluster."
+  try={(
+    <>
+      <b>Drag</b> any circle to the edge of the cluster and let go: it slides in to touch.
+    </>
+  )}
+/>
+
+</Section>
+
+<Section id="composing" title="Composing levels in a hierarchy">
+
+In a [hierarchy](/marks/hierarchy), `in` scopes each rule to a level of the tree:
+
+- `"containers"` — inside every container (the default for `row`, `column`, `grid` and `pack`).
+- `"roots"` — top-level nodes only.
+- `"all"` — both roots and containers (the default for `dodge`).
+- `(parent, i, rows) => boolean` — only inside containers matching the predicate.
+
+Combine rules in `layout: [...]` to arrange roots one way and container contents another. `layout.contain({ padding, fit })` accepts `fit: true`, `"x"`, `"y"`, or `false` so containers can grow on a single axis while holding a fixed width.
+
+<Example
+  code={boardTwoLevel}
+  title="Lanes in a row, cards in a column"
+  blurb='layout.row({ in: "roots" }) aligns lanes side by side; layout.column stacks cards and fit: "y" grows each lane vertically.'
+  tall
+  try={(
+    <>
+      <b>Drag</b> a lane left or right to reorder the columns. <b>Drag</b> a card within a lane
+      or into another lane: the lane grows or shrinks vertically while keeping its width.
+    </>
+  )}
+/>
+
+</Section>
+
+<Section id="custom" title="Custom pixel-space layouts">
+
+`layout.custom(fn, { table? })` runs a pixel-space pass after the built-in rules. `fn` receives `{ boxes, rows, tree, width, height, scales, padding, locked, anchors, spacing, preview }` and mutates each box's `cx`, `cy`, `hw`, `hh` in place; the engine inverts the modified boxes back into data columns.
+
+```js
+layout: [
+  layout.custom(({ boxes, width }) => {
+    for (const box of boxes) {
+      if (box) box.cx = Math.max(box.hw, Math.min(width - box.hw, box.cx));
+    }
+  }),
+]
+```
+
+</Section>

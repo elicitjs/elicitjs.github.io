@@ -44,10 +44,13 @@ const chart = Elicit({
       { child: "p5", parent: "des" },
     ],
   },
+  layout: [layout.dodge()],
   marks: [
     rect({
       rx: 6,
       stroke: "#46596B",
+      // Shorthand on the mark: groups hold others and fit round their contents.
+      contains: { where: (d) => d.kind === "group", padding: 18, fit: true },
       edits: [
         move({ channels: ["x", "y"], mode: "relative" }),
         edit.hierarchy.nest(),
@@ -55,9 +58,8 @@ const chart = Elicit({
       channels: {
         x: { field: "x" },
         y: { field: "y" },
-        width: { field: "w", scale: null, fit: true },
-        height: { field: "h", scale: null, fit: true },
-        contains: { fn: (d) => d.kind === "group", padding: 18 },
+        width: { field: "w", scale: null },
+        height: { field: "h", scale: null },
         fill: { fn: (d) => (d.kind === "group" ? "#2B5D87" : "#ffffff") },
         fillOpacity: { fn: (d) => (d.kind === "group" ? 0.12 : 1) },
       },

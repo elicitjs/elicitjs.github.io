@@ -19,6 +19,7 @@ export const SITE: NavGroup[] = [
       { href: "/schema", title: "Data schema" },
       { href: "/scales", title: "Scales & channels" },
       { href: "/constraints", title: "Constraints" },
+      { href: "/layout", title: "Layout" },
       { href: "/dataset", title: "Datasets & linked charts" },
     ],
   },

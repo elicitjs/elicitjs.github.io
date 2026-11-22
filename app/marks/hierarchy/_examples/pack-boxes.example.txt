@@ -34,6 +34,14 @@ const chart = Elicit({
     ],
     nesting: ["price", "a", "b", "c", "d", "e"].map((child) => ({ child, parent: "board" })),
   },
+  constraints: [
+    constraints.contain({ parent: (d) => d.kind === "board" }),
+  ],
+  layout: [
+    // Each card slides in to touch, keeping its direction from Price.
+    layout.contain(),
+    layout.pack({ keep: "angle", gap: 6 }),
+  ],
   marks: [
     rect({
       rx: 6,
@@ -47,8 +55,6 @@ const chart = Elicit({
         y: { field: "y" },
         width: { field: "w", scale: null },
         height: { field: "h", scale: null },
-        // Each card slides in to touch, keeping its direction from Price.
-        contains: { fn: (d) => d.kind === "board", arrange: "pack", keep: "angle", gap: 6 },
         fill: { fn: (d) => (d.kind === "board" ? "#EDF7F8" : d.kind === "goal" ? "#C3B9DF" : "#FFFFFF") },
       },
     }),

@@ -42,6 +42,13 @@ const chart = Elicit({
       { quote: "\u201cToo pricey\u201d", theme: "Cost", coder: "seed" },
     ],
   },
+  constraints: [
+    constraints.contain({ parent: (d) => d.kind === "theme" }),
+  ],
+  layout: [
+    layout.contain({ padding: 12, fit: true }),
+    layout.dodge(),
+  ],
   marks: [
     rect({
       rx: 6,
@@ -53,9 +60,8 @@ const chart = Elicit({
       channels: {
         x: { field: "x" },
         y: { field: "y" },
-        width: { field: "w", scale: null, fit: true },
-        height: { field: "h", scale: null, fit: true },
-        contains: { fn: (d) => d.kind === "theme", padding: 12 },
+        width: { field: "w", scale: null },
+        height: { field: "h", scale: null },
         fill: { fn: (d) => (d.kind === "theme" ? "#EDF7F8" : "#EBD6AD") },
       },
     }),

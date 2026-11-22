@@ -44,6 +44,7 @@ const GRAMMAR = [
   "elements",
   "edit",
   "constraints",
+  "layout",
   "guides",
   "looks",
   "widgets",
@@ -58,6 +59,8 @@ const BLURB = {
   edit: "Edits map a gesture back through a scale to write a column.",
   constraints:
     "Constraints are rules over the dataset. Each one rejects or repairs every edit.",
+  layout:
+    "Layouts arrange and space marks in pixel space after each edit, writing the settled boxes back to the data.",
   guides:
     "Guides draw reference lines and interaction state. They never write data.",
   looks:
@@ -149,6 +152,7 @@ const NAMESPACE_FALLBACK = {
   elements: null, // per-page like marks: axis→/marks/axes, legend→/marks/legend
   edit: "/editing",
   constraints: "/constraints",
+  layout: "/layout",
   guides: "/guides",
   looks: "/looks",
   widgets: "/widgets",
@@ -190,6 +194,7 @@ function optionsFor(ns, bare, dotted) {
       guides: vocab.GUIDE_UNIVERSAL_OPTIONS,
       looks: vocab.LOOK_UNIVERSAL_OPTIONS,
       edit: vocab.EDIT_UNIVERSAL_OPTIONS,
+      layout: vocab.LAYOUT_UNIVERSAL_OPTIONS,
     }[ns] || [];
   const own = {
     plot: vocab.MARK_OPTIONS?.[bare],
@@ -198,6 +203,7 @@ function optionsFor(ns, bare, dotted) {
     looks: vocab.LOOK_OPTIONS?.[bare],
     edit: vocab.EDIT_OPTIONS?.[dotted] ?? vocab.EDIT_OPTIONS?.[bare],
     constraints: vocab.CONSTRAINT_OPTIONS?.[bare],
+    layout: vocab.LAYOUT_OPTIONS?.[bare],
   }[ns];
   if (!own && !universal.length) return { own: [], universal: [] };
   return { own: own ? [...own] : [], universal: [...universal] };

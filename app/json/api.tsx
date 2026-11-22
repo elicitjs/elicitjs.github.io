@@ -39,7 +39,7 @@ export const api: ApiEntry[] = [
     json: false,
     summary: (
       <>
-        Writes a spec built in JavaScript as JSON. It returns the namespaces <code className="inline">plot</code>, <code className="inline">elements</code>, <code className="inline">edit</code>, <code className="inline">constraints</code>, <code className="inline">guides</code>, <code className="inline">widgets</code> and <code className="inline">format</code>. Build the spec from them, then call <code className="inline">toJSON(spec)</code>.
+        Writes a spec built in JavaScript as JSON. It returns the namespaces <code className="inline">plot</code>, <code className="inline">elements</code>, <code className="inline">edit</code>, <code className="inline">constraints</code>, <code className="inline">layout</code>, <code className="inline">guides</code>, <code className="inline">looks</code>, <code className="inline">widgets</code> and <code className="inline">format</code>. Build the spec from them, then call <code className="inline">toJSON(spec)</code>.
       </>
     ),
     signatures: [

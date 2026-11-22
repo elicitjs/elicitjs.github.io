@@ -38,6 +38,7 @@ Where a descriptor sits decides how its `type` is read:
       <tr><td><code>elements</code></td><td>chart elements</td></tr>
       <tr><td><code>guides</code></td><td>guides</td></tr>
       <tr><td><code>constraints</code>, and an edit's <code>constrain</code></td><td>constraints</td></tr>
+      <tr><td><code>layout</code></td><td>layouts</td></tr>
       <tr><td>a mark's <code>edits</code>, and <code>edit</code> on a channel, an axis or a legend</td><td>edits</td></tr>
     </tbody>
   </table>
@@ -75,7 +76,7 @@ An option that takes a function in JavaScript takes `{ "expr": "…" }` in JSON.
       <tr><th>Option</th><th>Variables</th></tr>
     </thead>
     <tbody>
-      <tr><td>a channel's <code>expr</code>, a mark's style options (<code>fill</code>, <code>opacity</code>, <code>dy</code>, …), <code>width</code>, <code>height</code>, <code>path</code>, <code>wrap</code></td><td><code>datum</code>, <code>index</code>, <code>data</code></td></tr>
+      <tr><td>a channel's <code>expr</code>, a mark's style options (<code>fill</code>, <code>opacity</code>, <code>dy</code>, …), <code>width</code>, <code>height</code>, <code>path</code>, <code>wrap</code>, <code>contains</code>, <code>constraints.contain</code> (<code>parent</code>, <code>child</code>), and <code>layout.*</code> (<code>where</code>, <code>in</code>)</td><td><code>datum</code>, <code>index</code>, <code>data</code></td></tr>
       <tr><td><code>lock</code>, <code>context</code></td><td><code>datum</code>, <code>index</code>, <code>table</code></td></tr>
       <tr><td><code>format</code>, <code>tickFormat</code></td><td><code>value</code></td></tr>
       <tr><td>an axis's <code>tickSize</code>, <code>stroke</code>, <code>fill</code>, <code>fontWeight</code>; a grid's <code>stroke</code>, <code>strokeWidth</code>, <code>strokeDash</code></td><td><code>value</code>, <code>index</code></td></tr>
@@ -127,7 +128,7 @@ Code that is more than one expression stays in JavaScript. Name it in the spec w
 
 A name in `functions` wins over a registered one. The function receives the same arguments as in the JavaScript API.
 
-`custom` takes its function as the descriptor's `fn`: `edit.custom(fn, { gesture: "click" })` is `{ "type": "custom", "fn": "<name>", "gesture": "click" }`. The same holds for `constraints.custom` and `guides.custom`. A channel takes it the same way: `"fill": { "fn": "<name>" }`.
+`custom` takes its function as the descriptor's `fn`: `edit.custom(fn, { gesture: "click" })` is `{ "type": "custom", "fn": "<name>", "gesture": "click" }`. The same holds for `constraints.custom`, `layout.custom` and `guides.custom`. A channel takes it the same way: `"fill": { "fn": "<name>" }`.
 
 `onChange` takes a named function, and so does a d3 scale passed as a channel's `scale`.
 

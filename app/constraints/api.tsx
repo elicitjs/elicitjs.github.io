@@ -3,7 +3,7 @@ import type { ApiEntry } from '../../lib/types';
 export const api: ApiEntry[] = [
   {
     name: "Built-in constraints",
-    json: ['constraints.clamp', 'constraints.maintainSum', 'constraints.count', 'constraints.unique', 'constraints.snap', 'constraints.ordering', 'constraints.monotonic', 'constraints.spacing', 'constraints.follow', 'constraints.symmetric'],
+    json: ['constraints.clamp', 'constraints.maintainSum', 'constraints.count', 'constraints.unique', 'constraints.snap', 'constraints.ordering', 'constraints.monotonic', 'constraints.spacing', 'constraints.follow', 'constraints.symmetric', 'constraints.contain'],
     summary: (
       <>
         Import from <code className="inline">elicit.constraints</code> and pass on the <code className="inline">Elicit</code> spec’s <code className="inline">constraints: [...]</code>. That is the only place they go: a constraint gates every edit from every mark, so writing one inside a mark would say something the engine does not mean. All are pure data invariants — they run on every commit and never see pixels.
@@ -20,6 +20,7 @@ export const api: ApiEntry[] = [
       "spacing({ field, min, series }) → Constraint",
       "follow({ field, lead }) → Constraint",
       "symmetric({ field, about }) → Constraint",
+      "contain({ parent, child, maxDepth, maxChildren }) → Constraint",
     ],
     options: [
       {
@@ -167,6 +168,28 @@ export const api: ApiEntry[] = [
         type: "string | null",
         default: "null",
         desc: "Group rows by this field first, so each line of a multi-series chart is judged on its own.",
+      },
+      {
+        name: "contain.parent / child",
+        type: "(d, i, rows) => boolean",
+        default: "—",
+        desc: (
+          <>
+            Predicates over the <code className="inline">nodes</code> table of a{" "}
+            <a href="/marks/hierarchy">hierarchy</a>: which rows may hold others, and which may sit inside a container.
+          </>
+        ),
+      },
+      {
+        name: "contain.maxDepth / maxChildren",
+        type: "number",
+        default: "∞",
+        desc: (
+          <>
+            Limits on nesting depth (root = 0) and on direct children per container. Targets the{" "}
+            <code className="inline">nesting</code> table automatically.
+          </>
+        ),
       },
     ],
     returns: (

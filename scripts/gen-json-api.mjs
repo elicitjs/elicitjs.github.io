@@ -33,6 +33,7 @@ const PLACE = {
   elements: 'in "elements"',
   edit: 'in "edits", or a channel\'s "edit"',
   constraints: 'in "constraints"',
+  layout: 'in "layout"',
   guides: 'in "guides"',
   looks: 'in "looks"',
   widgets: 'under "widget"',

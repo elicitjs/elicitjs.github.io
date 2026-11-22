@@ -35,6 +35,15 @@ const chart = Elicit({
       { child: "n3", parent: "g2" },
     ],
   },
+  constraints: [
+    // Only groups hold other nodes.
+    constraints.contain({ parent: (d) => d.kind === "group" }),
+  ],
+  layout: [
+    // A group's size follows its contents; a note keeps its own.
+    layout.contain({ padding: 12, fit: true }),
+    layout.dodge(),
+  ],
   marks: [
     rect({
       rx: 6,
@@ -46,11 +55,8 @@ const chart = Elicit({
       channels: {
         x: { field: "x" },
         y: { field: "y" },
-        // A group's size follows its contents; a note keeps its own.
-        width: { field: "w", scale: null, fit: true },
-        height: { field: "h", scale: null, fit: true },
-        // Only groups hold other nodes.
-        contains: { fn: (d) => d.kind === "group", padding: 12 },
+        width: { field: "w", scale: null },
+        height: { field: "h", scale: null },
         fill: { fn: (d) => (d.kind === "group" ? "#EDF7F8" : "#EBD6AD") },
       },
     }),

@@ -29,11 +29,14 @@ const chart = Elicit({
     ],
     nesting: [],
   },
+  layout: [layout.dodge()],
   marks: [
     rect({
       rx: 6,
       fill: "#E3F1DF",
       stroke: "#5C9A4B",
+      // Every node may hold others: drop one on another to make a group.
+      contains: { padding: 14, fit: true },
       edits: [
         move({ channels: ["x", "y"], mode: "relative" }),
         edit.hierarchy.nest(),
@@ -43,10 +46,8 @@ const chart = Elicit({
       channels: {
         x: { field: "x" },
         y: { field: "y" },
-        width: { field: "w", scale: null, fit: true },
-        height: { field: "h", scale: null, fit: true },
-        // Every node may hold others: drop one on another to make a group.
-        contains: { value: true, padding: 14 },
+        width: { field: "w", scale: null },
+        height: { field: "h", scale: null },
       },
     }),
     text({

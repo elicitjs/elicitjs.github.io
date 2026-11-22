@@ -40,6 +40,18 @@ const chart = Elicit({
       { child: "e", parent: "done" },
     ],
   },
+  constraints: [
+    constraints.contain({ parent: (d) => d.kind === "lane", child: (d) => d.kind === "card" }),
+  ],
+  layout: [
+    // A lane grows down as cards join it, leaving room at the top for its name.
+    layout.contain({
+      padding: { top: 30, right: 10, bottom: 10, left: 10 },
+      fit: true,
+    }),
+    // Cards stack top to bottom, in order, inside each lane.
+    layout.column({ gap: 6 }),
+  ],
   marks: [
     rect({
       rx: 6,
@@ -51,16 +63,8 @@ const chart = Elicit({
       channels: {
         x: { field: "x" },
         y: { field: "y" },
-        // A lane grows down as cards join it.
-        width: { field: "w", scale: null, fit: true },
-        height: { field: "h", scale: null, fit: true },
-        // Cards stack top to bottom, in order, under the lane's name.
-        contains: {
-          fn: (d) => d.kind === "lane",
-          padding: { top: 30, right: 10, bottom: 10, left: 10 },
-          arrange: "column",
-          gap: 6,
-        },
+        width: { field: "w", scale: null },
+        height: { field: "h", scale: null },
         fill: { fn: (d) => (d.kind === "lane" ? "#EDF7F8" : "#FFFFFF") },
       },
     }),

@@ -34,9 +34,12 @@ const chart = Elicit({
       { child: "i3", parent: "s2" },
     ],
   },
+  layout: [layout.dodge()],
   marks: [
     point({
       stroke: "#46596B",
+      // A set's radius encloses its items.
+      contains: { where: (d) => d.kind === "set", padding: 8, fit: true },
       edits: [
         move({ channels: ["x", "y"], mode: "relative" }),
         edit.hierarchy.nest(),
@@ -44,9 +47,7 @@ const chart = Elicit({
       channels: {
         x: { field: "x" },
         y: { field: "y" },
-        // A set's radius is the circle that encloses its items.
-        size: { field: "r", scale: null, fit: true },
-        contains: { fn: (d) => d.kind === "set", padding: 8 },
+        size: { field: "r", scale: null },
         fill: { fn: (d) => (d.kind === "set" ? "#EDF7F8" : "#C3B9DF") },
       },
     }),

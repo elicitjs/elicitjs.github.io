@@ -45,6 +45,15 @@ const chart = Elicit({
       { child: "C2", parent: "deep" },
     ],
   },
+  constraints: [
+    constraints.contain({ parent: (d) => d.kind === "row" }),
+  ],
+  layout: [
+    // Rows hold tiles and other rows, left to right, and fit round them.
+    layout.contain({ padding: 8, fit: true }),
+    layout.row({ gap: 6 }),
+    layout.dodge({ in: "roots" }),
+  ],
   marks: [
     rect({
       rx: 5,
@@ -56,10 +65,8 @@ const chart = Elicit({
       channels: {
         x: { field: "x" },
         y: { field: "y" },
-        width: { field: "w", scale: null, fit: true },
-        height: { field: "h", scale: null, fit: true },
-        // Rows hold tiles and other rows, left to right.
-        contains: { fn: (d) => d.kind === "row", padding: 8, arrange: "row", gap: 6 },
+        width: { field: "w", scale: null },
+        height: { field: "h", scale: null },
         fill: { fn: (d) => (d.kind === "row" ? "#EDF7F8" : "#FFFFFF") },
       },
     }),

@@ -38,15 +38,16 @@ const chart = Elicit({
     ],
   },
   constraints: [
-    // A rule about the nesting table: no phase holds more than three tasks.
-    constraints.custom(
-      (ctx) => {
-        const counts = {};
-        for (const row of ctx.data) counts[row.parent] = (counts[row.parent] || 0) + 1;
-        return Object.values(counts).every((n) => n <= 3);
-      },
-      { table: "nesting" }
-    ),
+    // Only phases hold tasks, and each phase holds at most three.
+    constraints.contain({
+      parent: (d) => d.kind === "phase",
+      child: (d) => d.kind === "task",
+      maxChildren: 3,
+    }),
+  ],
+  layout: [
+    layout.contain({ padding: 12, fit: true }),
+    layout.dodge(),
   ],
   marks: [
     rect({
@@ -59,9 +60,8 @@ const chart = Elicit({
       channels: {
         x: { field: "x" },
         y: { field: "y" },
-        width: { field: "w", scale: null, fit: true },
-        height: { field: "h", scale: null, fit: true },
-        contains: { fn: (d) => d.kind === "phase", padding: 12 },
+        width: { field: "w", scale: null },
+        height: { field: "h", scale: null },
         fill: { fn: (d) => (d.kind === "phase" ? "#F9EEEC" : "#F6D5CB") },
       },
     }),

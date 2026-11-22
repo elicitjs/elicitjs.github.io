@@ -35,6 +35,19 @@ const chart = Elicit({
       { child: "n3", parent: "g2" },
     ],
   },
+  constraints: [
+    // Only groups hold other nodes.
+    constraints.contain({ parent: (d) => d.kind === "group" }),
+  ],
+  layout: [
+    // The top side leaves room for the name.
+    layout.contain({
+      padding: { top: 30, right: 12, bottom: 12, left: 12 },
+      fit: true,
+    }),
+    // Overlapping siblings are pushed 10px apart when a drag ends.
+    layout.dodge({ gap: 10 }),
+  ],
   marks: [
     rect({
       rx: 6,
@@ -46,16 +59,8 @@ const chart = Elicit({
       channels: {
         x: { field: "x" },
         y: { field: "y" },
-        // A group's size follows its contents; a note keeps its own.
-        width: { field: "w", scale: null, fit: true },
-        height: { field: "h", scale: null, fit: true },
-        // Only groups hold other nodes. The top side leaves room for the name.
-        contains: {
-          fn: (d) => d.kind === "group",
-          padding: { top: 30, right: 12, bottom: 12, left: 12 },
-        },
-        // Overlapping siblings are pushed 10px apart when a drag ends.
-        dodge: { value: true, gap: 10 },
+        width: { field: "w", scale: null },
+        height: { field: "h", scale: null },
         fill: { fn: (d) => (d.kind === "group" ? "#EDF7F8" : "#EBD6AD") },
       },
     }),

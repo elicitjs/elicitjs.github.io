@@ -56,26 +56,66 @@ export const api: ApiEntry[] = [
     ],
   },
   {
-    name: "channels.contains",
+    name: "constraints.contain(options)",
+    json: ['constraints.contain'],
     summary: (
       <>
-        A channel on the mark that draws the nodes. It says which rows can hold other
-        nodes, and how they arrange them.
+        Pure-data membership rule over a hierarchy&rsquo;s{" "}
+        <code className="inline">nesting</code> table. Gates drops and{" "}
+        <code className="inline">setData</code>.
       </>
     ),
-    signatures: ["contains: true | { value | fn | field, padding, arrange, gap, columns, keep }"],
+    signatures: [
+      "constraints.contain({ parent?, child?, maxDepth?, maxChildren? }) → Constraint",
+    ],
     options: [
       {
-        name: "value | fn | field",
-        type: "boolean",
-        default: "—",
-        desc: (
-          <>
-            <code className="inline">value: true</code> lets every row hold others. Use{" "}
-            <code className="inline">fn</code> or <code className="inline">field</code> to
-            decide per row.
-          </>
-        ),
+        name: "parent",
+        type: "(d, i, rows) => boolean",
+        default: "any node",
+        desc: <>Which rows of the nodes table may hold other nodes.</>,
+      },
+      {
+        name: "child",
+        type: "(d, i, rows) => boolean",
+        default: "any node",
+        desc: <>Which rows of the nodes table may sit inside a container.</>,
+      },
+      {
+        name: "maxDepth",
+        type: "number",
+        default: "∞",
+        desc: <>Maximum nesting depth (top-level nodes are depth 0).</>,
+      },
+      {
+        name: "maxChildren",
+        type: "number",
+        default: "∞",
+        desc: <>Maximum direct children per container.</>,
+      },
+    ],
+  },
+  {
+    name: "mark.contains",
+    json: ['contains'],
+    summary: (
+      <>
+        Shorthand option on any shape mark in a hierarchy. Scopes container eligibility
+        to rows boxed by that mark and configures their{" "}
+        <code className="inline">padding</code> and <code className="inline">fit</code>.
+        Equivalent to <code className="inline">constraints.contain</code> plus{" "}
+        <code className="inline">layout.contain</code> for that mark.
+      </>
+    ),
+    signatures: [
+      "contains: true | ((d, i, rows) => boolean) | { where?, padding?, fit? }",
+    ],
+    options: [
+      {
+        name: "where",
+        type: "(d, i, rows) => boolean",
+        default: "every row the mark boxes",
+        desc: <>Predicate picking which of the mark&rsquo;s rows can hold other nodes.</>,
       },
       {
         name: "padding",
@@ -83,112 +123,21 @@ export const api: ApiEntry[] = [
         default: "10",
         desc: (
           <>
-            The room in px between a container&rsquo;s edge and its contents. A fitted
-            container is sized to leave it. A fixed one keeps its contents inside it.
+            Room in px between a container&rsquo;s edge and its contents.
           </>
         ),
       },
       {
-        name: "arrange",
-        type: '"dodge" | "free" | "row" | "column" | "grid" | "pack"',
-        default: '"dodge"',
+        name: "fit",
+        type: "boolean | 'x' | 'y'",
+        default: "false",
         desc: (
           <>
-            How the contents are placed. <code className="inline">dodge</code> and{" "}
-            <code className="inline">free</code> leave them where you drop them.{" "}
-            <code className="inline">pack</code> draws them together where you drop
-            them: boxes as boxes, round nodes as circles. The others put them in slots, in order: a drag reorders, and a drop
-            takes the nearest slot.
-          </>
-        ),
-      },
-      {
-        name: "gap",
-        type: "number",
-        default: "8",
-        desc: <>The space in px between slots.</>,
-      },
-      {
-        name: "columns",
-        type: "number",
-        default: "as many as fit",
-        desc: (
-          <>
-            Cells to a row, with <code className="inline">arrange: "grid"</code>. A fitted
-            grid with no <code className="inline">columns</code> makes a square.
-          </>
-        ),
-      },
-      {
-        name: "keep",
-        type: '"distance" | "angle"',
-        default: '"distance"',
-        desc: (
-          <>
-            How a dropped node moves in to touch the others, with{" "}
-            <code className="inline">arrange: "pack"</code>.{" "}
-            <code className="inline">distance</code> takes the free spot nearest it.{" "}
-            <code className="inline">angle</code> moves it towards or away from the
-            middle node, keeping its direction from it.
-          </>
-        ),
-      },
-    ],
-  },
-  {
-    name: "channels.dodge",
-    summary: (
-      <>
-        A channel on the mark that draws the nodes. Rows that take part are pushed clear
-        of their siblings when a drag ends and when data is set from outside. Every
-        node takes part until a mark states <code className="inline">dodge</code>.
-      </>
-    ),
-    signatures: ["dodge: false | true | { value | fn | field, gap }"],
-    options: [
-      {
-        name: "value | fn | field",
-        type: "boolean",
-        default: "—",
-        desc: (
-          <>
-            <code className="inline">true</code> is every row and{" "}
-            <code className="inline">false</code> is none. Use{" "}
-            <code className="inline">fn</code> or <code className="inline">field</code> to
-            pick the rows that take part.
-          </>
-        ),
-      },
-      {
-        name: "gap",
-        type: "number",
-        default: "8",
-        desc: <>The space in px two siblings keep between them.</>,
-      },
-    ],
-  },
-  {
-    name: "fit: true",
-    summary: (
-      <>
-        A flag on a size channel. On a row that holds other nodes, the column is set
-        from them.
-      </>
-    ),
-    signatures: ["width: { field, fit: true }"],
-    options: [
-      {
-        name: "channels",
-        type: "width | height | size | rx | ry | x1 | x2 | y1 | y2",
-        default: "—",
-        desc: (
-          <>
-            The channel needs a <code className="inline">field</code>. The fitted value is
-            written to it, so <code className="inline">getData()</code> reports the size
-            that is drawn. The row&rsquo;s <code className="inline">x</code> and{" "}
-            <code className="inline">y</code> follow the centre of its contents. A
-            container that loses its last child returns to the column&rsquo;s schema{" "}
-            <code className="inline">default</code>.
+            Size the container to enclose its contents on both axes (
+            <code className="inline">true</code>), width only (
+            <code className="inline">"x"</code>), height only (
+            <code className="inline">"y"</code>), or keep its given size (
+            <code className="inline">false</code>).
           </>
         ),
       },

@@ -50,6 +50,13 @@ const chart = Elicit({
       { source: "front", target: "back" },
     ],
   },
+  constraints: [
+    constraints.contain({ parent: (d) => d.kind === "system" }),
+  ],
+  layout: [
+    layout.contain({ padding: 16, fit: true }),
+    layout.dodge(),
+  ],
   marks: [
     rect({
       rx: 6,
@@ -61,9 +68,8 @@ const chart = Elicit({
       channels: {
         x: { field: "x" },
         y: { field: "y" },
-        width: { field: "w", scale: null, fit: true },
-        height: { field: "h", scale: null, fit: true },
-        contains: { fn: (d) => d.kind === "system", padding: 16 },
+        width: { field: "w", scale: null },
+        height: { field: "h", scale: null },
         fill: { fn: (d) => (d.kind === "system" ? "#EDF7F8" : "#B2CEE6") },
         // A dot on each edge while you hover: drag from one to another node.
         ports: { value: true, edit: edit.network.connect() },

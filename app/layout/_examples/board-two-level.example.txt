@@ -1,0 +1,76 @@
+const chart = Elicit({
+  width: 560, height: 340,
+  margins: { top: 16, right: 16, bottom: 16, left: 16 },
+  axes: false,
+  schema: {
+    structure: "hierarchy",
+    tables: {
+      nodes: {
+        id: { type: "categorical", key: true, open: true },
+        label: { type: "categorical", open: true },
+        kind: { type: "categorical", domain: ["lane", "card"] },
+        x: { type: "quantitative", domain: [0, 100] },
+        y: { type: "quantitative", domain: [0, 100] },
+        w: { type: "quantitative", domain: [0, 600], default: 150 },
+        h: { type: "quantitative", domain: [0, 600], default: 72 },
+      },
+      nesting: {
+        child: { type: "ref" },
+        parent: { type: "ref" },
+      },
+    },
+  },
+  data: {
+    nodes: [
+      { id: "todo", label: "To do", kind: "lane", x: 18, y: 80, w: 150, h: 72 },
+      { id: "doing", label: "Doing", kind: "lane", x: 50, y: 80, w: 150, h: 72 },
+      { id: "done", label: "Done", kind: "lane", x: 82, y: 80, w: 150, h: 72 },
+      { id: "c1", label: "Write brief", kind: "card", x: 18, y: 78, w: 130, h: 28 },
+      { id: "c2", label: "Recruit", kind: "card", x: 18, y: 66, w: 130, h: 28 },
+      { id: "c3", label: "Pilot", kind: "card", x: 50, y: 78, w: 130, h: 28 },
+      { id: "c4", label: "Ethics", kind: "card", x: 82, y: 78, w: 130, h: 28 },
+    ],
+    nesting: [
+      { child: "c1", parent: "todo" },
+      { child: "c2", parent: "todo" },
+      { child: "c3", parent: "doing" },
+      { child: "c4", parent: "done" },
+    ],
+  },
+  constraints: [
+    constraints.contain({ parent: (d) => d.kind === "lane", child: (d) => d.kind === "card" }),
+  ],
+  layout: [
+    layout.contain({ padding: { top: 30, right: 10, bottom: 10, left: 10 }, fit: "y" }),
+    layout.row({ in: "roots", gap: 16 }),
+    layout.column({ in: (d) => d.kind === "lane", gap: 6 }),
+  ],
+  marks: [
+    rect({
+      rx: 6,
+      stroke: "#46596B",
+      edits: [
+        move({ channels: ["x", "y"], mode: "relative" }),
+        edit.hierarchy.nest(),
+      ],
+      channels: {
+        x: { field: "x" },
+        y: { field: "y" },
+        width: { field: "w", scale: null },
+        height: { field: "h", scale: null },
+        fill: { fn: (d) => (d.kind === "lane" ? "#EDF7F8" : "#FFFFFF") },
+      },
+    }),
+    text({
+      fontSize: 11,
+      fill: "#20555A",
+      channels: {
+        x: { field: "x" },
+        y: { field: "y" },
+        text: { field: "label" },
+        dy: { fn: (d) => (d.kind === "lane" ? -d.h / 2 + 15 : 0) },
+      },
+    }),
+  ],
+});
+mount(chart.dom());

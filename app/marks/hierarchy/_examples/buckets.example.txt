@@ -35,6 +35,14 @@ const chart = Elicit({
     ],
     nesting: [{ child: "c5", parent: "must" }],
   },
+  constraints: [
+    constraints.contain({ parent: (d) => d.kind === "bucket", child: (d) => d.kind === "card" }),
+  ],
+  layout: [
+    // No `fit`: a bucket keeps the size it was given, and cards stay below its name.
+    layout.contain({ padding: { top: 26 } }),
+    layout.dodge(),
+  ],
   marks: [
     rect({
       rx: 6,
@@ -46,11 +54,8 @@ const chart = Elicit({
       channels: {
         x: { field: "x" },
         y: { field: "y" },
-        // No `fit`: a bucket keeps the size it was given.
         width: { field: "w", scale: null },
         height: { field: "h", scale: null },
-        // Cards stay inside the padding, below the bucket's name.
-        contains: { fn: (d) => d.kind === "bucket", padding: { top: 26 } },
         fill: { fn: (d) => (d.kind === "bucket" ? "#EDF7F8" : "#B7DEE1") },
       },
     }),

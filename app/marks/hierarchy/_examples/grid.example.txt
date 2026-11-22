@@ -32,6 +32,14 @@ const chart = Elicit({
     ],
     nesting: ["i0", "i1", "i2", "i3", "i4", "i5", "i6", "i7"].map((child) => ({ child, parent: "keep" })),
   },
+  constraints: [
+    constraints.contain({ parent: (d) => d.kind === "board", child: (d) => d.kind === "item" }),
+  ],
+  layout: [
+    // No `fit`: a board keeps its size. Items fill three cells to a row under its name.
+    layout.contain({ padding: { top: 30, right: 14, bottom: 14, left: 14 } }),
+    layout.grid({ columns: 3, gap: 8 }),
+  ],
   marks: [
     rect({
       rx: 6,
@@ -43,17 +51,8 @@ const chart = Elicit({
       channels: {
         x: { field: "x" },
         y: { field: "y" },
-        // No `fit`: a board keeps its size.
         width: { field: "w", scale: null },
         height: { field: "h", scale: null },
-        // Items fill three cells to a row, under the board's name.
-        contains: {
-          fn: (d) => d.kind === "board",
-          padding: { top: 30, right: 14, bottom: 14, left: 14 },
-          arrange: "grid",
-          columns: 3,
-          gap: 8,
-        },
         fill: { fn: (d) => (d.kind === "board" ? "#EDF7F8" : "#FFFFFF") },
       },
     }),

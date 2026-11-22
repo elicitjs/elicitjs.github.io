@@ -40,6 +40,14 @@ const chart = Elicit({
       { child: "f", parent: "unlikely" },
     ],
   },
+  constraints: [
+    constraints.contain({ parent: (d) => d.kind === "set", child: (d) => d.kind === "item" }),
+  ],
+  layout: [
+    // Items gather where they are dropped; the set encloses them.
+    layout.contain({ padding: 6, fit: true }),
+    layout.pack({ gap: 3 }),
+  ],
   marks: [
     point({
       stroke: "#46596B",
@@ -50,9 +58,7 @@ const chart = Elicit({
       channels: {
         x: { field: "x" },
         y: { field: "y" },
-        size: { field: "r", scale: null, fit: true },
-        // Items gather where they are dropped; the set encloses them.
-        contains: { fn: (d) => d.kind === "set", padding: 6, arrange: "pack", gap: 3 },
+        size: { field: "r", scale: null },
         fill: { fn: (d) => (d.kind === "set" ? "#EDF7F8" : "#C3B9DF") },
       },
     }),

@@ -1,0 +1,47 @@
+const chart = Elicit({
+  width: 520, height: 300,
+  margins: { top: 16, right: 16, bottom: 16, left: 16 },
+  axes: false,
+  schema: {
+    id: { type: "categorical", key: true },
+    label: { type: "categorical", open: true },
+    x: { type: "quantitative", domain: [0, 100] },
+    y: { type: "quantitative", domain: [0, 100] },
+    w: { type: "quantitative", domain: [0, 400] },
+    h: { type: "quantitative", domain: [0, 200] },
+  },
+  data: [
+    { id: "a", label: "Clarity", x: 25, y: 65, w: 96, h: 32 },
+    { id: "b", label: "Speed", x: 50, y: 65, w: 96, h: 32 },
+    { id: "c", label: "Cost", x: 75, y: 65, w: 96, h: 32 },
+    { id: "d", label: "Safety", x: 35, y: 32, w: 96, h: 32 },
+    { id: "e", label: "Trust", x: 65, y: 32, w: 96, h: 32 },
+  ],
+  layout: [
+    layout.dodge({ gap: 10 }),
+  ],
+  marks: [
+    rect({
+      rx: 6,
+      fill: "#EDF7F8",
+      stroke: "#46596B",
+      edits: [move({ channels: ["x", "y"], mode: "relative" })],
+      channels: {
+        x: { field: "x" },
+        y: { field: "y" },
+        width: { field: "w", scale: null },
+        height: { field: "h", scale: null },
+      },
+    }),
+    text({
+      fontSize: 11,
+      fill: "#20555A",
+      channels: {
+        x: { field: "x" },
+        y: { field: "y" },
+        text: { field: "label" },
+      },
+    }),
+  ],
+});
+mount(chart.dom());

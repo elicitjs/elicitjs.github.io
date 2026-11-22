@@ -16,7 +16,7 @@ export type ApiIndexEntry = {
 export type ApiNamespace = { namespace: string; blurb: string; count: number };
 
 export const API_LIBRARY_VERSION = "0.2.0-alpha.0";
-export const API_GENERATED_AT = "2026-11-20T20:54:15.659Z";
+export const API_GENERATED_AT = "2026-11-20T23:30:57.791Z";
 export const API_NAMESPACES: ApiNamespace[] = [
   {
     "namespace": "plot",
@@ -36,7 +36,12 @@ export const API_NAMESPACES: ApiNamespace[] = [
   {
     "namespace": "constraints",
     "blurb": "Constraints are rules over the dataset. Each one rejects or repairs every edit.",
-    "count": 11
+    "count": 12
+  },
+  {
+    "namespace": "layout",
+    "blurb": "Layouts arrange and space marks in pixel space after each edit, writing the settled boxes back to the data.",
+    "count": 7
   },
   {
     "namespace": "guides",
@@ -146,7 +151,8 @@ export const API_INDEX: ApiIndexEntry[] = [
       "table",
       "tip",
       "clip",
-      "motion"
+      "motion",
+      "contains"
     ],
     "docs": "/marks/arc"
   },
@@ -172,7 +178,8 @@ export const API_INDEX: ApiIndexEntry[] = [
       "table",
       "tip",
       "clip",
-      "motion"
+      "motion",
+      "contains"
     ],
     "docs": "/marks/area"
   },
@@ -190,7 +197,8 @@ export const API_INDEX: ApiIndexEntry[] = [
       "table",
       "tip",
       "clip",
-      "motion"
+      "motion",
+      "contains"
     ],
     "docs": "/marks/area"
   },
@@ -208,7 +216,8 @@ export const API_INDEX: ApiIndexEntry[] = [
       "table",
       "tip",
       "clip",
-      "motion"
+      "motion",
+      "contains"
     ],
     "docs": "/marks/area"
   },
@@ -233,7 +242,8 @@ export const API_INDEX: ApiIndexEntry[] = [
       "table",
       "tip",
       "clip",
-      "motion"
+      "motion",
+      "contains"
     ],
     "docs": "/marks/bar"
   },
@@ -251,7 +261,8 @@ export const API_INDEX: ApiIndexEntry[] = [
       "table",
       "tip",
       "clip",
-      "motion"
+      "motion",
+      "contains"
     ],
     "docs": "/marks/bar"
   },
@@ -269,7 +280,8 @@ export const API_INDEX: ApiIndexEntry[] = [
       "table",
       "tip",
       "clip",
-      "motion"
+      "motion",
+      "contains"
     ],
     "docs": "/marks/bar"
   },
@@ -290,7 +302,8 @@ export const API_INDEX: ApiIndexEntry[] = [
       "table",
       "tip",
       "clip",
-      "motion"
+      "motion",
+      "contains"
     ],
     "docs": "/marks/composite"
   },
@@ -311,7 +324,8 @@ export const API_INDEX: ApiIndexEntry[] = [
       "table",
       "tip",
       "clip",
-      "motion"
+      "motion",
+      "contains"
     ],
     "docs": "/marks/curve"
   },
@@ -329,7 +343,8 @@ export const API_INDEX: ApiIndexEntry[] = [
       "table",
       "tip",
       "clip",
-      "motion"
+      "motion",
+      "contains"
     ],
     "docs": "/marks/curve"
   },
@@ -347,7 +362,8 @@ export const API_INDEX: ApiIndexEntry[] = [
       "table",
       "tip",
       "clip",
-      "motion"
+      "motion",
+      "contains"
     ],
     "docs": "/marks/curve"
   },
@@ -365,7 +381,8 @@ export const API_INDEX: ApiIndexEntry[] = [
       "table",
       "tip",
       "clip",
-      "motion"
+      "motion",
+      "contains"
     ],
     "docs": "/marks/arc"
   },
@@ -388,7 +405,8 @@ export const API_INDEX: ApiIndexEntry[] = [
       "table",
       "tip",
       "clip",
-      "motion"
+      "motion",
+      "contains"
     ],
     "docs": "/marks/dotstack"
   },
@@ -406,7 +424,8 @@ export const API_INDEX: ApiIndexEntry[] = [
       "table",
       "tip",
       "clip",
-      "motion"
+      "motion",
+      "contains"
     ],
     "docs": "/marks/dotstack"
   },
@@ -424,7 +443,8 @@ export const API_INDEX: ApiIndexEntry[] = [
       "table",
       "tip",
       "clip",
-      "motion"
+      "motion",
+      "contains"
     ],
     "docs": "/marks/dotstack"
   },
@@ -442,7 +462,8 @@ export const API_INDEX: ApiIndexEntry[] = [
       "table",
       "tip",
       "clip",
-      "motion"
+      "motion",
+      "contains"
     ],
     "docs": "/marks/ellipse"
   },
@@ -462,7 +483,8 @@ export const API_INDEX: ApiIndexEntry[] = [
       "table",
       "tip",
       "clip",
-      "motion"
+      "motion",
+      "contains"
     ],
     "docs": "/marks/face"
   },
@@ -485,7 +507,8 @@ export const API_INDEX: ApiIndexEntry[] = [
       "table",
       "tip",
       "clip",
-      "motion"
+      "motion",
+      "contains"
     ],
     "docs": "/marks/geo"
   },
@@ -510,7 +533,8 @@ export const API_INDEX: ApiIndexEntry[] = [
       "table",
       "tip",
       "clip",
-      "motion"
+      "motion",
+      "contains"
     ],
     "docs": "/marks/geo"
   },
@@ -528,7 +552,8 @@ export const API_INDEX: ApiIndexEntry[] = [
       "table",
       "tip",
       "clip",
-      "motion"
+      "motion",
+      "contains"
     ],
     "docs": "/marks/geo"
   },
@@ -546,7 +571,8 @@ export const API_INDEX: ApiIndexEntry[] = [
       "table",
       "tip",
       "clip",
-      "motion"
+      "motion",
+      "contains"
     ],
     "docs": "/marks/geo"
   },
@@ -564,7 +590,8 @@ export const API_INDEX: ApiIndexEntry[] = [
       "table",
       "tip",
       "clip",
-      "motion"
+      "motion",
+      "contains"
     ],
     "docs": "/marks/geo"
   },
@@ -584,7 +611,8 @@ export const API_INDEX: ApiIndexEntry[] = [
       "table",
       "tip",
       "clip",
-      "motion"
+      "motion",
+      "contains"
     ],
     "docs": "/marks/geo"
   },
@@ -612,7 +640,8 @@ export const API_INDEX: ApiIndexEntry[] = [
       "table",
       "tip",
       "clip",
-      "motion"
+      "motion",
+      "contains"
     ],
     "docs": "/marks/geo"
   },
@@ -630,7 +659,8 @@ export const API_INDEX: ApiIndexEntry[] = [
       "table",
       "tip",
       "clip",
-      "motion"
+      "motion",
+      "contains"
     ],
     "docs": "/marks/image"
   },
@@ -655,7 +685,8 @@ export const API_INDEX: ApiIndexEntry[] = [
       "table",
       "tip",
       "clip",
-      "motion"
+      "motion",
+      "contains"
     ],
     "docs": "/marks/line"
   },
@@ -673,7 +704,8 @@ export const API_INDEX: ApiIndexEntry[] = [
       "table",
       "tip",
       "clip",
-      "motion"
+      "motion",
+      "contains"
     ],
     "docs": "/marks/line"
   },
@@ -691,7 +723,8 @@ export const API_INDEX: ApiIndexEntry[] = [
       "table",
       "tip",
       "clip",
-      "motion"
+      "motion",
+      "contains"
     ],
     "docs": "/marks/line"
   },
@@ -732,7 +765,8 @@ export const API_INDEX: ApiIndexEntry[] = [
       "table",
       "tip",
       "clip",
-      "motion"
+      "motion",
+      "contains"
     ],
     "docs": "/marks/network"
   },
@@ -757,7 +791,8 @@ export const API_INDEX: ApiIndexEntry[] = [
       "table",
       "tip",
       "clip",
-      "motion"
+      "motion",
+      "contains"
     ],
     "docs": "/marks/needle"
   },
@@ -779,7 +814,8 @@ export const API_INDEX: ApiIndexEntry[] = [
       "table",
       "tip",
       "clip",
-      "motion"
+      "motion",
+      "contains"
     ],
     "docs": "/marks/network"
   },
@@ -797,7 +833,8 @@ export const API_INDEX: ApiIndexEntry[] = [
       "table",
       "tip",
       "clip",
-      "motion"
+      "motion",
+      "contains"
     ],
     "docs": "/marks/line"
   },
@@ -817,7 +854,8 @@ export const API_INDEX: ApiIndexEntry[] = [
       "table",
       "tip",
       "clip",
-      "motion"
+      "motion",
+      "contains"
     ],
     "docs": "/marks/point"
   },
@@ -841,7 +879,8 @@ export const API_INDEX: ApiIndexEntry[] = [
       "table",
       "tip",
       "clip",
-      "motion"
+      "motion",
+      "contains"
     ],
     "docs": "/marks/rect"
   },
@@ -859,7 +898,8 @@ export const API_INDEX: ApiIndexEntry[] = [
       "table",
       "tip",
       "clip",
-      "motion"
+      "motion",
+      "contains"
     ],
     "docs": "/marks/rect"
   },
@@ -877,7 +917,8 @@ export const API_INDEX: ApiIndexEntry[] = [
       "table",
       "tip",
       "clip",
-      "motion"
+      "motion",
+      "contains"
     ],
     "docs": "/marks/rect"
   },
@@ -898,7 +939,8 @@ export const API_INDEX: ApiIndexEntry[] = [
       "table",
       "tip",
       "clip",
-      "motion"
+      "motion",
+      "contains"
     ],
     "docs": "/marks/axes"
   },
@@ -916,7 +958,8 @@ export const API_INDEX: ApiIndexEntry[] = [
       "table",
       "tip",
       "clip",
-      "motion"
+      "motion",
+      "contains"
     ],
     "docs": "/marks/axes"
   },
@@ -934,7 +977,8 @@ export const API_INDEX: ApiIndexEntry[] = [
       "table",
       "tip",
       "clip",
-      "motion"
+      "motion",
+      "contains"
     ],
     "docs": "/marks/axes"
   },
@@ -954,7 +998,8 @@ export const API_INDEX: ApiIndexEntry[] = [
       "table",
       "tip",
       "clip",
-      "motion"
+      "motion",
+      "contains"
     ],
     "docs": "/marks/shape"
   },
@@ -980,7 +1025,8 @@ export const API_INDEX: ApiIndexEntry[] = [
       "table",
       "tip",
       "clip",
-      "motion"
+      "motion",
+      "contains"
     ],
     "docs": "/marks/sticker"
   },
@@ -1003,7 +1049,8 @@ export const API_INDEX: ApiIndexEntry[] = [
       "table",
       "tip",
       "clip",
-      "motion"
+      "motion",
+      "contains"
     ],
     "docs": "/marks/text"
   },
@@ -1021,7 +1068,8 @@ export const API_INDEX: ApiIndexEntry[] = [
       "table",
       "tip",
       "clip",
-      "motion"
+      "motion",
+      "contains"
     ],
     "docs": "/marks/text"
   },
@@ -1039,7 +1087,8 @@ export const API_INDEX: ApiIndexEntry[] = [
       "table",
       "tip",
       "clip",
-      "motion"
+      "motion",
+      "contains"
     ],
     "docs": "/marks/text"
   },
@@ -1061,7 +1110,8 @@ export const API_INDEX: ApiIndexEntry[] = [
       "table",
       "tip",
       "clip",
-      "motion"
+      "motion",
+      "contains"
     ],
     "docs": "/marks/tick"
   },
@@ -1079,7 +1129,8 @@ export const API_INDEX: ApiIndexEntry[] = [
       "table",
       "tip",
       "clip",
-      "motion"
+      "motion",
+      "contains"
     ],
     "docs": "/marks/tick"
   },
@@ -1097,7 +1148,8 @@ export const API_INDEX: ApiIndexEntry[] = [
       "table",
       "tip",
       "clip",
-      "motion"
+      "motion",
+      "contains"
     ],
     "docs": "/marks/tick"
   },
@@ -1122,7 +1174,8 @@ export const API_INDEX: ApiIndexEntry[] = [
       "table",
       "tip",
       "clip",
-      "motion"
+      "motion",
+      "contains"
     ],
     "docs": "/marks/trend"
   },
@@ -1153,7 +1206,8 @@ export const API_INDEX: ApiIndexEntry[] = [
       "table",
       "tip",
       "clip",
-      "motion"
+      "motion",
+      "contains"
     ],
     "docs": "/marks/trend"
   },
@@ -1179,7 +1233,8 @@ export const API_INDEX: ApiIndexEntry[] = [
       "table",
       "tip",
       "clip",
-      "motion"
+      "motion",
+      "contains"
     ],
     "docs": "/marks/waffle"
   },
@@ -1197,7 +1252,8 @@ export const API_INDEX: ApiIndexEntry[] = [
       "table",
       "tip",
       "clip",
-      "motion"
+      "motion",
+      "contains"
     ],
     "docs": "/marks/waffle"
   },
@@ -1215,7 +1271,8 @@ export const API_INDEX: ApiIndexEntry[] = [
       "table",
       "tip",
       "clip",
-      "motion"
+      "motion",
+      "contains"
     ],
     "docs": "/marks/waffle"
   },
@@ -3655,6 +3712,21 @@ export const API_INDEX: ApiIndexEntry[] = [
   {
     "namespace": "constraints",
     "group": "constraints",
+    "name": "contain",
+    "qualified": "constraints.contain",
+    "call": "constraints.contain(options)",
+    "own": [
+      "parent",
+      "child",
+      "maxDepth",
+      "maxChildren"
+    ],
+    "universal": [],
+    "docs": "/marks/hierarchy"
+  },
+  {
+    "namespace": "constraints",
+    "group": "constraints",
     "name": "count",
     "qualified": "constraints.count",
     "call": "constraints.count(options)",
@@ -3784,6 +3856,112 @@ export const API_INDEX: ApiIndexEntry[] = [
     ],
     "universal": [],
     "docs": "/constraints"
+  },
+  {
+    "namespace": "layout",
+    "group": "layout",
+    "name": "column",
+    "qualified": "layout.column",
+    "call": "layout.column(options)",
+    "own": [
+      "gap",
+      "in"
+    ],
+    "universal": [
+      "table"
+    ],
+    "docs": "/layout"
+  },
+  {
+    "namespace": "layout",
+    "group": "layout",
+    "name": "contain",
+    "qualified": "layout.contain",
+    "call": "layout.contain(options)",
+    "own": [
+      "where",
+      "padding",
+      "fit"
+    ],
+    "universal": [
+      "table"
+    ],
+    "docs": "/layout"
+  },
+  {
+    "namespace": "layout",
+    "group": "layout",
+    "name": "custom",
+    "qualified": "layout.custom",
+    "call": "layout.custom(options)",
+    "own": [],
+    "universal": [
+      "table"
+    ],
+    "docs": "/layout"
+  },
+  {
+    "namespace": "layout",
+    "group": "layout",
+    "name": "dodge",
+    "qualified": "layout.dodge",
+    "call": "layout.dodge(options)",
+    "own": [
+      "gap",
+      "where",
+      "in"
+    ],
+    "universal": [
+      "table"
+    ],
+    "docs": "/layout"
+  },
+  {
+    "namespace": "layout",
+    "group": "layout",
+    "name": "grid",
+    "qualified": "layout.grid",
+    "call": "layout.grid(options)",
+    "own": [
+      "columns",
+      "gap",
+      "in"
+    ],
+    "universal": [
+      "table"
+    ],
+    "docs": "/layout"
+  },
+  {
+    "namespace": "layout",
+    "group": "layout",
+    "name": "pack",
+    "qualified": "layout.pack",
+    "call": "layout.pack(options)",
+    "own": [
+      "gap",
+      "keep",
+      "in"
+    ],
+    "universal": [
+      "table"
+    ],
+    "docs": "/layout"
+  },
+  {
+    "namespace": "layout",
+    "group": "layout",
+    "name": "row",
+    "qualified": "layout.row",
+    "call": "layout.row(options)",
+    "own": [
+      "gap",
+      "in"
+    ],
+    "universal": [
+      "table"
+    ],
+    "docs": "/layout"
   },
   {
     "namespace": "guides",

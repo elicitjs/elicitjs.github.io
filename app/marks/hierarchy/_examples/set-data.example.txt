@@ -32,6 +32,13 @@ const el = Elicit({
       { child: "n2", parent: "g1" },
     ],
   },
+  constraints: [
+    constraints.contain({ parent: (d) => d.kind === "group" }),
+  ],
+  layout: [
+    layout.contain({ padding: 12, fit: true }),
+    layout.dodge(),
+  ],
   marks: [
     rect({
       rx: 6,
@@ -43,9 +50,8 @@ const el = Elicit({
       channels: {
         x: { field: "x" },
         y: { field: "y" },
-        width: { field: "w", scale: null, fit: true },
-        height: { field: "h", scale: null, fit: true },
-        contains: { fn: (d) => d.kind === "group", padding: 12 },
+        width: { field: "w", scale: null },
+        height: { field: "h", scale: null },
         fill: { fn: (d) => (d.kind === "group" ? "#EDF7F8" : "#C2DEBA") },
       },
     }),
