@@ -1,0 +1,61 @@
+import { DocShell } from '../../../components/DocShell';
+import { ApiReference } from '../../../components/ApiReference';
+import { Section } from '../../../components/Section';
+import { Example } from '../../../components/Example';
+import { Lead } from '../../../components/Lead';
+import { api } from './api';
+
+import progressRings from './_examples/progress-rings.example.txt';
+import joins from './_examples/joins.example.txt';
+
+export default function Layout({ children }) {
+  return <DocShell>{children}</DocShell>;
+}
+
+# Track
+
+<Lead>`track()` draws a value as a length along a route: a bar that wraps, coils or curls round a circle. The route is the `path` option, an SVG path. The `length` channel is how much of it is drawn, and `move()` on `length` drags the end of the bar along the route.</Lead>
+
+<ApiReference entries={api} />
+
+<Section id="route" title="A route for every row">
+
+The schema's domain spans the whole route: the domain's maximum draws all of it, and half of it draws half. Rows read on one scale when every row's route is the same length.
+
+`path` is in plot pixels. A function of the row, `(d, i, data) => string`, gives each row its own route. When `x`, `y` or `size` is bound, the path is in unit form and placed the way [`shape`](/marks/shape) places one: centred at `x`/`y`, fitted to a box of radius `size`, turned by `angle`. One path then draws a route for every row.
+
+`move()` puts the end of the bar at the point of the route nearest the pointer. You can press anywhere on the route, even where no bar is drawn, so a bar at zero can still be grabbed. During a drag the end follows the route from where it was, so it doesn't jump to a part of the route that only passes close by. `slide()` on `length` also works: it adds to the value as you drag along one axis.
+
+<Example
+  code={progressRings}
+  title="Project progress"
+  blurb="One circular path, placed per row by x and size. move() on length writes done."
+  try={(
+    <>
+      <b>Drag the end of a ring</b> round its circle · <b>press</b> anywhere on a grey circle to jump the ring there.
+    </>
+  )}
+/>
+
+</Section>
+
+<Section id="lanes" title="Lanes and joins">
+
+Each `M` in the path starts a **lane**. Only lanes hold value, so the gap from one lane to the next adds nothing to the length. `join` draws what connects them: `"round"` turns through a curve that leaves along one lane and arrives along the next, so two lanes running opposite ways get a half circle. `"straight"` draws a line across the gap. `"none"` (the default) leaves it empty. A join is drawn once the bar reaches the next lane.
+
+A route with one lane, such as a coil with square corners, needs no `join`: every pixel of it holds value.
+
+<Example
+  code={joins}
+  title="Three joins"
+  blurb="Three charts over one dataset. Each draws the same value along the same three lanes, with a different join."
+  try={(
+    <>
+      <b>Drag the end of any bar</b> round a turn · the other two charts follow.
+    </>
+  )}
+/>
+
+[Du Bois's wrapped bars](/case-studies/du-bois) builds wrapped bars, a coil and a spiral with `track`.
+
+</Section>

@@ -16,12 +16,12 @@ export type ApiIndexEntry = {
 export type ApiNamespace = { namespace: string; blurb: string; count: number };
 
 export const API_LIBRARY_VERSION = "0.2.0-alpha.0";
-export const API_GENERATED_AT = "2026-11-20T23:30:57.791Z";
+export const API_GENERATED_AT = "2026-11-22T00:44:43.873Z";
 export const API_NAMESPACES: ApiNamespace[] = [
   {
     "namespace": "plot",
     "blurb": "Marks draw the rows of your dataset.",
-    "count": 52
+    "count": 53
   },
   {
     "namespace": "elements",
@@ -1152,6 +1152,28 @@ export const API_INDEX: ApiIndexEntry[] = [
       "contains"
     ],
     "docs": "/marks/tick"
+  },
+  {
+    "namespace": "plot",
+    "group": "plot",
+    "name": "track",
+    "qualified": "plot.track",
+    "call": "plot.track(options)",
+    "own": [
+      "path",
+      "join"
+    ],
+    "universal": [
+      "channels",
+      "id",
+      "edits",
+      "table",
+      "tip",
+      "clip",
+      "motion",
+      "contains"
+    ],
+    "docs": "/marks/track"
   },
   {
     "namespace": "plot",

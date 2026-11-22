@@ -1,12 +1,12 @@
-// ── This chart's track: a bar that wraps at a threshold ─────────────────
-// The track is in data units: X is the value, Y is a level (one per row).
-// A bar runs right to THRESH, steps down, runs back left to WRAP * THRESH,
-// steps down, and so on. The steps hold no value.
+// ── This chart's route: a bar that wraps at a threshold ─────────────────
+// In data units, X is the value and Y is a level (one per row). A bar runs
+// right to THRESH, steps down, runs back left to WRAP * THRESH, steps down,
+// and so on. Each `M` starts a lane; the steps between lanes hold no value.
 const THRESH = 1500, WRAP = 0, MAX = 6000;
 const LANE = (1 - WRAP) * THRESH;   // what each lane after the first holds
 const STEP = 0.3;                   // how far down a wrap steps, in levels
 
-// Two linear scales map the track to pixels: x from [0, THRESH], y one row per level.
+// Two linear scales map the route to pixels: x from [0, THRESH], y one row per level.
 const X0 = 70, W = 470, TOP = 30, ROW = 36;
 const x = (v) => X0 + (v / THRESH) * W;
 const y = (level) => TOP + level * ROW;
@@ -18,32 +18,17 @@ const wraps = (v) => (v > THRESH ? Math.ceil((v - THRESH) / LANE - 1e-9) : 0);
 const levelOf = (i, rows) =>
   rows.slice(0, i).reduce((level, d) => level + 1 + STEP * wraps(d.value), 0);
 
-// The longest bar the row allows, in data units, then mapped to pixels.
-function trackOf(i, rows) {
-  let level = levelOf(i, rows), end = THRESH, held = THRESH;
-  const points = [[0, level], [THRESH, level]];
+// The longest bar a row allows, as one lane per `M`. It holds MAX.
+function routeOf(i, rows) {
+  let level = levelOf(i, rows), from = 0, to = THRESH, held = THRESH;
+  let d = `M${x(from)},${y(level)}L${x(to)},${y(level)}`;
   while (held < MAX) {
     level += STEP;
-    points.push([end, level, true]);            // the step down holds no value
-    end = end === THRESH ? WRAP * THRESH : THRESH;
-    points.push([end, level]);
+    [from, to] = [to, to === THRESH ? WRAP * THRESH : THRESH];
+    d += `M${x(from)},${y(level)}L${x(to)},${y(level)}`;
     held += LANE;
   }
-  return toPixels(points);
-}
-
-// Maps each point through x and y. A step down becomes a half circle that
-// bulges outward: right at THRESH, left at WRAP * THRESH.
-function toPixels(points) {
-  const r = (STEP * ROW) / 2;
-  return points.flatMap(([v, level, turn]) => {
-    if (!turn) return [[x(v), y(level)]];
-    const side = v === THRESH ? 1 : -1, top = y(level) - 2 * r;
-    return Array.from({ length: 8 }, (_, a) => {
-      const t = ((a + 1) / 8) * Math.PI;
-      return [x(v) + side * r * Math.sin(t), top + r - r * Math.cos(t), true];
-    });
-  });
+  return d;
 }
 
 // The x axis over [0, THRESH].
@@ -69,9 +54,14 @@ const chart = Elicit({
   constraints: [snap({ step: 1 })],
   guides: [xAxis],
   marks: [
-    ...foldedBar({
-      trackOf, field: "value", per: W / THRESH, groove: W, travel: 480,
-      stroke: { field: "value", scale: { range: ["teal", "red"] } }, width: 7,
+    track({
+      path: (d, i, rows) => routeOf(i, rows),
+      join: "round",
+      channels: {
+        length: { field: "value", edit: move() },
+        stroke: { field: "value", scale: { range: ["teal", "red"] } },
+        strokeWidth: { value: 7 },
+      },
     }),
     text({ channels: {
       x: { value: X0 - 16 }, y: { fn: (d, i, rows) => y(levelOf(i, rows)) },
@@ -86,58 +76,3 @@ const chart = Elicit({
   ],
 });
 mount(chart.dom());
-
-// ── Helpers: a bar laid along a track (the same on every chart of this page) ──
-// A track is the bar's centre line as [x, y, turn] points, in pixels. A step
-// marked `turn` joins two lanes and holds no value.
-
-// The first `len` pixels of a track, counting lanes only.
-function along(track, len) {
-  const out = [track[0]];
-  let left = len;
-  for (let k = 1; k < track.length && left > 1e-6; k++) {
-    const [x0, y0] = track[k - 1], [x1, y1, turn] = track[k];
-    if (turn) { out.push(track[k]); continue; }
-    const step = Math.hypot(x1 - x0, y1 - y0);
-    const t = Math.min(1, left / step);
-    out.push([x0 + (x1 - x0) * t, y0 + (y1 - y0) * t]);
-    left -= step;
-  }
-  return out;
-}
-
-// A `shape` fits its path to a box, so the path states its own centre and half-size.
-function pathOf(points) {
-  const xs = points.map((q) => q[0]), ys = points.map((q) => q[1]);
-  const [x0, x1, y0, y1] = [Math.min(...xs), Math.max(...xs), Math.min(...ys), Math.max(...ys)];
-  return {
-    d: "M" + points.map((q) => `${q[0].toFixed(1)},${q[1].toFixed(1)}`).join("L"),
-    x: (x0 + x1) / 2, y: (y0 + y1) / 2, size: Math.max(x1 - x0, y1 - y0) / 2,
-  };
-}
-
-// Two shapes over the rows: a faint groove `groove` pixels long, and the bar,
-// `per` pixels to a unit of `field`. Both draw from `field`. The `length`
-// channel carries the edit: a `slide` that adds to `field` as you drag down,
-// its whole domain over `travel` pixels. The groove takes the same slide, so a
-// bar at zero can still be grabbed.
-function foldedBar({ trackOf, field, per, groove, travel, stroke, width }) {
-  const length = { field, edit: slide({ axis: "y", increase: "down", extent: travel }) };
-  const line = (lengthOf, opacity) => {
-    const at = (d, i, rows) => pathOf(along(trackOf(i, rows), lengthOf(d, i)));
-    return shape({
-      path: (d, i, rows) => at(d, i, rows).d,
-      channels: {
-        x: { fn: (d, i, rows) => at(d, i, rows).x },
-        y: { fn: (d, i, rows) => at(d, i, rows).y },
-        size: { fn: (d, i, rows) => at(d, i, rows).size },
-        fill: { value: "none" }, strokeWidth: { value: width }, opacity: { value: opacity },
-        stroke, length,
-      },
-    });
-  };
-  return [
-    line((d, i) => (typeof groove === "function" ? groove(i) : groove), 0.12),
-    line((d) => d[field] * per, 1),
-  ];
-}

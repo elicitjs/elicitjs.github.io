@@ -1,0 +1,32 @@
+// One value, drawn three ways. Each chart takes the same route, three lanes
+// with one `M` each, and a different `join` for what connects them.
+const route = "M110,20L410,20 M410,42L110,42 M110,64L410,64";
+
+const ds = Elicit.dataset({
+  schema: { value: { type: "quantitative", domain: [0, 90] } },
+  data: [{ value: 50 }],
+  constraints: [snap({ step: 1 })],
+});
+
+for (const join of ["round", "straight", "none"]) {
+  const chart = ds.chart({
+    width: 460, height: 90,
+    margins: { top: 0, right: 0, bottom: 0, left: 0 },
+    axes: false,
+    marks: [
+      track({
+        path: route,
+        join,
+        channels: {
+          length: { field: "value", edit: move() },
+          stroke: { value: "#50AEB7" }, strokeWidth: { value: 8 },
+        },
+      }),
+      text({ channels: {
+        x: { value: 20 }, y: { value: 42 },
+        text: { value: `join: "${join}"` }, textAnchor: { value: "start" }, fontSize: { value: 12 },
+      } }),
+    ],
+  });
+  mount(chart.dom());
+}

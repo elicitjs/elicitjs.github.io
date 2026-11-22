@@ -35,6 +35,7 @@ export const SITE: NavGroup[] = [
       { href: "/marks/text", title: "Text" },
       { href: "/marks/symbol", title: "Symbol & Emoji" },
       { href: "/marks/shape", title: "Shape (pictograms)" },
+      { href: "/marks/track", title: "Track (length along a route)" },
       { href: "/marks/image", title: "Image" },
       { href: "/marks/ellipse", title: "Ellipse" },
       { href: "/marks/curve", title: "Curve" },

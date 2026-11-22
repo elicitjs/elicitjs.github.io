@@ -1,21 +1,21 @@
-// ── This chart's track: a square coil ───────────────────────────────────
+// ── This chart's route: a square coil ───────────────────────────────────
 // Right along the bottom, up, back left, down, and inward, a step at a time.
+// One lane: the corners are part of it, so every pixel of the coil holds value.
 const START = 130, W = 440, H = 140, STEP = 30;
-const PER = 1420 / 2659460;      // pixels per person
 const baseY = (i) => 160 + i * 180;
 
-function trackOf(i) {
+function routeOf(i) {
   const dirs = [[1, 0], [0, -1], [-1, 0], [0, 1]];
   let [x, y] = [START, baseY(i)];
-  const points = [[x, y]];
+  let d = `M${x},${y}`;
   for (let k = 0; ; k++) {
     const len = k % 2 === 0 ? W - (k / 2) * STEP : H - ((k - 1) / 2) * STEP;
     if (len <= STEP) break;
     x += dirs[k % 4][0] * len;
     y += dirs[k % 4][1] * len;
-    points.push([x, y]);
+    d += `L${x},${y}`;
   }
-  return points;
+  return d;
 }
 
 const COLOURS = ["#c8243b", "#1f7a45"];
@@ -35,9 +35,12 @@ const chart = Elicit({
   },
   constraints: [snap({ step: 1 })],
   marks: [
-    ...foldedBar({
-      trackOf, field: "members", per: PER, groove: W, travel: 500,
-      stroke: { fn: (d, i) => COLOURS[i] }, width: 20,
+    track({
+      path: (d, i) => routeOf(i),
+      channels: {
+        length: { field: "members", edit: move() },
+        stroke: { fn: (d, i) => COLOURS[i] }, strokeWidth: { value: 20 },
+      },
     }),
     text({ channels: {
       x: { value: 14 }, y: { fn: (d, i) => baseY(i) },
@@ -52,58 +55,3 @@ const chart = Elicit({
   ],
 });
 mount(chart.dom());
-
-// ── Helpers: a bar laid along a track (the same on every chart of this page) ──
-// A track is the bar's centre line as [x, y, turn] points, in pixels. A step
-// marked `turn` joins two lanes and holds no value.
-
-// The first `len` pixels of a track, counting lanes only.
-function along(track, len) {
-  const out = [track[0]];
-  let left = len;
-  for (let k = 1; k < track.length && left > 1e-6; k++) {
-    const [x0, y0] = track[k - 1], [x1, y1, turn] = track[k];
-    if (turn) { out.push(track[k]); continue; }
-    const step = Math.hypot(x1 - x0, y1 - y0);
-    const t = Math.min(1, left / step);
-    out.push([x0 + (x1 - x0) * t, y0 + (y1 - y0) * t]);
-    left -= step;
-  }
-  return out;
-}
-
-// A `shape` fits its path to a box, so the path states its own centre and half-size.
-function pathOf(points) {
-  const xs = points.map((q) => q[0]), ys = points.map((q) => q[1]);
-  const [x0, x1, y0, y1] = [Math.min(...xs), Math.max(...xs), Math.min(...ys), Math.max(...ys)];
-  return {
-    d: "M" + points.map((q) => `${q[0].toFixed(1)},${q[1].toFixed(1)}`).join("L"),
-    x: (x0 + x1) / 2, y: (y0 + y1) / 2, size: Math.max(x1 - x0, y1 - y0) / 2,
-  };
-}
-
-// Two shapes over the rows: a faint groove `groove` pixels long, and the bar,
-// `per` pixels to a unit of `field`. Both draw from `field`. The `length`
-// channel carries the edit: a `slide` that adds to `field` as you drag down,
-// its whole domain over `travel` pixels. The groove takes the same slide, so a
-// bar at zero can still be grabbed.
-function foldedBar({ trackOf, field, per, groove, travel, stroke, width }) {
-  const length = { field, edit: slide({ axis: "y", increase: "down", extent: travel }) };
-  const line = (lengthOf, opacity) => {
-    const at = (d, i, rows) => pathOf(along(trackOf(i, rows), lengthOf(d, i)));
-    return shape({
-      path: (d, i, rows) => at(d, i, rows).d,
-      channels: {
-        x: { fn: (d, i, rows) => at(d, i, rows).x },
-        y: { fn: (d, i, rows) => at(d, i, rows).y },
-        size: { fn: (d, i, rows) => at(d, i, rows).size },
-        fill: { value: "none" }, strokeWidth: { value: width }, opacity: { value: opacity },
-        stroke, length,
-      },
-    });
-  };
-  return [
-    line((d, i) => (typeof groove === "function" ? groove(i) : groove), 0.12),
-    line((d) => d[field] * per, 1),
-  ];
-}

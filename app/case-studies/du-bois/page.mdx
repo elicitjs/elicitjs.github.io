@@ -15,7 +15,7 @@ export default function Layout({ children }) {
 
 # Du Bois's wrapped bars
 
-<Lead>W. E. B. Du Bois's charts for the 1900 Paris Exposition fold a bar that is too long for the page back on itself, so a large value and a small one share one scale. This page builds the Du Bois wrapped bar chart step by step, then rebuilds four of his charts the same way: a `shape` draws each bar along a track from its value, and a `slide` on its length writes the value.</Lead>
+<Lead>W. E. B. Du Bois's charts for the 1900 Paris Exposition fold a bar that is too long for the page back on itself, so a large value and a small one share one scale. This page builds the Du Bois wrapped bar chart step by step, then rebuilds four of his charts the same way: a [`track`](/marks/track) draws each bar as a length along a route, and `move()` on its `length` writes the value.</Lead>
 
 <Section id="threshold" title="Step by step: a wrapped bar chart">
 
@@ -39,43 +39,14 @@ const LANE = (1 - WRAP) * THRESH;   // 1,500
 const STEP = 0.3;
 ```
 
-**3. Write the track in data units.** A **track** is the longest bar a row allows, as `[value, level, turn]` points. It runs right to `THRESH`, steps down, runs back to `WRAP * THRESH`, steps down, and repeats until it holds `MAX`. A point marked `turn` ends a step down. Steps hold no value.
-
-```js
-function trackOf(i, rows) {
-  let level = levelOf(i, rows), end = THRESH, held = THRESH;
-  const points = [[0, level], [THRESH, level]];
-  while (held < MAX) {
-    level += STEP;
-    points.push([end, level, true]);
-    end = end === THRESH ? WRAP * THRESH : THRESH;
-    points.push([end, level]);
-    held += LANE;
-  }
-  return toPixels(points);
-}
-```
-
-**4. Map the track to pixels.** Two linear scales do it: `x` maps `[0, THRESH]` across the plot, and `y` gives each level one row. `x` is linear, so every lane has the same pixels per unit, `per = W / THRESH`. `toPixels` maps each point, and rounds each step down into a half circle that bulges outward.
+**3. Map data units to pixels.** Two linear scales do it: `x` maps `[0, THRESH]` across the plot, and `y` gives each level one row. `x` is linear, so every lane has the same pixels per unit.
 
 ```js
 const x = (v) => X0 + (v / THRESH) * W;
 const y = (level) => TOP + level * ROW;
-
-function toPixels(points) {
-  const r = (STEP * ROW) / 2;
-  return points.flatMap(([v, level, turn]) => {
-    if (!turn) return [[x(v), y(level)]];
-    const side = v === THRESH ? 1 : -1, top = y(level) - 2 * r;
-    return Array.from({ length: 8 }, (_, a) => {
-      const t = ((a + 1) / 8) * Math.PI;
-      return [x(v) + side * r * Math.sin(t), top + r - r * Math.cos(t), true];
-    });
-  });
-}
 ```
 
-**5. Give each row its level.** A row starts below the rows before it, plus the steps their wraps take. The level reads the live rows, so when a bar wraps into another lane, the rows below it move down.
+**4. Give each row its level.** A row starts below the rows before it, plus the steps their wraps take. The level reads the live rows, so when a bar wraps into another lane, the rows below it move down.
 
 ```js
 const wraps = (v) => (v > THRESH ? Math.ceil((v - THRESH) / LANE - 1e-9) : 0);
@@ -83,41 +54,41 @@ const levelOf = (i, rows) =>
   rows.slice(0, i).reduce((level, d) => level + 1 + STEP * wraps(d.value), 0);
 ```
 
-**6. Draw the bar from the value.** `along(track, length)` keeps the first `length` pixels of lane, and `pathOf` turns those points into an SVG path. A `shape` draws the path. A `shape` fits its path to a box, so the bar states its centre (`x`, `y`) and half-size (`size`) as `fn` channels. `stroke` colours the bar by its value, from teal to red.
+**5. Write the route.** The **route** is the longest bar a row allows, as an SVG path. Each `M` starts a lane. The route runs right to `THRESH`, steps down, runs back to `WRAP * THRESH`, and repeats until it holds `MAX`. Only lanes hold value, so the steps between them count for nothing.
 
 ```js
-const at = (d, i, rows) => pathOf(along(trackOf(i, rows), d.value * per));
-shape({
-  path: (d, i, rows) => at(d, i, rows).d,
+function routeOf(i, rows) {
+  let level = levelOf(i, rows), from = 0, to = THRESH, held = THRESH;
+  let d = `M${x(from)},${y(level)}L${x(to)},${y(level)}`;
+  while (held < MAX) {
+    level += STEP;
+    [from, to] = [to, to === THRESH ? WRAP * THRESH : THRESH];
+    d += `M${x(from)},${y(level)}L${x(to)},${y(level)}`;
+    held += LANE;
+  }
+  return d;
+}
+```
+
+**6. Draw the bar along the route.** A `track` takes the route as `path`. Its `length` channel binds `value`: the schema's domain spans the whole route, so 6,000 fills all four lanes and 750 half of the first. `join: "round"` draws each step down as a half circle that bulges outward. `stroke` colours the bar by its value, from teal to red.
+
+```js
+track({
+  path: (d, i, rows) => routeOf(i, rows),
+  join: "round",
   channels: {
-    x: { fn: (d, i, rows) => at(d, i, rows).x },
-    y: { fn: (d, i, rows) => at(d, i, rows).y },
-    size: { fn: (d, i, rows) => at(d, i, rows).size },
-    fill: { value: "none" }, strokeWidth: { value: 7 },
+    length: { field: "value", edit: move() },
     stroke: { field: "value", scale: { range: ["teal", "red"] } },
-    length: /* step 7 */,
+    strokeWidth: { value: 7 },
   },
-});
-```
-
-**7. Slide the length.** A `length` channel binds `value`, and a [`slide`](/editing/gestures#slide) on it writes it. Drag down and the value grows; drag up and it shrinks. The value changes by how far you drag from where you pressed, so it never jumps to another lane. `extent` is the drag that covers the whole domain: 480px for 0 to 6,000. Every redraw reads the new value, so the bar, its colour and the rows below follow it.
-
-```js
-length: { field: "value", edit: slide({ axis: "y", increase: "down", extent: 480 }) },
-```
-
-`constraints: [snap({ step: 1 })]` keeps each answer a whole number.
-
-**8. Add a groove and the axis.** A faint `shape` one lane long sits under each bar and carries the same `slide`, so a bar at zero can still be grabbed. `foldedBar` returns the groove and the bar together. A `guides.custom` draws the x axis over `[0, THRESH]`.
-
-```js
-...foldedBar({
-  trackOf, field: "value", per: W / THRESH, groove: W, travel: 480,
-  stroke: { field: "value", scale: { range: ["teal", "red"] } }, width: 7,
 }),
 ```
 
-The full code is below. The helpers `along`, `pathOf` and `foldedBar` are at the bottom.
+**7. Drag the end of the bar.** `move()` on `length` puts the end of the bar at the point of the route nearest the pointer. It follows the route from where the bar ends, so drag round a turn to carry the bar into the next lane. You can press anywhere on a row's route, even where no bar is drawn, so a bar at zero can still be grabbed. Every redraw reads the new value, so the bar, its colour and the rows below follow it.
+
+`constraints: [snap({ step: 1 })]` keeps each answer a whole number.
+
+**8. Add the axis.** A `guides.custom` draws the x axis over `[0, THRESH]`.
 
 <Example
   code={threshold}
@@ -125,7 +96,7 @@ The full code is below. The helpers `along`, `pathOf` and `foldedBar` are at the
   blurb="Eight categories on one scale. A value over 1,500 turns down and runs back, and the rows below it move down."
   try={(
     <>
-      <b>Press on a bar and drag down</b> to grow it: past 1,500 it wraps and the rows below move down · <b>drag up</b> to shrink it.
+      <b>Drag the end of a bar</b> along its row: round the right edge it turns down and the rows below move down · <b>press</b> further along a bar&rsquo;s lane to jump its end there.
     </>
   )}
 />
@@ -134,13 +105,15 @@ The full code is below. The helpers `along`, `pathOf` and `foldedBar` are at the
 
 <Section id="steps" title="Du Bois's charts">
 
-The four charts below use the same helpers and the same `slide` on `length`: press on a bar or its groove and drag down to grow it, up to shrink it. Only `trackOf` and `travel` change. The first two tracks are wrapped bars in data units, with `WRAP = 0` and a row per level. A coil and a spiral are geometry, so their tracks are written in pixels, and `per` is pixels per unit.
+The four charts below use the same `track` and the same `move()` on `length`. Drag the end of a bar along its route. Only the route changes. The first two are wrapped bars in data units, with `WRAP = 0` and a row per level. A coil and a spiral are geometry, so their routes are written in pixels.
+
+Every row's route holds the same length, so the rows share one scale.
 
 </Section>
 
 <Section id="courses" title="A bar that folds back and forth">
 
-A wrapped bar with a threshold of 900 students and three lanes. The bar runs right, turns down through a half circle, runs left, and turns again. The turns hold no students. Industrial, at 2,252, fills two lanes and part of a third. `travel: 400` covers 0 to 2,700.
+A wrapped bar with a threshold of 900 students and three lanes. The bar runs right, turns down through a half circle, runs left, and turns again. The turns hold no students. Industrial, at 2,252, fills two lanes and part of a third.
 
 <Example
   code={courses}
@@ -148,7 +121,7 @@ A wrapped bar with a threshold of 900 students and three lanes. The bar runs rig
   blurb="Du Bois's count of Black students in each course of study in Georgia schools. A bar longer than one lane folds back."
   try={(
     <>
-      <b>Drag Normal down</b> until it turns at the right edge · <b>drag Industrial up</b> to unfold it.
+      <b>Drag the end of Normal</b> right, round the turn and back · <b>drag the end of Industrial</b> back to unfold it.
     </>
   )}
 />
@@ -157,7 +130,7 @@ A wrapped bar with a threshold of 900 students and three lanes. The bar runs rig
 
 <Section id="occupations" title="A tight turn">
 
-The same track with two lanes. A lane holds 85,000 men, and the turn is 12px across, so the returning lane sits between two rows. Du Bois bracketed fifteen smaller trades together. The last row is their sum.
+The same route with two lanes. A lane holds 85,000 men, and the turn is 12px across, so the returning lane sits between two rows. Du Bois bracketed fifteen smaller trades together. The last row is their sum.
 
 <Example
   code={occupations}
@@ -165,7 +138,7 @@ The same track with two lanes. A lane holds 85,000 men, and the turn is 12px acr
   blurb="Black men over ten in Georgia by occupation, 1890. Agricultural laborers run past the lane and turn back under it."
   try={(
     <>
-      <b>Drag any bar down</b> past 85,000 to fold it back.
+      <b>Drag the end of any bar</b> past 85,000 and round the turn to fold it back.
     </>
   )}
 />
@@ -174,7 +147,7 @@ The same track with two lanes. A lane holds 85,000 men, and the turn is 12px acr
 
 <Section id="religion" title="A square coil">
 
-The track runs right along the bottom, up, back left and down, then turns inward one step and goes round again. Each side is one step shorter than the side before it on that axis. The corners are square and carry no `turn` points, so every pixel of the coil holds value. `travel: 500` covers 0 to 4,000,000, so one pixel of drag is 8,000 people.
+The route runs right along the bottom, up, back left and down, then turns inward one step and goes round again. Each side is one step shorter than the side before it on that axis. The route is one lane, so the corners hold value too, and every pixel of the coil holds about 1,750 people.
 
 <Example
   code={religion}
@@ -182,7 +155,7 @@ The track runs right along the bottom, up, back left and down, then turns inward
   blurb="14,517 Catholics beside 2,659,460 Protestants. The Protestant bar coils inward to fit the page."
   try={(
     <>
-      <b>Drag the green coil down</b> to wind it further in · <b>drag the red bar down</b> to grow it.
+      <b>Drag the end of the green coil</b> to wind it further in · <b>drag the end of the red bar</b> along the coil to grow it.
     </>
   )}
 />
@@ -191,7 +164,7 @@ The track runs right along the bottom, up, back left and down, then turns inward
 
 <Section id="furniture" title="A spiral">
 
-Each year starts at the top and runs clockwise. Its radius shrinks by six bands a turn, so the turns of all six years nest without touching. The value is the length of the spiral, so an outer turn holds more than an inner one. `travel: 400` covers $0 to $1,600,000.
+Each year starts at the top and runs clockwise. Its radius shrinks by six bands a turn, so the turns of all six years nest without touching. The value is the length of the spiral, so an outer turn holds more than an inner one. Each year's spiral is cut to the same length, which holds $1,600,000.
 
 <Example
   code={furniture}
@@ -199,7 +172,7 @@ Each year starts at the top and runs clockwise. Its radius shrinks by six bands 
   blurb="The assessed value of household and kitchen furniture, 1875 to 1899. Each year is a band of the spiral."
   try={(
     <>
-      <b>Drag a band down</b> to wind it further round · <b>drag the short pink band</b> at the top down to grow 1875.
+      <b>Drag the end of a band</b> to wind it further round · <b>drag the short pink band</b> at the top clockwise to grow 1875.
     </>
   )}
 />

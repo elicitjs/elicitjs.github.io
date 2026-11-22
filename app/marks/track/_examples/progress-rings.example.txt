@@ -1,0 +1,47 @@
+// How far along is each project? Drag the end of a ring round its circle.
+// One route for every row: a circle from the top, clockwise, in unit form.
+// x, y and size place it, so each row draws its own ring.
+const ring = "M0,-1 A1,1 0 1 1 -0.001,-1";
+
+const chart = Elicit({
+  width: 460, height: 200,
+  margins: { top: 10, right: 10, bottom: 40, left: 10 },
+  axes: false,
+  schema: {
+    project: { type: "categorical" },
+    done: { type: "quantitative", domain: [0, 100] },
+  },
+  data: [
+    { project: "Survey", done: 80 },
+    { project: "Interviews", done: 35 },
+    { project: "Report", done: 10 },
+  ],
+  constraints: [snap({ step: 1 })],
+  marks: [
+    // The full circle, faint, under each ring.
+    track({
+      path: ring,
+      channels: {
+        x: { field: "project" }, size: { value: 50 }, y: { value: 75 },
+        stroke: { value: "#dddddd" }, strokeWidth: { value: 12 },
+      },
+    }),
+    track({
+      path: ring,
+      channels: {
+        x: { field: "project" }, size: { value: 50 }, y: { value: 75 },
+        length: { field: "done", edit: move() },
+        stroke: { value: "#50AEB7" }, strokeWidth: { value: 12 },
+      },
+    }),
+    text({ channels: {
+      x: { field: "project" }, y: { value: 75 },
+      text: { fn: (d) => `${d.done}%` }, fontSize: { value: 16 },
+    } }),
+    text({ channels: {
+      x: { field: "project" }, y: { value: 160 },
+      text: { field: "project" }, fontSize: { value: 12 }, fill: { value: "#555555" },
+    } }),
+  ],
+});
+mount(chart.dom());
