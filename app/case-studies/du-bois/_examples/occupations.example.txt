@@ -1,0 +1,133 @@
+// ── This chart's track: one lane, then a tight turn back ────────────────
+// The track is in data units: X is men along a lane, Y is a level (one per
+// row). A lane holds 85,000. The bar turns down and runs back under itself.
+const THRESH = 85000, MAX = 170000;
+const STEP = 0.375;                 // how far down the turn steps, in levels
+
+// Two linear scales map the track to pixels: x from [0, THRESH], y one row per level.
+const X0 = 236, W = 380, TOP = 22, ROW = 32;
+const x = (v) => X0 + (v / THRESH) * W;
+const y = (level) => TOP + level * ROW;
+
+// The longest bar the row allows: two lanes.
+function trackOf(i) {
+  let level = i, end = THRESH, held = THRESH;
+  const points = [[0, level], [THRESH, level]];
+  while (held < MAX) {
+    level += STEP;
+    points.push([end, level, true]);            // the turn holds no value
+    end = end === THRESH ? 0 : THRESH;
+    points.push([end, level]);
+    held += THRESH;
+  }
+  return toPixels(points);
+}
+
+// Maps each point through x and y. A step down becomes a half circle that
+// bulges outward: right at THRESH, left at 0.
+function toPixels(points) {
+  const r = (STEP * ROW) / 2;
+  return points.flatMap(([v, level, turn]) => {
+    if (!turn) return [[x(v), y(level)]];
+    const side = v === THRESH ? 1 : -1, top = y(level) - 2 * r;
+    return Array.from({ length: 10 }, (_, a) => {
+      const t = ((a + 1) / 10) * Math.PI;
+      return [x(v) + side * r * Math.sin(t), top + r - r * Math.cos(t), true];
+    });
+  });
+}
+
+const chart = Elicit({
+  width: 640, height: 290,
+  margins: { top: 0, right: 0, bottom: 0, left: 0 },
+  theme: { background: "#ecdcc6" },
+  // Occupations of Black men over ten in Georgia, 1890. The last row is the
+  // fifteen smaller trades Du Bois bracketed together, summed.
+  data: [
+    { occupation: "Agricultural laborers",   men: 98400 },
+    { occupation: "Farmers and planters",    men: 83012 },
+    { occupation: "Laborers",                men: 28723 },
+    { occupation: "Steam railway employees", men: 7440 },
+    { occupation: "Servants",                men: 7000 },
+    { occupation: "Draymen, hackmen",        men: 4390 },
+    { occupation: "Carpenters and joiners",  men: 3761 },
+    { occupation: "Fifteen other trades",    men: 15897 },
+  ],
+  schema: {
+    occupation: { type: "categorical" },
+    men:        { type: "quantitative", domain: [0, MAX] },
+  },
+  constraints: [snap({ step: 1 })],
+  marks: [
+    ...foldedBar({
+      trackOf, field: "men", per: W / THRESH, groove: W, travel: 400,
+      stroke: { value: "#d1213f" }, width: 7,
+    }),
+    text({ channels: {
+      x: { value: 14 }, y: { fn: (d, i) => y(i) },
+      text: { fn: (d) => d.occupation.toUpperCase() },
+      textAnchor: { value: "start" }, fontSize: { value: 10 }, fill: { value: "#3b2f27" },
+    } }),
+    text({ channels: {
+      x: { value: X0 - 10 }, y: { fn: (d, i) => y(i) },
+      text: { fn: (d) => d.men.toLocaleString("en-US") },
+      textAnchor: { value: "end" }, fontSize: { value: 10 }, fill: { value: "#3b2f27" },
+    } }),
+  ],
+});
+mount(chart.dom());
+
+// ── Helpers: a bar laid along a track (the same on every chart of this page) ──
+// A track is the bar's centre line as [x, y, turn] points, in pixels. A step
+// marked `turn` joins two lanes and holds no value.
+
+// The first `len` pixels of a track, counting lanes only.
+function along(track, len) {
+  const out = [track[0]];
+  let left = len;
+  for (let k = 1; k < track.length && left > 1e-6; k++) {
+    const [x0, y0] = track[k - 1], [x1, y1, turn] = track[k];
+    if (turn) { out.push(track[k]); continue; }
+    const step = Math.hypot(x1 - x0, y1 - y0);
+    const t = Math.min(1, left / step);
+    out.push([x0 + (x1 - x0) * t, y0 + (y1 - y0) * t]);
+    left -= step;
+  }
+  return out;
+}
+
+// A `shape` fits its path to a box, so the path states its own centre and half-size.
+function pathOf(points) {
+  const xs = points.map((q) => q[0]), ys = points.map((q) => q[1]);
+  const [x0, x1, y0, y1] = [Math.min(...xs), Math.max(...xs), Math.min(...ys), Math.max(...ys)];
+  return {
+    d: "M" + points.map((q) => `${q[0].toFixed(1)},${q[1].toFixed(1)}`).join("L"),
+    x: (x0 + x1) / 2, y: (y0 + y1) / 2, size: Math.max(x1 - x0, y1 - y0) / 2,
+  };
+}
+
+// Two shapes over the rows: a faint groove `groove` pixels long, and the bar,
+// `per` pixels to a unit of `field`. Both draw from `field`. The `length`
+// channel carries the edit: a `slide` that adds to `field` as you drag down,
+// its whole domain over `travel` pixels. The groove takes the same slide, so a
+// bar at zero can still be grabbed.
+function foldedBar({ trackOf, field, per, groove, travel, stroke, width }) {
+  const length = { field, edit: slide({ axis: "y", increase: "down", extent: travel }) };
+  const line = (lengthOf, opacity) => {
+    const at = (d, i, rows) => pathOf(along(trackOf(i, rows), lengthOf(d, i)));
+    return shape({
+      path: (d, i, rows) => at(d, i, rows).d,
+      channels: {
+        x: { fn: (d, i, rows) => at(d, i, rows).x },
+        y: { fn: (d, i, rows) => at(d, i, rows).y },
+        size: { fn: (d, i, rows) => at(d, i, rows).size },
+        fill: { value: "none" }, strokeWidth: { value: width }, opacity: { value: opacity },
+        stroke, length,
+      },
+    });
+  };
+  return [
+    line((d, i) => (typeof groove === "function" ? groove(i) : groove), 0.12),
+    line((d) => d[field] * per, 1),
+  ];
+}

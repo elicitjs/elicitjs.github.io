@@ -47,6 +47,7 @@ export const SITE: NavGroup[] = [
       { href: "/marks/face", title: "Face (emotion)" },
       { href: "/marks/sticker", title: "Sticker" },
       { href: "/case-studies/glyphs", title: "Walkthrough: face, plant, hourglass" },
+      { href: "/case-studies/du-bois", title: "Walkthrough: Du Bois's wrapped bars" },
       { href: "/marks/geo", title: "Geo", heading: "Structured" },
       { href: "/marks/network", title: "Network (nodes & links)" },
       { href: "/marks/hierarchy", title: "Hierarchy (nested nodes)" },
