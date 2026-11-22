@@ -1,0 +1,61 @@
+## Outcome
+
+All 25 pieces can be answered in Elicit.js. 22 are recreated in full and 3 in part; none is impossible. In every recreation the reader's answer is data a chart returns from `getData()`, never an HTML control beside it.
+
+| | Count | Rows |
+|---|---|---|
+| Recreated | 22 | 6, 8–17, 19, 20, 22–30 |
+| Partly recreated | 3 | 7 (radar results), 18 (chat bot), 21 (nine detailed maps) |
+| Not possible | 0 | |
+
+The originals are fragile. 13 pages still load (most of the NYT ones only behind a paywall), 11 survive only as Wayback Machine copies (all six FiveThirtyEight pieces now redirect to ABC News), and the source of Row 30 could not be found. The recreations use real items and real answers wherever the research recovered them: questions and true values from archived page bundles, the Guardian's still-published question sheets and reader averages, 538's GitHub data, and public series (BLS, CDC, NHTSA, Chetty et al., Project Drawdown). Each entry links its sources and marks every illustrative value as such.
+
+## What "full" means here
+
+A full recreation reproduces what is asked, the gesture, the visual form and the reveal. The page around the chart does what the article did around its graphic: the headline, the sequence of questions, the score, and the text that explains the answer. Two recreations lean on page code more than the rest:
+
+- **Row 8, swing the election.** The five draggable bloc points are Elicit.js; the tile map is a second Elicit.js chart that the page recomputes from 538's own model on every `change`. The derived view is a function of the answer, not an edit, so it stays in page code.
+- **Row 18, the Angry Uncle Bot.** Elicit.js supplies only the reply list. The conversation itself, which is the piece, is page code. This is why it is partial.
+
+## What the partial ones miss
+
+- **A radar chart** (Row 7). The Big Five results are drawn from `line` marks over computed points. A radial profile mark would draw them directly.
+- **A conversation** (Row 18). A reply that branches the next prompt is outside a chart's grammar.
+- **Detailed alternative maps** (Row 21). Two of the nine heartland maps are real county surfaces and one is the Census Midwest; six are state-level stand-ins for the piece's blurred and county-level regions. Elicit.js has no blur, and the original surfaces were not recoverable.
+
+## Strategies, by technique
+
+- **Single-number sliders** (Rows 6, 10, 11, 23, 25–27). Each is a `point` with `move()` on one axis, `clamp` and `snap`, styled after its publication: 538's black handle on a ticked track, the Guardian's large handle with chevrons and a "?". Row 11 puts two handles on one track and draws the gap between them; it uses no `ordering`, because either group can be higher. Row 26 is a pound scale, not a percentage.
+- **You draw it** (Rows 12, 13, 15, 16, 22). Five different builds: freehand from scratch (`edit.line.draw()` sampled at every percentile), continuing a record kept as `context` rows, a single draggable endpoint on a slope chart, and a dragged dot whose path becomes the answer through a `constraints.custom` rule.
+- **Choices and ratings** (Rows 7, 9, 17, 29). Widgets (`likert` with two or five options) carry the answer; `stage` locks it and the reveal follows. Row 17 also recreates the fridge quiz's "tap the clue" step with `create()` on the picture.
+- **Maps and space** (Rows 8, 14, 20, 21, 24). `geoPoint` and `geoPolygon` with `cycle()` for picking on a map, `move()` over quadrants with a reader-consensus reveal, and party bubbles kept apart by `layout.dodge` while a custom constraint counts seats in the coalition zone.
+- **Ranking, typing, distributions** (Rows 19, 28, 30). `rank()` on card composites; a typed number bound to a quantitative column through `editText`, refused when it isn't a number; probability bars held to a total of 1 by `maintainSum`.
+
+## The reveal is the common pattern
+
+Almost every piece reveals the truth after the reader commits, and the recreations converged on one idiom: the row carries an empty `truth` column drawn by a mark with no edit, and the button calls `chart.set()` and `chart.nextStage()`. Others read `stage` in a `guides.custom`. This works, but it is a pattern authors rebuild each time. Only edits carry a `stage`; a `stage` on marks and guides, or a first-class "reveal" (a column or mark that appears on commit), would make the most common step in news elicitation one line.
+
+## Other readers' answers
+
+14 of the 25 compare the reader with other readers: a crowd histogram, a reader average, "better than 55% of people". Elicit.js is client-side, so collecting answers is a server's job. Where the publication released the crowd (the NYT's histogram of two-thirds guesses, the Guardian's reader averages, the Game of Thrones consensus), the recreation draws the real one; elsewhere it is illustrative and labelled.
+
+## What the originals don't ask
+
+The VIBE codes record no uncertainty for any of the 24 sheet rows. 23 variants show what the same question becomes when it does ask: a best guess plus a range (`widgets.interval`, `ordering`-held band edges), probability tokens over bins, a band swept around a drawn line and scored by how much of the truth it covers, a range on a slope-chart endpoint, a confidence slider after a binary choice, a probability instead of a pick. These are the cases where a chart instrument says more than the article's control did.
+
+## Library findings
+
+Found while building; each has a minimal case in the agents' reports.
+
+- `ordering()` treats an empty value as 0: with `lo` and `hi` both `null`, typing 12 into `lo` also writes `hi: 12` (`Number(null)` in `src/constraints/ordering.js`). `clamp` and `snap` skip empty values.
+- Two marks on the same field and channel share one scale, and the second mark's `scale.range` is ignored **without a warning**, against the no-silent-degradation rule.
+- `arc` with a `null` radius draws a full rim; other marks draw nothing for an empty column.
+- A reversed schema domain (`domain: [7.5, -0.5]`) does not flip the axis.
+- `geoBasemap` always draws beneath data marks, whatever its order in `marks`; this is not documented.
+- `widgets.matrix` and the default `ring` likert design clip long statements and overlap option labels at 460 px; the widget `question` does not wrap.
+- `setDomain` on a widget's field fires `onChange` again with the previous rows.
+- A text label's `format` never sees `null` (the value defaults to `''`).
+- `context` is evaluated once over the seed rows, so it cannot mark a row revealed later.
+- `edit.line.draw` with the default `into: 'nearest'` can't continue a half-drawn line from its end; a stroke that starts in the margin does nothing.
+- `slide()` is relative (120 px spans the domain), so a handle doesn't follow the pointer; every slider here uses `move()`.
+- Unconfirmed: `guides.region` with both `x` and `y` seemed to shade the whole plot; quick repeated clicks on `widgets.probabilityTokens` sometimes added no token.
