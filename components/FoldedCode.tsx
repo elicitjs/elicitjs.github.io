@@ -3,7 +3,7 @@
 import { useMemo, useState, type CSSProperties, type KeyboardEvent, type MouseEvent } from 'react';
 import { Highlight } from 'prism-react-renderer';
 import { codeTheme } from '../lib/codeTheme';
-import { findFolds, type Fold } from '../lib/folds';
+import { findBlocks, findFolds, type Block, type Fold } from '../lib/folds';
 
 type Props = {
   code: string;
@@ -14,6 +14,9 @@ type Props = {
   /** Folds the reader opened, by first line. Kept by the caller to survive a remount. */
   open?: Set<number>;
   onOpenChange?: (open: Set<number>) => void;
+  /** Blocks the reader closed, by first line. Kept by the caller to survive a remount. */
+  closed?: Set<number>;
+  onClosedChange?: (closed: Set<number>) => void;
   /** Called with the character offset a click landed on; the caller starts editing there. */
   onPick?: (offset: number) => void;
 };
@@ -21,14 +24,24 @@ type Props = {
 const plural = (n: number) => `${n} more row${n === 1 ? '' : 's'}`;
 
 /**
- * Highlighted code whose `data` rows fold after the first (lib/folds.ts).
- * A fold opens and closes from its own line.
+ * Highlighted code whose `data` rows fold after the first, and whose blocks
+ * collapse to their first line from a toggle in the gutter (lib/folds.ts).
  */
-export function FoldedCode({ code, language, className = '', style, open: given, onOpenChange, onPick }: Props) {
+export function FoldedCode({ code, language, className = '', style, open: given, onOpenChange, closed: givenClosed, onClosedChange, onPick }: Props) {
   const [own, setOwn] = useState<Set<number>>(() => new Set());
   const open = given ?? own;
   const setOpen = onOpenChange ?? setOwn;
+  const [ownClosed, setOwnClosed] = useState<Set<number>>(() => new Set());
+  const closed = givenClosed ?? ownClosed;
+  const setClosed = onClosedChange ?? setOwnClosed;
   const folds = useMemo(() => findFolds(code), [code]);
+  const blocks = useMemo(() => new Map(findBlocks(code).map((b) => [b.start, b])), [code]);
+  const toggleBlock = (block: Block) => {
+    const next = new Set(closed);
+    if (next.has(block.start)) next.delete(block.start);
+    else next.add(block.start);
+    setClosed(next);
+  };
   const lineStarts = useMemo(() => {
     const starts = [0];
     for (let i = 0; i < code.length; i++) if (code[i] === '\n') starts.push(i + 1);
@@ -58,7 +71,7 @@ export function FoldedCode({ code, language, className = '', style, open: given,
 
   /** A click (not a drag that selects text) starts editing where it landed. */
   const pick = (e: MouseEvent<HTMLPreElement>) => {
-    if (!onPick || (e.target as Element).closest('.code-fold')) return;
+    if (!onPick || (e.target as Element).closest('.code-fold, .code-fold-toggle, .code-fold-dots')) return;
     const selection = window.getSelection();
     if (selection && !selection.isCollapsed) return;
     const at = caretAt(e.clientX, e.clientY);
@@ -87,32 +100,65 @@ export function FoldedCode({ code, language, className = '', style, open: given,
           tabIndex={onPick ? 0 : undefined}
           aria-label={onPick ? 'Code. Click or press Enter to edit.' : undefined}
         >
-          {tokens.map((line, i) => {
-            const fold = foldOf(i);
-            const closed = fold && !open.has(fold.start);
-            if (fold && closed) {
-              if (i !== fold.start) return null;
-              return (
-                <button key={i} type="button" className="code-fold" onClick={() => toggle(fold)}>
-                  {indent(i)}… {plural(fold.rows)}
-                </button>
+          {(() => {
+            const rows: React.ReactNode[] = [];
+            // A closing line without its indent: `},` after the `…`.
+            const closerOf = (line: typeof tokens[number]) => {
+              const out = line.map((t) => ({ ...t }));
+              while (out.length && !out[0].content.trim()) out.shift();
+              if (out.length) out[0].content = out[0].content.trimStart();
+              return out;
+            };
+            const tokensOf = (line: typeof tokens[number], key: string) =>
+              line.map((token, k) => <span key={`${key}-${k}`} {...getTokenProps({ token })} />);
+            for (let i = 0; i < tokens.length; i++) {
+              const fold = foldOf(i);
+              if (fold && !open.has(fold.start)) {
+                rows.push(
+                  <button key={i} type="button" className="code-fold" onClick={() => toggle(fold)}>
+                    {indent(i)}… {plural(fold.rows)}
+                  </button>,
+                );
+                i = fold.end;
+                continue;
+              }
+              const block = blocks.get(i);
+              const isClosed = !!block && closed.has(block.start);
+              const props = getLineProps({ line: tokens[i] });
+              rows.push(
+                <div key={i} {...props} className={`${props.className}${block ? ' has-fold' : ''}`} data-line={i}>
+                  {block ? (
+                    <button
+                      type="button"
+                      className="code-fold-toggle"
+                      aria-expanded={!isClosed}
+                      aria-label={isClosed ? 'Unfold' : 'Fold'}
+                      onClick={() => toggleBlock(block)}
+                    />
+                  ) : null}
+                  {tokensOf(tokens[i], String(i))}
+                  {block && isClosed ? (
+                    <>
+                      <button type="button" className="code-fold-dots" onClick={() => toggleBlock(block)} aria-label="Unfold">…</button>
+                      {tokensOf(closerOf(tokens[block.end]), `${i}-end`)}
+                    </>
+                  ) : null}
+                </div>,
               );
+              if (block && isClosed) {
+                i = block.end;
+                continue;
+              }
+              if (fold && i === fold.end) {
+                rows.push(
+                  <button key={`${i}-hide`} type="button" className="code-fold" onClick={() => toggle(fold)}>
+                    {indent(i)}Hide {fold.rows} row{fold.rows === 1 ? '' : 's'}
+                  </button>,
+                );
+              }
             }
-            const row = (
-              <div key={i} {...getLineProps({ line })} data-line={i}>
-                {line.map((token, key) => (
-                  <span key={key} {...getTokenProps({ token })} />
-                ))}
-              </div>
-            );
-            if (!fold || i !== fold.end) return row;
-            return [
-              row,
-              <button key={`${i}-hide`} type="button" className="code-fold" onClick={() => toggle(fold)}>
-                {indent(i)}Hide {fold.rows} row{fold.rows === 1 ? '' : 's'}
-              </button>,
-            ];
-          })}
+            return rows;
+          })()}
         </pre>
       )}
     </Highlight>

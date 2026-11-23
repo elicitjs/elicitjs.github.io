@@ -22,7 +22,7 @@ import { chartThemeFor, currentChartMode, useChartMode } from '../lib/chartTheme
 import { useSpecMode } from '../lib/specMode';
 import { SpecTabs } from './SpecTabs';
 import { FoldedCode } from './FoldedCode';
-import { findFolds } from '../lib/folds';
+import { findBlocks, findFolds } from '../lib/folds';
 import { formatJson, functionsSource, type JsonBlock, type JsonView } from '../lib/jsonSpec';
 
 const EVAL_DEBOUNCE_MS = 280;
@@ -276,10 +276,11 @@ const CodePane = memo(function CodePane({
   const [value, setValue] = useState(source);
   const [editing, setEditing] = useState(false);
   const [open, setOpen] = useState<Set<number>>(() => new Set());
+  const [closed, setClosed] = useState<Set<number>>(() => new Set());
   const caret = useRef(0);
   const clickY = useRef<number | null>(null);
   const wrap = useRef<HTMLDivElement>(null);
-  const folds = useMemo(() => findFolds(value).length > 0, [value]);
+  const folds = useMemo(() => findFolds(value).length > 0 || findBlocks(value).length > 0, [value]);
 
   useEffect(() => {
     if (!external) return;
@@ -352,6 +353,8 @@ const CodePane = memo(function CodePane({
           style={EDITOR_PRE_STYLE}
           open={open}
           onOpenChange={setOpen}
+          closed={closed}
+          onClosedChange={setClosed}
           onPick={(offset) => {
             caret.current = offset;
             setEditing(true);

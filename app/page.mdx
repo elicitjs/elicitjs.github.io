@@ -1,16 +1,7 @@
 import { DocShell } from "../components/DocShell";
 import { Section } from "../components/Section";
-import { Example } from "../components/Example";
-import { Lead } from "../components/Lead";
-
-import allocateABudget from "./_examples/allocate-a-budget.example.txt";
-import placeBeliefs from "./_examples/place-beliefs.example.txt";
-import drawAForecast from "./_examples/draw-a-forecast.example.txt";
-import likelihoodNeedle from "./_examples/likelihood-needle.example.txt";
-import pinsOnAMap from "./_examples/pins-on-a-map.example.txt";
-import answerAScale from "./_examples/answer-a-scale.example.txt";
-import howAChartIsBuilt from "./_examples/how-a-chart-is-built.example.txt";
-import drawTheLineForTheMissingYears from "./_examples/draw-the-line-for-the-missing-years.example.txt";
+import { Walkthrough } from "../components/intro/Walkthrough";
+import { MarkGallery } from "../components/intro/MarkGallery";
 
 export default function Layout({ children }) {
   return <DocShell>{children}</DocShell>;
@@ -21,17 +12,21 @@ export default function Layout({ children }) {
 # Elicit.js
 
 <div className="hero-tag">
-  A declarative library for <b>visual elicitation</b>. Build an elicitation
-  interface from charts: people drag a bar, place a point or turn a dial, and you
-  get structured data back.
+  Elicit.js is a grammar for <b>visual elicitation</b>. It gives you a concise
+  way to build visualisations that work as elicitation interfaces: charts people
+  can change to tell you what they think.
 </div>
 
 <div className="hero-actions">
-  <a className="hero-btn primary" href="/start">Get started →</a>
-  <a className="hero-btn" href="/api">API reference</a>
-  <a className="hero-btn" href="/playground">Playground</a>
-  <a className="hero-btn" href="https://github.com/elicitjs/elicitjs">GitHub</a>
-  <span className="hero-install"><span className="sigil">$</span> npm install elicitjs</span>
+  <a className="hero-btn primary" href="/start">
+    Get started →
+  </a>
+  <a className="hero-btn" href="/api">
+    API reference
+  </a>
+  <span className="hero-install">
+    <span className="sigil">$</span> npm install elicitjs
+  </span>
 </div>
 
 <div className="hero-alpha">
@@ -41,144 +36,49 @@ export default function Layout({ children }) {
 
 </div>
 
-## What you can elicit
+<Section id="walkthrough" title="Turn a chart into a question">
 
-<Lead>
-  Each chart below is live. Drag it, and the data it produces updates beside it.
-</Lead>
+Scroll down to learn what you can build with Elicit.js. Things are interactive so feel free to touch the bars when it looks like it is interactive!
 
-<Section id="allocate" title="How would you allocate 100% across these categories?" codeMode="collapsed">
-
-Use a bar chart when the pieces have to add up. Drag any bar; the others adjust so the total stays 100.
-
-<Example
-  code={allocateABudget}
-  title="Allocate a budget"
-  blurb="Drag the bars to split 100% across categories. Raising one lowers the others."
-  try={
-    <>
-      <b>Drag</b> any bar. The shares always add up to 100.
-    </>
-  }
-/>
+<Walkthrough />
 
 </Section>
 
-<Section id="scatter" title="Where do people sit on age vs immigration attitude?" codeMode="collapsed">
+<Section id="marks" title="Ask with any mark">
 
-Use a scatter plot to ask a two-part question. The chart starts empty — double-click to add someone, then drag them into place.
+Pick a chart from the grid to try it large. The large chart and its small copy share one dataset, so the small one follows your answer.
 
-<Example
-  code={placeBeliefs}
-  title="Age vs immigration attitude"
-  blurb="An empty scatter plot. Double-click to place people; drag to move them. Colour runs from coral (anti) to blue (pro)."
-  try={
-    <>
-      <b>Double-click</b> to add a person · <b>drag</b> to move them.
-    </>
-  }
-/>
+<MarkGallery />
 
 </Section>
 
-<Section id="forecast" title="What trend do you expect over time?" codeMode="collapsed">
+<Section id="next" title="Where to go next">
 
-Use a line chart when you want someone to draw a path. Drag across the chart to sketch the forecast you have in mind.
-
-<Example
-  code={drawAForecast}
-  title="Draw the trend you expect"
-  blurb="Drag across the chart to draw the line."
-  try={
-    <>
-      <b>Drag</b> left-to-right across the chart to reshape the line.
-    </>
-  }
-/>
-
-</Section>
-
-<Section id="needle" title="How likely is Candidate D to win?" codeMode="collapsed">
-
-Use a needle dial for a single value on a scale, from “very likely D” to “very likely R.” Drag the needle to answer.
-
-<Example
-  code={likelihoodNeedle}
-  title="Likelihood gauge"
-  blurb="Drag the needle to set how likely you think the outcome is."
-  try={
-    <>
-      <b>Drag</b> the needle left or right.
-    </>
-  }
-/>
-
-</Section>
-
-<Section id="geo" title="Where do you think is the best place to live in Vancouver?" codeMode="collapsed">
-
-Place pins on a map to answer. Click to drop a pin; drag one to move it.
-
-<Example
-  code={pinsOnAMap}
-  title="Best place to live"
-  blurb="Click the map to drop pins for places you’d live; drag a pin to fine-tune."
-  try={
-    <>
-      <b>Click</b> to place a pin · <b>drag</b> an existing one.
-    </>
-  }
-/>
-
-</Section>
-
-<Section id="survey" title="How easy is this tool to use?" codeMode="collapsed">
-
-Classic survey scales work too. Hover to preview, then click to lock in an answer.
-
-<Example
-  code={answerAScale}
-  title="Answer a survey scale"
-  blurb="A familiar agree/disagree question — hover, then click your answer."
-  try={
-    <>
-      Hover across the scale, then <b>click</b> your answer.
-    </>
-  }
-/>
-
-</Section>
-
-<Section id="you-draw-it" title="What happened to U.S. traffic deaths after 1990?" codeMode="collapsed">
-
-The New York Times' “You Draw It” format: 1968–1990 is historical record (locked), 1991–2016 is what you draw. When you finish, press the button to reveal the answer key.
-
-<Example
-  code={drawTheLineForTheMissingYears}
-  title="Draw the missing years"
-  blurb="Drag across the empty space to draw 1991–2016, then advance to reveal the actual data."
-  try={
-    <>
-      <b>Drag</b> left-to-right to draw the missing years · then press <b>Show me how I did</b>.
-    </>
-  }
-/>
-
-</Section>
-
-<Section id="anatomy" title="How an interface is built" codeMode="readonly">
-
-An elicitation interface is built through a declarative spec: starting data, a schema that says what each field means, and marks with edits on them. The panel on the right is the data you collect.
-
-<Example
-  code={howAChartIsBuilt}
-  title="One editable bar chart"
-  blurb="The chart on the left draws the data on the right. Drag a bar and the data updates."
-  try={
-    <>
-      <b>Drag</b> a bar — the panel on the right is what your app would read.
-    </>
-  }
-/>
+<div className="next-grid">
+  <a className="next-card" href="/start">
+    <b>Getting started</b>
+    <span>Build a chart from scratch and read its answer</span>
+  </a>
+  <a className="next-card" href="/concepts">
+    <b>Core concepts</b>
+    <span>Schema, channels, scales, and the encode/edit duality</span>
+  </a>
+  <a className="next-card" href="/editing">
+    <b>Editing</b>
+    <span>Gestures, handles, and multi-step stages</span>
+  </a>
+  <a className="next-card" href="/marks/bar">
+    <b>Marks</b>
+    <span>The drawing vocabulary, one page per mark</span>
+  </a>
+  <a className="next-card" href="/json">
+    <b>JSON specs</b>
+    <span>The same grammar as data, for storage and models</span>
+  </a>
+  <a className="next-card" href="/playground">
+    <b>Playground</b>
+    <span>Compose a chart from menus and read the code</span>
+  </a>
+</div>
 
 </Section>

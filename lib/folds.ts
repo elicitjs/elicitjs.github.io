@@ -1,6 +1,9 @@
 /**
- * Where an example's code folds: the rows of each `data` array after the first,
- * so a long table of rows doesn't bury the spec. Works on JavaScript and JSON.
+ * Where an example's code folds. Two kinds, both on JavaScript and JSON:
+ * - the rows of each `data` array after the first (`findFolds`), folded by
+ *   default so a long table of rows doesn't bury the spec;
+ * - any `{ … }` or `[ … ]` block that opens at the end of a line (`findBlocks`),
+ *   open by default, which the reader can collapse to its first line.
  */
 
 /** Lines `start`..`end` (0-based, inclusive) fold away; they hold `rows` rows. */
@@ -112,4 +115,50 @@ export function findFolds(code: string): Fold[] {
     }
   }
   return folds.sort((a, b) => a.start - b.start);
+}
+
+/** Lines `start`..`end` (0-based, inclusive): the line that opens a block and the line that closes it. */
+export type Block = { start: number; end: number };
+
+/** The fewest lines a block hides when closed; folding fewer saves nothing. */
+const MIN_HIDDEN = 3;
+
+/**
+ * Every bracket block that opens as the last thing on its line and closes at
+ * the start of a later line: `schema: {` … `},`. Blocks nest.
+ */
+export function findBlocks(code: string): Block[] {
+  const lineStarts = [0];
+  for (let i = 0; i < code.length; i++) if (code[i] === '\n') lineStarts.push(i + 1);
+  const lineOf = (offset: number) => {
+    let lo = 0;
+    let hi = lineStarts.length - 1;
+    while (lo < hi) {
+      const mid = (lo + hi + 1) >> 1;
+      if (lineStarts[mid] <= offset) lo = mid;
+      else hi = mid - 1;
+    }
+    return lo;
+  };
+  const blocks: Block[] = [];
+  for (let i = 0; i < code.length; ) {
+    const after = skip(code, i);
+    if (after !== i) { i = after; continue; }
+    const c = code[i];
+    if (c === '{' || c === '[') {
+      const line = lineOf(i);
+      const lineEnd = line + 1 < lineStarts.length ? lineStarts[line + 1] - 1 : code.length;
+      // It must be the last thing on its line, so the closed line reads `key: { … },`.
+      if (!code.slice(i + 1, lineEnd).trim()) {
+        const block = scan(code, i);
+        if (block) {
+          const end = lineOf(block.close);
+          // The closer must begin its line, so the fold is whole lines.
+          if (!code.slice(lineStarts[end], block.close).trim() && end - line >= MIN_HIDDEN) blocks.push({ start: line, end });
+        }
+      }
+    }
+    i++;
+  }
+  return blocks.sort((a, b) => a.start - b.start);
 }

@@ -456,6 +456,51 @@
     padding-left: 2ch;
     text-indent: -2ch;
   }
+  /* A prose fence that folds: the same lines as an example's code. */
+  .code-folding .token-line {
+    display: block;
+    padding-left: 2ch;
+    text-indent: -2ch;
+    white-space: pre-wrap;
+    overflow-wrap: anywhere;
+  }
+  /* A block's fold toggle sits in the gutter, left of its first line. */
+  .token-line.has-fold { position: relative; }
+  .code-fold-toggle {
+    position: absolute;
+    left: -0.9rem;
+    top: 0;
+    width: 0.75rem;
+    height: 1.6em;
+    padding: 0;
+    border: 0;
+    background: none;
+    text-indent: 0;
+    font-size: 0.6rem;
+    line-height: 1.6rem;
+    color: var(--code-muted);
+    opacity: 0.45;
+    cursor: pointer;
+    transition: opacity 0.12s, color 0.12s;
+  }
+  .code-fold-toggle::before { content: "▾"; }
+  .code-fold-toggle[aria-expanded="false"]::before { content: "▸"; }
+  .code-fold-toggle[aria-expanded="false"],
+  .token-line.has-fold:hover .code-fold-toggle,
+  .code-fold-toggle:focus-visible { opacity: 1; color: var(--brand-text); }
+  .code-fold-dots {
+    margin: 0 0.3em;
+    padding: 0 0.4em;
+    border: 0;
+    border-radius: var(--radius);
+    background: var(--surface-muted);
+    color: var(--muted-foreground);
+    font: inherit;
+    text-indent: 0;
+    line-height: 1.3;
+    cursor: pointer;
+  }
+  .code-fold-dots:hover { color: var(--code-foreground); }
   /* A folded run of data rows: "… 9 more rows", and "Hide 9 rows" once open. */
   .code-fold {
     display: block;
@@ -1166,5 +1211,366 @@
     section.api {
       scroll-margin-top: 4.75rem;
     }
+  }
+}
+
+/* ── Intro walkthrough (/) ─────────────────────────────────────────────
+   Steps scroll on the left; the spec and the live chart stay pinned beside
+   them (components/intro/Walkthrough.tsx). Below 940px the chart pins to the
+   top and each step carries its own spec. */
+@layer components {
+  .walk {
+    display: grid;
+    grid-template-columns: minmax(15rem, 17.5rem) minmax(0, 1fr);
+    gap: 2rem;
+    margin-top: 1rem;
+  }
+  .walk-steps { min-width: 0; padding: 12vh 0 28vh; }
+  .walk-step {
+    min-height: 68vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    opacity: 0.4;
+    transition: opacity 0.3s;
+  }
+  .walk-step.is-active { opacity: 1; }
+  .walk-num {
+    font-size: 0.68rem;
+    font-weight: 600;
+    letter-spacing: 0.09em;
+    color: var(--faint-foreground);
+    font-variant-numeric: tabular-nums;
+    margin-bottom: 0.3rem;
+  }
+  .walk-step.is-active .walk-num { color: var(--brand-text); }
+  :where(.docs-content) .walk-step h3 { margin: 0 0 0.45rem; font-size: 1.15rem; }
+  .walk-step p { color: var(--muted-foreground); font-size: 0.92rem; line-height: 1.65; }
+  .walk-step .try { margin: 0.2rem 0 0.6rem; }
+  :where(.docs-content) a.walk-more { font-size: 0.82rem; }
+  .walk-inline { display: none; }
+
+  .walk-stage {
+    position: sticky;
+    top: 1.5rem;
+    height: calc(100vh - 3rem);
+    min-height: 32rem;
+    display: grid;
+    grid-template-columns: minmax(0, 0.92fr) minmax(0, 1.18fr);
+    gap: 1rem;
+    align-self: start;
+  }
+  .walk-pane {
+    min-width: 0;
+    min-height: 0;
+    display: flex;
+    flex-direction: column;
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    background: var(--card);
+    overflow: hidden;
+  }
+  .walk-spec { background: var(--code); border-color: var(--code-border); }
+  .walk-pane-head {
+    display: flex;
+    justify-content: space-between;
+    gap: 0.75rem;
+    padding: 0.4rem 0.7rem;
+    background: var(--code-chrome);
+    border-bottom: 1px solid var(--code-border);
+    font-family: var(--font-mono);
+    font-size: 0.7rem;
+    font-weight: 600;
+    color: var(--muted-foreground);
+  }
+  .walk-chart-pane .walk-pane-head { background: var(--surface-subtle); border-color: var(--border); }
+  .walk-summary { color: var(--brand-text); font-weight: 500; }
+
+  /* The spec: one block per line, wrapped lines hang under their indent. */
+  .walk-code {
+    flex: 1;
+    margin: 0;
+    padding: 0.6rem 0 2.5rem;
+    overflow: auto;
+    font-family: var(--font-mono);
+    font-size: 0.72rem;
+    line-height: 1.6;
+    color: var(--code-foreground);
+    background: var(--code);
+  }
+  .walk-code .ln {
+    position: relative;
+    display: block;
+    padding: 0 0.8rem 0 calc(1.1rem + 2ch);
+    text-indent: -2ch;
+    white-space: pre-wrap;
+    overflow-wrap: anywhere;
+  }
+  .walk-code .c { color: var(--code-muted); font-style: italic; }
+  .walk-code .s { color: var(--syntax-string); }
+  .walk-code .n { color: var(--syntax-number); }
+  .walk-code .k { color: var(--syntax-keyword); }
+  .walk-code .f { color: var(--syntax-function); }
+  .walk-code .is-add {
+    background: color-mix(in oklab, var(--brand) 16%, transparent);
+    box-shadow: inset 3px 0 0 var(--brand);
+    animation: walk-add 0.9s ease-out;
+  }
+  .walk-code .is-del {
+    color: var(--code-muted);
+    text-decoration: line-through;
+    background: color-mix(in oklab, var(--destructive) 10%, transparent);
+    box-shadow: inset 3px 0 0 var(--destructive);
+    animation: walk-del 1.6s ease-in forwards;
+    overflow: hidden;
+  }
+  /* The lines a hovered name in the text refers to. */
+  .walk-code .ln.is-ref {
+    background: color-mix(in oklab, var(--syntax-number) 20%, transparent);
+    box-shadow: inset 3px 0 0 var(--syntax-number);
+  }
+  .walk-step.is-active code.walk-ref {
+    cursor: help;
+    text-decoration: underline dotted color-mix(in oklab, var(--syntax-number) 70%, transparent);
+    text-underline-offset: 0.2em;
+  }
+  .walk-step.is-active code.walk-ref:hover { border-color: var(--syntax-number); }
+  @keyframes walk-add { from { background: color-mix(in oklab, var(--brand) 40%, transparent); } }
+  @keyframes walk-del { 0%, 55% { opacity: 1; max-height: 3em; } 100% { opacity: 0; max-height: 0; } }
+
+  /* A folded key: `schema: { … },`. Click to open. */
+  .walk-fold { display: block; }
+  .walk-fold-head[role="button"] { cursor: pointer; }
+  .walk-fold-head[role="button"]:hover { background: color-mix(in oklab, var(--foreground) 5%, transparent); }
+  .walk-fold-head:focus-visible { outline: 1px solid var(--ring); outline-offset: -1px; }
+  .walk-chev {
+    position: absolute;
+    left: 0.35rem;
+    text-indent: 0;
+    font-size: 0.6rem;
+    color: var(--code-muted);
+  }
+  .walk-chev::before { content: "▾"; }
+  .walk-fold.is-closed > .walk-fold-head .walk-chev::before { content: "▸"; color: var(--brand-text); }
+  .walk-tail { display: none; }
+  .walk-fold.is-closed > .walk-fold-head .walk-tail { display: inline; }
+  .walk-fold.is-closed > .walk-fold-body { display: none; }
+  .walk-dots {
+    display: inline-block;
+    margin: 0 0.3em;
+    padding: 0 0.35em;
+    line-height: 1.3;
+    border-radius: var(--radius);
+    background: var(--surface-muted);
+    color: var(--muted-foreground);
+    text-indent: 0;
+  }
+
+  /* The chart, its question, and what it returns. */
+  .walk-view {
+    position: relative;
+    flex: 1;
+    min-height: 0;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+    padding: 0.9rem;
+  }
+  /* Only the JSON step's conversation may run long enough to scroll. */
+  .walk-view:has(.walk-chat) { overflow: hidden auto; }
+  .walk-question {
+    font-family: var(--font-heading);
+    font-size: 1rem;
+    font-weight: 600;
+    line-height: 1.35;
+  }
+  .walk-chart > div { margin: 0 auto; }
+  .walk-readout .data-body { height: auto; }
+  .walk-readout.is-highlight { border-color: var(--brand); box-shadow: 0 0 0 3px color-mix(in oklab, var(--brand) 25%, transparent); }
+  .walk-flash { border-radius: 2px; animation: walk-flash 0.5s ease-out; }
+  @keyframes walk-flash { from { background: color-mix(in oklab, var(--syntax-number) 30%, transparent); } }
+
+  /* The JSON step's conversation. */
+  .walk-chat { display: flex; flex-direction: column; gap: 0.5rem; font-size: 0.86rem; }
+  .walk-msg {
+    align-self: flex-start;
+    max-width: 92%;
+    padding: 0.45rem 0.7rem;
+    border: 1px solid var(--border);
+    border-radius: calc(var(--radius) * 3);
+    background: var(--surface-subtle);
+    line-height: 1.5;
+  }
+  .walk-msg.is-user { align-self: flex-end; border-color: var(--primary); background: var(--primary); color: var(--primary-foreground); }
+  .walk-msg.is-chart { align-self: stretch; max-width: none; background: var(--card); }
+
+  /* The drawn pointer that shows each step's gesture. */
+  .walk-pointer {
+    position: absolute;
+    left: 0;
+    top: 0;
+    z-index: 2;
+    pointer-events: none;
+    opacity: 0;
+    transition: opacity 0.25s;
+  }
+  .walk-pointer.is-on { opacity: 1; }
+  /* Every step's chart fills one box, so the charts swap in place. The box
+     shrinks on a short window instead of pushing the readout out of view. */
+  .walk-view > .walk-chart { flex: 0 1 auto; min-height: 0; aspect-ratio: 480 / 400; overflow: hidden; }
+  .walk-view > .walk-chart > div { position: absolute !important; inset: 0; height: 100% !important; }
+  .walk-view > .walk-chart svg { height: 100% !important; }
+  /* A step's chart crossfades with the one before it, on top of it in the same place. */
+  .walk-chart { position: relative; }
+  .walk-ghost { position: absolute; inset: 0; z-index: 1; pointer-events: none; animation: walk-out 0.45s ease forwards; }
+  .walk-ghost > svg { display: block; width: 100%; height: 100%; }
+  .walk-enter { animation: walk-in 0.45s ease both; }
+  @keyframes walk-out { to { opacity: 0; } }
+  @keyframes walk-in { from { opacity: 0; } }
+  /* How far scrolling has taken the step's gesture. */
+  .walk-scrub { height: 2px; margin: -1px 0 0; background: var(--border); overflow: hidden; }
+  .walk-scrub > div { height: 100%; background: var(--brand); transform: scaleX(0); transform-origin: left; }
+  .walk-pointer svg { display: block; transform-origin: 3px 2px; transition: transform 0.15s; }
+  .walk-pointer path { fill: var(--foreground); stroke: var(--background); stroke-width: 1.6; stroke-linejoin: round; }
+  .walk-pointer.is-down svg { transform: scale(0.85); }
+
+  @media (max-width: 940px) {
+    .walk { grid-template-columns: minmax(0, 1fr); gap: 0; }
+    .walk-stage {
+      grid-row: 1;
+      z-index: 5;
+      top: 3.5rem;
+      height: auto;
+      min-height: 0;
+      grid-template-columns: minmax(0, 1fr);
+      padding: 0.5rem 0;
+      background: var(--background);
+    }
+    .walk-spec { display: none; }
+    .walk-view { padding: 0.6rem; gap: 0.4rem; }
+    .walk-chart { max-width: 18rem; width: 100%; margin: 0 auto; }
+    .walk-readout .data-body { max-height: 4.8em; }
+    .walk-steps { padding: 2vh 0 16vh; }
+    .walk-step { min-height: 55vh; }
+    .walk-inline { display: block; margin-top: 0.75rem; border: 1px solid var(--code-border); border-radius: var(--radius); overflow: hidden; }
+    .walk-inline .walk-code { padding: 0.5rem 0; max-height: 18rem; }
+  }
+  @media (prefers-reduced-motion: reduce) {
+    .walk-code .is-add, .walk-code .is-del, .walk-flash, .walk-enter { animation: none; }
+  }
+
+  /* ── Mark gallery: one large chart beside a grid of small ones ────────── */
+  .gal {
+    display: grid;
+    grid-template-columns: minmax(0, 1.25fr) minmax(0, 1fr);
+    gap: 1rem;
+    align-items: stretch;
+    margin-top: 1.25rem;
+  }
+  .gal-feature {
+    min-width: 0;
+    min-height: 0;
+    display: flex;
+    flex-direction: column;
+    padding: 0.9rem 1rem 0.75rem;
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    background: var(--card);
+  }
+  .gal-feature-head { display: flex; justify-content: space-between; align-items: baseline; gap: 0.75rem; }
+  :where(.docs-content) .gal-feature-head h3 { margin: 0; font-size: 1.05rem; }
+  .gal-feature-head code.inline { white-space: nowrap; }
+  .gal-how { margin: 0.25rem 0 0.5rem; font-size: 0.86rem; color: var(--muted-foreground); }
+  .gal-big {
+    flex: 1;
+    min-height: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+  }
+  .gal-feature-foot {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 0.5rem;
+    margin-top: 0.5rem;
+    font-size: 0.82rem;
+  }
+  .gal-feature-foot span { display: flex; gap: 0.4rem; }
+  .gal-btn {
+    height: 1.75rem;
+    padding: 0 0.6rem;
+    font-size: 0.78rem;
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    background: var(--background);
+    color: var(--foreground);
+    cursor: pointer;
+  }
+  .gal-btn:hover { background: var(--muted); border-color: var(--border-strong); }
+  .gal-icons {
+    display: grid;
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    gap: 0.6rem;
+    align-content: start;
+  }
+  .gal-icon {
+    position: relative;
+    aspect-ratio: 1;
+    min-width: 0;
+    display: flex;
+    flex-direction: column;
+    padding: 0.3rem 0.3rem 0.25rem;
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    background: var(--card);
+    color: var(--foreground);
+    text-align: left;
+    cursor: pointer;
+    transition: border-color 0.15s, box-shadow 0.15s;
+  }
+  .gal-icon:hover { border-color: var(--border-strong); }
+  .gal-icon.is-active { border-color: var(--brand); box-shadow: 0 0 0 2px color-mix(in oklab, var(--brand) 30%, transparent); }
+  .gal-icon:focus-visible { outline: 2px solid var(--ring); outline-offset: 1px; }
+  .gal-small {
+    flex: 1;
+    min-height: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+    pointer-events: none;
+  }
+  .gal-label {
+    margin-top: 0.2rem;
+    font-size: 0.68rem;
+    line-height: 1.3;
+    color: var(--muted-foreground);
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+  .gal-icon.is-active .gal-label { color: var(--foreground); }
+  .gal-pulse {
+    position: absolute;
+    top: 0.45rem;
+    right: 0.45rem;
+    width: 0.4rem;
+    height: 0.4rem;
+    border-radius: 50%;
+    background: var(--brand);
+    opacity: 0;
+  }
+  .gal-pulse.is-on { animation: gal-pulse 0.9s ease-out; }
+  @keyframes gal-pulse { 0%, 40% { opacity: 1; } 100% { opacity: 0; } }
+
+  @media (max-width: 940px) {
+    .gal { grid-template-columns: minmax(0, 1fr); }
+    .gal-big { min-height: 18rem; }
+  }
+  @media (max-width: 520px) {
+    .gal-icons { grid-template-columns: repeat(3, minmax(0, 1fr)); }
   }
 }

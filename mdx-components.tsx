@@ -1,6 +1,7 @@
 import Link from 'next/link';
 import type { MDXComponents } from 'mdx/types';
 import type { AnchorHTMLAttributes, HTMLAttributes } from 'react';
+import { CodeBlock } from './components/CodeBlock';
 
 /**
  * Markdown → the docs' existing DOM. Prose is authored in `app/**\/page.mdx`;
@@ -16,11 +17,8 @@ export function useMDXComponents(components: MDXComponents): MDXComponents {
       <code className={className ?? 'inline'} {...props} />
     ),
     // Prose fences (` ```js `) share the dark `.code` panel used by live examples.
-    pre: ({ children, ...props }: HTMLAttributes<HTMLPreElement>) => (
-      <pre className="code" {...props}>
-        {children}
-      </pre>
-    ),
+    // JavaScript and JSON fences are highlighted and fold (components/CodeBlock).
+    pre: (props: HTMLAttributes<HTMLPreElement>) => <CodeBlock {...props} />,
     // Internal links route through next/link; external ones stay plain anchors.
     a: ({ href = '', ...props }: AnchorHTMLAttributes<HTMLAnchorElement>) =>
       href.startsWith('/') ? (
