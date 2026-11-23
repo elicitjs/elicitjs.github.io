@@ -110,29 +110,32 @@
     max-width: 72ch;
     margin: 0 0 0.75rem;
   }
+  /* Sections are the page's main divisions: a full-width hairline, a brand
+     tick, generous space above. Examples inside them are lighter (see
+     .card-head), so the two levels never read as one. */
   h2.section {
     position: relative;
-    font-size: 1.25rem;
-    margin: 3rem 0 0.35rem;
-    padding-top: 1rem;
+    font-size: 1.4rem;
+    letter-spacing: -0.012em;
+    margin: 4.5rem 0 0.6rem;
+    padding-top: 1.25rem;
     border-top: 1px solid var(--border);
   }
-  /* A short brand-teal rule over each section heading. */
   h2.section::after {
     content: "";
     position: absolute;
     top: -1px;
     left: 0;
-    width: 2.5rem;
-    height: 2px;
-    border-radius: 2px;
+    width: 3rem;
+    height: 3px;
     background: var(--brand);
   }
   .intro {
     color: var(--muted-foreground);
-    font-size: 0.93rem;
+    font-size: 0.94rem;
+    line-height: 1.65;
     max-width: 78ch;
-    margin: 0.25rem 0 0.5rem;
+    margin: 0 0 0.75rem;
   }
   code.inline {
     font-family: var(--font-mono);
@@ -160,72 +163,144 @@
   }
 
   /* ── Example cards ─────────────────────────────────────────────────────
+     An example is not boxed. It reads as a numbered figure: an eyebrow
+     ("Example 3"), a sans title, a blurb, then a two-column workspace.
+
+       ┌ toolbar ───────────────┐  Try: …
+       │ code                   │  chart
+       │                        │  ┌ getData() ┐
+       └────────────────────────┘  └───────────┘
+
+     The code panel (toolbar + code) and the chart column share a top and a
+     bottom edge: the code stretches to the chart column's height and scrolls,
+     and the data readout grows to meet a code panel taller than the chart.
+
      `minmax(0, 1fr)`, not `1fr`: a 1fr track's automatic minimum is
-     min-content, so the card would refuse to shrink below the longest code
-     line plus the chart's fixed pixel width and scroll the page sideways. */
+     min-content, so the example would refuse to shrink below the longest
+     code line plus the chart's fixed pixel width and scroll the page. */
+  :where(.docs-content) {
+    counter-reset: example;
+  }
   .grid {
     display: grid;
     grid-template-columns: minmax(0, 1fr);
-    gap: 1.25rem;
-    margin-top: 1rem;
+    gap: 3rem;
+    margin-top: 1.75rem;
   }
   .card {
-    background: var(--card);
-    color: var(--card-foreground);
-    border: 1px solid var(--border);
-    border-radius: calc(var(--radius) * 1.4);
-    padding: 1rem 1.15rem 1.15rem;
     min-width: 0;
-    box-shadow: 0 1px 2px var(--shadow-color);
-  }
-  .card h3 {
-    font-size: 1rem;
-    font-weight: 600;
-    margin: 0 0 0.2rem;
-  }
-  .card > p {
-    color: var(--muted-foreground);
-    font-size: 0.86rem;
-    margin: 0 0 0.7rem;
+    color: var(--foreground);
+    counter-increment: example;
   }
   .card-head {
-    display: flex;
-    justify-content: space-between;
-    align-items: flex-start;
-    gap: 0.75rem;
-    margin-bottom: 0.85rem;
+    margin-bottom: 0.9rem;
+    max-width: 78ch;
+  }
+  /* The eyebrow is a pseudo-element, so the heading's text stays the title. */
+  .card-head h3::before {
+    content: "Example " counter(example);
+    display: block;
+    margin-bottom: 0.3rem;
+    font-family: var(--font-sans);
+    font-size: 0.68rem;
+    font-weight: 600;
+    letter-spacing: 0.09em;
+    text-transform: uppercase;
+    color: var(--brand-text);
   }
   .card-head h3 {
-    margin: 0 0 0.2rem;
+    font-family: var(--font-sans);
+    font-size: 1.02rem;
+    font-weight: 600;
+    letter-spacing: -0.006em;
+    line-height: 1.35;
+    margin: 0;
+    color: var(--foreground);
   }
   .card-head p {
-    margin: 0;
+    margin: 0.3rem 0 0;
     color: var(--muted-foreground);
-    font-size: 0.86rem;
-    max-width: 70ch;
+    font-size: 0.88rem;
+    line-height: 1.55;
   }
-  .card-actions {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 0.4rem;
-    justify-content: flex-end;
-    flex: none;
+  /* Single examples on a full page (playground, builder) are not numbered. */
+  .card-tall .card-head h3::before,
+  .canvas-device-frame .card-head h3::before {
+    content: none;
   }
 
-  /* JavaScript / JSON switch on an example. A segmented control, text only. */
+  .ex-body {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) fit-content(62%);
+    grid-template-rows: auto 1fr;
+    grid-template-areas:
+      "tools result"
+      "code  result";
+    column-gap: 1.75rem;
+    align-items: stretch;
+    min-width: 0;
+  }
+  /* A responsive chart takes an even share of the row. */
+  .ex-body.is-fluid {
+    grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+  }
+  .ex-body > .ex-toolbar { grid-area: tools; }
+  .ex-body > .code-wrap { grid-area: code; }
+  .ex-body > .result { grid-area: result; }
+
+  /* The code panel's header: JavaScript / JSON on the left, history and
+     Reset on the right. Attached to the code below it. */
+  .ex-toolbar {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 0.5rem;
+    min-width: 0;
+    padding: 0.3rem 0.35rem 0.3rem 0.4rem;
+    background: var(--code-chrome);
+    border: 1px solid var(--code-border);
+    border-bottom: 0;
+    border-radius: var(--radius) var(--radius) 0 0;
+  }
+  .ex-actions {
+    display: flex;
+    align-items: center;
+    gap: 0.1rem;
+    margin-left: auto;
+  }
+  .ex-actions [data-slot="button"] {
+    color: var(--muted-foreground);
+  }
+  .ex-actions [data-slot="button"]:hover:not(:disabled) {
+    color: var(--foreground);
+    background: color-mix(in oklab, var(--code-foreground) 8%, transparent);
+  }
+  .ex-sep {
+    width: 1px;
+    height: 1rem;
+    margin: 0 0.3rem;
+    background: var(--code-border);
+  }
+
+  /* JavaScript / JSON switch. A segmented control, text only. */
   .spec-tabs {
     display: inline-flex;
-    gap: 0.15rem;
-    padding: 0.15rem;
+    gap: 0.1rem;
+    padding: 0.12rem;
     border-radius: var(--radius);
     background: var(--muted);
     border: 1px solid var(--border);
+  }
+  .ex-toolbar .spec-tabs {
+    background: transparent;
+    border-color: transparent;
+    padding: 0;
   }
   .spec-tab {
     font-size: 0.76rem;
     font-weight: 500;
     line-height: 1.2;
-    padding: 0.22rem 0.6rem;
+    padding: 0.3rem 0.6rem;
     border-radius: calc(var(--radius) * 0.75);
     border: 1px solid transparent;
     background: transparent;
@@ -240,12 +315,18 @@
     color: var(--foreground);
     background: var(--card);
     border-color: var(--border);
-    box-shadow: 0 1px 2px var(--shadow-color);
+    box-shadow: 0 1px 1px var(--shadow-color);
+  }
+  .ex-toolbar .spec-tab.active {
+    background: var(--code);
+    border-color: var(--code-border);
+    box-shadow: none;
   }
   .spec-tab:focus-visible {
     outline: 2px solid var(--ring);
     outline-offset: 1px;
   }
+
   /* An example's JSON spec: one block per spec it passes to the library. */
   .json-call {
     padding: 0.5rem 0.95rem 0;
@@ -254,7 +335,7 @@
     color: var(--code-muted);
   }
   .json-block + .json-block {
-    border-top: 1px solid color-mix(in oklch, var(--code-foreground), transparent 85%);
+    border-top: 1px solid var(--code-border);
   }
   .json-pane .readonly-code {
     min-height: 0;
@@ -267,22 +348,19 @@
     font-size: 0.78rem;
     line-height: 1.45;
     color: var(--code-foreground);
-    border-bottom: 1px solid color-mix(in oklch, var(--code-foreground), transparent 85%);
+    border-bottom: 1px solid var(--code-border);
   }
 
   .body {
-    display: flex;
-    gap: 1.1rem;
-    align-items: flex-start;
     min-width: 0;
   }
 
-  /* Dark code panel: prose fences and the API signature block. */
+  /* Code panel: prose fences and the API signature block. */
   .code {
-    flex: 1 1 52%;
     min-width: 0;
     background: var(--code);
     color: var(--code-foreground);
+    border: 1px solid var(--code-border);
     font-family: var(--font-mono);
     font-size: 0.78rem;
     line-height: 1.55;
@@ -294,11 +372,10 @@
     overflow-y: auto;
     max-height: 460px;
   }
-  /* Prose fences sit as direct children of <Section>; example panels live
-     inside `.body`, so this margin leaves the live-example layout alone. */
+  /* Prose fences sit as direct children of <Section>. */
   section > pre.code,
   .docs-content > pre.code {
-    margin: 0.6rem 0 0.9rem;
+    margin: 0.75rem 0 1rem;
   }
   .code code {
     font-family: inherit;
@@ -315,24 +392,29 @@
     content: "\200b";
   }
   .code .c { color: var(--code-muted); font-style: italic; }
-  .code .s { color: #86efac; }
-  .code .n { color: #fca5a5; }
-  .code .k { color: #c4b5fd; }
-  .code .f { color: #7dd3fc; }
+  .code .s { color: var(--syntax-string); }
+  .code .n { color: var(--syntax-number); }
+  .code .k { color: var(--syntax-keyword); }
+  .code .f { color: var(--syntax-function); }
 
   /* Live editor + read-only highlighter (react-live / prism). */
   .code-wrap {
-    flex: 1 1 52%;
     min-width: 0;
     background: var(--code);
-    border-radius: var(--radius);
-    overflow: hidden;
-    max-height: 460px;
-    overflow-y: auto;
+    border: 1px solid var(--code-border);
+    border-radius: 0 0 var(--radius) var(--radius);
+    overflow: auto;
+    overscroll-behavior: contain;
   }
-  .code-wrap.tall {
-    max-height: min(70vh, 720px);
-    flex-basis: 55%;
+  /* Beside the chart, the code takes the chart column's height, whatever its
+     own length: `contain: size` keeps its lines out of the row's sizing, and
+     it scrolls instead. */
+  .ex-body > .code-wrap {
+    contain: size;
+    min-height: 17rem;
+  }
+  .card-tall .ex-body > .code-wrap {
+    min-height: min(70vh, 720px);
   }
   .live-editor,
   .code-wrap pre,
@@ -345,14 +427,27 @@
     margin: 0 !important;
     font-family: var(--font-mono) !important;
     font-size: 0.78rem !important;
-    line-height: 1.55 !important;
+    line-height: 1.6 !important;
     background: var(--code) !important;
     color: var(--code-foreground) !important;
-    min-height: 200px;
     outline: none;
+  }
+  /* The editor fills the panel, so a click anywhere in it lands in the code. */
+  .live-editor-wrap,
+  .live-editor {
+    display: flex;
+    flex-direction: column;
+    min-height: 100%;
+  }
+  .live-editor-wrap > .live-editor,
+  .live-editor > pre {
+    flex: 1 0 auto;
   }
   .live-editor textarea {
     outline: none !important;
+  }
+  .live-editor pre {
+    padding: 0.8rem 0.95rem !important;
   }
   /* One block per line in both views (prism's token-line), so a wrapped line
      hangs under its start instead of running back to the panel's edge. */
@@ -381,38 +476,37 @@
     outline: 1px solid var(--ring);
   }
   .code-wrap:focus-within {
-    box-shadow: 0 0 0 2px var(--ring);
+    border-color: var(--ring);
+    box-shadow: 0 0 0 1px var(--ring);
   }
   .readonly-code {
     margin: 0 !important;
     padding: 0.8rem 0.95rem;
     font-family: var(--font-mono) !important;
     font-size: 0.78rem !important;
-    line-height: 1.55 !important;
+    line-height: 1.6 !important;
     white-space: pre-wrap;
     overflow-wrap: anywhere;
   }
 
-  /* The chart column. A fixed chart's width is pinned to its own pixels by
-     the harness, so the data readout below can't widen the card. A
-     RESPONSIVE chart (`.fluid`) shares the row with the code as a bounded,
-     flexible column the chart scales into. */
+  /* The chart column: the Try hint, the chart, then the data readout. A fixed
+     chart's width is pinned to its own pixels by the harness, so the readout
+     can't widen the column. A RESPONSIVE chart (`.fluid`) takes the column's
+     width and scales into it. */
   .result {
-    flex: 0 0 auto;
+    display: flex;
+    flex-direction: column;
     min-width: 0;
     max-width: 100%;
-  }
-  .result.fluid {
-    flex: 1 1 46%;
   }
   .chart {
     display: block;
     max-width: 100%;
     overflow-x: auto;
     /* Charts follow the docs' colour mode (lib/chartTheme.ts) and paint a
-       transparent backdrop, so they sit directly on the card. They keep the
+       transparent backdrop, so they sit directly on the page. They keep the
        font the library measures text with, not the site's typeface. */
-    color: var(--card-foreground);
+    color: var(--foreground);
     font-family: system-ui, sans-serif;
     line-height: 1.5;
   }
@@ -433,7 +527,7 @@
     color: var(--foreground);
     background: var(--card);
     border: 1px solid var(--input);
-    border-radius: calc(var(--radius) * 0.6);
+    border-radius: calc(var(--radius) * 0.75);
     padding: 0.22rem 0.6rem;
     line-height: 1.4;
   }
@@ -463,14 +557,19 @@
     border-color: var(--brand);
   }
 
+  /* "Try: …" sits over the chart, level with the code panel's toolbar. */
   .try {
     display: block;
-    margin-top: 0.55rem;
-    font-size: 0.8rem;
-    color: var(--success);
+    margin: 0 0 0.75rem;
+    padding: 0.4rem 0 0.4rem 0.7rem;
+    border-left: 2px solid var(--brand);
+    font-size: 0.82rem;
+    line-height: 1.45;
+    color: var(--muted-foreground);
   }
   .try b {
     font-weight: 600;
+    color: var(--brand-text);
   }
 
   .live-error {
@@ -487,68 +586,75 @@
     overflow: auto;
   }
 
-  .card-tall .body {
-    min-height: 60vh;
-  }
-
-  /* ── Live data readout: what getData() returns ────────────────────────── */
+  /* ── Live data readout: what getData() returns ──────────────────────────
+     Styled as a panel like the code: what you wrote, and what you get. */
   .data {
-    margin-top: 0.6rem;
-    border: 1px solid var(--border);
+    margin-top: 0.9rem;
+    border: 1px solid var(--code-border);
     border-radius: var(--radius);
     overflow: hidden;
-    background: var(--card);
+    background: var(--code);
+  }
+  /* In the chart column it grows to meet the code panel's bottom edge. */
+  .ex-body .data {
+    flex: 1 0 auto;
+    display: flex;
+    flex-direction: column;
   }
   .data-head {
     display: flex;
     justify-content: space-between;
     align-items: baseline;
     gap: 0.5rem;
-    padding: 0.35rem 0.6rem;
-    background: var(--surface-subtle);
-    border-bottom: 1px solid var(--border);
+    padding: 0.4rem 0.7rem;
+    background: var(--code-chrome);
+    border-bottom: 1px solid var(--code-border);
     font-family: var(--font-mono);
     font-size: 0.7rem;
-    color: var(--faint-foreground);
+    color: var(--muted-foreground);
     font-weight: 600;
   }
   .data-count {
     font-family: var(--font-sans);
     font-weight: 500;
-    color: var(--muted-foreground);
+    color: var(--faint-foreground);
     font-variant-numeric: tabular-nums;
   }
   /* A FIXED height, not max-height: rows appended by a create edit scroll
      inside the panel instead of growing the card and shifting the page. */
   .data-body {
     margin: 0;
-    padding: 0.45rem 0.6rem;
+    padding: 0.5rem 0.7rem;
     height: 7.4em;
     overflow: auto;
-    background: var(--card);
+    background: var(--code);
     font-family: var(--font-mono);
     font-size: 0.72rem;
     line-height: 1.6;
-    color: var(--foreground);
+    color: var(--code-foreground);
     white-space: pre;
   }
-  .data-body .empty { color: var(--faint-foreground); font-style: italic; }
-  .data-body .idx { color: var(--faint-foreground); opacity: 0.7; user-select: none; }
-  .data-body .key { color: var(--muted-foreground); }
+  .ex-body .data-body {
+    flex: 1 0 7.4em;
+    height: 0;
+  }
+  .data-body .empty { color: var(--code-muted); font-style: italic; }
+  .data-body .idx { color: var(--code-muted); user-select: none; }
+  .data-body .key { color: var(--syntax-property); }
   .data-body .num { color: var(--syntax-number); }
   .data-body .str { color: var(--syntax-string); }
   /* Table name, for a multi-table dataset (see marks/network). */
   .data-body .tbl { color: var(--muted-foreground); font-weight: 600; }
 
-  /* Intro gallery: chart (2/3) | data (1/3); code stacks below when shown. */
+  /* Intro gallery: chart (2/3) | data (1/3); toolbar and code stack below. */
   .card-visual .body-visual {
+    display: flex;
     flex-direction: column;
     align-items: stretch;
-    gap: 0.9rem;
   }
   .card-visual .visual-row {
     display: flex;
-    gap: 1rem;
+    gap: 1.75rem;
     align-items: stretch;
     width: 100%;
     min-width: 0;
@@ -558,10 +664,6 @@
     min-width: 0;
     width: auto;
     max-width: none;
-  }
-  .card-visual .visual-row .result.fluid {
-    flex: 2 1 0;
-    width: auto;
   }
   /* Reflow charts need a definite parent width to measure into. */
   .card-visual .chart {
@@ -585,50 +687,60 @@
     height: auto;
     min-height: 12em;
   }
+  /* Below the chart, the toolbar is a plain row until the code opens under it. */
+  .card-visual .ex-toolbar {
+    margin-top: 1rem;
+  }
+  .card-visual .ex-toolbar:last-child {
+    background: none;
+    border-color: transparent;
+    padding-left: 0;
+    padding-right: 0;
+  }
+  .card-visual .ex-toolbar:last-child .ex-actions {
+    margin-left: 0;
+  }
   .card-visual .code-wrap.code-below {
-    flex: 1 1 auto;
     width: 100%;
     max-height: 360px;
   }
 
   @media (max-width: 940px) {
-    .body {
-      flex-direction: column;
+    /* Stacked: toolbar, code, then the chart column. */
+    .ex-body,
+    .ex-body.is-fluid {
+      grid-template-columns: minmax(0, 1fr);
+      grid-template-rows: auto auto auto;
+      grid-template-areas:
+        "tools"
+        "code"
+        "result";
     }
-    .code,
-    .code-wrap {
-      flex-basis: auto;
-      width: 100%;
+    .ex-body > .code-wrap {
+      contain: none;
+      min-height: 12rem;
+      max-height: 420px;
     }
-    /* Stacked: a responsive chart needs a DEFINITE width to measure/scale
-       into, otherwise a reflow chart shrink-wraps its own svg. */
+    .ex-body > .result {
+      margin-top: 1.25rem;
+    }
+    /* A responsive chart needs a DEFINITE width to measure/scale into,
+       otherwise a reflow chart shrink-wraps its own svg. */
     .result.fluid {
-      flex-basis: auto;
       width: 100%;
     }
   }
   @media (max-width: 720px) {
-    .card {
-      padding: 0.85rem 0.85rem 0.95rem;
-    }
-    .card-head {
-      flex-direction: column;
-      gap: 0.5rem;
-    }
-    .card-actions {
-      justify-content: flex-start;
-    }
     .card-visual .visual-row {
       flex-direction: column;
     }
     .card-visual .visual-row .result,
-    .card-visual .visual-row .result.fluid,
     .card-visual .visual-data {
       flex: 1 1 auto;
       width: 100%;
     }
     /* A fixed-pixel chart keeps its inline width but may not push the page
-       sideways; `.chart` scrolls it inside the card instead. */
+       sideways; `.chart` scrolls it inside the column instead. */
     .card-visual .visual-row .result {
       max-width: 100%;
     }
@@ -1013,7 +1125,7 @@
     font-family: var(--font-sans);
     font-size: 0.8rem;
     font-weight: 600;
-    border-radius: 999px;
+    border-radius: var(--radius);
     background: var(--primary);
     color: var(--primary-foreground);
     vertical-align: 0.1em;

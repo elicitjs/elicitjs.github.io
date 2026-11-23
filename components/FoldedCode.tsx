@@ -1,7 +1,8 @@
 'use client';
 
 import { useMemo, useState, type CSSProperties, type KeyboardEvent, type MouseEvent } from 'react';
-import { Highlight, themes } from 'prism-react-renderer';
+import { Highlight } from 'prism-react-renderer';
+import { codeTheme } from '../lib/codeTheme';
 import { findFolds, type Fold } from '../lib/folds';
 
 type Props = {
@@ -76,7 +77,7 @@ export function FoldedCode({ code, language, className = '', style, open: given,
   };
 
   return (
-    <Highlight theme={themes.nightOwl} code={code} language={language}>
+    <Highlight theme={codeTheme} code={code} language={language}>
       {({ className: highlight, style: plain, tokens, getLineProps, getTokenProps }) => (
         <pre
           className={`${className} ${highlight}`}

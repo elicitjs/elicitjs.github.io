@@ -68,4 +68,7 @@
   --amber-400: #f2b25c;
   --red-600: #c2392b; /* errors, destructive actions */
   --red-400: #f07a6c;
+  --violet-600: #7445b8; /* code keywords */
+  --violet-300: #c4b0f5;
+  --sky-300: #82c6ea; /* code function names, dark mode */
 }

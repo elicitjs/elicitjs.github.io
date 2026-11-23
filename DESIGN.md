@@ -33,6 +33,12 @@ or a scale step; it names a role.
 `next-themes` puts `.dark` on `<html>`. The default is light, and the reader
 can choose Light, Dark or System from the toggle in the sidebar or top bar.
 
+Code follows the mode too. Every code view (the live editor, read-only and
+folded code, the getData() readout, prose fences, API signatures) colours
+itself from `--code*` and `--syntax-*` in `app/globals.css`: a light panel in
+light mode, a dark one in dark. `lib/codeTheme.ts` is the Prism theme, written
+in those variables, so a mode switch needs no re-render.
+
 Charts follow the mode. `ExampleLive` calls `setTheme()` before every eval:
 `'dd'` in light mode and `DD_DARK` (which `extends: 'dd'`) in dark. Toggling
 the mode re-runs each example. An example's own `theme` still layers on top,
@@ -44,7 +50,10 @@ and so do colours an example hardcodes.
   sticky header on purpose: the library's browser gate drags charts at
   viewport coordinates, and a bar over the page could cover them.
 - **< 1024px:** a sticky top bar. The page list opens in a `Sheet`.
-- **≤ 940px:** example cards stack code above the chart.
+- **> 940px:** an example is a two-column workspace: the code panel (toolbar
+  + code) on the left, the chart column (Try hint, chart, getData()) on the
+  right. Both share a top and a bottom edge; the code scrolls inside.
+- **≤ 940px:** examples stack toolbar, code, then the chart column.
 - **≤ 720px:** API option tables collapse to one row per option.
 - **Overflow:** the page never scrolls sideways. A fixed-width chart scrolls
   inside its `.chart` box, and wide tables scroll inside `.api-table-wrap`.
@@ -66,6 +75,9 @@ selectors: `#id .chart svg`, `.data-body`, `.live-error`, `.result`, `.grid`,
 and the playground's `.canvas-device-frame`, `.catalog-tab`, `.catalog-item`,
 `.add-layer-btn`, `.add-inline-select`, `.drawer-code`. It also takes a section's
 **first `<svg>`**, so no icon may sit before a chart inside a `<section>` or an
-example card. That is why the card buttons are text-only. Run
+example card. On `/editing/history` it clicks the page's **first** buttons
+named `Undo` and `Redo`, which must be the example's own. That is why an
+example's toolbar (with its icon buttons and its code Undo / Redo) comes
+**after** the chart in the DOM, and CSS grid places it above the code. Run
 `npm run verify:browser` and `npm run check:warnings` in `../elicitjs` after
 layout changes.

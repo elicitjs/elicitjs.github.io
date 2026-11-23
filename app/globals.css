@@ -26,7 +26,8 @@
 /* ── Semantic tokens: light ─────────────────────────────────────────────── */
 :root {
   color-scheme: light;
-  --radius: 0.625rem;
+  /* Tight corners throughout: every radius below derives from this one. */
+  --radius: 0.25rem;
 
   /* shadcn roles */
   --background: var(--neutral-0);
@@ -65,6 +66,7 @@
 
   /* docs roles */
   --brand: var(--teal-500); /* decorative highlight: rules, markers, active bars */
+  --brand-text: var(--teal-700); /* brand colour for small text: eyebrows, hints */
   --link: var(--blue-600);
   --link-hover: var(--teal-700);
   --surface-subtle: var(--neutral-50); /* panel heads, hover rows */
@@ -72,9 +74,17 @@
   --border-strong: var(--neutral-300);
   --faint-foreground: var(--neutral-500); /* eyebrow labels, counts */
   --success: var(--teal-700); /* "Try:" hints */
-  --code: var(--neutral-900); /* code panels stay dark in both modes */
-  --code-foreground: var(--neutral-100);
-  --code-muted: var(--neutral-400);
+  /* Code panels follow the mode: a light panel here, a dark one in .dark.
+     The --syntax-* roles colour both the editor and the data readout. */
+  --code: var(--neutral-50);
+  --code-foreground: var(--neutral-900);
+  --code-muted: var(--neutral-500);
+  --code-border: var(--border);
+  --code-chrome: var(--neutral-100); /* a code panel's toolbar / header */
+  --syntax-keyword: var(--violet-600);
+  --syntax-function: var(--blue-600);
+  --syntax-property: var(--neutral-800);
+  --syntax-punctuation: var(--neutral-500);
   --syntax-number: var(--amber-600);
   --syntax-string: var(--teal-700);
   --destructive-soft: color-mix(in oklab, var(--destructive) 7%, var(--background));
@@ -122,6 +132,7 @@
   --sidebar-ring: var(--teal-400);
 
   --brand: var(--teal-400);
+  --brand-text: var(--teal-300);
   --link: var(--teal-300);
   --link-hover: var(--teal-200);
   --surface-subtle: color-mix(in oklab, var(--neutral-900) 70%, var(--neutral-950));
@@ -132,6 +143,12 @@
   --code: color-mix(in oklab, var(--neutral-950) 70%, black);
   --code-foreground: var(--neutral-100);
   --code-muted: var(--neutral-500);
+  --code-border: oklch(1 0 0 / 8%);
+  --code-chrome: color-mix(in oklab, var(--neutral-900) 45%, var(--code));
+  --syntax-keyword: var(--violet-300);
+  --syntax-function: var(--sky-300);
+  --syntax-property: var(--neutral-200);
+  --syntax-punctuation: var(--neutral-400);
   --syntax-number: var(--amber-400);
   --syntax-string: var(--teal-300);
   --overlay: color-mix(in oklab, black 70%, transparent);
@@ -177,6 +194,7 @@
   --color-sidebar-ring: var(--sidebar-ring);
 
   --color-brand: var(--brand);
+  --color-brand-text: var(--brand-text);
   --color-link: var(--link);
   --color-link-hover: var(--link-hover);
   --color-surface-subtle: var(--surface-subtle);

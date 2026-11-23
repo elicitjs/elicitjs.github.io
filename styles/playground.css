@@ -84,7 +84,7 @@
   .playground-toolbar select {
     font-size: 0.85rem;
     padding: 0.3rem 0.5rem;
-    border-radius: 6px;
+    border-radius: 4px;
     border: 1px solid var(--border);
     background: var(--card);
   }
@@ -151,7 +151,7 @@
     padding: 0.5rem 0.8rem;
     background: var(--card);
     border: 1px solid var(--border);
-    border-radius: 10px;
+    border-radius: 4px;
     box-shadow: 0 1px 3px var(--shadow-color);
   }
 
@@ -175,7 +175,7 @@
     color: var(--primary);
     background: var(--accent);
     padding: 0.15rem 0.45rem;
-    border-radius: 9999px;
+    border-radius: var(--radius);
   }
 
   .studio-actions-group {
@@ -188,7 +188,7 @@
     font-size: 0.78rem;
     font-weight: 600;
     padding: 0.35rem 0.75rem;
-    border-radius: 6px;
+    border-radius: 4px;
     border: 1px solid var(--border-strong);
     background: var(--surface-subtle);
     color: var(--muted-foreground);
@@ -205,7 +205,7 @@
     font-size: 0.78rem;
     font-weight: 600;
     padding: 0.35rem 0.85rem;
-    border-radius: 6px;
+    border-radius: 4px;
     border: 1px solid var(--primary);
     background: var(--primary);
     color: var(--primary-foreground);
@@ -253,7 +253,7 @@
     display: flex;
     flex-direction: column;
     border: 1px solid var(--border);
-    border-radius: 10px;
+    border-radius: 4px;
     background: var(--card);
     box-shadow: 0 1px 3px var(--shadow-color);
     overflow: hidden;
@@ -321,7 +321,7 @@
     font-size: 0.72rem;
     font-weight: 700;
     padding: 0.2rem 0.55rem;
-    border-radius: 5px;
+    border-radius: 3px;
     border: 1px solid var(--border-strong);
     background: var(--card);
     color: var(--primary);
@@ -347,7 +347,7 @@
 
   .layer-card {
     border: 1px solid var(--border);
-    border-radius: 7px;
+    border-radius: 4px;
     background: var(--card);
     padding: 0.35rem 0.5rem;
     cursor: pointer;
@@ -405,7 +405,7 @@
     color: var(--faint-foreground);
     background: var(--border);
     padding: 0.05rem 0.3rem;
-    border-radius: 4px;
+    border-radius: 3px;
   }
 
   .layer-actions {
@@ -420,7 +420,7 @@
     color: var(--faint-foreground);
     font-size: 0.68rem;
     padding: 0.15rem 0.25rem;
-    border-radius: 3px;
+    border-radius: 2px;
     cursor: pointer;
   }
   .layer-btn-icon:hover:not(:disabled) {
@@ -439,7 +439,7 @@
   /* Mark Catalog Popup */
   .mark-catalog-popup {
     border: 1px solid var(--primary);
-    border-radius: 8px;
+    border-radius: 4px;
     background: var(--card);
     box-shadow: 0 4px 14px var(--shadow-color);
     padding: 0.5rem;
@@ -460,7 +460,7 @@
     font-size: 0.68rem;
     font-weight: 600;
     padding: 0.2rem 0.4rem;
-    border-radius: 4px;
+    border-radius: 3px;
     border: none;
     background: transparent;
     color: var(--faint-foreground);
@@ -484,7 +484,7 @@
     flex-direction: column;
     align-items: flex-start;
     padding: 0.3rem 0.45rem;
-    border-radius: 5px;
+    border-radius: 3px;
     border: 1px solid var(--border);
     background: var(--surface-subtle);
     cursor: pointer;
@@ -532,7 +532,7 @@
     font-weight: 700;
     color: var(--foreground);
     border: 1px solid transparent;
-    border-radius: 4px;
+    border-radius: 3px;
     padding: 0.15rem 0.3rem;
     background: transparent;
     width: 100%;
@@ -565,7 +565,7 @@
     font-size: 0.72rem;
     font-weight: 600;
     padding: 0.25rem 0.5rem;
-    border-radius: 5px;
+    border-radius: 3px;
     border: 1px solid transparent;
     background: transparent;
     color: var(--faint-foreground);
@@ -603,7 +603,7 @@
     padding: 0.35rem 0.45rem;
     border: 1px solid var(--surface-muted);
     background: var(--surface-subtle);
-    border-radius: 6px;
+    border-radius: 4px;
   }
 
   .channel-label-wrap {
@@ -621,7 +621,7 @@
   .channel-mode-toggle {
     display: flex;
     background: var(--border);
-    border-radius: 4px;
+    border-radius: 3px;
     padding: 1px;
   }
 
@@ -629,7 +629,7 @@
     font-size: 0.65rem;
     font-weight: 600;
     padding: 0.1rem 0.35rem;
-    border-radius: 3px;
+    border-radius: 2px;
     border: none;
     background: transparent;
     color: var(--faint-foreground);
@@ -652,7 +652,7 @@
     padding: 0.35rem 0.45rem;
     background: var(--card);
     border: 1px solid var(--border);
-    border-radius: 5px;
+    border-radius: 3px;
     display: flex;
     flex-direction: column;
     gap: 0.3rem;
@@ -669,7 +669,7 @@
     font-size: 0.72rem;
     font-weight: 600;
     padding: 0.2rem 0.45rem;
-    border-radius: 5px;
+    border-radius: 3px;
     border: 1px solid var(--border-strong);
     background: var(--card);
     color: var(--primary);
@@ -703,7 +703,7 @@
     padding: 0.4rem 0.6rem;
     background: var(--card);
     border: 1px solid var(--border);
-    border-radius: 8px;
+    border-radius: 4px;
   }
 
   .viewport-toggles {
@@ -715,7 +715,7 @@
     font-size: 0.72rem;
     font-weight: 600;
     padding: 0.2rem 0.5rem;
-    border-radius: 5px;
+    border-radius: 3px;
     border: 1px solid var(--border);
     background: var(--card);
     color: var(--faint-foreground);
@@ -736,7 +736,7 @@
     font-size: 0.72rem;
     font-weight: 600;
     padding: 0.22rem 0.55rem;
-    border-radius: 5px;
+    border-radius: 3px;
     border: 1px solid var(--border-strong);
     background: var(--card);
     color: var(--muted-foreground);
@@ -775,14 +775,14 @@
     flex-direction: column;
     margin: 0;
     border: 1px solid var(--border);
-    border-radius: 10px;
+    border-radius: 4px;
     background: var(--card);
   }
 
   .canvas-code-drawer {
     background: var(--code);
     color: var(--code-foreground);
-    border-radius: 8px;
+    border-radius: 4px;
     padding: 0.6rem 0.8rem;
     max-height: 180px;
     display: flex;
@@ -835,7 +835,7 @@
     font-size: 0.72rem;
     font-weight: 600;
     padding: 0.25rem 0.5rem;
-    border-radius: 5px;
+    border-radius: 3px;
     border: 1px solid transparent;
     background: transparent;
     color: var(--faint-foreground);
@@ -870,7 +870,7 @@
     font-size: 0.74rem;
     font-weight: 600;
     padding: 0.2rem 0.45rem;
-    border-radius: 4px;
+    border-radius: 3px;
     border: none;
     background: transparent;
     color: var(--faint-foreground);
@@ -916,7 +916,7 @@
   .schema-domain {
     font-size: 0.76rem;
     padding: 0.22rem 0.4rem;
-    border-radius: 5px;
+    border-radius: 3px;
     border: 1px solid var(--border);
     min-width: 0;
   }
@@ -925,7 +925,7 @@
     font-size: 0.74rem;
     font-weight: 600;
     padding: 0.3rem 0.6rem;
-    border-radius: 5px;
+    border-radius: 3px;
     border: 1px dashed var(--border-strong);
     background: transparent;
     color: var(--primary);
@@ -956,7 +956,7 @@
     font-size: 0.68rem;
     font-weight: 600;
     padding: 0.18rem 0.45rem;
-    border-radius: 4px;
+    border-radius: 3px;
     border: 1px solid var(--border-strong);
     background: var(--card);
     color: var(--muted-foreground);
@@ -968,7 +968,7 @@
 
   .csv-import-box {
     border: 1px solid var(--primary);
-    border-radius: 6px;
+    border-radius: 4px;
     padding: 0.5rem;
     background: var(--surface-subtle);
     margin-bottom: 0.5rem;
@@ -985,7 +985,7 @@
     font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
     font-size: 0.72rem;
     padding: 0.3rem;
-    border-radius: 4px;
+    border-radius: 3px;
     border: 1px solid var(--border-strong);
   }
   .csv-btn-row {
@@ -999,7 +999,7 @@
     font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
     font-size: 0.74rem;
     padding: 0.5rem;
-    border-radius: 6px;
+    border-radius: 4px;
     border: 1px solid var(--border);
     background: var(--surface-subtle);
     resize: vertical;
@@ -1020,7 +1020,7 @@
   /* Scales & Layout */
   .scale-channel-box {
     border: 1px solid var(--surface-muted);
-    border-radius: 6px;
+    border-radius: 4px;
     background: var(--surface-subtle);
     padding: 0.4rem 0.5rem;
     margin-bottom: 0.4rem;
@@ -1076,7 +1076,7 @@
     max-width: 55%;
     font-size: 0.78rem;
     padding: 0.22rem 0.4rem;
-    border-radius: 6px;
+    border-radius: 4px;
     border: 1px solid var(--border);
     background: var(--card);
   }
@@ -1090,7 +1090,7 @@
     width: 1.6rem;
     height: 1.6rem;
     border: 1px solid var(--border);
-    border-radius: 4px;
+    border-radius: 3px;
     padding: 0;
     cursor: pointer;
   }
@@ -1137,7 +1137,7 @@
     transform: translateX(14px);
   }
   .slider.round {
-    border-radius: 18px;
+    border-radius: 6px;
   }
   .slider.round:before {
     border-radius: 50%;
@@ -1151,7 +1151,7 @@
   }
   .instance-card {
     border: 1px solid var(--border);
-    border-radius: 7px;
+    border-radius: 4px;
     background: var(--card);
     padding: 0.45rem 0.55rem;
     display: flex;
@@ -1202,7 +1202,7 @@
   .starter-modal,
   .export-modal {
     background: var(--card);
-    border-radius: 12px;
+    border-radius: 4px;
     box-shadow: 0 20px 25px -5px var(--shadow-color), 0 10px 10px -5px var(--shadow-color);
     width: 100%;
     max-width: 780px;
@@ -1236,7 +1236,7 @@
     color: var(--faint-foreground);
     width: 2rem;
     height: 2rem;
-    border-radius: 9999px;
+    border-radius: var(--radius);
     cursor: pointer;
     display: flex;
     align-items: center;
@@ -1260,7 +1260,7 @@
     font-size: 0.74rem;
     font-weight: 600;
     padding: 0.25rem 0.6rem;
-    border-radius: 9999px;
+    border-radius: var(--radius);
     border: 1px solid var(--border-strong);
     background: var(--card);
     color: var(--muted-foreground);
@@ -1284,7 +1284,7 @@
 
   .starter-card {
     border: 1px solid var(--border);
-    border-radius: 9px;
+    border-radius: 4px;
     background: var(--card);
     padding: 0.9rem;
     display: flex;
@@ -1310,7 +1310,7 @@
     color: var(--primary);
     background: var(--accent);
     padding: 0.1rem 0.4rem;
-    border-radius: 4px;
+    border-radius: 3px;
   }
   .starter-marks-count {
     font-size: 0.68rem;
@@ -1332,7 +1332,7 @@
   .starter-card-hint {
     font-size: 0.72rem;
     background: var(--surface-subtle);
-    border-radius: 5px;
+    border-radius: 3px;
     padding: 0.35rem 0.5rem;
     color: var(--muted-foreground);
     margin-bottom: 0.6rem;
@@ -1397,7 +1397,7 @@
     font-size: 0.8rem;
     font-weight: 600;
     padding: 0.4rem 0.9rem;
-    border-radius: 6px;
+    border-radius: 4px;
     border: 1px solid var(--primary);
     background: var(--primary);
     color: var(--primary-foreground);
@@ -1410,7 +1410,7 @@
     font-size: 0.8rem;
     font-weight: 600;
     padding: 0.4rem 0.9rem;
-    border-radius: 6px;
+    border-radius: 4px;
     border: 1px solid var(--border-strong);
     background: var(--card);
     color: var(--muted-foreground);

@@ -81,7 +81,7 @@ export default function ApiPage() {
             type="button"
             size="xs"
             variant={ns === null ? 'default' : 'outline'}
-            className="rounded-full px-3"
+            className="px-3"
             onClick={() => setNs(null)}
           >
             all
@@ -92,7 +92,7 @@ export default function ApiPage() {
               type="button"
               size="xs"
               variant={ns === n.namespace ? 'default' : 'outline'}
-              className="rounded-full px-3 font-mono"
+              className="px-3 font-mono"
               onClick={() => setNs(ns === n.namespace ? null : n.namespace)}
               title={n.blurb}
             >

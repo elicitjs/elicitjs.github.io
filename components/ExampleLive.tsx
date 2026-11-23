@@ -9,10 +9,12 @@ import {
   useRef,
   useState,
   type CSSProperties,
+  type KeyboardEvent,
 } from 'react';
-import { themes } from 'prism-react-renderer';
 import { Editor } from 'react-live';
+import { Redo2, RotateCcw, Undo2 } from 'lucide-react';
 import { Button } from '@/components/ui/button';
+import { codeTheme } from '../lib/codeTheme';
 import type { CodeMode, ExampleMeta, Prose } from '../lib/types';
 import * as elicit from '@elicit';
 import { createElicitScope } from '../lib/elicitScope';
@@ -24,6 +26,25 @@ import { findFolds } from '../lib/folds';
 import { formatJson, functionsSource, type JsonBlock, type JsonView } from '../lib/jsonSpec';
 
 const EVAL_DEBOUNCE_MS = 280;
+/** Keystrokes closer together than this undo as one step. */
+const HISTORY_COALESCE_MS = 700;
+const HISTORY_LIMIT = 200;
+
+/** The code's edit history: every version, and which one is showing. */
+type History = { stack: string[]; at: number; last: number };
+
+/** A change to the code made from outside the editor: undo, redo or reset. */
+type ExternalEdit = { text: string; caret: number };
+
+/** Where the caret goes after `prev` becomes `next`: the end of what changed. */
+function changeEnd(prev: string, next: string): number {
+  let suffix = 0;
+  const max = Math.min(prev.length, next.length);
+  while (suffix < max && prev[prev.length - 1 - suffix] === next[next.length - 1 - suffix]) suffix++;
+  let prefix = 0;
+  while (prefix < max - suffix && prev[prefix] === next[prefix]) prefix++;
+  return Math.max(prefix, next.length - suffix);
+}
 
 const EDITOR_STYLE_BASE: CSSProperties = {
   fontFamily: 'ui-monospace, SFMono-Regular, Menlo, monospace',
@@ -137,7 +158,7 @@ function destroyAll(charts: ElicitChart[]) {
 }
 
 /**
- * `Try: …` affordance under a chart. The hint is JSX so it keeps its own markup
+ * `Try: …` affordance over a chart. The hint is JSX so it keeps its own markup
  * — `.try b` in docs.css colours a <b> specifically.
  */
 function TryHint({ hint }: { hint: Prose }) {
@@ -239,12 +260,18 @@ function keepUnderPointer(pre: HTMLElement, clientY: number | null) {
  */
 const CodePane = memo(function CodePane({
   source,
-  tall,
+  external,
   onDraftChange,
+  onUndo,
+  onRedo,
 }: {
+  /** The code when the pane mounts. A new preset remounts it (key on parent). */
   source: string;
-  tall?: boolean;
+  /** Undo, redo and reset write the code here, keeping the editor open. */
+  external: ExternalEdit | null;
   onDraftChange: (value: string) => void;
+  onUndo: () => void;
+  onRedo: () => void;
 }) {
   const [value, setValue] = useState(source);
   const [editing, setEditing] = useState(false);
@@ -252,19 +279,32 @@ const CodePane = memo(function CodePane({
   const caret = useRef(0);
   const clickY = useRef<number | null>(null);
   const wrap = useRef<HTMLDivElement>(null);
-  const style = useMemo(
-    () => ({
-      ...EDITOR_STYLE_BASE,
-      minHeight: tall ? 420 : 200,
-    }),
-    [tall]
-  );
   const folds = useMemo(() => findFolds(value).length > 0, [value]);
 
-  // Remount when `source` identity changes (Reset / new preset) via key on parent.
   useEffect(() => {
-    setValue(source);
-  }, [source]);
+    if (!external) return;
+    setValue(external.text);
+    // If the reader is typing, the caret lands at the end of what changed,
+    // after the editor has redrawn the new text.
+    const id = window.setTimeout(() => {
+      const pre = wrap.current?.querySelector('pre');
+      if (pre && document.activeElement === pre) placeCaret(pre, external.caret);
+    });
+    return () => window.clearTimeout(id);
+  }, [external]);
+
+  // ⌘Z / Ctrl+Z, ⇧⌘Z / Ctrl+Y go to the example's own history, which the
+  // toolbar buttons share, instead of the editor's.
+  const onKeyDownCapture = (e: KeyboardEvent) => {
+    if (!(e.metaKey || e.ctrlKey) || e.altKey) return;
+    const key = e.key.toLowerCase();
+    const redo = (key === 'z' && e.shiftKey) || (key === 'y' && e.ctrlKey && !e.shiftKey);
+    if (key !== 'z' && !redo) return;
+    e.preventDefault();
+    e.stopPropagation();
+    if (redo) onRedo();
+    else onUndo();
+  };
 
   // use-editable (inside react-live's Editor) lists `ref.current` among its
   // effect deps, and reads it during render, when the <pre> does not exist yet.
@@ -300,7 +340,8 @@ const CodePane = memo(function CodePane({
     return (
       <div
         className="live-editor"
-        style={style}
+        style={EDITOR_STYLE_BASE}
+        onKeyDownCapture={onKeyDownCapture}
         onPointerDown={(e) => {
           clickY.current = e.clientY;
         }}
@@ -322,6 +363,8 @@ const CodePane = memo(function CodePane({
   return (
     <div
       ref={wrap}
+      className="live-editor-wrap"
+      onKeyDownCapture={onKeyDownCapture}
       onBlur={(e) => {
         if (!e.currentTarget.contains(e.relatedTarget as Node | null)) setEditing(false);
       }}
@@ -330,12 +373,12 @@ const CodePane = memo(function CodePane({
         className="live-editor"
         code={value}
         language="jsx"
-        theme={themes.nightOwl}
+        theme={codeTheme}
         onChange={(next) => {
           setValue(next);
           onDraftChange(next);
         }}
-        style={style}
+        style={EDITOR_STYLE_BASE}
       />
     </div>
   );
@@ -396,9 +439,10 @@ export function ExampleLive({
   codeMode = 'editable',
 }: Props) {
   const baseCode = useMemo(() => normalizeExampleCode(initialCode), [initialCode]);
-  const [source, setSource] = useState(baseCode);
   const [evalCode, setEvalCode] = useState(baseCode);
   const [editorKey, setEditorKey] = useState(0);
+  // Bumped by Reset, so it redraws the chart even when the code is unchanged.
+  const [rerun, setRerun] = useState(0);
   const [error, setError] = useState<string | null>(null);
   const [elicited, setElicited] = useState<ElicitChart | null>(null);
   const [fluid, setFluid] = useState(false);
@@ -418,11 +462,26 @@ export function ExampleLive({
   const isVisual = codeMode === 'collapsed' || codeMode === 'readonly';
   const showCode = isEditable || codeMode === 'readonly' || codeOpen;
 
+  // Undo / redo. The history lives here, not in the editor, so the toolbar
+  // buttons and the keyboard share it, and it survives the editor folding
+  // its data rows on blur.
+  const history = useRef<History>({ stack: [baseCode], at: 0, last: 0 });
+  const [canUndo, setCanUndo] = useState(false);
+  const [canRedo, setCanRedo] = useState(false);
+  const [external, setExternal] = useState<ExternalEdit | null>(null);
+  const syncHistory = useCallback(() => {
+    const h = history.current;
+    setCanUndo(h.at > 0);
+    setCanRedo(h.at < h.stack.length - 1);
+  }, []);
+  const current = history.current.stack[history.current.at];
+
   useEffect(() => {
-    setSource(baseCode);
+    history.current = { stack: [baseCode], at: 0, last: 0 };
+    syncHistory();
     setEvalCode(baseCode);
     setEditorKey((k) => k + 1);
-  }, [baseCode]);
+  }, [baseCode, syncHistory]);
 
   // Keep the code-open state tied to `codeMode` alone. A reactive parent (the
   // Build dashboard) feeds a fresh `code` on every form change; folding this
@@ -431,13 +490,34 @@ export function ExampleLive({
     setCodeOpen(codeMode === 'readonly');
   }, [codeMode]);
 
-  const onDraftChange = useCallback((value: string) => {
-    if (debounceRef.current != null) window.clearTimeout(debounceRef.current);
-    debounceRef.current = window.setTimeout(() => {
-      setEvalCode(value);
-      debounceRef.current = null;
-    }, EVAL_DEBOUNCE_MS);
-  }, []);
+  const onDraftChange = useCallback(
+    (value: string) => {
+      const h = history.current;
+      // The editor echoes text written into it from outside; that is no edit.
+      if (value === h.stack[h.at]) return;
+      const now = Date.now();
+      h.stack.length = h.at + 1;
+      if (h.at > 0 && now - h.last < HISTORY_COALESCE_MS) {
+        h.stack[h.at] = value;
+      } else {
+        h.stack.push(value);
+        h.at += 1;
+        if (h.stack.length > HISTORY_LIMIT) {
+          h.stack.shift();
+          h.at -= 1;
+        }
+      }
+      h.last = now;
+      syncHistory();
+
+      if (debounceRef.current != null) window.clearTimeout(debounceRef.current);
+      debounceRef.current = window.setTimeout(() => {
+        setEvalCode(value);
+        debounceRef.current = null;
+      }, EVAL_DEBOUNCE_MS);
+    },
+    [syncHistory]
+  );
 
   useEffect(() => {
     return () => {
@@ -445,15 +525,40 @@ export function ExampleLive({
     };
   }, []);
 
+  /** Show version `at` of the history in the editor, and run it now. */
+  const goTo = useCallback(
+    (at: number) => {
+      const h = history.current;
+      if (at < 0 || at >= h.stack.length || at === h.at) return;
+      const prev = h.stack[h.at];
+      const next = h.stack[at];
+      h.at = at;
+      // The next keystroke starts a new step instead of joining this one.
+      h.last = 0;
+      syncHistory();
+      if (debounceRef.current != null) {
+        window.clearTimeout(debounceRef.current);
+        debounceRef.current = null;
+      }
+      setExternal({ text: next, caret: changeEnd(prev, next) });
+      setEvalCode(next);
+    },
+    [syncHistory]
+  );
+  const undo = useCallback(() => goTo(history.current.at - 1), [goTo]);
+  const redo = useCallback(() => goTo(history.current.at + 1), [goTo]);
+
+  // Reset is one more step, so Undo brings the reader's edits back.
+  // Reset also redraws the chart, clearing what the reader did on it.
   const reset = useCallback(() => {
-    if (debounceRef.current != null) {
-      window.clearTimeout(debounceRef.current);
-      debounceRef.current = null;
+    const h = history.current;
+    if (h.stack[h.at] !== baseCode) {
+      h.stack.length = h.at + 1;
+      h.stack.push(baseCode);
+      goTo(h.stack.length - 1);
     }
-    setSource(baseCode);
-    setEvalCode(baseCode);
-    setEditorKey((k) => k + 1);
-  }, [baseCode]);
+    setRerun((n) => n + 1);
+  }, [baseCode, goTo]);
 
   useEffect(() => {
     const chart = chartRef.current;
@@ -623,7 +728,7 @@ export function ExampleLive({
       destroyAll(activeRef.current);
       activeRef.current = [];
     };
-  }, [evalCode, scope, chartMode, specMode]);
+  }, [evalCode, scope, chartMode, specMode, rerun]);
 
   // The JSON for this example, when the site shows JSON and the example has one.
   const json = specMode === 'json' && jsonView && !jsonView.unavailable && jsonView.blocks.length ? jsonView : null;
@@ -637,87 +742,123 @@ export function ExampleLive({
     .filter(Boolean)
     .join(' ');
 
-  return (
-    <div className={cardClass} data-spec={specMode} data-json={json ? 'compiled' : noJson ? 'none' : undefined}>
-      {/* No icons in the card's buttons: the library's browser gate selects a
-          section's FIRST <svg> (`#edit svg`), which must be the chart's. */}
-      <div className="card-head">
-        <div>
-          <h3>{meta.title}</h3>
-          {meta.blurb ? <p>{meta.blurb}</p> : null}
-        </div>
-        <div className="card-actions">
-          {showCode ? <SpecTabs mode={specMode} /> : null}
-          {codeMode === 'collapsed' ? (
-            <Button
-              type="button"
-              variant="outline"
-              size="sm"
-              onClick={() => setCodeOpen((o) => !o)}
-              title={codeOpen ? 'Hide the source' : 'Show the source'}
-            >
-              {codeOpen ? 'Hide code' : 'Show code'}
-            </Button>
-          ) : null}
+  const hint = !error && meta.try ? <TryHint hint={meta.try} /> : null;
+  const errorBox = error ? <pre className="live-error">⚠ {error}</pre> : null;
+  const resultClass = `result${fluid ? ' fluid' : ''}`;
+  const resultStyle = resultWidth ? { width: resultWidth } : undefined;
+
+  // The toolbar sits over the code, but comes after the chart in the DOM: the
+  // library's browser gate takes a section's FIRST <svg> to be the chart's, and
+  // the first button named "Undo" on /editing/history to be the example's own.
+  const toolbar = (
+    <div className="ex-toolbar">
+      {showCode ? <SpecTabs mode={specMode} /> : <span />}
+      <div className="ex-actions">
+        {codeMode === 'collapsed' ? (
           <Button
             type="button"
-            variant="outline"
+            variant="ghost"
             size="sm"
-            onClick={reset}
-            title="Restore the default example"
+            onClick={() => setCodeOpen((o) => !o)}
+            aria-expanded={codeOpen}
           >
-            Reset
+            {codeOpen ? 'Hide code' : 'Show code'}
           </Button>
-        </div>
-      </div>
-      <div className={`body${isVisual ? ' body-visual' : ''}`}>
-        {showCode && isEditable ? (
-          <div className={`code-wrap${tall ? ' tall' : ''}`}>
-            {noJson ? <p className="json-note">No JSON form. {noJson}</p> : null}
-            {json ? (
-              <JsonPane view={json} />
-            ) : (
-              <CodePane
-                key={editorKey}
-                source={source}
-                tall={tall}
-                onDraftChange={onDraftChange}
-              />
-            )}
-          </div>
         ) : null}
-        {isVisual ? (
-          <div className="visual-row">
-            <div
-              className={`result${fluid ? ' fluid' : ''}`}
-              style={resultWidth ? { width: resultWidth } : undefined}
+        {isEditable && !json ? (
+          <>
+            <Button
+              type="button"
+              variant="ghost"
+              size="icon-sm"
+              onClick={undo}
+              disabled={!canUndo}
+              aria-label="Undo"
+              title="Undo (⌘Z)"
             >
+              <Undo2 />
+            </Button>
+            <Button
+              type="button"
+              variant="ghost"
+              size="icon-sm"
+              onClick={redo}
+              disabled={!canRedo}
+              aria-label="Redo"
+              title="Redo (⇧⌘Z)"
+            >
+              <Redo2 />
+            </Button>
+            <span className="ex-sep" aria-hidden="true" />
+          </>
+        ) : null}
+        <Button
+          type="button"
+          variant="ghost"
+          size="sm"
+          onClick={reset}
+          title="Restore the example's code and redraw the chart"
+        >
+          <RotateCcw />
+          Reset
+        </Button>
+      </div>
+    </div>
+  );
+
+  const codeBody = (
+    <>
+      {noJson ? <p className="json-note">No JSON form. {noJson}</p> : null}
+      {json ? (
+        <JsonPane view={json} />
+      ) : isEditable ? (
+        <CodePane
+          key={editorKey}
+          source={current}
+          external={external}
+          onDraftChange={onDraftChange}
+          onUndo={undo}
+          onRedo={redo}
+        />
+      ) : (
+        <ReadOnlyCode code={current} />
+      )}
+    </>
+  );
+
+  return (
+    <div className={cardClass} data-spec={specMode} data-json={json ? 'compiled' : noJson ? 'none' : undefined}>
+      <div className="card-head">
+        <h3>{meta.title}</h3>
+        {meta.blurb ? <p>{meta.blurb}</p> : null}
+      </div>
+      {isVisual ? (
+        <div className="body body-visual">
+          <div className="visual-row">
+            <div className={resultClass} style={resultStyle}>
+              {hint}
               <div className="chart" ref={chartRef} />
-              {error ? <pre className="live-error">⚠ {error}</pre> : null}
-              {!error && meta.try ? <TryHint hint={meta.try} /> : null}
+              {errorBox}
             </div>
             <div className="visual-data">
               {!error ? <DataPanel chart={elicited} /> : null}
             </div>
           </div>
-        ) : (
-          <div
-            className={`result${fluid ? ' fluid' : ''}`}
-            style={resultWidth ? { width: resultWidth } : undefined}
-          >
+          {toolbar}
+          {showCode ? <div className="code-wrap code-below">{codeBody}</div> : null}
+        </div>
+      ) : (
+        <div className={`body ex-body${fluid ? ' is-fluid' : ''}`}>
+          <div className={`code-wrap${tall ? ' tall' : ''}`}>{codeBody}</div>
+          <div className={resultClass} style={resultStyle}>
+            {hint}
             <div className="chart" ref={chartRef} />
-            {error ? <pre className="live-error">⚠ {error}</pre> : null}
-            {!error && meta.try ? <TryHint hint={meta.try} /> : null}
+            {errorBox}
             {!error ? <DataPanel chart={elicited} /> : null}
           </div>
-        )}
-        {showCode && !isEditable ? (
-          <div className={`code-wrap code-below${tall ? ' tall' : ''}`}>
-            {noJson ? <p className="json-note">No JSON form. {noJson}</p> : null}
-            {json ? <JsonPane view={json} /> : <ReadOnlyCode code={source} />}
-          </div>
-        ) : null}
-      </div>
+          {toolbar}
+        </div>
+      )}
     </div>
   );
 }
