@@ -1876,38 +1876,52 @@ mount(Elicit({
   },
   interfaces: [
     {
-      title: 'Point to 2035',
-      question: 'Where will these six metros be in 2035 — how big, and how unequal?',
-      try: 'Drag an open circle (2035) anywhere; the filled 2015 positions are locked.',
-      why: 'The arrows are `link` rows between a locked 2015 node and a free 2035 node. `move()` on the node mark writes both `x` and `y` of whichever end you grab, and `lock` keeps the observed ends where they are.',
+      title: 'Continue the arrow',
+      question: 'Where will these five metros be in 2035 — how big, and how unequal?',
+      try: 'Drag an open circle (2035). The grey 1980 → 2015 arrows and the filled 2015 positions are locked.',
+      why: 'Each metro is three nodes joined by two `link` rows: the observed 1980 → 2015 move in grey and a 2015 → 2035 arrow in red. `move()` on the point mark writes both `x` and `y` of the 2035 end, `lock` keeps the observed nodes fixed, and the arrow follows the drag. The 2035 ends start where the 1980–2015 pace leads.',
       uses: ['move()', 'lock', 'link'],
-      code: `const metros = (await plotData('observablehq__plot-arrow-variation-chart', 'metros.csv')).filter(d => d.highlight);
+      code: `// five of the labelled metros, and where each label sits: [dx, dy, anchor]
+const pick = { 'New York': [9, 0, 'start'], 'Chicago': [9, 0, 'start'], 'Houston': [-9, 0, 'end'],
+               'San Jose': [9, 0, 'start'], 'Fairfield, Conn.': [-9, 0, 'end'] };
+const metros = (await plotData('observablehq__plot-arrow-variation-chart', 'metros.csv')).filter(d => d.nyt_display in pick);
+const ahead = (a, b) => b + (b - a) * 20 / 35;                      // the 1980–2015 pace, 20 more years
 const nodes = metros.flatMap((d, i) => [
-  { id: 'now' + i, year: 2015, x: d.POP_2015, y: d.R90_10_2015, name: d.nyt_display },
-  { id: 'then' + i, year: 2035, x: d.POP_2015 * 1.3, y: d.R90_10_2015 + 0.5, name: '' },   // a nudge to start from
+  { id: 'p' + i, year: 1980, x: d.POP_1980, y: d.R90_10_1980 },
+  { id: 'n' + i, year: 2015, x: d.POP_2015, y: d.R90_10_2015, name: d.nyt_display },
+  { id: 'f' + i, year: 2035, x: d.POP_2015 * (d.POP_2015 / d.POP_1980) ** (20 / 35), y: ahead(d.R90_10_1980, d.R90_10_2015) },
 ]);
+const ref = { type: 'ref' };
 
 mount(Elicit({
-  width: 480, height: 320,
-  margins: { top: 16, right: 16, bottom: 36, left: 44 },
+  width: 480, height: 340,
+  margins: { top: 12, right: 16, bottom: 36, left: 40 },
   schema: {
     structure: 'network',
     tables: {
-      nodes: { id: { type: 'categorical', key: true }, year: { type: 'ordinal', domain: [2015, 2035] },
-               x: { type: 'quantitative', domain: [1e5, 4e7] }, y: { type: 'quantitative', domain: [3, 11] },
+      nodes: { id: { type: 'categorical', key: true }, year: { type: 'ordinal', domain: [1980, 2015, 2035] },
+               x: { type: 'quantitative', domain: [2e5, 4.5e7] }, y: { type: 'quantitative', domain: [3.5, 11] },
                name: { type: 'categorical' } },
-      links: { directed: true, fields: { source: { type: 'ref' }, target: { type: 'ref' } } },
+      links: { directed: true, fields: { source: ref, target: ref,
+               span: { type: 'categorical', domain: ['1980–2015', '2015–2035'] } } },
     },
   },
-  data: { nodes, links: metros.map((d, i) => ({ source: 'now' + i, target: 'then' + i })) },
-  lock: d => d.year === 2015,                                       //! the observed end is fixed
+  data: { nodes,
+          links: metros.flatMap((d, i) => [{ source: 'p' + i, target: 'n' + i, span: '1980–2015' },
+                                           { source: 'n' + i, target: 'f' + i, span: '2015–2035' }]) },
+  lock: d => d.year !== 2035,                                         //! only the 2035 ends move
   axes: { x: { grid: true, title: 'Population →' }, y: { grid: true, title: '↑ Inequality' } },
   marks: [
-    link({ curvature: 0.2, arrowSize: 5, inset: 6, stroke: '#b2182b', strokeWidth: 1.5 }),
-    point({ size: 6, stroke: '#b2182b', strokeWidth: 1.5,
+    link({ curvature: 0.2, arrowSize: 5, inset: 2, strokeWidth: 1.6,
+      channels: { stroke: { field: 'span', scale: { range: ['#a3acb6', '#b2182b'] } } } }),   //! past in grey, the answer in red
+    point({ strokeWidth: 1.6,
       channels: { x: { field: 'x', scale: 'log', edit: move({ channels: ['x', 'y'] }) }, y: { field: 'y' },   //! drag the 2035 end
-                  fill: { field: 'year', scale: { range: ['#b2182b', '#fff'] } } } }),
-    text({ fontSize: 10, dy: -10, channels: { x: { field: 'x' }, y: { field: 'y' }, text: { field: 'name' } } }),
+                  fill: { field: 'year', scale: { range: ['#a3acb6', '#b2182b', '#fff'] } },
+                  stroke: { field: 'year', scale: { range: ['#a3acb6', '#b2182b', '#b2182b'] } },
+                  size: { fn: d => d.year === 1980 ? 2.5 : 4.5 } } }),
+    text({ fontSize: 11, channels: { x: { field: 'x' }, y: { field: 'y' }, text: { field: 'name' },
+      dx: { fn: d => d.name ? pick[d.name][0] : 0 }, dy: { fn: d => d.name ? pick[d.name][1] : 0 },   // each label clear of its arrows
+      textAnchor: { fn: d => d.name ? pick[d.name][2] : 'middle' } } }),
   ],
 }));`,
     },

@@ -5,6 +5,10 @@ import { Example } from '../../../components/Example';
 import { Lead } from '../../../components/Lead';
 import { api } from './api';
 
+import frameByBbox from './_examples/frame-by-bbox.example.txt';
+import centreAndSwitchLocations from './_examples/centre-and-switch-locations.example.txt';
+import zoomAndPanTiles from './_examples/zoom-and-pan-tiles.example.txt';
+import zoomAndPanBasemap from './_examples/zoom-and-pan-basemap.example.txt';
 import vancouverLocalAreas from './_examples/vancouver-local-areas.example.txt';
 import pinsOnOpenstreetmap from './_examples/pins-on-openstreetmap.example.txt';
 import tilesUnderTheNeighborhoodOutlines from './_examples/tiles-under-the-neighborhood-outlines.example.txt';
@@ -22,13 +26,82 @@ export default function Layout({ children }) {
 
 # Geo
 
-<Lead>Geo marks place rows by longitude and latitude through a chart-level `projection`: `"mercator"`, `{ type, domain, … }`, or a `d3.geo*` instance. Positions go through the projection, not x/y scales. `geoBasemap({ geojson })` draws the map from a GeoJSON FeatureCollection, Feature or Geometry, and `geoTile()` lays raster tiles under it. The examples use Vancouver's 22 local areas (`vancouver` in the docs scope); swap in your own file.</Lead>
+<Lead>Geo marks place rows by longitude and latitude through a chart-level `projection`, instead of x/y scales. Frame any place by fitting GeoJSON or a lon/lat bounding box in `projection.domain`, or by passing a live `d3.geo*` instance with your own `center` and `scale`. `geoBasemap({ geojson })` draws vector maps and `geoTile()` lays Web Mercator raster tiles behind your marks.</Lead>
 
 <ApiReference entries={api} />
 
+<Section id="locations" title="Framing a location">
+
+A bare projection name such as `projection: "mercator"` fits the whole world. Point the map at a specific place in one of three ways:
+
+- **Fit a GeoJSON object:** `projection: { type: "mercator", domain: geojson, inset: 6 }`. Any FeatureCollection, Feature, or Geometry fills the plot frame. Note that `d3-geo` treats clockwise exterior rings as the interior of a polygon (opposite to RFC 7946), so a reversed polygon zooms out to the globe and logs a warning.
+- **Fit a lon/lat bounding box (no GeoJSON needed):** pass a `MultiPoint` of the southwest and northeast corners as `domain`: `domain: { type: "MultiPoint", coordinates: [[west, south], [east, north]] }`. A `MultiPoint` has no ring winding, so it fits any rectangle reliably.
+- **Centre on `[lon, lat]` and zoom level:** pass a live `d3.geoMercator()` instance directly as `projection`. Options such as `center` and `scale` belong on a `d3.geo*` instance rather than the plain `projection` options object. For Web Mercator tiles, slippy-map zoom level `z` converts directly to scale with `(256 * 2 ** z) / (2 * Math.PI)`, and `translate([innerWidth / 2, innerHeight / 2])` puts `center` in the middle of the plot.
+
+For globe or regional projections such as `"orthographic"` or `"conic-conformal"`, pass `rotate: [-lon, -lat]` in the `projection` options object to centre on `[lon, lat]`.
+
+`lon` and `lat` are projected raw rather than through x/y scales, so their `schema` entries only need `{ type: "quantitative" }`. Add a `clamp` constraint only when you want to bound where pins may be dragged.
+
+<Example
+  code={frameByBbox}
+  title="Frame any region with a bounding box"
+  blurb="Pass two opposite corners as a GeoJSON MultiPoint in projection.domain. Swap the two pairs to move the map anywhere on Earth."
+  try={(
+    <>
+      <b>Click</b> the map to drop a pin; <b>drag</b> any pin to move it.
+    </>
+  )}
+/>
+
+<Example
+  code={centreAndSwitchLocations}
+  title="Centre on coordinates and switch locations"
+  blurb="A live d3.geoMercator() takes .center([lon, lat]), .scale(scaleForZoom(z)), and .translate([W / 2, H / 2]). Update it and call setData() (or setStage(getStage())) to jump to a new city."
+  try={(
+    <>
+      <b>Click</b> a city button to reframe the map · <b>click</b> the map to drop a pin · <b>drag</b> a pin to move it.
+    </>
+  )}
+/>
+
+</Section>
+
+<Section id="zoom-pan" title="Zooming and panning">
+
+To zoom and pan a map, pass a live `d3.geoMercator()` instance as `projection` and mutate its `scale` and `translate` from two `custom` edits:
+
+- **Wheel zoom** (`gesture: "wheel", pick: "plane", viewport: true`): scale `proj` about `ctx.pointer` so the geographic point under the cursor stays fixed.
+- **Drag pan** (`gesture: "drag", pick: "pan", viewport: true`): shift `proj.translate()` by the pointer travel from `ctx.session.panFrom`. Dragging open map pans the view; dragging a pin, vertex, or study box still edits that mark.
+
+Attach both edits to the same mark that carries any other plane edit (such as `edit.geo.create()` on `geoPoint`), or to `geoTile()` / `geoBasemap()` when no other mark takes plane gestures. Set `margins: { top: 0, right: 0, bottom: 0, left: 0 }` so tiles, vector outlines, and marks clip cleanly to the frame. Every mark and `edit.geo.*` gesture reads the live projection on each render, so raster tiles load at the new zoom level and edits stay aligned.
+
+<Example
+  code={zoomAndPanTiles}
+  title="Zoom and pan an OpenStreetMap basemap"
+  blurb="Wheel zooms about the cursor; dragging open map pans via pick: 'pan'. Buttons zoom about the centre and reset the view."
+  try={(
+    <>
+      <b>Scroll</b> to zoom · <b>drag</b> open map to pan · <b>drag</b> a pin to move it · <b>click</b> open map to add a pin.
+    </>
+  )}
+/>
+
+<Example
+  code={zoomAndPanBasemap}
+  title="Zoom and pan a GeoJSON basemap"
+  blurb="Fit a live d3.geoMercator() with .fitExtent() once, then zoom and pan over the vector outlines. Reset calls .fitExtent() again."
+  try={(
+    <>
+      <b>Scroll</b> to zoom · <b>drag</b> open map to pan · <b>drag</b> or <b>click</b> to edit pins.
+    </>
+  )}
+/>
+
+</Section>
+
 <Section id="basemap" title="Providing basemap data">
 
-`geoBasemap` draws the map and cannot be edited. Pass it GeoJSON, and pass the same object as the projection's `domain` so the map fills the frame. Here `vancouver` is the docs sample; your app imports or fetches its own.
+`geoBasemap` draws the map and cannot be edited. Pass it GeoJSON, and pass the same object as `projection.domain` so the map fills the frame. The examples below use Vancouver's 22 local areas (`vancouver` in the docs scope); your app imports or fetches its own file.
 
 <Example
   code={vancouverLocalAreas}
@@ -40,12 +113,12 @@ export default function Layout({ children }) {
 
 <Section id="tiles" title="Real basemaps (OSM raster tiles)">
 
-`geoTile()` lays a raster basemap — a pyramid of 256px tiles from a tile server — behind your marks. Tiles are pre-rendered in Web Mercator, so it requires `projection: "mercator"`; other projections draw nothing and log a warning instead of a misaligned map. Lon/lat marks and `edit.geo.*` gestures work the same on top, because they use the same projection. Every tile service requires attribution as a licence condition, and `geoTile()` draws it by default. Public OSM tiles are rate-limited, so in production point `url` at your own server or a paid provider.
+`geoTile()` lays a raster basemap — a pyramid of 256px tiles from a tile server — behind your marks. Tiles are pre-rendered in Web Mercator, so it requires `projection: "mercator"` or a `d3.geoMercator()` instance; other projections draw nothing and log a warning instead of a misaligned map. Lon/lat marks and `edit.geo.*` gestures work the same on top, because they use the same projection. Every tile service requires attribution as a licence condition, and `geoTile()` draws it by default. Public OSM tiles are rate-limited, so in production point `url` at your own server or a paid provider.
 
 <Example
   code={pinsOnOpenstreetmap}
   title="Pins on OpenStreetMap"
-  blurb="geoTile() replaces geoBasemap, so no GeoJSON is needed. The projection still needs a domain to set the view; a bbox works when you have no geometry to fit."
+  blurb="geoTile() replaces geoBasemap, so no GeoJSON is needed. Fit the view with a two-corner MultiPoint in projection.domain."
   try={(
     <>
       <b>Click</b> to drop a pin; <b>drag</b> it. Lon/lat come back as data.

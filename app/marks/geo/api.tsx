@@ -6,12 +6,51 @@ export const api: ApiEntry[] = [
     json: ['spec'],
     summary: (
       <>
-        Chart option. Built once per layout into <code className="inline">scales.projection</code> with <code className="inline">apply</code>, <code className="inline">invert</code>, and <code className="inline">path</code>. Fit with <code className="inline">domain: geojson</code>. Auto axes default off when set.
+        Chart option. Accepts a named projection (fits the world), an options object fitted to a GeoJSON <code className="inline">domain</code>, or a live <code className="inline">d3.geo*</code> instance (required when setting <code className="inline">center</code> / <code className="inline">scale</code> directly or mutating the view to zoom and pan). Auto axes default off when set.
       </>
     ),
     signatures: [
-      "projection: \"mercator\" | \"albers-usa\" | \"equirectangular\" | …",
-      "projection: { type, domain?, rotate?, inset?, … }",
+      "projection: \"mercator\" | \"albers-usa\" | \"equal-earth\" | \"orthographic\" | …",
+      "projection: { type, domain?, rotate?, parallels?, clipAngle?, precision?, inset?, … }",
+      "projection: d3.geoMercator().center([lon, lat]).scale(s).translate([w / 2, h / 2])",
+    ],
+    options: [
+      {
+        name: "type",
+        type: "string | fn",
+        default: "—",
+        desc: "Named projection (e.g. \"mercator\", \"albers-usa\", \"equal-earth\", \"orthographic\", \"identity\") or a d3.geo* factory.",
+      },
+      {
+        name: "domain",
+        type: "GeoJSON",
+        default: "{ type: \"Sphere\" }",
+        desc: (
+          <>
+            GeoJSON FeatureCollection, Feature, or Geometry fitted into the plot frame. Pass{" "}
+            <code className="inline">{'{'} type: "MultiPoint", coordinates: [[w, s], [e, n]] {'}'}</code>{" "}
+            to frame a lon/lat box with no polygon winding issues.
+          </>
+        ),
+      },
+      {
+        name: "inset / insetTop / …",
+        type: "number",
+        default: "0",
+        desc: "Pixel padding inside the plot frame when fitting domain.",
+      },
+      {
+        name: "rotate",
+        type: "[λ, φ, γ?]",
+        default: "—",
+        desc: "Spherical rotation in degrees. Pass [-lon, -lat] to centre a globe or conic projection on [lon, lat].",
+      },
+      {
+        name: "parallels / clipAngle / precision",
+        type: "d3-geo",
+        default: "— / — / 0.15",
+        desc: "Forwarded to the underlying d3-geo projection.",
+      },
     ],
   },
   {
@@ -45,7 +84,7 @@ export const api: ApiEntry[] = [
     json: ['plot.geoTile'],
     summary: (
       <>
-        Raster basemap from a slippy-map tile server (OSM, CARTO, satellite, your own) — the Leaflet model. <b>Requires <code className="inline">projection: "mercator"</code></b>: tiles are images baked in Web Mercator and cannot register under another projection (the mark verifies this by <i>behaviour</i>, not by name, and warns instead of misaligning). Chrome, like geoBasemap — takes no data. Compose the two to draw boundaries over imagery.
+        Raster basemap from a slippy-map tile server (OSM, CARTO, satellite, or your own). Requires <code className="inline">projection: "mercator"</code> or a <code className="inline">d3.geoMercator()</code> instance: tiles are pre-rendered in Web Mercator, so other projections draw nothing and log a warning. Inert chrome, like <code className="inline">geoBasemap</code> — compose both to draw boundaries over imagery.
       </>
     ),
     signatures: [

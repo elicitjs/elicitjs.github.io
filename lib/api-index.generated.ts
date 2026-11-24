@@ -16,7 +16,7 @@ export type ApiIndexEntry = {
 export type ApiNamespace = { namespace: string; blurb: string; count: number };
 
 export const API_LIBRARY_VERSION = "0.2.0-alpha.0";
-export const API_GENERATED_AT = "2026-11-22T00:44:43.873Z";
+export const API_GENERATED_AT = "2026-11-24T01:15:47.730Z";
 export const API_NAMESPACES: ApiNamespace[] = [
   {
     "namespace": "plot",

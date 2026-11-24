@@ -1,17 +1,15 @@
 const chart = Elicit({
   width: 520, height: 360,
-  margins: { top: 8, right: 8, bottom: 8, left: 8 },
-  // No GeoJSON: fit the projection to a lon/lat box. Mind the ring winding —
-  // counterclockwise (RFC 7946). Reversed, d3 reads the box as the whole globe
-  // and the map zooms out to the world.
+  margins: { top: 0, right: 0, bottom: 0, left: 0 },
+  // No GeoJSON needed: fit the projection to a two-corner lon/lat box.
   projection: {
     type: "mercator",
     domain: {
-      type: "Polygon",
-      coordinates: [[
-        [-123.225, 49.198], [-123.225, 49.297],
-        [-123.023, 49.297], [-123.023, 49.198], [-123.225, 49.198],
-      ]],
+      type: "MultiPoint",
+      coordinates: [
+        [-123.225, 49.198], // [west, south]
+        [-123.023, 49.297], // [east, north]
+      ],
     },
   },
   data: [
@@ -19,8 +17,8 @@ const chart = Elicit({
     { lon: -123.1560, lat: 49.2680, place: "Kitsilano" },
   ],
   schema: {
-    lon:   { type: "quantitative", domain: [-123.27, -123.02] },
-    lat:   { type: "quantitative", domain: [49.20, 49.32] },
+    lon:   { type: "quantitative" },
+    lat:   { type: "quantitative" },
     place: { type: "categorical" },
   },
   marks: [

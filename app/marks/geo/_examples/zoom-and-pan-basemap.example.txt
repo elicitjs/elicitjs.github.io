@@ -1,0 +1,90 @@
+const W = 520, H = 360, PAD = 12;
+
+// Fit a live d3.geoMercator() to the GeoJSON once, then mutate it to zoom/pan.
+const proj = d3.geoMercator().fitExtent([[PAD, PAD], [W - PAD, H - PAD]], vancouver);
+const BASE_SCALE = proj.scale();
+const [MIN_SCALE, MAX_SCALE] = [BASE_SCALE * 0.6, BASE_SCALE * 12];
+
+const zoomAt = (factor, x, y) => {
+  const s0 = proj.scale();
+  const s1 = Math.max(MIN_SCALE, Math.min(MAX_SCALE, s0 * factor));
+  if (s1 === s0) return false;
+  const r = s1 / s0;
+  const [tx, ty] = proj.translate();
+  proj.scale(s1).translate([x - (x - tx) * r, y - (y - ty) * r]);
+  return true;
+};
+
+const zoomMap = custom((ctx) => {
+  const delta = Number(ctx.deltaY) || Number(ctx.deltaX) || 0;
+  if (!delta) return undefined;
+  return zoomAt(Math.pow(1.2, -delta / 100), ctx.pointer.x, ctx.pointer.y) ? ctx.data : undefined;
+}, { gesture: "wheel", pick: "plane", viewport: true });
+
+const panMap = custom((ctx) => {
+  const from = ctx.session && ctx.session.panFrom;
+  if (!from) return undefined;
+  const [tx, ty] = proj.translate();
+  proj.translate([tx + ctx.pointer.x - from.x, ty + ctx.pointer.y - from.y]);
+  return ctx.data;
+}, { gesture: "drag", pick: "pan", viewport: true });
+
+const chart = Elicit({
+  width: W, height: H,
+  margins: { top: 0, right: 0, bottom: 0, left: 0 },
+  projection: proj,
+  data: [
+    { lon: -123.1207, lat: 49.2827, place: "Downtown" },
+    { lon: -123.1560, lat: 49.2680, place: "Kitsilano" },
+    { lon: -123.1000, lat: 49.2630, place: "Mount Pleasant" },
+  ],
+  schema: {
+    lon:   { type: "quantitative" },
+    lat:   { type: "quantitative" },
+    place: { type: "categorical" },
+  },
+  marks: [
+    geoBasemap({ geojson: vancouver, fill: "#EDF7F8", stroke: "#46596B", strokeWidth: 0.8 }),
+    geoPoint({
+      size: 7, fill: "#50AEB7", stroke: "#fff", strokeWidth: 1.5,
+      channels: {
+        lon: { field: "lon" },
+        lat: { field: "lat" },
+      },
+      edits: [
+        edit.geo.move(),
+        edit.geo.create({ defaults: { place: "new pin" } }),
+        zoomMap,
+        panMap,
+      ],
+    }),
+  ],
+});
+mount(chart.dom());
+
+const controls = document.createElement("div");
+controls.style.cssText = "display:flex;gap:6px;align-items:center;margin-top:10px;font:12px system-ui";
+const readout = document.createElement("span");
+readout.style.color = "#6F8294";
+
+const show = () => { readout.textContent = `${(proj.scale() / BASE_SCALE).toFixed(1)}×`; };
+const redraw = () => { chart.setStage(chart.getStage()); show(); };
+
+const addButton = (label, onclick) => {
+  const b = document.createElement("button");
+  b.textContent = label;
+  b.onclick = onclick;
+  b.style.cssText = "padding:4px 10px;border:1px solid #BCC9D4;border-radius:6px;background:transparent;color:inherit;cursor:pointer";
+  controls.append(b);
+};
+addButton("Zoom in",  () => { if (zoomAt(1.5, W / 2, H / 2)) redraw(); });
+addButton("Zoom out", () => { if (zoomAt(1 / 1.5, W / 2, H / 2)) redraw(); });
+addButton("Reset",    () => {
+  proj.fitExtent([[PAD, PAD], [W - PAD, H - PAD]], vancouver);
+  redraw();
+});
+controls.append(readout);
+mount(controls);
+
+chart.on("change", show);
+show();

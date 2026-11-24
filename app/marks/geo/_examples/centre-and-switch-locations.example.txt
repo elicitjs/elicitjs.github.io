@@ -1,0 +1,65 @@
+const W = 520, H = 360;
+
+// Web Mercator slippy-map zoom level z → d3.geoMercator scale.
+// Roughly: z = 4 continent, z = 11 city, z = 15 neighbourhood or campus.
+const scaleForZoom = (z) => (256 * 2 ** z) / (2 * Math.PI);
+
+const PLACES = {
+  Tokyo:     { center: [139.6917, 35.6895], zoom: 11, pins: [{ lon: 139.7006, lat: 35.6896, place: "Shinjuku" }, { lon: 139.7671, lat: 35.6812, place: "Tokyo Station" }] },
+  London:    { center: [-0.1276, 51.5072],  zoom: 11, pins: [{ lon: -0.1276, lat: 51.5072, place: "Westminster" }, { lon: -0.0759, lat: 51.5055, place: "Tower Bridge" }] },
+  "New York":{ center: [-73.9857, 40.7484], zoom: 11, pins: [{ lon: -73.9857, lat: 40.7484, place: "Midtown" }, { lon: -73.9654, lat: 40.7829, place: "Central Park" }] },
+  Vancouver: { center: [-123.1207, 49.268], zoom: 12, pins: [{ lon: -123.1207, lat: 49.2827, place: "Downtown" }, { lon: -123.1560, lat: 49.2680, place: "Kitsilano" }] },
+};
+
+// Pass a live d3.geoMercator() instance to set centre and scale directly.
+const proj = d3.geoMercator()
+  .center(PLACES.Tokyo.center)
+  .scale(scaleForZoom(PLACES.Tokyo.zoom))
+  .translate([W / 2, H / 2]);
+
+const chart = Elicit({
+  width: W, height: H,
+  margins: { top: 0, right: 0, bottom: 0, left: 0 },
+  projection: proj,
+  data: PLACES.Tokyo.pins,
+  schema: {
+    lon:   { type: "quantitative" },
+    lat:   { type: "quantitative" },
+    place: { type: "categorical" },
+  },
+  marks: [
+    geoTile(),
+    geoPoint({
+      size: 7, fill: "#EE7B5E", stroke: "#fff", strokeWidth: 2,
+      channels: {
+        lon: { field: "lon" },
+        lat: { field: "lat" },
+      },
+      edits: [edit.geo.move(), edit.geo.create({ defaults: { place: "new pin" } })],
+    }),
+  ],
+});
+mount(chart.dom());
+
+const controls = document.createElement("div");
+controls.style.cssText = "display:flex;flex-wrap:wrap;gap:6px;align-items:center;margin-top:10px;font:12px system-ui";
+const readout = document.createElement("span");
+readout.style.color = "#6F8294";
+
+const goTo = (name) => {
+  const { center, zoom, pins } = PLACES[name];
+  proj.center(center).scale(scaleForZoom(zoom)).translate([W / 2, H / 2]);
+  chart.setData(pins);
+  readout.textContent = `${name} · [${center[0].toFixed(2)}, ${center[1].toFixed(2)}] · z${zoom}`;
+};
+
+for (const name of Object.keys(PLACES)) {
+  const b = document.createElement("button");
+  b.textContent = name;
+  b.onclick = () => goTo(name);
+  b.style.cssText = "padding:4px 10px;border:1px solid #BCC9D4;border-radius:6px;background:transparent;color:inherit;cursor:pointer";
+  controls.append(b);
+}
+controls.append(readout);
+mount(controls);
+readout.textContent = `Tokyo · [${PLACES.Tokyo.center[0].toFixed(2)}, ${PLACES.Tokyo.center[1].toFixed(2)}] · z${PLACES.Tokyo.zoom}`;

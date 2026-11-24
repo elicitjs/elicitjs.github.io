@@ -1,0 +1,37 @@
+// Fit the map to any region by passing its southwest and northeast corners
+// as a GeoJSON MultiPoint — no GeoJSON polygon file or ring-winding needed.
+const londonBounds = {
+  type: "MultiPoint",
+  coordinates: [
+    [-0.22, 51.46], // [west, south]
+    [ 0.02, 51.56], // [east, north]
+  ],
+};
+
+const chart = Elicit({
+  width: 520, height: 360,
+  margins: { top: 0, right: 0, bottom: 0, left: 0 },
+  projection: { type: "mercator", domain: londonBounds },
+  data: [
+    { lon: -0.1276, lat: 51.5072, place: "Westminster" },
+    { lon: -0.0877, lat: 51.5136, place: "City of London" },
+    { lon: -0.0098, lat: 51.4826, place: "Greenwich" },
+  ],
+  schema: {
+    lon:   { type: "quantitative" },
+    lat:   { type: "quantitative" },
+    place: { type: "categorical" },
+  },
+  marks: [
+    geoTile(),
+    geoPoint({
+      size: 7, fill: "#EE7B5E", stroke: "#fff", strokeWidth: 2,
+      channels: {
+        lon: { field: "lon" },
+        lat: { field: "lat" },
+      },
+      edits: [edit.geo.move(), edit.geo.create({ defaults: { place: "new pin" } })],
+    }),
+  ],
+});
+mount(chart.dom());

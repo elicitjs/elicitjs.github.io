@@ -1,0 +1,103 @@
+const W = 520, H = 360;
+const scaleForZoom = (z) => (256 * 2 ** z) / (2 * Math.PI);
+const zoomOf = (s) => Math.log2((2 * Math.PI * s) / 256);
+const [MIN_SCALE, MAX_SCALE] = [scaleForZoom(2), scaleForZoom(18)];
+
+const HOME = { center: [139.6917, 35.6895], zoom: 11 };
+
+// A live d3.geoMercator() instance lets gestures and buttons update scale
+// and translate in place; tiles and geo marks re-project on every render.
+const proj = d3.geoMercator()
+  .center(HOME.center)
+  .scale(scaleForZoom(HOME.zoom))
+  .translate([W / 2, H / 2]);
+
+// Scale about a pixel anchor (x, y) so the point under the pointer stays put.
+const zoomAt = (factor, x, y) => {
+  const s0 = proj.scale();
+  const s1 = Math.max(MIN_SCALE, Math.min(MAX_SCALE, s0 * factor));
+  if (s1 === s0) return false;
+  const r = s1 / s0;
+  const [tx, ty] = proj.translate();
+  proj.scale(s1).translate([x - (x - tx) * r, y - (y - ty) * r]);
+  return true;
+};
+
+const zoomMap = custom((ctx) => {
+  const delta = Number(ctx.deltaY) || Number(ctx.deltaX) || 0;
+  if (!delta) return undefined;
+  return zoomAt(Math.pow(1.2, -delta / 100), ctx.pointer.x, ctx.pointer.y) ? ctx.data : undefined;
+}, { gesture: "wheel", pick: "plane", viewport: true });
+
+const panMap = custom((ctx) => {
+  const from = ctx.session && ctx.session.panFrom;
+  if (!from) return undefined;
+  const [tx, ty] = proj.translate();
+  proj.translate([tx + ctx.pointer.x - from.x, ty + ctx.pointer.y - from.y]);
+  return ctx.data;
+}, { gesture: "drag", pick: "pan", viewport: true });
+
+const chart = Elicit({
+  width: W, height: H,
+  margins: { top: 0, right: 0, bottom: 0, left: 0 },
+  projection: proj,
+  data: [
+    { lon: 139.7006, lat: 35.6896, place: "Shinjuku" },
+    { lon: 139.7671, lat: 35.6812, place: "Tokyo Station" },
+    { lon: 139.7454, lat: 35.6586, place: "Tokyo Tower" },
+  ],
+  schema: {
+    lon:   { type: "quantitative" },
+    lat:   { type: "quantitative" },
+    place: { type: "categorical" },
+  },
+  marks: [
+    geoTile(),
+    // Place zoomMap and panMap alongside edit.geo.create() so one mark owns
+    // all plane gestures. Direct drags on a pin still move the pin.
+    geoPoint({
+      size: 7, fill: "#EE7B5E", stroke: "#fff", strokeWidth: 2,
+      channels: {
+        lon: { field: "lon" },
+        lat: { field: "lat" },
+      },
+      edits: [
+        edit.geo.move(),
+        edit.geo.create({ defaults: { place: "new pin" } }),
+        zoomMap,
+        panMap,
+      ],
+    }),
+  ],
+});
+mount(chart.dom());
+
+const controls = document.createElement("div");
+controls.style.cssText = "display:flex;flex-wrap:wrap;gap:6px;align-items:center;margin-top:10px;font:12px system-ui";
+const readout = document.createElement("span");
+readout.style.color = "#6F8294";
+
+const show = () => {
+  const c = proj.invert([W / 2, H / 2]);
+  readout.textContent = `z${zoomOf(proj.scale()).toFixed(1)} · [${c[0].toFixed(3)}, ${c[1].toFixed(3)}]`;
+};
+const redraw = () => { chart.setStage(chart.getStage()); show(); };
+
+const addButton = (label, onclick) => {
+  const b = document.createElement("button");
+  b.textContent = label;
+  b.onclick = onclick;
+  b.style.cssText = "padding:4px 10px;border:1px solid #BCC9D4;border-radius:6px;background:transparent;color:inherit;cursor:pointer";
+  controls.append(b);
+};
+addButton("Zoom in",  () => { if (zoomAt(1.5, W / 2, H / 2)) redraw(); });
+addButton("Zoom out", () => { if (zoomAt(1 / 1.5, W / 2, H / 2)) redraw(); });
+addButton("Reset",    () => {
+  proj.center(HOME.center).scale(scaleForZoom(HOME.zoom)).translate([W / 2, H / 2]);
+  redraw();
+});
+controls.append(readout);
+mount(controls);
+
+chart.on("change", show);
+show();
