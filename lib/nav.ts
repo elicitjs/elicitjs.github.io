@@ -82,6 +82,7 @@ export const SITE: NavGroup[] = [
       { href: "/effects", title: "Hover & selection effects" },
       { href: "/guides", title: "Guides & tooltips" },
       { href: "/sizing", title: "Responsive sizing" },
+      { href: "/mobile", title: "Mobile & touch" },
     ],
   },
   {

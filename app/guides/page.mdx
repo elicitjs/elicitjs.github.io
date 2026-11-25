@@ -181,6 +181,8 @@ A tip is a guide, so gestures pass through it: drag a bar while its tooltip is s
 
 `guides.tip()` is the long form. `text` takes the columns or a function of the row returning a string or an array of lines. `anchor: "mark"` pins the box beside the mark's centre instead of the pointer, and `mark` limits it to the mark with that `id`. `format` sets how numbers print, as a d3 format specifier or a function.
 
+On a touch screen the tip shows while your finger is on the chart. Set `touch: false` to show it only for a mouse. See [Mobile & touch](/mobile#hover).
+
 <Example
   code={aTipInYourOwnWords}
   title="A tip in your own words"
@@ -198,7 +200,7 @@ A tip is a guide, so gestures pass through it: drag a bar while its tooltip is s
 
 `guides.crosshair()` draws dashed rules through the pointer across the plot. Each rule reads the value under the pointer off its axis, at the plot's bottom and left edges. Set `x: false` or `y: false` to draw one rule, and `readout: false` to drop the labels. `format` sets how the readouts print.
 
-The rules hide when the pointer leaves the plot. Gestures pass through them.
+The rules hide when the pointer leaves the plot. Gestures pass through them. On a touch screen they follow your finger while it is down; `touch: false` turns that off.
 
 <Example
   code={aCrosshairWithReadouts}

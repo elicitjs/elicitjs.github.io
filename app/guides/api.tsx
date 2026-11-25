@@ -193,7 +193,7 @@ export const api: ApiEntry[] = [
       "barY({ tip: true, … })                 // every column of the row",
       "barY({ tip: [\"city\", \"rain\"], … })    // these columns",
       "barY({ tip: (d) => `${d.city}: ${d.rain}`, … })",
-      "guides.tip({ mark, text, anchor, dx, dy, fill, stroke, fontSize, format }) → Guide",
+      "guides.tip({ mark, text, anchor, dx, dy, fill, stroke, fontSize, format, touch }) → Guide",
     ],
     options: [
       {
@@ -238,6 +238,12 @@ export const api: ApiEntry[] = [
         default: "—",
         desc: "How a number prints: a d3 format specifier or a function. Without it, numbers round to three decimals.",
       },
+      {
+        name: "touch",
+        type: "boolean",
+        default: "true",
+        desc: "Show for a finger, while it is on the chart. false shows the tip only for a mouse.",
+      },
     ],
   },
   {
@@ -248,7 +254,7 @@ export const api: ApiEntry[] = [
         Rules through the pointer across the plot, each labelled with the value under the pointer on its axis. Hidden while the pointer is outside the plot.
       </>
     ),
-    signature: "guides.crosshair({ x, y, readout, stroke, strokeDash, fontSize, format }) → Guide",
+    signature: "guides.crosshair({ x, y, readout, stroke, strokeDash, fontSize, format, touch }) → Guide",
     options: [
       {
         name: "x / y",
@@ -279,6 +285,12 @@ export const api: ApiEntry[] = [
         type: "string | (v) => string",
         default: "—",
         desc: "How a readout prints: a d3 format specifier or a function. Without it, numbers round to two decimals.",
+      },
+      {
+        name: "touch",
+        type: "boolean",
+        default: "true",
+        desc: "Follow a finger while it is on the chart. false shows the rules only for a mouse.",
       },
     ],
   },

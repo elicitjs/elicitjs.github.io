@@ -1,0 +1,22 @@
+const chart = Elicit({
+  width: 360, height: 240,
+  responsive: "scale",
+  margins: { top: 14, right: 14, bottom: 28, left: 36 },
+  schema: {
+    hours: { type: "quantitative", domain: [0, 12] },
+    score: { type: "quantitative", domain: [0, 100] },
+  },
+  data: [
+    { hours: 2, score: 35 }, { hours: 4, score: 52 },
+    { hours: 7, score: 68 }, { hours: 10, score: 81 },
+  ],
+  guides: [guides.crosshair({ format: ".0f" })],
+  marks: [
+    point({
+      fill: "#EE7B5E", size: 5,
+      channels: { x: { field: "hours" }, y: { field: "score" } },
+      edits: [move({ channels: ["x", "y"] })],
+    }),
+  ],
+});
+mount(chart.dom());

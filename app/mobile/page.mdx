@@ -1,0 +1,67 @@
+import { DocShell } from '../../components/DocShell';
+import { Section } from '../../components/Section';
+import { Example } from '../../components/Example';
+import { Lead } from '../../components/Lead';
+
+import readyForAPhone from './_examples/ready-for-a-phone.example.txt';
+
+export default function Layout({ children }) {
+  return <DocShell>{children}</DocShell>;
+}
+
+# Mobile & touch
+
+<Lead>Every chart works with a finger as well as a mouse. You turn nothing on: the same edits run, and a few things adapt so a finger can use them. This page lists what changes and what a phone can't do.</Lead>
+
+<Example
+  code={readyForAPhone}
+  title="Ready for a phone"
+  blurb={"responsive: \"scale\" fits the screen; small points with move() and a crosshair."}
+  try={(
+    <>
+      On a phone: <b>press</b> near a point to read it · <b>drag</b> it · <b>swipe</b> beside the chart to scroll.
+    </>
+  )}
+/>
+
+<Section id="fit" title="Fit the screen">
+
+A phone is narrow. Set `responsive: "scale"` or `"reflow"` so the chart fits the screen instead of running off its edge. See [Responsive sizing](/sizing).
+
+</Section>
+
+<Section id="grab" title="Grabbing small marks">
+
+On a touch screen, each small editable mark gets an invisible target about 44px across: points, handles, thin bars, lines and curves. The mark under your finger wins; otherwise the nearest one within reach does. Large marks and text keep their own size.
+
+A tap may wobble up to 10px and still count as a tap, so `cycle`, `toggle` and click-to-add work with a finger.
+
+In a dense chart, a tap near a mark takes that mark rather than the empty space beside it.
+
+</Section>
+
+<Section id="scroll" title="Scrolling past a chart">
+
+A drag that starts on an editable mark edits it, and the page holds still. So does a drag on the plot of a chart with a plane gesture (`draw`, `sweep`, `nearest`, `probe`). A swipe anywhere else scrolls the page.
+
+A full-screen chart with a plane gesture leaves nowhere to scroll from. Keep it shorter than the screen, or leave a margin beside it.
+
+</Section>
+
+<Section id="hover" title="No hover">
+
+A finger has no hover. Tips and the crosshair show while your finger is on the chart and hide when you lift it, so press a mark to read it. Set `touch: false` on [`guides.tip`](/guides#tips) or [`guides.crosshair`](/guides#crosshair) to show it only for a mouse.
+
+A `probe` previews while you drag and settles when you lift. A tap settles at once.
+
+</Section>
+
+<Section id="mouse-only" title="What a phone can't do">
+
+- An edit gated on a key, such as `when: when.shift`, can't be reached. Don't gate an edit a phone user needs.
+- Wheel zoom (`edit.axis.zoom`) needs a wheel. There is no pinch to zoom.
+- Arrow-key nudging needs a keyboard.
+
+A double tap counts as a double click, so `dblclick` edits still work.
+
+</Section>
