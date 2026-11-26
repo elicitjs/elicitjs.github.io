@@ -1,0 +1,42 @@
+const chart = Elicit({
+  width: 460, height: 280,
+  margins: { top: 24, right: 24, bottom: 24, left: 24 },
+  axes: false,
+  schema: {
+    note: { type: "categorical", open: true },
+    x: { type: "quantitative", domain: [0, 100] },
+    y: { type: "quantitative", domain: [0, 100] },
+  },
+  data: [
+    { note: "Come near me for my icons.", x: 28, y: 66 },
+    { note: "Drag the grip to move me.", x: 70, y: 34 },
+  ],
+  marks: [
+    sticker({
+      id: "note",
+      fill: "#EBD6AD",
+      stroke: "rgba(70, 89, 107, 0.13)",
+      maxWidth: 150,
+      edits: [remove({ name: "delete", gesture: "commit" })],
+      channels: {
+        x: { field: "x", edit: move({ name: "drag", channels: ["x", "y"], mode: "relative" }) },
+        y: { field: "y" },
+        text: { field: "note" },
+      },
+    }),
+  ],
+});
+mount(chart.dom());
+
+ui.attach(chart, [
+  ui.actions({
+    on: { mark: "note" },
+    placement: "top-right",
+    items: [
+      // A drag edit: drag the button, or click it and then click where to drop.
+      { edit: "drag", icon: "grip", label: "Move" },
+      // A commit edit: one click fires it on the note.
+      { edit: "delete", icon: "trash", label: "Remove", tone: "danger" },
+    ],
+  }),
+]);

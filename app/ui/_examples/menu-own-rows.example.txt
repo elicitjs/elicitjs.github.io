@@ -1,0 +1,48 @@
+const chart = Elicit({
+  width: 460, height: 280,
+  margins: { top: 20, right: 20, bottom: 40, left: 44 },
+  schema: {
+    task: { type: "categorical", domain: ["Reading", "Coding", "Meetings", "Email"] },
+    hours: { type: "quantitative", domain: [0, 20] },
+  },
+  data: [
+    { task: "Reading", hours: 6 },
+    { task: "Coding", hours: 14 },
+    { task: "Meetings", hours: 9 },
+    { task: "Email", hours: 4 },
+  ],
+  marks: [
+    barY({ id: "bar", channels: { x: { field: "task" }, y: { field: "hours", edit: move() } } }),
+  ],
+});
+mount(chart.dom());
+
+const rows = () => chart.getData();
+const mean = () => rows().reduce((sum, d) => sum + d.hours, 0) / rows().length;
+
+ui.attach(chart, [
+  ui.contextMenu({
+    items: [
+      // A continuous channel lists no values of its own: give them.
+      { channel: "y", values: [0, 5, 10, 15, 20], label: "Hours" },
+      { separator: true },
+      // A row of your own. `on` keeps it to the bars.
+      {
+        on: "bar",
+        label: "Match the average",
+        onSelect: ({ view }) => chart.set("hours", Math.round(mean()), { index: view.index }),
+      },
+      // On empty space only: several writes, one undo step.
+      {
+        on: "plane",
+        label: "Even them all out",
+        onSelect: () => {
+          const m = Math.round(mean());
+          const end = chart.transaction();
+          rows().forEach((_, index) => chart.set("hours", m, { index }));
+          end();
+        },
+      },
+    ],
+  }),
+]);

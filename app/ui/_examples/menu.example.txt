@@ -1,0 +1,45 @@
+const chart = Elicit({
+  width: 460, height: 300,
+  margins: { top: 20, right: 20, bottom: 40, left: 44 },
+  schema: {
+    cost:   { type: "quantitative", domain: [0, 100] },
+    impact: { type: "quantitative", domain: [0, 100] },
+    team:   { type: "categorical", domain: ["Design", "Research", "Build"] },
+  },
+  data: [
+    { cost: 22, impact: 70, team: "Design" },
+    { cost: 58, impact: 44, team: "Build" },
+    { cost: 76, impact: 82, team: "Research" },
+  ],
+  marks: [
+    point({
+      id: "idea",
+      size: 9,
+      edits: [
+        // gesture: "commit" is a gesture no pointer makes, so only the menu fires these.
+        create({ name: "add", gesture: "commit" }),
+        remove({ name: "delete", gesture: "commit" }),
+      ],
+      channels: {
+        x: { field: "cost", edit: move({ channels: ["x", "y"] }) },
+        y: { field: "impact" },
+        fill: { field: "team" },
+      },
+    }),
+  ],
+  legends: true,
+});
+mount(chart.dom());
+
+ui.attach(chart, [
+  ui.contextMenu({
+    items: [
+      // On empty space: add a point of the chosen team, there.
+      { edit: "add", channel: "fill", mark: "idea", label: "Add an idea for" },
+      // On a point: its team, then Remove.
+      { channel: "fill", label: "Team" },
+      { separator: true },
+      { edit: "delete" },
+    ],
+  }),
+]);

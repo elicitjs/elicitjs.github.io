@@ -16,7 +16,7 @@ export type ApiIndexEntry = {
 export type ApiNamespace = { namespace: string; blurb: string; count: number };
 
 export const API_LIBRARY_VERSION = "0.2.0-alpha.0";
-export const API_GENERATED_AT = "2026-11-24T01:15:47.730Z";
+export const API_GENERATED_AT = "2026-11-26T14:56:02.336Z";
 export const API_NAMESPACES: ApiNamespace[] = [
   {
     "namespace": "plot",
@@ -124,6 +124,11 @@ export const API_TOP_LEVEL = [
     "name": "themes",
     "kind": "object",
     "docs": "/theming"
+  },
+  {
+    "name": "ui",
+    "kind": "object",
+    "docs": "/ui"
   }
 ];
 export const API_INDEX: ApiIndexEntry[] = [
@@ -4012,7 +4017,8 @@ export const API_INDEX: ApiIndexEntry[] = [
       "stroke",
       "strokeDash",
       "fontSize",
-      "format"
+      "format",
+      "touch"
     ],
     "universal": [
       "id"
@@ -4205,7 +4211,8 @@ export const API_INDEX: ApiIndexEntry[] = [
       "fill",
       "stroke",
       "fontSize",
-      "format"
+      "format",
+      "touch"
     ],
     "universal": [
       "id"

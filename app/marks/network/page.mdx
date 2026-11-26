@@ -496,11 +496,13 @@ Three edits are specific to networks. The rest is ordinary editing.
 
 `edit.network.rewire()` moves a link's ends; see [Recording sides](#recording).
 
-`edit.network.reverse()` on the `link` mark swaps the two ends on a click and keeps every other column. Give it a `when` if the mark carries another click edit. On `directed: false` it leaves the row unchanged and logs a warning.
+`edit.network.reverse()` on the `link` mark swaps the two ends on a click. Columns the link records its sides in swap with the ends, so each node keeps the port the link meets it at. Every other column stays. Give it a `when` if the mark carries another click edit. On `directed: false` it leaves the row unchanged and logs a warning.
 
 `create()` mints a node where you click. The node table's `key` gives it an identity, so you can link it straight away.
 
 `remove()` deletes a node and every link to it.
+
+[`ui.network()`](/ui/network) puts these edits behind icons and a menu: a **+** beside a port that adds a linked node, link and detach icons beside it, and a right-click menu to add a node of a chosen category.
 
 <Example
   code={weightedLinks}

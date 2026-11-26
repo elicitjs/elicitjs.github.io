@@ -21,7 +21,7 @@ export const api: ApiEntry[] = [
     ),
   },
   {
-    name: "edit({ name }) · chart.control(name, index?)",
+    name: "edit({ name }) · chart.control(name, target?)",
     json: false,
     summary: (
       <>
@@ -40,7 +40,9 @@ export const api: ApiEntry[] = [
       "h.set({ x, y })       // … or a data value per channel (positional edit)",
       "h.begin(); h.set(v); h.end();   // live drag → ONE undo entry",
       "h.fire()              // TRIGGER edit (cycle/remove/toggle) — fires its click gesture",
-      "h.emit(event)         // raw event passthrough, scoped to this feature/node",
+      "h.emit(event)         // raw event to this edit alone, on this row's node",
+      "h.cancel()            // abandon an open stroke",
+      "chart.control(\"link\", { index: 0, channel: \"port\", side: \"right\" })   // one handle of a row",
       "h.accepts()           // what the channel's scale allows",
     ],
     options: [
@@ -51,10 +53,14 @@ export const api: ApiEntry[] = [
         desc: "The handle this edit answers to. An edit with no name stays pointer- and keyboard-driven.",
       },
       {
-        name: "control(name, index?)",
+        name: "control(name, target?)",
         type: "→ EditControl",
-        default: "index: 0",
-        desc: "A handle bound to that edit and that row. Ask for it again after the data changes; it resolves the edit on each call.",
+        default: "target: 0",
+        desc: (
+          <>
+            A handle bound to that edit and that row. <code className="inline">target</code> is a row index, or <code className="inline">{'{ index, channel, side }'}</code> to name one of the row&rsquo;s handles: a port&rsquo;s side, a link&rsquo;s <code className="inline">"source"</code> or <code className="inline">"target"</code> end. The edit&rsquo;s <code className="inline">when</code> is not asked. Ask for the handle again after the data changes; it resolves the edit on each call.
+          </>
+        ),
       },
       {
         name: "h.set(value)",
@@ -72,7 +78,17 @@ export const api: ApiEntry[] = [
         default: "—",
         desc: (
           <>
-            Bracket a live drag, so many <code className="inline">set</code> ticks collapse into one <a href="/editing/history">undo</a> entry — exactly as a pointer drag does.
+            Bracket a live drag, so many <code className="inline">set</code> ticks collapse into one <a href="/editing/history">undo</a> entry — exactly as a pointer drag does. <code className="inline">end()</code> releases where the stroke&rsquo;s pointer last was, so a connect or a rewire lands there. <code className="inline">begin({'{ x, y }'})</code> presses at that plot pixel in place of the row&rsquo;s own.
+          </>
+        ),
+      },
+      {
+        name: "h.cancel()",
+        type: "void",
+        default: "—",
+        desc: (
+          <>
+            Abandon the stroke <code className="inline">begin()</code> opened, with no release. An edit that commits on release writes nothing; what earlier ticks wrote stays, as one undo entry.
           </>
         ),
       },
@@ -100,7 +116,7 @@ export const api: ApiEntry[] = [
         name: "h.emit(event)",
         type: "void",
         default: "—",
-        desc: "A raw event, scoped to this edit's feature and node. The low-level route when you already hold pixels.",
+        desc: "A raw event to this edit alone, on its node for the row. A plane edit takes it at the event's x and y. The low-level route when you already hold pixels.",
       },
     ],
     returns: (
@@ -108,6 +124,53 @@ export const api: ApiEntry[] = [
         Every route runs the ordinary dispatch, so a constraint gates an external write exactly as it gates a drag. External control is not a bypass.
       </>
     ),
+  },
+  {
+    name: "chart.transaction()",
+    json: false,
+    summary: (
+      <>
+        A dataset method, carried by every chart: hold one undo entry open across any number of writes. Everything committed until you call the returned function undoes as one step. <code className="inline">change</code> still fires per write.
+      </>
+    ),
+    signatures: [
+      "const end = chart.transaction();",
+      "chart.set(\"w\", 140, { index: 0 }); chart.set(\"x\", 30, { index: 0 });",
+      "end();",
+    ],
+    returns: (
+      <>
+        The closer. Undo, redo and <code className="inline">setData</code> close an open transaction; calling the closer twice does nothing.
+      </>
+    ),
+  },
+  {
+    name: "chart.scene · hit · scale · edits · metrics",
+    json: false,
+    summary: (
+      <>
+        Read the drawn chart, for UI placed over it. Every value is a copy of the current frame; read again on <code className="inline">on("render")</code>. Pixels are plot pixels.
+      </>
+    ),
+    signatures: [
+      "chart.scene({ mark: \"note\", index: 2 })   // the row's drawn pieces",
+      "chart.hit({ x, y }, { reach: 12 })       // the piece at, or nearest, a point",
+      "chart.scale(\"x\", { mark: \"note\" }).invert(px)",
+      "chart.edits({ mark: \"note\", index: 2 })   // the edits that row answers to",
+      "chart.metrics()                          // { width, height, margins, innerWidth, innerHeight, scale }",
+      "chart.toInner({ x: e.clientX, y: e.clientY })   // page -> plot pixels; toClient is the inverse",
+      "chart.on(\"render\", () => { … })           // after every frame",
+    ],
+    options: [
+      { name: "scene(query?)", type: "→ SceneView[]", default: "every piece", desc: (<>One view per drawn piece, in paint order: <code className="inline">{'{ mark, table, index, type, channel, side, box, center, angle, datum, hovered, selected, grabbed, visible, editable, locked }'}</code>. <code className="inline">query</code> is <code className="inline">{'{ mark, table, index, channel, side }'}</code>. <code className="inline">index</code> counts the rows <code className="inline">getData()</code> reports. <code className="inline">visible</code> is <code className="inline">false</code> for a port or a link end the chart is hiding.</>) },
+      { name: "hit(point, { reach }?)", type: "→ SceneView | null", default: "reach: 0", desc: "The topmost visible piece at a point, or the nearest within reach pixels." },
+      { name: "scale(channel, { mark, index }?)", type: "→ object | null", default: "the chart's shared scale", desc: (<><code className="inline">{'{ channel, field, table, encode, invert, domain, range, kind, temporal, invertible }'}</code>. <code className="inline">invert</code> is <code className="inline">null</code> on a scale that can&rsquo;t be read back. <code className="inline">null</code> when nothing binds a field on the channel.</>) },
+      { name: "edits(query?)", type: "→ EditInfo[]", default: "every edit", desc: (<><code className="inline">{'{ name, type, gesture, pick, channels, fields, mark, table, cardinality, available }'}</code>. <code className="inline">available</code> is whether it can run now: its stage is current, the row is unlocked and, on a port, a link could land somewhere.</>) },
+      { name: "metrics()", type: "→ object", default: "—", desc: (<>The chart&rsquo;s size and margins in chart pixels. <code className="inline">scale</code> is CSS pixels per chart pixel: 1 unless <code className="inline">responsive: "scale"</code> stretches the drawing.</>) },
+      { name: "toInner(point) · toClient(point)", type: "→ { x, y }", default: "—", desc: "Convert between the page's viewport pixels and plot pixels." },
+      { name: "on(\"render\", cb) · on(\"destroy\", cb)", type: "→ unsubscribe", default: "—", desc: "After each frame the chart draws; once, when the chart is destroyed." },
+      { name: "chart.theme", type: "Theme", default: "—", desc: "A copy of the resolved theme." },
+    ],
   },
   {
     name: "set(options?)",

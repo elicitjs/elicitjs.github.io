@@ -74,6 +74,13 @@ export const SITE: NavGroup[] = [
     ],
   },
   {
+    group: "UI layer",
+    pages: [
+      { href: "/ui", title: "Menus, icons & handles" },
+      { href: "/ui/network", title: "Network UI" },
+    ],
+  },
+  {
     group: "Appearance",
     pages: [
       { href: "/theming", title: "Theming & style" },

@@ -52,6 +52,8 @@ width: {
 
 `slide` changes the value by how far you drag, so the box stays put when you press it. `extent` is the drag distance that sweeps the whole domain. The box grows about its centre, so an `extent` of half the domain's span (`95` for a 190-wide domain) keeps the dragged edge under the pointer.
 
+For grips on the note's sides, attach [`ui.handles()`](/ui#handles) to the chart. A grip moves its own side and holds the other still, and the `width` channel needs no edit.
+
 A `move` on `x` and a `slide` on `width` both read horizontal travel. Gate them with `when.shift` and `when.noShift` so each gets its own gesture.
 
 Pin `height` the same way for a fixed-size card. Leave it off and height keeps following the text.

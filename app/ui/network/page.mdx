@@ -1,0 +1,93 @@
+import { DocShell } from '../../../components/DocShell';
+import { ApiReference } from '../../../components/ApiReference';
+import { Section } from '../../../components/Section';
+import { Example } from '../../../components/Example';
+import { Lead } from '../../../components/Lead';
+import { api } from './api';
+
+import flowchart from './_examples/flowchart.example.txt';
+
+export default function Layout({ children }) {
+  return <DocShell>{children}</DocShell>;
+}
+
+# Network UI
+
+<Lead>`ui.network()` is the [UI layer](/ui) for a node-link chart. Beside a port, **+** adds a linked node and two more icons connect and detach. A link carries icons to reverse and remove it. A right-click menu covers the plane, the nodes and the links, and a node that sizes from data gets resize grips. Each piece appears where the spec names the edit behind it.</Lead>
+
+<ApiReference entries={api} />
+
+<Section id="board" title="A flowchart with its UI">
+
+The spec below is an ordinary [network](/marks/network) of [stickers](/marks/sticker) with [ports](/marks/network#ports). Every edit the UI drives has a `name`. `ui.attach(chart, [ui.network()])` finds them by what they do.
+
+<Example
+  code={flowchart}
+  title="Notes, links and their icons"
+  blurb="Grow the board from a port's +, link and detach with the icons beside it, reverse or remove a link from its icons, add and recolour notes from the menu, resize a note by its grips."
+  try={(
+    <>
+      Bring the pointer to the <b>edge of a note</b>. <b>Right-click</b> the board, a note or a link.
+    </>
+  )}
+/>
+
+</Section>
+
+<Section id="ports" title="Add, link and detach at a port">
+
+Bring the pointer to a port and up to three icons appear outside the node, on that side. The port they belong to is lit, with the rest of the node's ports.
+
+**+** adds a node on that side and links this port to it. The new node takes this node's category and size, and sits one gap out from the side. Where another node is in the way, or the plot ends, it steps along the side to the nearest free spot. The node and its link are one undo step. Drag the **+** to draw the link yourself: drop it on a node to link to that node, or on empty space to make the new node there.
+
+The **link** icon connects to a node that is already on the board. Drag it to the node, or click it and then click the node. The link follows the pointer until that second click, and Escape cancels. The icon shows only where a new link could land.
+
+At a port that holds a link, the **detach** icon takes it off. Drag the icon to re-point that end of the link to another node. Click it to remove the link. With several links at the port, the click lists them and you choose one.
+
+</Section>
+
+<Section id="links" title="Reverse and remove a link">
+
+Bring the pointer to a link and two icons appear beside it, where the pointer met it. The link's ends are lit. Reverse swaps the link's direction, and each node keeps the port the link meets it at. The bin removes the link. The right-click menu on a link offers the same two actions.
+
+</Section>
+
+<Section id="reach" title="Reaching the icons">
+
+Icons stay while the pointer travels to them, and for a moment after it leaves what they belong to. One set shows at a time: near a port, the port's icons replace a link's.
+
+</Section>
+
+<Section id="menu" title="Add, recategorise and remove from the menu">
+
+Right-click empty space to add a node there. When the node mark binds `fill` to a categorical field, the menu lists the categories, and the new node takes the one you choose as a single undo step. Right-click a node to change its category or remove it. Removing a node removes its links.
+
+`menu: { channel }` names another channel for the categories, and `menu: false` leaves the menu out.
+
+</Section>
+
+<Section id="resize" title="Resize a node">
+
+A node mark that binds `width` or `height` to a field gets [resize grips](/ui#handles). A port sits in the middle of each side, so the grips take the corners below it.
+
+</Section>
+
+<Section id="needs" title="What the spec declares">
+
+Each action needs one named edit. An action whose edit is missing is left out; an edit that is there with no `name` logs a warning.
+
+| Action | Edit | Where it goes |
+| --- | --- | --- |
+| **+** beside a port | `edit.network.connect({ name })` and `create({ name })` | the `ports` channel; the node mark |
+| Link icon beside a port | `edit.network.connect({ name })` | the node mark's `ports` channel |
+| Detach by dragging | `edit.network.rewire({ name })` | the `link` mark |
+| Detach by clicking, remove a link | `remove({ name })` | the `link` mark |
+| Reverse a link | `edit.network.reverse({ name })` | the `link` mark |
+| Add a node | `create({ name })` | the node mark |
+| Remove a node | `remove({ name })` | the node mark |
+| A node's category | none | a categorical `fill` on the node mark |
+| Resize a node | none | a field on `width` or `height` |
+
+`gesture: "commit"` on `create`, `remove` and `reverse` keeps them for the UI, so a plain click on the board adds and removes nothing. `ui.network({ edits: { connect, rewire, reverse, unlink, remove, create } })` names an edit yourself where the chart has several of a kind.
+
+</Section>

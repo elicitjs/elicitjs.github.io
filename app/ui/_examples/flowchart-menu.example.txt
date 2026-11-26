@@ -1,0 +1,109 @@
+const chart = Elicit({
+  width: 560, height: 400,
+  margins: { top: 40, right: 40, bottom: 40, left: 40 },
+  axes: false,
+  schema: {
+    structure: "network",
+    tables: {
+      steps: {
+        role: "nodes",
+        fields: {
+          id: { type: "categorical", key: true, open: true },
+          label: { type: "categorical", open: true },
+          // The kind of step sets its shape; its status sets its colour.
+          kind: { type: "categorical", domain: ["start", "process", "decision", "data"] },
+          status: { type: "categorical", domain: ["done", "in progress", "blocked", "not started"] },
+          x: { type: "quantitative", domain: [0, 100] },
+          y: { type: "quantitative", domain: [0, 100] },
+        },
+      },
+      flows: {
+        role: "links",
+        directed: true,
+        fields: { source: { type: "ref" }, target: { type: "ref" } },
+      },
+    },
+  },
+  data: {
+    steps: [
+      { id: "a", label: "Start", kind: "start", status: "done", x: 4, y: 75 },
+      { id: "b", label: "Survey", kind: "data", status: "done", x: 30, y: 75 },
+      { id: "c", label: "Clean", kind: "process", status: "in progress", x: 56, y: 75 },
+      { id: "d", label: "Enough?", kind: "decision", status: "not started", x: 56, y: 22 },
+      { id: "e", label: "Recruit", kind: "process", status: "blocked", x: 26, y: 22 },
+      { id: "f", label: "Report", kind: "process", status: "not started", x: 90, y: 22 },
+    ],
+    flows: [
+      { source: "a", target: "b" },
+      { source: "b", target: "c" },
+      { source: "c", target: "d" },
+      { source: "d", target: "e" },
+      { source: "e", target: "b" },
+      { source: "d", target: "f" },
+    ],
+  },
+  marks: [
+    link({
+      id: "flow",
+      stroke: "#94A5B3",
+      strokeWidth: 1.5,
+      curve: "orthogonal",
+      edits: [
+        edit.network.rewire({ name: "rewire" }),
+        edit.network.reverse({ name: "reverse", gesture: "commit" }),
+        remove({ name: "unlink", gesture: "commit" }),
+      ],
+    }),
+    composite({
+      id: "step",
+      channels: { x: { field: "x" }, y: { field: "y" } },
+      parts: [
+        shape({
+          size: 30,
+          stroke: "rgba(70, 89, 107, 0.45)",
+          // The edits sit on the shape, so the label on top lets the pointer through.
+          edits: [
+            create({ name: "add", gesture: "commit", defaults: { label: "New step", status: "not started" } }),
+            remove({ name: "delete", gesture: "commit" }),
+          ],
+          channels: {
+            x: { field: "x", edit: move({ channels: ["x", "y"], mode: "relative" }) },
+            symbol: {
+              field: "kind",
+              // A parallelogram path for data, the named shapes for the rest.
+              scale: { range: ["circle", "square", "diamond", "M -1 1 L -0.6 -1 L 1 -1 L 0.6 1 Z"] },
+            },
+            fill: {
+              field: "status",
+              scale: { range: ["#B9E0AC", "#FBDDA0", "#F5B3AA", "#E3E8EC"] },
+            },
+            ports: { value: true, edit: edit.network.connect({ name: "link" }) },
+          },
+        }),
+        text({ fontSize: 11, channels: { text: { field: "label" } } }),
+      ],
+    }),
+  ],
+  // The keys sit below, so the chart keeps its width.
+  legends: { symbol: { anchor: "bottom" }, fill: { anchor: "bottom" } },
+});
+mount(chart.dom());
+
+ui.attach(chart, [
+  // Icons at ports and on links; the menu below replaces the preset's own.
+  ui.network({ menu: false }),
+  ui.contextMenu({
+    items: [
+      // On empty space: add a step of the chosen kind, there.
+      { edit: "add", channel: "symbol", mark: "step", label: "Add a step" },
+      // On a step: its shape and its status, from two fields.
+      { channel: "symbol", label: "Kind" },
+      { channel: "fill", label: "Status" },
+      { separator: true },
+      // On a link: turn it round or take it out.
+      { edit: "reverse", label: "Reverse", icon: "swap" },
+      { edit: "unlink", label: "Remove link" },
+      { edit: "delete" },
+    ],
+  }),
+]);

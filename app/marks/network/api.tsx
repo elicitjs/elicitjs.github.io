@@ -458,7 +458,7 @@ export const api: ApiEntry[] = [
     summary: (
       <>
         Swap a link’s two ends. Put it on the <code className="inline">link</code> mark;
-        it fires on a click anywhere along the line.
+        it fires on a click anywhere along the line. Where the link records its sides in columns, they swap with the ends, so each node keeps its port.
       </>
     ),
     signatures: ["reverse({ when, stage }) → Edit"],

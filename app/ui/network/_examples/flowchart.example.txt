@@ -1,0 +1,74 @@
+const chart = Elicit({
+  width: 540, height: 380,
+  margins: { top: 28, right: 28, bottom: 28, left: 28 },
+  axes: false,
+  schema: {
+    structure: "network",
+    tables: {
+      steps: {
+        role: "nodes",
+        fields: {
+          id: { type: "categorical", key: true, open: true },
+          label: { type: "categorical", open: true },
+          kind: { type: "categorical", domain: ["idea", "task", "risk"] },
+          w: { type: "quantitative", domain: [80, 240] },
+          x: { type: "quantitative", domain: [0, 100] },
+          y: { type: "quantitative", domain: [0, 100] },
+        },
+      },
+      flows: {
+        role: "links",
+        directed: true,
+        fields: {
+          source: { type: "ref" },
+          target: { type: "ref" },
+          fromSide: { type: "categorical", domain: ["top", "right", "bottom", "left"] },
+          toSide: { type: "categorical", domain: ["top", "right", "bottom", "left"] },
+        },
+      },
+    },
+  },
+  data: {
+    steps: [
+      { id: "s1", label: "Draft the question", kind: "idea", w: 130, x: 22, y: 80 },
+      { id: "s2", label: "Pilot it with five readers", kind: "task", w: 130, x: 74, y: 58 },
+      { id: "s3", label: "Nobody answers", kind: "risk", w: 110, x: 30, y: 20 },
+    ],
+    flows: [{ source: "s1", target: "s2", fromSide: "right", toSide: "left" }],
+  },
+  marks: [
+    link({
+      id: "flow",
+      stroke: "#94A5B3",
+      strokeWidth: 1.5,
+      channels: { sourceSide: { field: "fromSide" }, targetSide: { field: "toSide" } },
+      edits: [
+        edit.network.rewire({ name: "rewire" }),
+        // gesture: "commit" is a gesture no pointer makes: only the UI fires these.
+        edit.network.reverse({ name: "reverse", gesture: "commit" }),
+        remove({ name: "unlink", gesture: "commit" }),
+      ],
+    }),
+    sticker({
+      id: "note",
+      stroke: "rgba(70, 89, 107, 0.25)",
+      radius: 8,
+      edits: [
+        editText({ multiline: true }),
+        create({ name: "add", gesture: "commit", defaults: { label: "New note", w: 110 } }),
+        remove({ name: "delete", gesture: "commit" }),
+      ],
+      channels: {
+        x: { field: "x", edit: move({ channels: ["x", "y"], mode: "relative" }) },
+        y: { field: "y" },
+        text: { field: "label" },
+        fill: { field: "kind", scale: { range: ["#FBE6B0", "#C9E4F6", "#F8CCC6"] } },
+        width: { field: "w", scale: { range: [80, 240] } },
+        ports: { value: true, edit: edit.network.connect({ name: "link" }) },
+      },
+    }),
+  ],
+});
+mount(chart.dom());
+
+ui.attach(chart, [ui.network()]);

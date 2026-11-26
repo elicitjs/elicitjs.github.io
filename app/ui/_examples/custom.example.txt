@@ -1,0 +1,48 @@
+const chart = Elicit({
+  width: 440, height: 280,
+  margins: { top: 30, right: 20, bottom: 40, left: 44 },
+  schema: {
+    quarter: { type: "categorical", domain: ["Q1", "Q2", "Q3", "Q4"] },
+    n: { type: "quantitative", domain: [0, 100] },
+  },
+  data: [
+    { quarter: "Q1", n: 40 }, { quarter: "Q2", n: 62 },
+    { quarter: "Q3", n: 55 }, { quarter: "Q4", n: 71 },
+  ],
+  constraints: [clamp({ field: "n", min: 0, max: 100 })],
+  marks: [
+    barY({ id: "bar", channels: { x: { field: "quarter" }, y: { field: "n", edit: move() } } }),
+  ],
+});
+mount(chart.dom());
+
+// A part of your own: a stepper over the bar the pointer is on.
+const stepper = ui.custom((ctx) => {
+  const { chart } = ctx;
+  const box = document.createElement("div");
+  box.style.cssText = "display:flex;gap:4px;pointer-events:none";
+  let row = null;
+
+  const step = (by) => () => {
+    if (row == null) return;
+    // No edit needed for a value: set runs the clamp and is one undo step.
+    chart.set("n", chart.getData()[row].n + by, { index: row });
+  };
+  const minus = ctx.button({ icon: "<svg viewBox='0 0 16 16'><path d='M3 8h10'/></svg>", label: "Five fewer", onClick: step(-5) });
+  const plus = ctx.button({ icon: "plus", label: "Five more", onClick: step(5) });
+  box.append(minus, plus);
+
+  // Keep the box above the bar's top. scene() is read again on every render.
+  ctx.place(box, () => (row == null ? null : chart.scene({ mark: "bar", index: row })[0]), { at: "top", offset: 6 });
+
+  ctx.onPointer((e) => {
+    if (e.type === "leave") row = null;
+    if (e.type === "move") {
+      const view = chart.hit(e.point, { reach: 30 });
+      row = view && view.mark === "bar" ? view.index : null;
+    }
+    ctx.refresh();
+  });
+});
+
+ui.attach(chart, [stepper]);

@@ -12,6 +12,7 @@ import rotateBox from './_examples/rotate-box.example.txt';
 import selectItemOrCategory from './_examples/select-item-or-category.example.txt';
 import inputsBesideASweep from './_examples/inputs-beside-a-sweep.example.txt';
 import typeAValue from './_examples/type-a-value.example.txt';
+import followAPoint from './_examples/follow-a-point.example.txt';
 
 export default function Layout({ children }) {
   return <DocShell>{children}</DocShell>;
@@ -45,6 +46,8 @@ export default function Layout({ children }) {
 Use `control` when the write should act like the gesture: an edit's own `constrain`, a click edit such as `cycle`, a rotate about the mark. Give the edit a `name`, then call `chart.control(name)`.
 
 An edit maps a gesture to data by *inverting* a channel's scale. `control(name).set(value)` runs that scale *forward* to find the gesture, then runs the ordinary edit. A value edit (`set`, `editText`) takes the value directly, with no pixel step. `control(name).accepts()` reports what the channel's scale allows, so a picker or slider can offer only valid values.
+
+A control names its edit, so the edit's `when` is not asked: `when` chooses between pointer gestures. Constraints, the lock and the edit's stage still apply. For an edit only a control should fire, give it `gesture: "commit"`, a gesture no pointer makes, and drive it with `.fire()`.
 
 </Section>
 
@@ -102,7 +105,12 @@ Each facial parameter is a channel. Bind it to a field with a named `set()` edit
 
 <Section id="plane" title="Sweep and nearest edits">
 
-`control(name, index)` names its row, so it also drives an edit whose pick only chooses a row: `nearest` and `sweep`. `.set(v)` writes row `index`, whichever row the pointer would have found. An edit that needs a pointer path or position, such as `edit.line.draw()`, a brush or `create()`, logs a warning and writes nothing. Drive those with `chart.emit({ type, x, y })` in plot pixels.
+`control(name, index)` names its row, so it also drives an edit whose pick only chooses a row: `nearest` and `sweep`. `.set(v)` writes row `index`, whichever row the pointer would have found. An edit that needs a pointer path or position, such as `edit.line.draw()`, a brush or `create()`, logs a warning on `.set()` and writes nothing. Drive those with `control(name).emit({ type, x, y })` in plot pixels, which runs that edit alone at the point.
+
+```js
+// create({ name: "add", gesture: "commit" }) on a mark: add a row at a plot pixel.
+chart.control("add").emit({ type: "commit", x: 120, y: 80 });
+```
 
 <Example
   code={inputsBesideASweep}
@@ -114,6 +122,71 @@ Each facial parameter is a channel. Bind it to a field with a named `set()` edit
     </>
   )}
 />
+
+</Section>
+
+<Section id="targets" title="One handle of a row">
+
+A row can draw several handles: a node's four ports, a link's two ends, an area's two edges. `control(name, { index, channel, side })` names one. `channel` is the channel the handle moves (`"port"`, a link's `"source"` or `"target"`), and `side` is where it sits.
+
+An edit that commits on release, such as `edit.network.connect()`, takes a whole stroke. `begin()` presses on the handle, `emit({ type: "drag", x, y })` moves the pointer, and `end()` releases where the pointer last was. `cancel()` abandons the stroke, so a connect or a rewire writes nothing. `begin({ x, y })` presses at a plot pixel of your choosing: use it when the stroke follows a pointer that went down somewhere else, such as on an icon beside the mark, so a relative `move` travels as far as the pointer does.
+
+```js
+// A new link from the right port of node 0, dropped on a plot pixel.
+const link = chart.control("link", { index: 0, channel: "port", side: "right" });
+link.begin();
+link.emit({ type: "drag", x: 300, y: 140 });
+link.end();          // or link.cancel()
+
+// Re-point the target end of link 2.
+chart.control("rewire", { index: 2, channel: "target" });
+```
+
+A view from [`chart.scene()`](#reading) carries `index`, `channel` and `side`, so it can be passed as the target.
+
+</Section>
+
+<Section id="transaction" title="Several writes, one undo step">
+
+`chart.transaction()` holds one undo entry open and returns the function that closes it. Everything committed in between, by `set`, a control or a gesture, undoes as one step. `change` still fires for each write.
+
+```js
+// Widen a box by 20 and keep its left edge still: two cells, one step.
+const end = chart.transaction();
+chart.set("w", row.w + 20, { index: i });
+chart.set("x", row.x + 10, { index: i });
+end();
+```
+
+Undo, redo and `setData` close an open transaction.
+
+</Section>
+
+<Section id="reading" title="Reading the chart">
+
+UI placed over a chart needs to know where things are. These methods report the drawn chart. Every value is a copy, and pixels are plot pixels: the space inside the margins that an edit's pointer uses.
+
+- `chart.scene(query?)` lists the drawn pieces: each one's `mark`, `table`, row `index`, `box`, `center`, `datum` and state (`hovered`, `selected`, `grabbed`, `visible`). A row usually draws several pieces. `query` narrows them by `mark`, `table`, `index`, `channel` or `side`.
+- `chart.hit(point, { reach })` returns the piece at a point, or with `reach` the nearest within that many pixels.
+- `chart.scale(channel, { mark })` returns `encode`, `invert`, `domain`, `range` and the field behind the channel.
+- `chart.edits(query?)` lists the declared edits with their `name`, `type` and whether each can run now.
+- `chart.metrics()` gives the chart's size and margins. `chart.toInner(point)` and `chart.toClient(point)` convert between the page (a pointer event's `clientX`, `clientY`) and plot pixels.
+- `chart.on("render", cb)` runs after every frame, including each step of an eased motion. Read `scene()` again there.
+
+A mark's `id` names it in a query. A glyph's `id` covers all its parts: `"note"` matches a sticker's box `"note/body"`, its label and its ports.
+
+<Example
+  code={followAPoint}
+  title="A label that follows a point"
+  blurb={"An HTML label per dot, re-placed on every render from chart.scene() and chart.toClient()."}
+  try={(
+    <>
+      <b>Drag</b> a dot. Its label follows and reads the row.
+    </>
+  )}
+/>
+
+The [UI layer](/ui) is built on these methods and on `control`.
 
 </Section>
 

@@ -72,6 +72,8 @@ export function createElicitScope(grammar: Grammar = elicit) {
     looks: grammar.looks,
     widgets: grammar.widgets,
     format: grammar.format,
+    // The UI layer: laid over a chart after it is made, so it is never recorded.
+    ui: elicit.ui,
     // The authoring kit, for the /authoring examples that write a custom mark.
     authoring: elicit.authoring,
     D3Renderer: elicit.D3Renderer,

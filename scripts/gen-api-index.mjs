@@ -144,6 +144,8 @@ const OVERRIDES = {
   // `/sizing` shows `Elicit({ responsive, … })` and sorts before `/start`, which
   // documents the entry point itself.
   Elicit: "/start",
+  // Not a grammar namespace: its parts are documented on their own page.
+  ui: "/ui",
 };
 
 // A namespace's own landing page, used when a member has no entry of its own.

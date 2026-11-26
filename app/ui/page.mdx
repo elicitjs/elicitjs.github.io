@@ -1,0 +1,202 @@
+import { DocShell } from '../../components/DocShell';
+import { ApiReference } from '../../components/ApiReference';
+import { Section } from '../../components/Section';
+import { Example } from '../../components/Example';
+import { Lead } from '../../components/Lead';
+import { api } from './api';
+
+import menu from './_examples/menu.example.txt';
+import flowchartMenu from './_examples/flowchart-menu.example.txt';
+import menuOwnRows from './_examples/menu-own-rows.example.txt';
+import actions from './_examples/actions.example.txt';
+import resize from './_examples/resize.example.txt';
+import custom from './_examples/custom.example.txt';
+
+export default function Layout({ children }) {
+  return <DocShell>{children}</DocShell>;
+}
+
+# UI layer
+
+<Lead>`ui.attach(chart, parts)` lays menus, icon buttons and handles over a chart you have already made. Each part acts through [external control](/editing/external-controls): it fires the edits your spec names and writes values with `set`, so constraints and undo apply. The layer is HTML over the drawing. It works the same on the SVG and canvas renderers, and it is not part of the spec.</Lead>
+
+<ApiReference entries={api} />
+
+<Section id="attach" title="Attach and detach">
+
+Make the chart, then attach the parts you want. `ui.contextMenu`, `ui.actions` and `ui.handles` work on any chart. [`ui.network`](/ui/network) is a preset for node-link charts. `ui.custom` is a part of your own.
+
+```js
+const chart = Elicit(spec);
+const layer = ui.attach(chart, [ui.contextMenu(), ui.handles()]);
+
+layer.detach();   // take the parts down; chart.destroy() does it too
+```
+
+The layer has no JSON form. A chart built with `compile(json)` takes the same `ui.attach` call.
+
+</Section>
+
+<Section id="edits" title="What a part can change">
+
+A part writes in two ways, and which one depends on what changes.
+
+**A row or a link.** Adding or removing a row, connecting, re-pointing and dragging run an edit the spec declares. Give that edit a `name`: a part can only drive a named edit, and it logs a warning for one it needs that has none.
+
+**A value in a row.** A category, a colour, a width or a position needs no edit. The part writes it with `chart.set`. Where the spec declares a `set()` edit on that channel, the part uses it, so the edit's own `constrain` applies.
+
+Both routes run the dataset's constraints and the lock, and each action is one undo step.
+
+An edit placed on a mark also answers the pointer. For an edit only the UI should fire, give it `gesture: "commit"`, which is a gesture no pointer makes:
+
+```js
+edits: [
+  create({ name: "add", gesture: "commit" }),      // from a menu, never from a click
+  remove({ name: "delete", gesture: "commit" }),
+]
+```
+
+A part names its edit, so the edit's `when` is not asked. `when` chooses between pointer gestures.
+
+</Section>
+
+<Section id="menu" title="Context menu">
+
+`ui.contextMenu({ items })` opens a menu on right-click, over a mark or over empty space. Each entry is one of four things:
+
+- `{ edit }` fires a named edit: on the row under the pointer, or at the pointer for an edit that adds a row.
+- `{ channel }` lists the values of a mark's channel, with the row's current value checked. Choosing one writes it.
+- `{ edit, channel }` lists the same values over empty space. Choosing one adds a row there with that value, as one undo step.
+- `{ label, onSelect }` is a row of your own. `onSelect` receives `{ view, point }`.
+
+An entry shows only where it applies, so one list serves the plane and every mark. `on` narrows it further: `"plane"`, or a mark's `id`. With no `items`, the menu offers what the spec's named edits allow.
+
+Arrow keys move through the menu, Enter chooses and Escape closes it. The menu opens above the page, so a box around the chart that scrolls or clips its content does not cut it off. Scrolling the page closes it.
+
+<Example
+  code={menu}
+  title="A menu on a scatter"
+  blurb="Right-click empty space to add a point for a team; right-click a point to change its team or remove it."
+  try={(
+    <>
+      <b>Right-click</b> the plot, then a point. <b>Drag</b> a point as usual.
+    </>
+  )}
+/>
+
+</Section>
+
+<Section id="menu-fields" title="Several fields in one menu">
+
+Each `{ channel }` entry lists one channel's values, so one menu can set several fields of a row. On this flowchart a step's kind sets its shape, through `symbol`, and its status sets its colour, through `fill`. The menu lists both, with each one's current value checked. The same list holds the entries for empty space and for links: each shows only where it applies.
+
+<Example
+  code={flowchartMenu}
+  title="Shape and status on a flowchart"
+  blurb="symbol reads the kind of step and fill reads its status. One menu sets either; Add a step places a new one of the chosen kind."
+  try={(
+    <>
+      <b>Right-click</b> a step to change its kind or status, a link to reverse it, or empty space to add a step. <b>Drag</b> from a port to link two steps.
+    </>
+  )}
+/>
+
+`ui.network({ menu: false })` leaves out the preset's own menu, so this one is the only menu on the chart. The port and link icons stay.
+
+</Section>
+
+<Section id="menu-rows" title="Preset values and rows of your own">
+
+A channel with a continuous scale has no list of values, so give the entry `values`. A row of your own takes `onSelect`, which receives `{ view, point }`: `view` is the mark under the pointer, or `null` over empty space. `on` keeps a row to one place. Writes inside one `chart.transaction()` undo together.
+
+<Example
+  code={menuOwnRows}
+  title="Preset values and rows of your own"
+  blurb="values lists hours to choose on a bar. The other two rows are the page's own, written with set."
+  try={(
+    <>
+      <b>Right-click</b> a bar, then empty space. <b>Drag</b> a bar as usual.
+    </>
+  )}
+/>
+
+</Section>
+
+<Section id="actions" title="Icons beside a mark">
+
+`ui.actions({ on, items })` shows icon buttons beside the drawn piece the pointer comes near. `on` says which pieces, as a [scene query](/editing/external-controls#reading): `{ mark: "note" }`. `reach` is how near, in pixels (default 24), and `placement` is the corner or side the icons sit on.
+
+The icons stay while the pointer travels to them, and for a moment after it leaves the piece. The piece is lit as the chart lights a hovered mark. A line's icons sit beside the point the pointer met it at.
+
+An item with `edit` drives that edit on the row. A click edit fires at once. A drag edit is dragged from its button; a click on the button arms it, and the next click on the chart is the drop. Escape cancels. An item with `onClick` is a button of your own.
+
+<Example
+  code={actions}
+  title="Move and remove icons on a note"
+  blurb="The grip drives the note's move edit; the bin fires a remove that no click on the note reaches."
+  try={(
+    <>
+      Bring the pointer <b>near a note</b>. <b>Drag</b> the grip, or click it and then click a spot.
+    </>
+  )}
+/>
+
+</Section>
+
+<Section id="handles" title="Resize handles">
+
+`ui.handles({ on })` puts a grip on each side a mark sizes from data: left and right where it binds `width` to a field, top and bottom where it binds `height`. Dragging a grip moves that side and holds the opposite side still. The width and the position change together as one undo step. Escape during the drag puts the box back, and the arrow keys step a focused grip.
+
+The size channel needs a continuous scale with a pixel `range`, which also sets the smallest and largest size.
+
+<Example
+  code={resize}
+  title="Resize a note from either side"
+  blurb="The note binds width to a field. No edit is declared on it: the grips write the width and the centre with set."
+  try={(
+    <>
+      Bring the pointer <b>near a note</b> and <b>drag</b> a grip on its side.
+    </>
+  )}
+/>
+
+</Section>
+
+<Section id="custom" title="A part of your own">
+
+`ui.custom(mount)` is a part you write. `mount(ctx)` builds it and may return a teardown. `ctx.chart` is the chart, read through [`scene`, `hit`, `scale` and `edits`](/editing/external-controls#reading). `ctx.layer` is the element everything goes in. The helpers on `ctx` release what they register when the layer detaches:
+
+- `ctx.place(el, anchor, placement)` keeps an element on a point or a drawn piece, on every render.
+- `ctx.button(options)`, `ctx.menu(items, at)` and `ctx.icon(icon)` build the layer's own controls.
+- `ctx.onPointer(cb)` reports the pointer in plot pixels, and a right-click as `"menu"`.
+- `ctx.drag(el, handlers)` makes an element a drag source.
+- `ctx.capture(handlers)` takes the chart's next press, for a two-step action.
+
+The built-in parts use only this context and the chart's public methods.
+
+<Example
+  code={custom}
+  title="A stepper over the hovered bar"
+  blurb="A custom part: two buttons that follow the bar under the pointer and write its value with set."
+  try={(
+    <>
+      Move over a bar and press <b>−</b> or <b>+</b>. <b>Drag</b> a bar as usual.
+    </>
+  )}
+/>
+
+</Section>
+
+<Section id="style" title="Theme, icons and CSS">
+
+The layer takes its colours and sizes from `theme.ui`: `surface`, `ink`, `muted`, `border`, `accent`, `danger`, `shadow`, `radius`, `size`, `gap` and `fontSize`. Set them in [`spec.theme`](/theming) like any other token.
+
+```js
+Elicit({ ...spec, theme: { ui: { accent: "#7c3aed", size: 26 } } });
+```
+
+The tokens reach the page as CSS variables on the layer (`--elicit-ui-accent`, `--elicit-ui-size`, …), and every control has a class: `elicit-ui-button`, `elicit-ui-menu`, `elicit-ui-item`, `elicit-ui-handle`. Override either from your own stylesheet.
+
+An `icon` is a built-in name (`plus`, `link`, `unlink`, `trash`, `swap`, `palette`, `grip`, `check`), SVG markup or an element. `authoring.registerIcon(name, path)` adds a name, from path data on a 16 × 16 grid.
+
+</Section>

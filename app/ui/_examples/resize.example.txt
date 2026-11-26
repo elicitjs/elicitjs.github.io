@@ -1,0 +1,34 @@
+const chart = Elicit({
+  width: 460, height: 300,
+  margins: { top: 20, right: 20, bottom: 20, left: 20 },
+  axes: false,
+  schema: {
+    note: { type: "categorical", open: true },
+    w: { type: "quantitative", domain: [70, 260] },
+    x: { type: "quantitative", domain: [0, 100] },
+    y: { type: "quantitative", domain: [0, 100] },
+  },
+  data: [
+    { note: "Drag a grip on my side. The text re-wraps to the width I end up.", w: 170, x: 32, y: 62 },
+    { note: "Narrow notes get taller.", w: 100, x: 72, y: 28 },
+  ],
+  marks: [
+    sticker({
+      id: "note",
+      fill: "#EBD6AD",
+      stroke: "rgba(70, 89, 107, 0.13)",
+      maxWidth: 260,
+      edits: [editText({ multiline: true })],
+      channels: {
+        x: { field: "x", edit: move({ channels: ["x", "y"], mode: "relative" }) },
+        y: { field: "y" },
+        // The width is data, so there is a side to drag. No edit is declared on it.
+        width: { field: "w", scale: { range: [70, 260] } },
+        text: { field: "note" },
+      },
+    }),
+  ],
+});
+mount(chart.dom());
+
+ui.attach(chart, [ui.handles({ on: { mark: "note" } })]);

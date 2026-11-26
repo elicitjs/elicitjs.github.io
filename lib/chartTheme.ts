@@ -59,6 +59,15 @@ export const DD_DARK = {
     text: { fill: DARK.grey100 },
     trend: { stroke: DARK.grey200, fill: DARK.grey200 },
   },
+  ui: {
+    surface: DARK.surface,
+    ink: DARK.grey100,
+    muted: DARK.grey500,
+    border: DARK.line,
+    accent: DARK.blueLight,
+    danger: DARK.coral,
+    shadow: 'rgba(0, 0, 0, 0.5)',
+  },
   widget: {
     accent: DARK.blueLight,
     ring: DARK.line,
