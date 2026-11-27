@@ -27,7 +27,7 @@ export default function Layout({ children }) {
 
 # Hierarchy
 
-<Lead>A **hierarchy** is nodes that sit inside each other, declared with `structure: "hierarchy"`: one table of nodes, and a `nesting` table with one row per containment. `constraints.contain` governs which rows can hold others, [layout](/layout) rules size containers and arrange their contents (`layout.contain`, `layout.dodge`, `layout.row`, `layout.column`, `layout.grid`, `layout.pack`), and `edit.hierarchy.nest` drops a node into a container or out of one. A mark's `contains` option is a shorthand for container eligibility and fitting on that mark.</Lead>
+<Lead>A **hierarchy** is nodes that sit inside each other, declared with `structure: "hierarchy"`: one table of nodes, and a `nesting` table with one row per containment. `constraints.contain` governs which rows can hold others, [layout](/layout) rules size containers and arrange their contents (`layout.hierarchy.contain`, `layout.dodge`, `layout.row`, `layout.column`, `layout.grid`, `layout.pack`), and `edit.hierarchy.nest` drops a node into a container or out of one. A mark's `contains` option is a shorthand for container eligibility and fitting on that mark.</Lead>
 
 <ApiReference entries={api} />
 
@@ -60,7 +60,7 @@ schema: {
 <Example
   code={groups}
   title="Groups and notes"
-  blurb="constraints.contain picks the rows that hold others; layout.contain({ fit: true }) sizes them to their contents."
+  blurb="constraints.contain picks the rows that hold others; layout.hierarchy.contain({ fit: true }) sizes them to their contents."
   try={(
     <>
       <b>Drag</b> a note into a group or out of one. <b>Drag</b> a group to move it with
@@ -135,14 +135,14 @@ tables: {
 Containment splits cleanly into two pieces: **eligibility** (a pure-data invariant) and **geometry** (a pixel-space layout rule).
 
 - `constraints.contain({ parent, child, maxDepth, maxChildren })` decides which rows may hold others, which may sit inside a container, and how deep or full a container may get. It guards every edit and `setData`.
-- `layout.contain({ where, padding, fit })` sets the room between a container's edge and its contents, and whether the container sizes itself to fit them (`fit: true`, `"x"`, `"y"`, or `false`).
+- `layout.hierarchy.contain({ where, padding, fit })` sets the room between a container's edge and its contents, and whether the container sizes itself to fit them (`fit: true`, `"x"`, `"y"`, or `false`).
 
 ```js
 constraints: [
   constraints.contain({ parent: (d) => d.kind === "group" }),
 ],
 layout: [
-  layout.contain({ padding: 12, fit: true }),
+  layout.hierarchy.contain({ padding: 12, fit: true }),
 ],
 ```
 
@@ -203,7 +203,7 @@ Every container keeps `padding` between its edge and its contents. The default i
 
 ```js
 layout: [
-  layout.contain({ padding: { top: 30, right: 12, bottom: 12, left: 12 }, fit: true }),
+  layout.hierarchy.contain({ padding: { top: 30, right: 12, bottom: 12, left: 12 }, fit: true }),
   layout.dodge({ gap: 10 }),
 ]
 ```
@@ -261,7 +261,7 @@ Use `"angle"` when where a node sits around the middle is the answer.
 
 ```js
 layout: [
-  layout.contain({ padding: { top: 30, right: 10, bottom: 10, left: 10 }, fit: true }),
+  layout.hierarchy.contain({ padding: { top: 30, right: 10, bottom: 10, left: 10 }, fit: true }),
   layout.column({ gap: 6 }),
 ]
 ```
@@ -331,7 +331,7 @@ The order is read from the `x` and `y` columns, which hold each node's slot. A f
 
 <Section id="fixed" title="Fixed containers">
 
-Leave `fit` off `layout.contain` and a container keeps the size it was given. Use this for regions that are part of the question: buckets, lanes, zones. Lock them with `lock` so only the cards move. Cards stay inside the bucket's padding, and a locked row stays where it is when nodes dodge. Add `layout.dodge()` to keep cards from overlapping, or `layout.column()` / `layout.grid()` to put them in slots.
+Leave `fit` off `layout.hierarchy.contain` and a container keeps the size it was given. Use this for regions that are part of the question: buckets, lanes, zones. Lock them with `lock` so only the cards move. Cards stay inside the bucket's padding, and a locked row stays where it is when nodes dodge. Add `layout.dodge()` to keep cards from overlapping, or `layout.column()` / `layout.grid()` to put them in slots.
 
 The answer is the nesting table: one row per card, naming its bucket.
 

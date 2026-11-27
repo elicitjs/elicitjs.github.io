@@ -41,7 +41,7 @@ const chart = Elicit({
   ],
   layout: [
     // The top side leaves room for the name.
-    layout.contain({
+    layout.hierarchy.contain({
       padding: { top: 30, right: 12, bottom: 12, left: 12 },
       fit: true,
     }),

@@ -45,7 +45,7 @@ const chart = Elicit({
   ],
   layout: [
     // Items gather where they are dropped; the set encloses them.
-    layout.contain({ padding: 6, fit: true }),
+    layout.hierarchy.contain({ padding: 6, fit: true }),
     layout.pack({ gap: 3 }),
   ],
   marks: [

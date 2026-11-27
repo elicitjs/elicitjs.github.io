@@ -1574,3 +1574,57 @@
     .gal-icons { grid-template-columns: repeat(3, minmax(0, 1fr)); }
   }
 }
+
+/* Layout explorer (/layout#explore): rows of toggle buttons above a live example. */
+@layer components {
+  .lx-controls {
+    display: grid;
+    gap: 0.5rem;
+    margin: 1rem 0 0.25rem;
+    padding: 0.75rem 0.9rem;
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    background: var(--surface-subtle);
+  }
+  .lx-row {
+    display: grid;
+    grid-template-columns: 6.5rem minmax(0, 1fr);
+    gap: 0.75rem;
+    align-items: center;
+  }
+  .lx-label {
+    font-size: 0.78rem;
+    color: var(--muted-foreground);
+  }
+  .lx-options {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.3rem;
+  }
+  .lx-option {
+    font: inherit;
+    font-size: 0.8rem;
+    padding: 0.2rem 0.6rem;
+    border: 1px solid var(--border);
+    border-radius: 999px;
+    background: var(--card);
+    color: var(--foreground);
+    cursor: pointer;
+  }
+  .lx-option:hover:not(:disabled) { border-color: var(--border-strong); }
+  .lx-option:focus-visible { outline: 2px solid var(--ring); outline-offset: 1px; }
+  .lx-option.active {
+    background: var(--primary);
+    border-color: var(--primary);
+    color: var(--primary-foreground);
+  }
+  .lx-option:disabled { opacity: 0.45; cursor: default; }
+  .lx-note {
+    margin: 0.5rem 0 0;
+    font-size: 0.85rem;
+    color: var(--muted-foreground);
+  }
+  @media (max-width: 520px) {
+    .lx-row { grid-template-columns: 1fr; gap: 0.25rem; }
+  }
+}

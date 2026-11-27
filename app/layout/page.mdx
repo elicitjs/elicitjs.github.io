@@ -3,11 +3,17 @@ import { ApiReference } from '../../components/ApiReference';
 import { Section } from '../../components/Section';
 import { Example } from '../../components/Example';
 import { Lead } from '../../components/Lead';
+import { LayoutExplorer } from '../../components/LayoutExplorer';
 import { api } from './api';
 
 import flatDodge from './_examples/flat-dodge.example.txt';
 import flatPack from './_examples/flat-pack.example.txt';
 import boardTwoLevel from './_examples/board-two-level.example.txt';
+import networkLayered from './_examples/network-layered.example.txt';
+import networkTree from './_examples/network-tree.example.txt';
+import networkForce from './_examples/network-force.example.txt';
+import tidyCards from './_examples/tidy.example.txt';
+import networkInHierarchy from './_examples/network-in-hierarchy.example.txt';
 
 export default function Layout({ children }) {
   return <DocShell>{children}</DocShell>;
@@ -15,7 +21,7 @@ export default function Layout({ children }) {
 
 # Layout
 
-<Lead>A **layout** settles marks in pixel space after an edit commits, then writes the settled positions and sizes back into the dataset. Declare layouts in `layout: [...]` on the `Elicit` spec. `layout.dodge` keeps marks from overlapping, `layout.row`, `layout.column`, `layout.grid` and `layout.pack` arrange them into slots or clusters, `layout.contain` sizes containers and bounds their contents in a [hierarchy](/marks/hierarchy), and `layout.custom` runs your own pixel-space pass. Every layout except `contain` works on flat tables, networks and hierarchies alike.</Lead>
+<Lead>A **layout** settles marks in pixel space after an edit commits, then writes the settled positions and sizes back into the dataset. Declare layouts in `layout: [...]` on the `Elicit` spec. The root layouts work on any table: `layout.dodge` keeps marks from overlapping, `layout.row`, `layout.column`, `layout.grid` and `layout.pack` arrange them into slots or clusters, `layout.tidy` lines a hand layout up, and `layout.custom` runs your own pass. A layout that needs a structure is scoped to it: `layout.network.layered`, `tree` and `force` place a [network](/marks/network)'s nodes by its links, and `layout.hierarchy.contain` sizes containers in a [hierarchy](/marks/hierarchy).</Lead>
 
 <ApiReference entries={api} />
 
@@ -59,10 +65,10 @@ When you drop a mark on top of another, the dropped mark holds its place and the
 
 Arrangement rules place marks into slots or tight clusters:
 
-- `layout.row({ gap, in })` arranges left to right, wrapping at the available width.
-- `layout.column({ gap, in })` arranges top to bottom, wrapping at the available height.
-- `layout.grid({ columns, gap, in })` places equal cells in reading order.
-- `layout.pack({ gap, keep, in })` draws marks together until they touch, edge to edge for boxes and circumference to circumference for circles.
+- `layout.row({ gap, in, where })` arranges left to right, wrapping at the available width.
+- `layout.column({ gap, in, where })` arranges top to bottom, wrapping at the available height.
+- `layout.grid({ columns, gap, in, where })` places equal cells in reading order.
+- `layout.pack({ gap, keep, in, where })` draws marks together until they touch, edge to edge for boxes and circumference to circumference for circles.
 
 On a flat table or a network, every row in the table takes part.
 
@@ -88,7 +94,7 @@ In a [hierarchy](/marks/hierarchy), `in` scopes each rule to a level of the tree
 - `"all"` — both roots and containers (the default for `dodge`).
 - `(parent, i, rows) => boolean` — only inside containers matching the predicate.
 
-Combine rules in `layout: [...]` to arrange roots one way and container contents another. `layout.contain({ padding, fit })` accepts `fit: true`, `"x"`, `"y"`, or `false` so containers can grow on a single axis while holding a fixed width.
+Combine rules in `layout: [...]` to arrange roots one way and container contents another. `layout.hierarchy.contain({ padding, fit })` accepts `fit: true`, `"x"`, `"y"`, or `false` so containers can grow on a single axis while holding a fixed width.
 
 <Example
   code={boardTwoLevel}
@@ -99,6 +105,110 @@ Combine rules in `layout: [...]` to arrange roots one way and container contents
     <>
       <b>Drag</b> a lane left or right to reorder the columns. <b>Drag</b> a card within a lane
       or into another lane: the lane grows or shrinks vertically while keeping its width.
+    </>
+  )}
+/>
+
+</Section>
+
+<Section id="network" title="Network layouts">
+
+`layout.network.*` places nodes from their links. Each one works on the nodes table of a dataset with links: a network, or a [hierarchy](/marks/hierarchy) that declares a links table. On a dataset with no links it logs a warning and does nothing. `where` picks the nodes it places.
+
+- `layout.network.layered({ direction, gap, rankGap, place, where })` draws ranks for flowcharts and causal maps. Every link runs one way (`direction`: `"down"`, `"right"`, `"up"` or `"left"`), and nodes in a rank are ordered to cut crossings. A cycle has to break somewhere, so one link in each loop points back.
+- `layout.network.tree({ direction, gap, rankGap, place, where })` draws a tidy tree for trees and mind maps. Each parent sits centred on its children, and siblings keep the order you drew them in. `direction: "radial"` puts the root in the middle with a ring per depth. The root is a node no link points to. Links that make a cycle or give a node two parents are left out of the layout, with a warning.
+- `layout.network.force({ length, gap, place, where })` spreads a concept map. Linked nodes sit about `length` px apart (default `100`), and other pairs sit farther apart the more links lie between them. The same rows always give the same drawing.
+
+`gap` is the space in px between neighbouring boxes, and `rankGap` the space between ranks or depths.
+
+<Example
+  code={networkLayered}
+  title="A causal map laid out in ranks"
+  blurb="layout.network.layered places factors that have no position. The loop through Supply points one link back up."
+  tall
+  try={(
+    <>
+      <b>Drag</b> a factor anywhere: it stays where you drop it. <b>Drag</b> from a port to another factor to add a cause.
+    </>
+  )}
+/>
+
+<Example
+  code={networkTree}
+  title="A mind map as a tidy tree"
+  blurb='layout.network.tree({ direction: "right", place: "all" }) redraws the tree on every change.'
+  tall
+  try={(
+    <>
+      <b>Drag</b> Hiking below Museums and let go: the two swap places.
+    </>
+  )}
+/>
+
+</Section>
+
+<Section id="place" title="Placing new rows or every row">
+
+`place` decides which rows a network layout moves.
+
+- `place: "new"` (the default) positions only rows with no `x` or `y` yet: the seed, a `setData` call, or rows added from outside. Every row that has a position stays where it is, so a participant's arrangement is never redrawn.
+- `place: "all"` redraws every row whenever the nodes or links change. It starts from the current drawing, so a dragged node changes its rank order, sibling order or starting point instead of springing back.
+
+Locked rows stay put under both.
+
+<Example
+  code={networkForce}
+  title="New concepts placed around the ones already drawn"
+  blurb='layout.network.force({ length: 80 }) places the seven concepts with no position. The three placed ones stay where they are.'
+  tall
+  try={(
+    <>
+      <b>Drag</b> any concept: nothing else moves.
+    </>
+  )}
+/>
+
+</Section>
+
+<Section id="where" title="where — lay out some of the rows">
+
+Every layout takes `where: (d, i, rows) => boolean`. It picks the rows the layout acts on, and the others stay where they are. On `layout.dodge` the picked rows dodge, on `row`, `column`, `grid` and `pack` they take the slots, on `tidy` they line up, and a network layout places them, leaving links to other nodes out of the layout. On `layout.hierarchy.contain` it picks the containers its `padding` and `fit` apply to, and `layout.custom` can change only the rows it picks. Give two layouts different `where` rules to lay out two parts of one diagram differently.
+
+In a hierarchy, a container with `fit: true` grows round the nodes the layout places inside it. A node the layout moves carries its own contents.
+
+<Example
+  code={networkInHierarchy}
+  title="Two groups, each with its own layout"
+  blurb='layout.network.layered({ where: (d) => d.kind === "step" }) places the sign-up steps, and layout.network.tree({ where: (d) => d.kind === "topic" }) the help topics. The groups and the note are left where they are.'
+  tall
+  try={(
+    <>
+      <b>Drag</b> a group: its nodes go with it. <b>Drag</b> a step away and let go: it goes back to its rank.
+    </>
+  )}
+/>
+
+</Section>
+
+<Section id="explore" title="Layouts and link shapes together">
+
+A layout places the nodes, and the link mark's `curve` draws the links between them. `sourceSide` and `targetSide` pin where a link leaves and arrives, so its ends follow the layout's direction. Links are drawn one at a time, so several can end at one point on a node, and long links in a layered drawing pass close to the nodes they skip.
+
+<LayoutExplorer />
+
+</Section>
+
+<Section id="tidy" title="tidy — line a hand layout up">
+
+`layout.tidy({ snap, gap, where, in })` keeps the arrangement you drew and straightens it. Centres within `snap` px of each other (default `16`) share a row or a column. Rows and columns that are nearly evenly spaced become exactly even. A mark that overlaps another and stands alone in its column moves to the nearest free cell in its row, keeping `gap` px clear (default `8`). It works on any table, and `in` scopes it in a hierarchy as it does `dodge`.
+
+<Example
+  code={tidyCards}
+  title="A rough sketch lined up"
+  blurb="layout.tidy({ snap: 20 }) snaps the cards into rows and columns and moves Docs off Ship."
+  try={(
+    <>
+      <b>Drag</b> a card near a row and let go: it lines up with it.
     </>
   )}
 />

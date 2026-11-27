@@ -104,7 +104,7 @@ export const api: ApiEntry[] = [
         to rows boxed by that mark and configures their{" "}
         <code className="inline">padding</code> and <code className="inline">fit</code>.
         Equivalent to <code className="inline">constraints.contain</code> plus{" "}
-        <code className="inline">layout.contain</code> for that mark.
+        <code className="inline">layout.hierarchy.contain</code> for that mark.
       </>
     ),
     signatures: [

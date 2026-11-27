@@ -40,7 +40,7 @@ const chart = Elicit({
   ],
   layout: [
     // No `fit`: a bucket keeps the size it was given, and cards stay below its name.
-    layout.contain({ padding: { top: 26 } }),
+    layout.hierarchy.contain({ padding: { top: 26 } }),
     layout.dodge(),
   ],
   marks: [

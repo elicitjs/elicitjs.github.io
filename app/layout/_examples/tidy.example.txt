@@ -1,0 +1,38 @@
+const chart = Elicit({
+  width: 520, height: 300,
+  margins: { top: 16, right: 16, bottom: 16, left: 16 },
+  axes: false,
+  schema: {
+    id: { type: "categorical", key: true },
+    label: { type: "categorical", open: true },
+    x: { type: "quantitative", domain: [0, 100] },
+    y: { type: "quantitative", domain: [0, 100] },
+  },
+  // A rough sketch: nearly in rows and columns, one card on top of another.
+  data: [
+    { id: "a", label: "Idea", x: 14, y: 78 },
+    { id: "b", label: "Research", x: 47, y: 82 },
+    { id: "c", label: "Sketch", x: 78, y: 75 },
+    { id: "d", label: "Prototype", x: 12, y: 48 },
+    { id: "e", label: "Test", x: 44, y: 44 },
+    { id: "f", label: "Feedback", x: 80, y: 51 },
+    { id: "g", label: "Ship", x: 15, y: 15 },
+    { id: "h", label: "Docs", x: 24, y: 17 },
+  ],
+  layout: [
+    layout.tidy({ snap: 20, gap: 10 }),
+  ],
+  marks: [
+    sticker({
+      fill: "#FBF3E6",
+      stroke: "#6B4A1D",
+      radius: 6,
+      channels: {
+        x: { field: "x", edit: move({ channels: ["x", "y"], mode: "relative" }) },
+        y: { field: "y" },
+        text: { field: "label" },
+      },
+    }),
+  ],
+});
+mount(chart.dom());
