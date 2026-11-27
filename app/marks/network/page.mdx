@@ -262,6 +262,8 @@ How an end meets the shape depends on whether the node has [ports](#ports):
 
 An `"orthogonal"` connector leaves each end square to its edge and joins the two with the fewest turns. Two sliding ends nearly in line join with one straight leg; further apart, they join with a Z. It routes around a node in the way. Overlapping nodes get the plain route. `"line"` and `"bezier"` connectors also meet the shape, and a bezier leaves a pinned edge square-on.
 
+A node turned by `angle` turns its edges and ports with it, and a side names the node's own edge. An `"orthogonal"` connector runs on the screen's axes, so it meets a turned node on the upright box around it.
+
 `sourceOffset` and `targetOffset` move a pinned end along its edge, as a fraction from `-0.4` to `0.4`. Positive runs clockwise: right along the top, down the right, left along the bottom, up the left.
 
 <Example
@@ -453,7 +455,7 @@ Links meet the shape the mark draws, and a [`ports`](#ports) channel puts ports 
   </table>
 </div>
 
-A glyph puts `ports` on its main shape: the box's circle, or its first shape part. When a glyph draws a shape and a label, links meet the shape, so a `node()`'s links meet its dot. Links treat a rotated shape as unrotated.
+A glyph puts `ports` on its main shape: the box's circle, or its first shape part. When a glyph draws a shape and a label, links meet the shape, so a `node()`'s links meet its dot.
 
 <Example
   code={emojiNodes}

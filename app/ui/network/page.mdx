@@ -13,7 +13,7 @@ export default function Layout({ children }) {
 
 # Network UI
 
-<Lead>`ui.network()` is the [UI layer](/ui) for a node-link chart. Beside a port, **+** adds a linked node and two more icons connect and detach. A link carries icons to reverse and remove it. A right-click menu covers the plane, the nodes and the links, and a node that sizes from data gets resize grips. Each piece appears where the spec names the edit behind it.</Lead>
+<Lead>`ui.network()` is the [UI layer](/ui) for a node-link chart. Beside a port, **+** adds a linked node and two more icons connect and detach. A link carries icons to reverse it, put a node on it, and remove it. A right-click menu covers the plane, the nodes and the links, and a node that sizes from data gets resize grips. Each piece appears where the spec names the edit behind it.</Lead>
 
 <ApiReference entries={api} />
 
@@ -24,7 +24,7 @@ The spec below is an ordinary [network](/marks/network) of [stickers](/marks/sti
 <Example
   code={flowchart}
   title="Notes, links and their icons"
-  blurb="Grow the board from a port's +, link and detach with the icons beside it, reverse or remove a link from its icons, add and recolour notes from the menu, resize a note by its grips."
+  blurb="Grow the board from a port's +, link and detach with the icons beside it, reverse a link, put a node on it or remove it from its icons, add and recolour notes from the menu, resize a note by its grips."
   try={(
     <>
       Bring the pointer to the <b>edge of a note</b>. <b>Right-click</b> the board, a note or a link.
@@ -46,9 +46,9 @@ At a port that holds a link, the **detach** icon takes it off. Drag the icon to 
 
 </Section>
 
-<Section id="links" title="Reverse and remove a link">
+<Section id="links" title="Reverse, split and remove a link">
 
-Bring the pointer to a link and two icons appear beside it, where the pointer met it. The link's ends are lit. Reverse swaps the link's direction, and each node keeps the port the link meets it at. The bin removes the link. The right-click menu on a link offers the same two actions.
+Bring the pointer to a link and its icons appear beside it, where the pointer met it. The link's ends are lit. Reverse swaps the link's direction, and each node keeps the port the link meets it at. **+** puts a new node on the link where the pointer met it: the link now ends at the new node, and a new link runs on to where the old one went, at the same port. The new node takes the category and size of the node the link comes from, and the change is one undo step. The bin removes the link. The right-click menu on a link offers reverse and remove.
 
 </Section>
 
@@ -83,6 +83,7 @@ Each action needs one named edit. An action whose edit is missing is left out; a
 | Detach by dragging | `edit.network.rewire({ name })` | the `link` mark |
 | Detach by clicking, remove a link | `remove({ name })` | the `link` mark |
 | Reverse a link | `edit.network.reverse({ name })` | the `link` mark |
+| **+** on a link | `create({ name })`, `edit.network.connect({ name })` and `edit.network.rewire({ name })` | the node mark, its `ports` channel, the `link` mark |
 | Add a node | `create({ name })` | the node mark |
 | Remove a node | `remove({ name })` | the node mark |
 | A node's category | none | a categorical `fill` on the node mark |
