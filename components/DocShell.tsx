@@ -147,10 +147,14 @@ export function DocShell({ children, chromeless }: Props) {
       </aside>
 
       {/* ── Content ─────────────────────────────────────────────────────── */}
-      <main className="docs-content mx-auto w-full max-w-[1200px] min-w-0 px-4 pt-6 pb-24 sm:px-6 sm:pt-8 lg:px-10 lg:pt-10">
+      {/* The strip spans the whole column beside the sidebar; only the page
+          itself is capped at 1200px, so a wide screen leaves no gap. */}
+      <div className="min-w-0">
         <PageAnchors anchors={anchors} current={current} />
-        {children}
-      </main>
+        <main className="docs-content mx-auto w-full max-w-[1200px] min-w-0 px-4 pt-6 pb-24 sm:px-6 sm:pt-8 lg:px-10 lg:pt-10">
+          {children}
+        </main>
+      </div>
     </div>
   );
 }

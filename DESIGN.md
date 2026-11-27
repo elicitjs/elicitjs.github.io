@@ -54,9 +54,9 @@ and so do colours an example hardcodes.
 - **< 1024px:** a sticky top bar. The page list opens in a `Sheet`; the strip
   sticks just under the bar.
 - **The page list** (`lib/nav.ts`, drawn by `components/site/docs-nav.tsx`):
-  groups are always open. A group with `chips: true` (Marks, Data, Editing, UI
-  layer, Appearance) draws its pages as icon chips: add a `chip` short label for a long
-  title (the full title becomes the tooltip), and a glyph in
+  groups are always open. A group with `chips: true` (Marks, Data, Walkthroughs,
+  Editing, UI layer, Appearance) draws its pages as icon chips: add a `chip` short label for a long
+  title (the page keeps its full title), and a glyph in
   `components/site/nav-icons.tsx`, keyed by slug for a mark (`bar`) and by full
   route for any other page (`/editing/handles`).
 - **"On this page"** (`PageAnchors`): a thin horizontal strip at the top of the

@@ -6,7 +6,6 @@ import { SITE } from '@/lib/nav';
 import type { NavGroup, NavPage } from '@/lib/types';
 import { cn } from '@/lib/utils';
 import { NavIcon } from '@/components/site/nav-icons';
-import { Tooltip, TooltipContent, TooltipTrigger } from '@/components/ui/tooltip';
 
 export type Anchor = { id: string; title: string };
 
@@ -103,18 +102,7 @@ export function DocsNav({ active, onNavigate }: Props) {
         {label}
       </Link>
     );
-    return (
-      <li key={p.href}>
-        {label === p.title ? (
-          link
-        ) : (
-          <Tooltip>
-            <TooltipTrigger asChild>{link}</TooltipTrigger>
-            <TooltipContent side="right">{p.title}</TooltipContent>
-          </Tooltip>
-        )}
-      </li>
-    );
+    return <li key={p.href}>{link}</li>;
   }
 
   function renderPage(p: NavPage) {
@@ -186,32 +174,35 @@ export function PageAnchors({
   return (
     <nav
       aria-label="On this page"
-      className="sticky top-14 z-30 -mx-4 -mt-6 mb-6 border-b bg-background/85 px-4 backdrop-blur-md supports-[backdrop-filter]:bg-background/70 sm:-mx-6 sm:-mt-8 sm:px-6 lg:top-0 lg:-mx-10 lg:-mt-10 lg:px-10"
+      className="sticky top-14 z-30 border-b border-sidebar-border bg-sidebar shadow-[0_2px_8px_-2px_rgb(0_0_0/0.08)] lg:top-0"
     >
-      <div
-        ref={scroller}
-        className="flex h-[var(--anchor-strip)] items-center gap-1 overflow-x-auto [scrollbar-width:none] [&::-webkit-scrollbar]:hidden"
-      >
-        <span className="hidden shrink-0 pr-2 text-[0.68rem] font-semibold tracking-[0.08em] text-faint-foreground uppercase sm:block">
-          On this page
-        </span>
-        {anchors.map((a) => (
-          <a
-            key={a.id}
-            href={`#${a.id}`}
-            onClick={onNavigate}
-            aria-current={current === a.id ? 'location' : undefined}
-            className={cn(
-              'shrink-0 rounded-full px-2.5 py-1 text-[0.78rem] leading-none whitespace-nowrap no-underline transition-colors',
-              'outline-none focus-visible:ring-3 focus-visible:ring-ring/50',
-              current === a.id
-                ? 'bg-sidebar-accent font-medium text-sidebar-accent-foreground'
-                : 'text-muted-foreground hover:bg-sidebar-accent/70 hover:text-foreground',
-            )}
-          >
-            {a.title}
-          </a>
-        ))}
+      {/* Same width and gutters as the page, so the text lines up with it. */}
+      <div className="mx-auto w-full max-w-[1200px] px-4 sm:px-6 lg:px-10">
+        <div
+          ref={scroller}
+          className="flex h-[var(--anchor-strip)] items-stretch gap-5 overflow-x-auto [scrollbar-width:none] [&::-webkit-scrollbar]:hidden"
+        >
+          <span className="hidden shrink-0 items-center text-[0.68rem] font-semibold tracking-[0.08em] text-faint-foreground uppercase sm:flex">
+            On this page
+          </span>
+          {anchors.map((a) => (
+            <a
+              key={a.id}
+              href={`#${a.id}`}
+              onClick={onNavigate}
+              aria-current={current === a.id ? 'location' : undefined}
+              className={cn(
+                'flex shrink-0 items-center border-b-2 px-0.5 text-[0.8rem] leading-none whitespace-nowrap no-underline transition-colors',
+                'outline-none focus-visible:ring-3 focus-visible:ring-ring/50',
+                current === a.id
+                  ? 'border-brand font-medium text-foreground'
+                  : 'border-transparent text-muted-foreground hover:border-border-strong hover:text-foreground',
+              )}
+            >
+              {a.title}
+            </a>
+          ))}
+        </div>
       </div>
     </nav>
   );

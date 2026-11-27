@@ -249,6 +249,19 @@ const ICONS: Record<string, ReactNode> = {
     </>
   ),
 
+  // ── Walkthroughs ─────────────────────────────────────────────────────────
+  '/case-studies/glyphs': (
+    <>
+      <path d="M8 14V7" />
+      <circle cx="8" cy="4.4" r="2.2" {...F} />
+      <path d="M8 11.2C5.4 11.2 4.2 9.8 4.2 8.2 6.4 8.2 8 9.2 8 11.2ZM8 12.4c2.3 0 3.8-1 3.8-2.6-2.2 0-3.8.8-3.8 2.6Z" fill="currentColor" fillOpacity=".25" />
+    </>
+  ),
+  '/case-studies/du-bois-wrapped': <path d="M2.5 3.5h9a2 2 0 0 1 0 4H4.5a2 2 0 0 0 0 4h9" />,
+  '/case-studies/du-bois-spiral': (
+    <path d="M8 8A1 1 0 0 1 8 6A2 2 0 0 1 8 10A3 3 0 0 1 8 4A4 4 0 0 1 8 12A5 5 0 0 1 8 2" transform="translate(1.5 1.5)" />
+  ),
+
   // ── Editing ──────────────────────────────────────────────────────────────
   '/editing': (
     <>

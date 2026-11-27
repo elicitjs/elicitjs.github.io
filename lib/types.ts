@@ -48,7 +48,7 @@ export type ExampleModule = {
 /**
  * `heading` starts a labelled sub-list within the group, from this page on.
  * `chip` is the short label a chip shows when the group is drawn as chips; the
- * full `title` stays as its tooltip.
+ * page keeps its full `title` as its heading.
  */
 export type NavPage = { href: string; title: string; heading?: string; chip?: string };
 /** `chips` draws the group's pages as icon chips instead of a plain list. */

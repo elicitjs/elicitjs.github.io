@@ -1,0 +1,49 @@
+import { DocShell } from '../../../components/DocShell';
+import { Section } from '../../../components/Section';
+import { Example } from '../../../components/Example';
+import { Lead } from '../../../components/Lead';
+
+import religion from './_examples/religion.example.txt';
+import furniture from './_examples/furniture.example.txt';
+
+export default function Layout({ children }) {
+  return <DocShell>{children}</DocShell>;
+}
+
+# Du Bois's coil and spiral
+
+<Lead>Two of Du Bois's charts for the 1900 Paris Exposition do not fold a bar back and forth: they wind it, into a square coil and into a spiral. A coil and a spiral are geometry, so each route is written in pixels in place of data units. The chart is the same [`track`](/marks/track) with `move()` on its `length` as on the [wrapped bars page](/case-studies/du-bois-wrapped); only the route changes. Every row's route holds the same length, so the rows share one scale.</Lead>
+
+<Section id="religion" title="A square coil">
+
+The route runs right along the bottom, up, back left and down, then turns inward one step and goes round again. Each side is one step shorter than the side before it on that axis. The route is one lane, so the corners hold value too, and every pixel of the coil holds about 1,750 people.
+
+<Example
+  code={religion}
+  title="Religion of Black Americans"
+  blurb="14,517 Catholics beside 2,659,460 Protestants. The Protestant bar coils inward to fit the page."
+  try={(
+    <>
+      <b>Drag the end of the green coil</b> to wind it further in · <b>drag the end of the red bar</b> along the coil to grow it.
+    </>
+  )}
+/>
+
+</Section>
+
+<Section id="furniture" title="A spiral">
+
+Each year starts at the top and runs clockwise. Its radius shrinks by six bands a turn, so the turns of all six years nest without touching. The value is the length of the spiral, so an outer turn holds more than an inner one. Each year's spiral is cut to the same length, which holds $1,600,000.
+
+<Example
+  code={furniture}
+  title="Furniture owned by Black Georgians"
+  blurb="The assessed value of household and kitchen furniture, 1875 to 1899. Each year is a band of the spiral."
+  try={(
+    <>
+      <b>Drag the end of a band</b> to wind it further round · <b>drag the short pink band</b> at the top clockwise to grow 1875.
+    </>
+  )}
+/>
+
+</Section>

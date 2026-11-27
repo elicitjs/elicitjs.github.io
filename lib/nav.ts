@@ -55,9 +55,11 @@ export const SITE: NavGroup[] = [
   },
   {
     group: "Walkthroughs",
+    chips: true,
     pages: [
-      { href: "/case-studies/glyphs", title: "Face, plant, hourglass" },
-      { href: "/case-studies/du-bois", title: "Du Bois's wrapped bars" },
+      { href: "/case-studies/glyphs", title: "Face, plant, hourglass", chip: "Glyphs" },
+      { href: "/case-studies/du-bois-wrapped", title: "Du Bois's wrapped bars", chip: "Du Bois wrapped" },
+      { href: "/case-studies/du-bois-spiral", title: "Du Bois's coil and spiral", chip: "Du Bois spiral" },
     ],
   },
   {
