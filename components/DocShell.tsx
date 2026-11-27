@@ -13,7 +13,7 @@ import {
   SheetTitle,
   SheetTrigger,
 } from "@/components/ui/sheet";
-import { DocsNav, type Anchor } from "@/components/site/docs-nav";
+import { DocsNav, PageAnchors, type Anchor } from "@/components/site/docs-nav";
 import { LabCredit, SiteBrand } from "@/components/site/brand";
 import { ThemeToggle } from "@/components/site/theme";
 import { Badge } from "@/components/ui/badge";
@@ -74,7 +74,7 @@ export function DocShell({ children, chromeless }: Props) {
   }
 
   const nav = (onNavigate?: () => void) => (
-    <DocsNav active={active} anchors={anchors} current={current} onNavigate={onNavigate} />
+    <DocsNav active={active} onNavigate={onNavigate} />
   );
 
   return (
@@ -148,6 +148,7 @@ export function DocShell({ children, chromeless }: Props) {
 
       {/* ── Content ─────────────────────────────────────────────────────── */}
       <main className="docs-content mx-auto w-full max-w-[1200px] min-w-0 px-4 pt-6 pb-24 sm:px-6 sm:pt-8 lg:px-10 lg:pt-10">
+        <PageAnchors anchors={anchors} current={current} />
         {children}
       </main>
     </div>

@@ -46,10 +46,23 @@ and so do colours an example hardcodes.
 
 ## Layout and breakpoints
 
-- **≥ 1024px (`lg`):** a sticky sidebar beside the content. Desktop has no
-  sticky header on purpose: the library's browser gate drags charts at
-  viewport coordinates, and a bar over the page could cover them.
-- **< 1024px:** a sticky top bar. The page list opens in a `Sheet`.
+- **≥ 1024px (`lg`):** a sticky sidebar beside the content. There is no
+  full-width header, but the "On this page" strip (below) does stick to the top
+  of the content. The library's browser gate drags charts at viewport
+  coordinates, so a chart scrolled under that strip can't be grabbed until it
+  is scrolled down.
+- **< 1024px:** a sticky top bar. The page list opens in a `Sheet`; the strip
+  sticks just under the bar.
+- **The page list** (`lib/nav.ts`, drawn by `components/site/docs-nav.tsx`):
+  groups are always open. A group with `chips: true` (Marks, Data, Editing, UI
+  layer, Appearance) draws its pages as icon chips: add a `chip` short label for a long
+  title (the full title becomes the tooltip), and a glyph in
+  `components/site/nav-icons.tsx`, keyed by slug for a mark (`bar`) and by full
+  route for any other page (`/editing/handles`).
+- **"On this page"** (`PageAnchors`): a thin horizontal strip at the top of the
+  content, one pill per section, sticky. Its height is `--anchor-strip` in
+  `styles/docs.css`, which anchor jumps (`scroll-margin-top`) use to land clear
+  of it.
 - **> 940px:** an example is a two-column workspace: the code panel (toolbar
   + code) on the left, the chart column (Try hint, chart, getData()) on the
   right. Both share a top and a bottom edge; the code scrolls inside.

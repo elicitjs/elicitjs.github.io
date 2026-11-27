@@ -3,26 +3,26 @@
 import Link from 'next/link';
 import { useEffect, useRef } from 'react';
 import { SITE } from '@/lib/nav';
-import type { NavPage } from '@/lib/types';
+import type { NavGroup, NavPage } from '@/lib/types';
 import { cn } from '@/lib/utils';
+import { NavIcon } from '@/components/site/nav-icons';
+import { Tooltip, TooltipContent, TooltipTrigger } from '@/components/ui/tooltip';
 
 export type Anchor = { id: string; title: string };
 
 type Props = {
   /** The current route, trailing slash removed. */
   active: string;
-  /** In-page sections of the active route, shown nested under it. */
-  anchors: Anchor[];
-  /** The section currently in view, highlighted among the anchors. */
-  current: string | null;
   /** Called after a link is followed, so the mobile sheet can close. */
   onNavigate?: () => void;
 };
 
-/** The grouped page list, shared by the desktop sidebar and the mobile sheet. */
-export function DocsNav({ active, anchors, current, onNavigate }: Props) {
+/**
+ * The grouped page list, shared by the desktop sidebar and the mobile sheet.
+ * A group with `chips` draws its pages as icon chips.
+ */
+export function DocsNav({ active, onNavigate }: Props) {
   const activeRef = useRef<HTMLAnchorElement>(null);
-  const showAnchors = anchors.length > 1 || anchors.some((a) => a.id === 'api');
 
   // Bring the active page into view inside the sidebar's own scroller, without
   // touching the window's scroll (scrollIntoView would move both).
@@ -30,12 +30,15 @@ export function DocsNav({ active, anchors, current, onNavigate }: Props) {
     const link = activeRef.current;
     const viewport = link?.closest<HTMLElement>('[data-slot="scroll-area-viewport"]');
     if (!link || !viewport) return;
-    const top = link.offsetTop - viewport.clientHeight / 3;
-    viewport.scrollTop = Math.max(0, top);
+    const delta =
+      link.getBoundingClientRect().top -
+      viewport.getBoundingClientRect().top -
+      viewport.clientHeight / 3;
+    viewport.scrollTop = Math.max(0, viewport.scrollTop + delta);
   }, [active]);
 
   // Should a page ever sit in two groups, only its first entry is marked as the
-  // current page and expands.
+  // current page.
   let activeSeen = false;
 
   return (
@@ -45,31 +48,78 @@ export function DocsNav({ active, anchors, current, onNavigate }: Props) {
           <div className="mb-1 px-2.5 text-[0.68rem] font-semibold tracking-[0.08em] text-faint-foreground uppercase">
             {grp.group}
           </div>
-          {runs(grp.pages).map((run, i) => {
-            const list = (
-              <ul className="flex flex-col gap-px">{run.pages.map(renderPage)}</ul>
-            );
-            if (!run.heading) return <div key={i}>{list}</div>;
-            // A category inside a group: a coloured label with a rule after it,
-            // and its pages indented on a guide line, so it never reads as a page.
-            return (
-              <div key={i} className="mt-3 first:mt-1">
-                <div className="mb-1 flex items-center gap-2 px-2.5 text-[0.66rem] font-semibold tracking-[0.06em] text-sidebar-primary uppercase after:h-px after:flex-1 after:bg-sidebar-border">
-                  {run.heading}
-                </div>
-                <div className="ml-2.5 border-l border-sidebar-border pl-1">{list}</div>
-              </div>
-            );
-          })}
+          {runs(grp.pages).map((run, i) => renderRun(grp, run, i))}
         </div>
       ))}
     </nav>
   );
 
+  function renderRun(grp: NavGroup, run: { heading?: string; pages: NavPage[] }, i: number) {
+    if (grp.chips) {
+      return (
+        <div key={i} className={cn(i > 0 && 'mt-3')}>
+          {run.heading ? <RunHeading>{run.heading}</RunHeading> : null}
+          <ul className="flex flex-wrap gap-1.5 px-1.5">{run.pages.map(renderChip)}</ul>
+        </div>
+      );
+    }
+    const list = <ul className="flex flex-col gap-px">{run.pages.map(renderPage)}</ul>;
+    if (!run.heading) return <div key={i}>{list}</div>;
+    // A category inside a group: a coloured label with a rule after it, and its
+    // pages indented on a guide line, so it never reads as a page.
+    return (
+      <div key={i} className="mt-3 first:mt-1">
+        <RunHeading>{run.heading}</RunHeading>
+        <div className="ml-2.5 border-l border-sidebar-border pl-1">{list}</div>
+      </div>
+    );
+  }
+
+  function renderChip(p: NavPage) {
+    const isActive = p.href === active && !activeSeen;
+    if (isActive) activeSeen = true;
+    const label = p.chip ?? p.title;
+    const link = (
+      <Link
+        ref={isActive ? activeRef : undefined}
+        href={p.href}
+        onClick={onNavigate}
+        aria-current={isActive ? 'page' : undefined}
+        className={cn(
+          'group/chip flex items-center gap-1.5 rounded-md border py-1 pr-2 pl-1.5 text-[0.78rem] leading-none text-sidebar-foreground no-underline transition-colors',
+          'border-sidebar-border bg-background/60 hover:border-border-strong hover:bg-sidebar-accent hover:text-sidebar-accent-foreground',
+          'outline-none focus-visible:ring-3 focus-visible:ring-sidebar-ring/50',
+          isActive &&
+            'border-brand bg-sidebar-accent font-medium text-sidebar-accent-foreground hover:border-brand',
+        )}
+      >
+        <NavIcon
+          href={p.href}
+          className={cn(
+            'transition-colors group-hover/chip:text-sidebar-primary',
+            isActive ? 'text-sidebar-primary' : 'text-muted-foreground',
+          )}
+        />
+        {label}
+      </Link>
+    );
+    return (
+      <li key={p.href}>
+        {label === p.title ? (
+          link
+        ) : (
+          <Tooltip>
+            <TooltipTrigger asChild>{link}</TooltipTrigger>
+            <TooltipContent side="right">{p.title}</TooltipContent>
+          </Tooltip>
+        )}
+      </li>
+    );
+  }
+
   function renderPage(p: NavPage) {
     const isActive = p.href === active && !activeSeen;
     if (isActive) activeSeen = true;
-    const expand = isActive && showAnchors;
     return (
       <li key={p.href}>
         <Link
@@ -87,29 +137,84 @@ export function DocsNav({ active, anchors, current, onNavigate }: Props) {
         >
           {p.title}
         </Link>
-        {expand ? (
-          <ul className="my-1 ml-3.5 flex flex-col border-l border-sidebar-border">
-            {anchors.map((a) => (
-              <li key={a.id}>
-                <a
-                  href={`#${a.id}`}
-                  onClick={onNavigate}
-                  className={cn(
-                    '-ml-px block border-l py-1 pr-2 pl-3 text-[0.78rem] leading-snug [overflow-wrap:anywhere] no-underline transition-colors',
-                    current === a.id
-                      ? 'border-brand text-foreground'
-                      : 'border-transparent text-muted-foreground hover:border-border-strong hover:text-foreground',
-                  )}
-                >
-                  {a.title}
-                </a>
-              </li>
-            ))}
-          </ul>
-        ) : null}
       </li>
     );
   }
+}
+
+function RunHeading({ children }: { children: string }) {
+  return (
+    <div className="mb-1.5 flex items-center gap-2 px-2.5 text-[0.66rem] font-semibold tracking-[0.06em] text-sidebar-primary uppercase after:h-px after:flex-1 after:bg-sidebar-border">
+      {children}
+    </div>
+  );
+}
+
+/**
+ * The sections of the page being read, as a thin strip that sticks to the top
+ * of the content (under the mobile top bar below lg). Renders nothing for a
+ * page with no sections to jump to. Its height is `--anchor-strip` in
+ * docs.css, which anchor jumps use to land clear of it.
+ */
+export function PageAnchors({
+  anchors,
+  current,
+  onNavigate,
+}: {
+  anchors: Anchor[];
+  /** The section currently in view, highlighted among the anchors. */
+  current: string | null;
+  onNavigate?: () => void;
+}) {
+  const scroller = useRef<HTMLDivElement>(null);
+
+  // Keep the highlighted section in view inside the strip's own horizontal
+  // scroll, without touching the window's.
+  useEffect(() => {
+    const box = scroller.current;
+    const link = box?.querySelector<HTMLElement>('[aria-current="location"]');
+    if (!box || !link) return;
+    const delta =
+      link.getBoundingClientRect().left -
+      box.getBoundingClientRect().left -
+      (box.clientWidth - link.offsetWidth) / 2;
+    box.scrollTo({ left: Math.max(0, box.scrollLeft + delta), behavior: 'smooth' });
+  }, [current]);
+
+  const show = anchors.length > 1 || anchors.some((a) => a.id === 'api');
+  if (!show) return null;
+  return (
+    <nav
+      aria-label="On this page"
+      className="sticky top-14 z-30 -mx-4 -mt-6 mb-6 border-b bg-background/85 px-4 backdrop-blur-md supports-[backdrop-filter]:bg-background/70 sm:-mx-6 sm:-mt-8 sm:px-6 lg:top-0 lg:-mx-10 lg:-mt-10 lg:px-10"
+    >
+      <div
+        ref={scroller}
+        className="flex h-[var(--anchor-strip)] items-center gap-1 overflow-x-auto [scrollbar-width:none] [&::-webkit-scrollbar]:hidden"
+      >
+        <span className="hidden shrink-0 pr-2 text-[0.68rem] font-semibold tracking-[0.08em] text-faint-foreground uppercase sm:block">
+          On this page
+        </span>
+        {anchors.map((a) => (
+          <a
+            key={a.id}
+            href={`#${a.id}`}
+            onClick={onNavigate}
+            aria-current={current === a.id ? 'location' : undefined}
+            className={cn(
+              'shrink-0 rounded-full px-2.5 py-1 text-[0.78rem] leading-none whitespace-nowrap no-underline transition-colors',
+              'outline-none focus-visible:ring-3 focus-visible:ring-ring/50',
+              current === a.id
+                ? 'bg-sidebar-accent font-medium text-sidebar-accent-foreground'
+                : 'text-muted-foreground hover:bg-sidebar-accent/70 hover:text-foreground',
+            )}
+          >
+            {a.title}
+          </a>
+        ))}
+      </div>
+    </nav>
+  );
 }
 
 /** Split a group's pages into runs, a new one at each page that carries a `heading`. */

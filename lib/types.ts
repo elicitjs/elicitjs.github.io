@@ -45,9 +45,14 @@ export type ExampleModule = {
   code: string;
 };
 
-/** `heading` starts a labelled sub-list within the group, from this page on. */
-export type NavPage = { href: string; title: string; heading?: string };
-export type NavGroup = { group: string; pages: NavPage[] };
+/**
+ * `heading` starts a labelled sub-list within the group, from this page on.
+ * `chip` is the short label a chip shows when the group is drawn as chips; the
+ * full `title` stays as its tooltip.
+ */
+export type NavPage = { href: string; title: string; heading?: string; chip?: string };
+/** `chips` draws the group's pages as icon chips instead of a plain list. */
+export type NavGroup = { group: string; pages: NavPage[]; chips?: boolean };
 
 export type PlaygroundPreset = {
   id: string;

@@ -100,8 +100,12 @@
     letter-spacing: 0.05em;
   }
 
+  /* The sticky "On this page" strip's height; anchor jumps clear it. */
+  :root {
+    --anchor-strip: 2.5rem;
+  }
   section {
-    scroll-margin-top: 1.25rem;
+    scroll-margin-top: calc(var(--anchor-strip) + 1.25rem);
   }
   .lead {
     color: var(--muted-foreground);
@@ -798,7 +802,7 @@
 
   /* ── API reference block ───────────────────────────────────────────────── */
   section.api {
-    scroll-margin-top: 1.25rem;
+    scroll-margin-top: calc(var(--anchor-strip) + 1.25rem);
   }
   .api-entry {
     margin: 1rem 0 1.75rem;
@@ -1203,13 +1207,13 @@
   .next-card span { display: block; font-size: 0.82rem; color: var(--muted-foreground); }
 }
 
-/* Below lg the sticky top bar (3.5rem) sits over the page; anchor jumps
-   must land under it. */
+/* Below lg the sticky top bar (3.5rem) sits over the page too, above the
+   strip; anchor jumps must land under both. */
 @layer components {
   @media (max-width: 1023.98px) {
     section,
     section.api {
-      scroll-margin-top: 4.75rem;
+      scroll-margin-top: calc(3.5rem + var(--anchor-strip) + 1.25rem);
     }
   }
 }
