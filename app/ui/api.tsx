@@ -76,16 +76,19 @@ export const api: ApiEntry[] = [
     json: false,
     summary: (
       <>
-        Grips that resize a mark&rsquo;s box along the sides it sizes from data. A grip moves its own side and holds the opposite one still, as one undo step.
+        Grips on a mark&rsquo;s box: resize it along the sides it sizes from data, turn it, or move it. Each drag is one undo step.
       </>
     ),
     signatures: [
       "width: { field: \"w\", scale: { range: [70, 260] } }   // on the mark",
       "ui.handles({ on: { mark: \"note\" } })",
+      "ui.handles({ on: { mark: \"note\" }, rotate: true, move: true })",
     ],
     options: [
       { name: "on", type: "{ mark? }", default: "the first mark that sizes from data", desc: <>The mark to put grips on, by <code className="inline">id</code>.</> },
-      { name: "resize", type: "boolean", default: "true", desc: <>Grips on the left and right where the mark binds <code className="inline">width</code>, on the top and bottom where it binds <code className="inline">height</code>.</> },
+      { name: "resize", type: "boolean", default: "true", desc: <>Grips on the left and right where the mark binds <code className="inline">width</code>, on the top and bottom where it binds <code className="inline">height</code>. A grip moves its own side and holds the opposite one still.</> },
+      { name: "rotate", type: "boolean", default: "false", desc: <>A grip above the box that turns it about its centre, writing the mark&rsquo;s <code className="inline">angle</code> field. Shift snaps to 15&deg;.</> },
+      { name: "move", type: "boolean", default: "false", desc: <>A grip below the box that moves it, writing the mark&rsquo;s <code className="inline">x</code> and <code className="inline">y</code> fields.</> },
     ],
     returns: (
       <>

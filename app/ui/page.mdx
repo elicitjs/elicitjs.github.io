@@ -10,6 +10,7 @@ import flowchartMenu from './_examples/flowchart-menu.example.txt';
 import menuOwnRows from './_examples/menu-own-rows.example.txt';
 import actions from './_examples/actions.example.txt';
 import resize from './_examples/resize.example.txt';
+import turnMove from './_examples/turn-move.example.txt';
 import custom from './_examples/custom.example.txt';
 
 export default function Layout({ children }) {
@@ -143,7 +144,7 @@ An item with `edit` drives that edit on the row. A click edit fires at once. A d
 
 </Section>
 
-<Section id="handles" title="Resize handles">
+<Section id="handles" title="Handles">
 
 `ui.handles({ on })` puts a grip on each side a mark sizes from data: left and right where it binds `width` to a field, top and bottom where it binds `height`. Dragging a grip moves that side and holds the opposite side still. The width and the position change together as one undo step. Escape during the drag puts the box back, and the arrow keys step a focused grip.
 
@@ -156,6 +157,20 @@ The size channel needs a continuous scale with a pixel `range`, which also sets 
   try={(
     <>
       Bring the pointer <b>near a note</b> and <b>drag</b> a grip on its side.
+    </>
+  )}
+/>
+
+`rotate: true` adds a grip above the box that turns it about its centre. It writes the mark's `angle` field, through the `angle` scale when there is one. Hold Shift to turn in steps of 15°. `move: true` adds a grip below the box that moves it, writing its `x` and `y` fields. Both grips turn with the box, and the arrow keys step a focused grip.
+
+<Example
+  code={turnMove}
+  title="Turn and move a note"
+  blurb="The note binds its tilt to a field. The grips write the tilt and the position with set."
+  try={(
+    <>
+      Bring the pointer <b>near a note</b>. <b>Drag</b> the grip above it to turn it, and the grip below it to move it.
+      Hold <b>Shift</b> while turning to snap to 15°.
     </>
   )}
 />

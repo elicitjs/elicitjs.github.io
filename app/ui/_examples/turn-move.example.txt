@@ -1,0 +1,33 @@
+const chart = Elicit({
+  width: 460, height: 300,
+  margins: { top: 20, right: 20, bottom: 20, left: 20 },
+  axes: false,
+  schema: {
+    note: { type: "categorical", open: true },
+    tilt: { type: "quantitative", domain: [-180, 180] },
+    x: { type: "quantitative", domain: [0, 100] },
+    y: { type: "quantitative", domain: [0, 100] },
+  },
+  data: [
+    { note: "Turn me with the grip above.", tilt: 8, x: 30, y: 62 },
+    { note: "Move me with the grip below.", tilt: -6, x: 70, y: 34 },
+  ],
+  marks: [
+    sticker({
+      id: "note",
+      fill: "#EBD6AD",
+      stroke: "rgba(70, 89, 107, 0.13)",
+      maxWidth: 150,
+      channels: {
+        x: { field: "x" },
+        y: { field: "y" },
+        // The tilt is data, in degrees counter-clockwise, so there is something to turn.
+        angle: { field: "tilt", scale: { range: [-180, 180] } },
+        text: { field: "note" },
+      },
+    }),
+  ],
+});
+mount(chart.dom());
+
+ui.attach(chart, [ui.handles({ on: { mark: "note" }, rotate: true, move: true })]);
