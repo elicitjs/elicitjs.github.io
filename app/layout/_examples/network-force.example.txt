@@ -1,0 +1,71 @@
+const chart = Elicit({
+  width: 560, height: 360,
+  margins: { top: 16, right: 16, bottom: 16, left: 16 },
+  axes: false,
+  schema: {
+    structure: "network",
+    tables: {
+      concepts: {
+        role: "nodes",
+        fields: {
+          id: { type: "categorical", key: true, open: true },
+          label: { type: "categorical", open: true },
+          x: { type: "quantitative", domain: [0, 100] },
+          y: { type: "quantitative", domain: [0, 100] },
+        },
+      },
+      relations: {
+        role: "links",
+        directed: false,
+        fields: {
+          source: { type: "ref" },
+          target: { type: "ref" },
+        },
+      },
+    },
+  },
+  // Three concepts are placed; the rest arrive with no position.
+  data: {
+    concepts: [
+      { id: "co2", label: "CO₂", x: 50, y: 55 },
+      { id: "temp", label: "Temperature", x: 75, y: 55 },
+      { id: "emis", label: "Emissions", x: 25, y: 55 },
+      { id: "energy", label: "Energy" },
+      { id: "coal", label: "Coal" },
+      { id: "solar", label: "Solar" },
+      { id: "forest", label: "Forests" },
+      { id: "ice", label: "Ice melt" },
+      { id: "sea", label: "Sea level" },
+      { id: "ocean", label: "Oceans" },
+    ],
+    relations: [
+      { source: "energy", target: "coal" },
+      { source: "energy", target: "solar" },
+      { source: "coal", target: "emis" },
+      { source: "emis", target: "co2" },
+      { source: "forest", target: "co2" },
+      { source: "co2", target: "temp" },
+      { source: "temp", target: "ice" },
+      { source: "ice", target: "sea" },
+      { source: "temp", target: "ocean" },
+      { source: "ocean", target: "co2" },
+    ],
+  },
+  layout: [
+    layout.network.force({ length: 80 }),
+  ],
+  marks: [
+    link({ stroke: "#7D8B99" }),
+    sticker({
+      fill: "#EDF7F1",
+      stroke: "#22573A",
+      radius: 8,
+      channels: {
+        x: { field: "x", edit: move({ channels: ["x", "y"], mode: "relative" }) },
+        y: { field: "y" },
+        text: { field: "label" },
+      },
+    }),
+  ],
+});
+mount(chart.dom());

@@ -3,7 +3,7 @@ import type { ApiEntry } from '../../lib/types';
 export const api: ApiEntry[] = [
   {
     name: "Built-in layouts",
-    json: ['layout.contain', 'layout.dodge', 'layout.row', 'layout.column', 'layout.grid', 'layout.pack'],
+    json: ['layout.hierarchy.contain', 'layout.dodge', 'layout.row', 'layout.column', 'layout.grid', 'layout.pack', 'layout.tidy'],
     summary: (
       <>
         Import from <code className="inline">elicit.layout</code> and pass in the{" "}
@@ -13,12 +13,13 @@ export const api: ApiEntry[] = [
       </>
     ),
     signatures: [
-      "layout.contain({ where?, padding?, fit?, table? }) → Layout",
-      "layout.dodge({ gap?, where?, in?, table? }) → Layout",
-      "layout.row({ gap?, in?, table? }) → Layout",
-      "layout.column({ gap?, in?, table? }) → Layout",
-      "layout.grid({ columns?, gap?, in?, table? }) → Layout",
-      "layout.pack({ gap?, keep?, in?, table? }) → Layout",
+      "layout.hierarchy.contain({ padding?, fit?, where? }) → Layout",
+      "layout.dodge({ gap?, in?, where?, table? }) → Layout",
+      "layout.row({ gap?, in?, where?, table? }) → Layout",
+      "layout.column({ gap?, in?, where?, table? }) → Layout",
+      "layout.grid({ columns?, gap?, in?, where?, table? }) → Layout",
+      "layout.pack({ gap?, keep?, in?, where?, table? }) → Layout",
+      "layout.tidy({ snap?, gap?, in?, where?, table? }) → Layout",
     ],
     options: [
       {
@@ -54,10 +55,16 @@ export const api: ApiEntry[] = [
         desc: <>Minimum space in px kept between overlapping siblings.</>,
       },
       {
-        name: "dodge.where",
+        name: "where",
         type: "(d, i, rows) => boolean",
         default: "all rows",
-        desc: <>Picks which rows take part in dodging.</>,
+        desc: (
+          <>
+            Picks the rows the layout acts on: the rows that dodge, take a slot, line up, or
+            (on <code className="inline">hierarchy.contain</code>) the containers its padding and
+            fit apply to. The others stay where they are.
+          </>
+        ),
       },
       {
         name: "in",
@@ -96,10 +103,81 @@ export const api: ApiEntry[] = [
         ),
       },
       {
+        name: "tidy.snap",
+        type: "number",
+        default: "16",
+        desc: <>Centres this close, in px, share a row or a column.</>,
+      },
+      {
+        name: "tidy.gap",
+        type: "number",
+        default: "8",
+        desc: <>Space in px a mark needs clear of its neighbours to keep its cell.</>,
+      },
+      {
         name: "table",
         type: "string",
         default: "nodes (hierarchy) or primary table",
-        desc: <>Table name or role the layout settles in a multi-table schema.</>,
+        desc: <>Table name or role the layout settles in a multi-table schema. Scoped layouts (<code className="inline">layout.network.*</code>, <code className="inline">layout.hierarchy.*</code>) always settle their structure&rsquo;s nodes table.</>,
+      },
+    ],
+  },
+  {
+    name: "Network layouts",
+    json: ['layout.network.layered', 'layout.network.tree', 'layout.network.force'],
+    summary: (
+      <>
+        Place nodes from their links. Each works on the nodes table of a dataset with a
+        links table: a network, or a hierarchy that declares one.
+      </>
+    ),
+    signatures: [
+      "layout.network.layered({ direction?, gap?, rankGap?, place?, where? }) → Layout",
+      "layout.network.tree({ direction?, gap?, rankGap?, place?, where? }) → Layout",
+      "layout.network.force({ length?, gap?, place?, where? }) → Layout",
+    ],
+    options: [
+      {
+        name: "direction",
+        type: "'down' | 'right' | 'up' | 'left' (tree also 'radial')",
+        default: "'down'",
+        desc: <>Which way links run (<code className="inline">layered</code>) or the tree grows from its root (<code className="inline">tree</code>).</>,
+      },
+      {
+        name: "gap",
+        type: "number",
+        default: "24 (layered), 12 (tree), 8 (force)",
+        desc: <>Space in px between neighbouring boxes.</>,
+      },
+      {
+        name: "rankGap",
+        type: "number",
+        default: "48 (layered), 40 (tree)",
+        desc: <>Space in px between ranks or depths.</>,
+      },
+      {
+        name: "force.length",
+        type: "number",
+        default: "100",
+        desc: <>Distance in px between the centres of two linked nodes.</>,
+      },
+      {
+        name: "place",
+        type: "'new' | 'all'",
+        default: "'new'",
+        desc: (
+          <>
+            <code className="inline">"new"</code> positions only rows with no position;{" "}
+            <code className="inline">"all"</code> redraws every row when the nodes or links change.
+            Locked rows stay put.
+          </>
+        ),
+      },
+      {
+        name: "where",
+        type: "(d, i, rows) => boolean",
+        default: "every node",
+        desc: <>Picks the nodes the layout places. The others stay where they are.</>,
       },
     ],
   },
@@ -113,7 +191,7 @@ export const api: ApiEntry[] = [
       </>
     ),
     signatures: [
-      "layout.custom(({ boxes, rows, tree, width, height, scales, padding, locked, anchors, spacing, preview }) => void, { table? }) → Layout",
+      "layout.custom(({ boxes, rows, tree, width, height, scales, padding, locked, anchors, spacing, preview }) => void, { table?, where? }) → Layout",
     ],
     options: [
       {
@@ -135,6 +213,12 @@ export const api: ApiEntry[] = [
         type: "string",
         default: "primary table",
         desc: <>Table name or role to settle.</>,
+      },
+      {
+        name: "where",
+        type: "(d, i, rows) => boolean",
+        default: "all rows",
+        desc: <>The rows <code className="inline">fn</code> may change. Changes to any other row are dropped.</>,
       },
     ],
   },

@@ -37,7 +37,7 @@ const chart = Elicit({
   ],
   layout: [
     // No `fit`: a board keeps its size. Items fill three cells to a row under its name.
-    layout.contain({ padding: { top: 30, right: 14, bottom: 14, left: 14 } }),
+    layout.hierarchy.contain({ padding: { top: 30, right: 14, bottom: 14, left: 14 } }),
     layout.grid({ columns: 3, gap: 8 }),
   ],
   marks: [

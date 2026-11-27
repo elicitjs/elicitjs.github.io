@@ -294,7 +294,7 @@ export const TILES: Tile[] = [
         nesting: [{ child: 'c5', parent: 'must' }],
       },
       constraints: [C.contain({ parent: (d: any) => d.kind === 'bucket', child: (d: any) => d.kind === 'card' })],
-      layout: [L.contain({ padding: { top: 26 } }), L.dodge()],
+      layout: [L.hierarchy.contain({ padding: { top: 26 } }), L.dodge()],
       marks: [
         P.rect({
           rx: 6, stroke: '#46596B',
@@ -328,7 +328,7 @@ export const TILES: Tile[] = [
           .map(([child, parent]) => ({ child, parent })),
       },
       constraints: [C.contain({ parent: (d: any) => d.kind === 'set', child: (d: any) => d.kind === 'item' })],
-      layout: [L.contain({ padding: 6, fit: true }), L.pack({ gap: 3 })],
+      layout: [L.hierarchy.contain({ padding: 6, fit: true }), L.pack({ gap: 3 })],
       marks: [
         P.point({
           stroke: '#46596B',

@@ -1,0 +1,115 @@
+const chart = Elicit({
+  width: 640, height: 420,
+  margins: { top: 16, right: 16, bottom: 16, left: 16 },
+  axes: false,
+  schema: {
+    structure: "hierarchy",
+    tables: {
+      nodes: {
+        id: { type: "categorical", key: true, open: true },
+        label: { type: "categorical", open: true },
+        kind: { type: "categorical", domain: ["group", "step", "topic", "note"] },
+        x: { type: "quantitative", domain: [0, 100] },
+        y: { type: "quantitative", domain: [0, 100] },
+        w: { type: "quantitative", domain: [0, 600] },
+        h: { type: "quantitative", domain: [0, 400] },
+      },
+      nesting: {
+        child: { type: "ref" },
+        parent: { type: "ref" },
+      },
+      links: {
+        directed: true,
+        fields: {
+          source: { type: "ref" },
+          target: { type: "ref" },
+        },
+      },
+    },
+  },
+  // The groups and the note are placed. The steps and topics have no position:
+  // each group's layout places them.
+  data: {
+    nodes: [
+      { id: "signup", label: "Sign-up flow", kind: "group", x: 22, y: 55, w: 120, h: 120 },
+      { id: "help", label: "Help topics", kind: "group", x: 68, y: 55, w: 120, h: 120 },
+      { id: "visit", label: "Visit", kind: "step", w: 76, h: 26 },
+      { id: "join", label: "Sign up", kind: "step", w: 76, h: 26 },
+      { id: "verify", label: "Verify", kind: "step", w: 76, h: 26 },
+      { id: "profile", label: "Profile", kind: "step", w: 76, h: 26 },
+      { id: "skip", label: "Skip", kind: "step", w: 76, h: 26 },
+      { id: "done", label: "Done", kind: "step", w: 76, h: 26 },
+      { id: "faq", label: "Help", kind: "topic", w: 76, h: 26 },
+      { id: "account", label: "Account", kind: "topic", w: 76, h: 26 },
+      { id: "billing", label: "Billing", kind: "topic", w: 76, h: 26 },
+      { id: "password", label: "Password", kind: "topic", w: 76, h: 26 },
+      { id: "email", label: "Email", kind: "topic", w: 76, h: 26 },
+      { id: "refunds", label: "Refunds", kind: "topic", w: 76, h: 26 },
+      { id: "note", label: "Where do people drop off?", kind: "note", x: 70, y: 8, w: 190, h: 30 },
+    ],
+    nesting: [
+      { child: "visit", parent: "signup" },
+      { child: "join", parent: "signup" },
+      { child: "verify", parent: "signup" },
+      { child: "profile", parent: "signup" },
+      { child: "skip", parent: "signup" },
+      { child: "done", parent: "signup" },
+      { child: "faq", parent: "help" },
+      { child: "account", parent: "help" },
+      { child: "billing", parent: "help" },
+      { child: "password", parent: "help" },
+      { child: "email", parent: "help" },
+      { child: "refunds", parent: "help" },
+    ],
+    links: [
+      { source: "visit", target: "join" },
+      { source: "join", target: "verify" },
+      { source: "verify", target: "profile" },
+      { source: "verify", target: "skip" },
+      { source: "profile", target: "done" },
+      { source: "skip", target: "done" },
+      { source: "faq", target: "account" },
+      { source: "faq", target: "billing" },
+      { source: "account", target: "password" },
+      { source: "account", target: "email" },
+      { source: "billing", target: "refunds" },
+    ],
+  },
+  constraints: [
+    constraints.contain({ parent: (d) => d.kind === "group" }),
+  ],
+  layout: [
+    layout.hierarchy.contain({ padding: { top: 30, right: 14, bottom: 14, left: 14 }, fit: true }),
+    // Each layout places only the nodes `where` picks.
+    layout.network.layered({ where: (d) => d.kind === "step", gap: 14, rankGap: 20, place: "all" }),
+    layout.network.tree({ where: (d) => d.kind === "topic", direction: "right", gap: 8, rankGap: 26, place: "all" }),
+    // Keep the groups and the note apart as the groups grow.
+    layout.dodge({ in: "roots", gap: 16 }),
+  ],
+  marks: [
+    rect({
+      rx: 6,
+      stroke: "#46596B",
+      edits: [move({ channels: ["x", "y"], mode: "relative" })],
+      channels: {
+        x: { field: "x" },
+        y: { field: "y" },
+        width: { field: "w", scale: null },
+        height: { field: "h", scale: null },
+        fill: { fn: (d) => (d.kind === "group" ? "#F3F6F9" : d.kind === "note" ? "#FFF6DD" : "#DCEAF6") },
+      },
+    }),
+    link({ stroke: "#46596B", arrow: true }),
+    text({
+      fontSize: 11,
+      fill: "#20414F",
+      channels: {
+        x: { field: "x" },
+        y: { field: "y" },
+        text: { field: "label" },
+        dy: { fn: (d) => (d.kind === "group" ? -d.h / 2 + 15 : 0) },
+      },
+    }),
+  ],
+});
+mount(chart.dom());

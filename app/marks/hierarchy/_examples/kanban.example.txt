@@ -45,7 +45,7 @@ const chart = Elicit({
   ],
   layout: [
     // A lane grows down as cards join it, leaving room at the top for its name.
-    layout.contain({
+    layout.hierarchy.contain({
       padding: { top: 30, right: 10, bottom: 10, left: 10 },
       fit: true,
     }),

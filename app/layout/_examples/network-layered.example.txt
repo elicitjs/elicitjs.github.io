@@ -1,0 +1,71 @@
+const chart = Elicit({
+  width: 560, height: 440,
+  margins: { top: 16, right: 16, bottom: 16, left: 16 },
+  axes: false,
+  schema: {
+    structure: "network",
+    tables: {
+      factors: {
+        role: "nodes",
+        fields: {
+          id: { type: "categorical", key: true, open: true },
+          label: { type: "categorical", open: true },
+          x: { type: "quantitative", domain: [0, 100] },
+          y: { type: "quantitative", domain: [0, 100] },
+        },
+      },
+      causes: {
+        role: "links",
+        directed: true,
+        fields: {
+          source: { type: "ref" },
+          target: { type: "ref" },
+        },
+      },
+    },
+  },
+  // No row has a position: the layout places them all.
+  data: {
+    factors: [
+      { id: "rates", label: "Interest rates" },
+      { id: "mort", label: "Mortgage cost" },
+      { id: "wages", label: "Wages" },
+      { id: "migr", label: "Migration" },
+      { id: "demand", label: "Demand" },
+      { id: "rents", label: "Rents" },
+      { id: "price", label: "House prices" },
+      { id: "build", label: "Construction" },
+      { id: "supply", label: "Supply" },
+    ],
+    causes: [
+      { source: "rates", target: "mort" },
+      { source: "mort", target: "demand" },
+      { source: "wages", target: "demand" },
+      { source: "migr", target: "demand" },
+      { source: "migr", target: "rents" },
+      { source: "demand", target: "price" },
+      { source: "rents", target: "price" },
+      { source: "price", target: "build" },
+      { source: "build", target: "supply" },
+      { source: "supply", target: "price" },
+    ],
+  },
+  layout: [
+    layout.network.layered({ direction: "down", gap: 20, rankGap: 28 }),
+  ],
+  marks: [
+    link({ arrow: true, stroke: "#7D8B99" }),
+    sticker({
+      fill: "#ECF3F9",
+      stroke: "#1D4467",
+      radius: 8,
+      channels: {
+        x: { field: "x", edit: move({ channels: ["x", "y"], mode: "relative" }) },
+        y: { field: "y" },
+        text: { field: "label" },
+        ports: { value: true, edit: edit.network.connect() },
+      },
+    }),
+  ],
+});
+mount(chart.dom());

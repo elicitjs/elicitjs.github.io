@@ -46,7 +46,7 @@ const chart = Elicit({
     constraints.contain({ parent: (d) => d.kind === "theme" }),
   ],
   layout: [
-    layout.contain({ padding: 12, fit: true }),
+    layout.hierarchy.contain({ padding: 12, fit: true }),
     layout.dodge(),
   ],
   marks: [

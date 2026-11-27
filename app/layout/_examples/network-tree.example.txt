@@ -1,0 +1,73 @@
+const chart = Elicit({
+  width: 560, height: 440,
+  margins: { top: 16, right: 16, bottom: 16, left: 16 },
+  axes: false,
+  schema: {
+    structure: "network",
+    tables: {
+      ideas: {
+        role: "nodes",
+        fields: {
+          id: { type: "categorical", key: true, open: true },
+          label: { type: "categorical", open: true },
+          x: { type: "quantitative", domain: [0, 100] },
+          y: { type: "quantitative", domain: [0, 100] },
+        },
+      },
+      branches: {
+        role: "links",
+        directed: true,
+        fields: {
+          source: { type: "ref" },
+          target: { type: "ref" },
+        },
+      },
+    },
+  },
+  data: {
+    ideas: [
+      { id: "trip", label: "Trip", x: 50, y: 50 },
+      { id: "travel", label: "Travel", x: 20, y: 80 },
+      { id: "stay", label: "Stay", x: 80, y: 85 },
+      { id: "budget", label: "Budget", x: 85, y: 20 },
+      { id: "acts", label: "Activities", x: 25, y: 20 },
+      { id: "flights", label: "Flights", x: 45, y: 90 },
+      { id: "train", label: "Train", x: 8, y: 55 },
+      { id: "hotel", label: "Hotel", x: 95, y: 55 },
+      { id: "friends", label: "Friends", x: 70, y: 65 },
+      { id: "hike", label: "Hiking", x: 50, y: 15 },
+      { id: "museum", label: "Museums", x: 8, y: 8 },
+      { id: "cap", label: "Daily cap", x: 68, y: 35 },
+    ],
+    branches: [
+      { source: "trip", target: "travel" },
+      { source: "trip", target: "stay" },
+      { source: "trip", target: "acts" },
+      { source: "trip", target: "budget" },
+      { source: "travel", target: "flights" },
+      { source: "travel", target: "train" },
+      { source: "stay", target: "hotel" },
+      { source: "stay", target: "friends" },
+      { source: "acts", target: "hike" },
+      { source: "acts", target: "museum" },
+      { source: "budget", target: "cap" },
+    ],
+  },
+  layout: [
+    layout.network.tree({ direction: "right", gap: 8, place: "all" }),
+  ],
+  marks: [
+    link({ stroke: "#7D8B99" }),
+    sticker({
+      fill: "#F3F0FA",
+      stroke: "#4B3D78",
+      radius: 8,
+      channels: {
+        x: { field: "x", edit: move({ channels: ["x", "y"], mode: "relative" }) },
+        y: { field: "y" },
+        text: { field: "label" },
+      },
+    }),
+  ],
+});
+mount(chart.dom());

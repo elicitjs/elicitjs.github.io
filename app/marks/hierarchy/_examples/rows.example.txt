@@ -50,7 +50,7 @@ const chart = Elicit({
   ],
   layout: [
     // Rows hold tiles and other rows, left to right, and fit round them.
-    layout.contain({ padding: 8, fit: true }),
+    layout.hierarchy.contain({ padding: 8, fit: true }),
     layout.row({ gap: 6 }),
     layout.dodge({ in: "roots" }),
   ],

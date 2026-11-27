@@ -39,7 +39,7 @@ const chart = Elicit({
   ],
   layout: [
     // Each card slides in to touch, keeping its direction from Price.
-    layout.contain(),
+    layout.hierarchy.contain(),
     layout.pack({ keep: "angle", gap: 6 }),
   ],
   marks: [

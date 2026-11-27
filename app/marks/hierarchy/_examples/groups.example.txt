@@ -41,7 +41,7 @@ const chart = Elicit({
   ],
   layout: [
     // A group's size follows its contents; a note keeps its own.
-    layout.contain({ padding: 12, fit: true }),
+    layout.hierarchy.contain({ padding: 12, fit: true }),
     layout.dodge(),
   ],
   marks: [

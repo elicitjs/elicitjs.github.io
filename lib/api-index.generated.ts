@@ -16,7 +16,7 @@ export type ApiIndexEntry = {
 export type ApiNamespace = { namespace: string; blurb: string; count: number };
 
 export const API_LIBRARY_VERSION = "0.3.0-alpha.0";
-export const API_GENERATED_AT = "2026-11-26T16:58:51.641Z";
+export const API_GENERATED_AT = "2026-11-27T06:11:26.561Z";
 export const API_NAMESPACES: ApiNamespace[] = [
   {
     "namespace": "plot",
@@ -41,7 +41,7 @@ export const API_NAMESPACES: ApiNamespace[] = [
   {
     "namespace": "layout",
     "blurb": "Layouts arrange and space marks in pixel space after each edit, writing the settled boxes back to the data.",
-    "count": 7
+    "count": 11
   },
   {
     "namespace": "guides",
@@ -3895,23 +3895,8 @@ export const API_INDEX: ApiIndexEntry[] = [
       "in"
     ],
     "universal": [
-      "table"
-    ],
-    "docs": "/layout"
-  },
-  {
-    "namespace": "layout",
-    "group": "layout",
-    "name": "contain",
-    "qualified": "layout.contain",
-    "call": "layout.contain(options)",
-    "own": [
-      "where",
-      "padding",
-      "fit"
-    ],
-    "universal": [
-      "table"
+      "table",
+      "where"
     ],
     "docs": "/layout"
   },
@@ -3923,7 +3908,8 @@ export const API_INDEX: ApiIndexEntry[] = [
     "call": "layout.custom(options)",
     "own": [],
     "universal": [
-      "table"
+      "table",
+      "where"
     ],
     "docs": "/layout"
   },
@@ -3935,11 +3921,11 @@ export const API_INDEX: ApiIndexEntry[] = [
     "call": "layout.dodge(options)",
     "own": [
       "gap",
-      "where",
       "in"
     ],
     "universal": [
-      "table"
+      "table",
+      "where"
     ],
     "docs": "/layout"
   },
@@ -3955,7 +3941,60 @@ export const API_INDEX: ApiIndexEntry[] = [
       "in"
     ],
     "universal": [
-      "table"
+      "table",
+      "where"
+    ],
+    "docs": "/layout"
+  },
+  {
+    "namespace": "layout",
+    "group": "layout.hierarchy",
+    "name": "contain",
+    "qualified": "layout.hierarchy.contain",
+    "call": "layout.hierarchy.contain(options)",
+    "own": [],
+    "universal": [
+      "table",
+      "where"
+    ],
+    "docs": "/layout"
+  },
+  {
+    "namespace": "layout",
+    "group": "layout.network",
+    "name": "force",
+    "qualified": "layout.network.force",
+    "call": "layout.network.force(options)",
+    "own": [],
+    "universal": [
+      "table",
+      "where"
+    ],
+    "docs": "/layout"
+  },
+  {
+    "namespace": "layout",
+    "group": "layout.network",
+    "name": "layered",
+    "qualified": "layout.network.layered",
+    "call": "layout.network.layered(options)",
+    "own": [],
+    "universal": [
+      "table",
+      "where"
+    ],
+    "docs": "/layout"
+  },
+  {
+    "namespace": "layout",
+    "group": "layout.network",
+    "name": "tree",
+    "qualified": "layout.network.tree",
+    "call": "layout.network.tree(options)",
+    "own": [],
+    "universal": [
+      "table",
+      "where"
     ],
     "docs": "/layout"
   },
@@ -3971,7 +4010,8 @@ export const API_INDEX: ApiIndexEntry[] = [
       "in"
     ],
     "universal": [
-      "table"
+      "table",
+      "where"
     ],
     "docs": "/layout"
   },
@@ -3986,7 +4026,25 @@ export const API_INDEX: ApiIndexEntry[] = [
       "in"
     ],
     "universal": [
-      "table"
+      "table",
+      "where"
+    ],
+    "docs": "/layout"
+  },
+  {
+    "namespace": "layout",
+    "group": "layout",
+    "name": "tidy",
+    "qualified": "layout.tidy",
+    "call": "layout.tidy(options)",
+    "own": [
+      "snap",
+      "gap",
+      "in"
+    ],
+    "universal": [
+      "table",
+      "where"
     ],
     "docs": "/layout"
   },
