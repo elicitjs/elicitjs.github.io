@@ -73,8 +73,8 @@ export function DocShell({ children, chromeless }: Props) {
     );
   }
 
-  const nav = (onNavigate?: () => void) => (
-    <DocsNav active={active} onNavigate={onNavigate} />
+  const nav = (scrollKey: string, onNavigate?: () => void) => (
+    <DocsNav active={active} scrollKey={scrollKey} onNavigate={onNavigate} />
   );
 
   return (
@@ -97,7 +97,7 @@ export function DocShell({ children, chromeless }: Props) {
               <SiteBrand onNavigate={() => setOpen(false)} />
             </div>
             <ScrollArea className="min-h-0 flex-1">
-              <div className="pt-4">{nav(() => setOpen(false))}</div>
+              <div className="pt-4">{nav('sheet', () => setOpen(false))}</div>
             </ScrollArea>
             <SidebarFooter />
           </SheetContent>
@@ -142,7 +142,7 @@ export function DocShell({ children, chromeless }: Props) {
             Declarative visual elicitation
           </p>
         </div>
-        <ScrollArea className="min-h-0 flex-1">{nav()}</ScrollArea>
+        <ScrollArea className="min-h-0 flex-1">{nav('sidebar')}</ScrollArea>
         <SidebarFooter />
       </aside>
 

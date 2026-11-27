@@ -1,7 +1,7 @@
 'use client';
 
 import Link from 'next/link';
-import { useEffect, useRef } from 'react';
+import { useEffect, useLayoutEffect, useRef } from 'react';
 import { SITE } from '@/lib/nav';
 import type { NavGroup, NavPage } from '@/lib/types';
 import { cn } from '@/lib/utils';
@@ -9,9 +9,18 @@ import { NavIcon } from '@/components/site/nav-icons';
 
 export type Anchor = { id: string; title: string };
 
+/**
+ * Sidebar scroll position per surface. Every docs page renders its own
+ * DocShell, so the nav remounts on each navigation; without this it would
+ * restart at the top and jump.
+ */
+const savedScroll: Record<string, number> = {};
+
 type Props = {
   /** The current route, trailing slash removed. */
   active: string;
+  /** Which surface this nav lives in, so each keeps its own scroll position. */
+  scrollKey?: string;
   /** Called after a link is followed, so the mobile sheet can close. */
   onNavigate?: () => void;
 };
@@ -20,28 +29,48 @@ type Props = {
  * The grouped page list, shared by the desktop sidebar and the mobile sheet.
  * A group with `chips` draws its pages as icon chips.
  */
-export function DocsNav({ active, onNavigate }: Props) {
+export function DocsNav({ active, scrollKey = 'sidebar', onNavigate }: Props) {
   const activeRef = useRef<HTMLAnchorElement>(null);
+  const navRef = useRef<HTMLElement>(null);
 
-  // Bring the active page into view inside the sidebar's own scroller, without
-  // touching the window's scroll (scrollIntoView would move both).
-  useEffect(() => {
+  // The nav remounts on every navigation, so put the sidebar back where it was
+  // before the first paint, and keep recording it as it scrolls. Only a current
+  // page that is out of view moves it, and then only as far as needed. The
+  // window's scroll is never touched (scrollIntoView would move both).
+  useLayoutEffect(() => {
+    const viewport = navRef.current?.closest<HTMLElement>('[data-slot="scroll-area-viewport"]');
+    if (!viewport) return;
+    const saved = savedScroll[scrollKey];
+    if (saved !== undefined) viewport.scrollTop = saved;
+
     const link = activeRef.current;
-    const viewport = link?.closest<HTMLElement>('[data-slot="scroll-area-viewport"]');
-    if (!link || !viewport) return;
-    const delta =
-      link.getBoundingClientRect().top -
-      viewport.getBoundingClientRect().top -
-      viewport.clientHeight / 3;
-    viewport.scrollTop = Math.max(0, viewport.scrollTop + delta);
-  }, [active]);
+    if (link) {
+      const v = viewport.getBoundingClientRect();
+      const l = link.getBoundingClientRect();
+      const margin = 48;
+      if (saved === undefined) {
+        viewport.scrollTop = Math.max(0, viewport.scrollTop + l.top - v.top - viewport.clientHeight / 3);
+      } else if (l.top < v.top + margin) {
+        viewport.scrollTop += l.top - v.top - margin;
+      } else if (l.bottom > v.bottom - margin) {
+        viewport.scrollTop += l.bottom - v.bottom + margin;
+      }
+    }
+    savedScroll[scrollKey] = viewport.scrollTop;
+
+    const onScroll = () => {
+      savedScroll[scrollKey] = viewport.scrollTop;
+    };
+    viewport.addEventListener('scroll', onScroll, { passive: true });
+    return () => viewport.removeEventListener('scroll', onScroll);
+  }, [scrollKey, active]);
 
   // Should a page ever sit in two groups, only its first entry is marked as the
   // current page.
   let activeSeen = false;
 
   return (
-    <nav aria-label="Documentation" className="flex flex-col gap-5 px-3 pt-1 pb-6">
+    <nav ref={navRef} aria-label="Documentation" className="flex flex-col gap-5 px-3 pt-1 pb-6">
       {SITE.map((grp) => (
         <div key={grp.group}>
           <div className="mb-1 px-2.5 text-[0.68rem] font-semibold tracking-[0.08em] text-faint-foreground uppercase">
