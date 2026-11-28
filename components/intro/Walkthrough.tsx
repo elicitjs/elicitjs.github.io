@@ -17,6 +17,7 @@ import { Fragment, useEffect, useMemo, useRef, useState } from 'react';
 import * as elicit from '@elicit';
 import { chartThemeFor, useChartMode } from '../../lib/chartTheme';
 import { highlightLine, stepDiff } from '../../lib/specDiff';
+import { refLines } from '../../lib/codeRefs';
 import { FakePointer, type Gesture } from './pointer';
 import { STEPS, SEED, inkFor, jsonSpec, rules, schema, type Step } from './steps';
 
@@ -52,24 +53,6 @@ function fadeOut(slot: HTMLElement) {
 }
 
 /* ── The spec pane ──────────────────────────────────────────────────── */
-
-/** The lines a name in the text refers to: `move()` finds `move(`, `fill` the word. */
-const escapeRe = (s: string) => s.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
-function refLines(lines: string[], term: string): Set<number> {
-  const call = term.match(/^([\w.]+)\(/);
-  const quoted = term.match(/"[^"]+":\s*"[^"]+"/);
-  const tries = [
-    ...(call ? [new RegExp(`\\b${escapeRe(call[1])}\\(`), new RegExp(`\\b${escapeRe(call[1])}\\b`)] : []),
-    ...(quoted ? [new RegExp(escapeRe(quoted[0]))] : []),
-    ...(!call && !quoted ? [new RegExp(`\\b${escapeRe(term)}\\b`)] : []),
-  ];
-  for (const re of tries) {
-    const hits = new Set<number>();
-    lines.forEach((l, i) => { if (re.test(l)) hits.add(i); });
-    if (hits.size) return hits;
-  }
-  return new Set();
-}
 
 /** A line's own indent, as padding, so a wrapped line hangs under where it started. */
 const indentOf = (text: string) => {

@@ -1,9 +1,19 @@
 'use client';
 
-import { useMemo, useState, type CSSProperties, type KeyboardEvent, type MouseEvent } from 'react';
+import { useEffect, useMemo, useRef, useState, type CSSProperties, type KeyboardEvent, type MouseEvent } from 'react';
 import { Highlight } from 'prism-react-renderer';
 import { codeTheme } from '../lib/codeTheme';
 import { findBlocks, findFolds, type Block, type Fold } from '../lib/folds';
+import { registerPanel } from '../lib/codeRefs';
+
+/** The nearest box between `el` and its card or section that scrolls its code. */
+function scrollerOf(el: HTMLElement): HTMLElement | null {
+  for (let n: HTMLElement | null = el; n && !n.matches('.card, section, main, body'); n = n.parentElement) {
+    const { overflowY } = getComputedStyle(n);
+    if ((overflowY === 'auto' || overflowY === 'scroll') && n.scrollHeight > n.clientHeight) return n;
+  }
+  return null;
+}
 
 type Props = {
   code: string;
@@ -42,6 +52,20 @@ export function FoldedCode({ code, language, className = '', style, open: given,
     else next.add(block.start);
     setClosed(next);
   };
+  // Lines a name in the prose points at (lib/codeRefs.ts). A fold opens while
+  // it hides one, and the panel scrolls to the first.
+  const [refs, setRefs] = useState<Set<number> | null>(null);
+  const preRef = useRef<HTMLPreElement>(null);
+  useEffect(() => registerPanel({ el: () => preRef.current, lines: code.split('\n'), set: setRefs }), [code]);
+  const pointsInto = (start: number, end: number) => !!refs && [...refs].some((r) => r > start && r <= end);
+  useEffect(() => {
+    const hit = refs && preRef.current?.querySelector<HTMLElement>('.is-ref');
+    const box = hit && scrollerOf(hit);
+    if (!hit || !box) return;
+    const at = hit.getBoundingClientRect(), view = box.getBoundingClientRect();
+    if (at.top >= view.top && at.bottom <= view.bottom) return;
+    box.scrollTo({ top: box.scrollTop + at.top - view.top - box.clientHeight * 0.3, behavior: 'smooth' });
+  }, [refs]);
   const lineStarts = useMemo(() => {
     const starts = [0];
     for (let i = 0; i < code.length; i++) if (code[i] === '\n') starts.push(i + 1);
@@ -93,6 +117,7 @@ export function FoldedCode({ code, language, className = '', style, open: given,
     <Highlight theme={codeTheme} code={code} language={language}>
       {({ className: highlight, style: plain, tokens, getLineProps, getTokenProps }) => (
         <pre
+          ref={preRef}
           className={`${className} ${highlight}`}
           style={{ ...plain, ...style }}
           onClick={onPick ? pick : undefined}
@@ -113,7 +138,7 @@ export function FoldedCode({ code, language, className = '', style, open: given,
               line.map((token, k) => <span key={`${key}-${k}`} {...getTokenProps({ token })} />);
             for (let i = 0; i < tokens.length; i++) {
               const fold = foldOf(i);
-              if (fold && !open.has(fold.start)) {
+              if (fold && !open.has(fold.start) && !pointsInto(fold.start - 1, fold.end)) {
                 rows.push(
                   <button key={i} type="button" className="code-fold" onClick={() => toggle(fold)}>
                     {indent(i)}… {plural(fold.rows)}
@@ -123,10 +148,10 @@ export function FoldedCode({ code, language, className = '', style, open: given,
                 continue;
               }
               const block = blocks.get(i);
-              const isClosed = !!block && closed.has(block.start);
+              const isClosed = !!block && closed.has(block.start) && !pointsInto(block.start, block.end);
               const props = getLineProps({ line: tokens[i] });
               rows.push(
-                <div key={i} {...props} className={`${props.className}${block ? ' has-fold' : ''}`} data-line={i}>
+                <div key={i} {...props} className={`${props.className}${block ? ' has-fold' : ''}${refs?.has(i) ? ' is-ref' : ''}`} data-line={i}>
                   {block ? (
                     <button
                       type="button"

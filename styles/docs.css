@@ -1339,6 +1339,18 @@
     text-underline-offset: 0.2em;
   }
   .walk-step.is-active code.walk-ref:hover { border-color: var(--syntax-number); }
+  /* The same on every other page: a name in a section's prose (lib/codeRefs.ts)
+     and the lines of that section's code it names. */
+  code.inline.code-ref {
+    cursor: help;
+    text-decoration: underline dotted color-mix(in oklab, var(--syntax-number) 70%, transparent);
+    text-underline-offset: 0.2em;
+  }
+  code.inline.code-ref:hover { border-color: var(--syntax-number); }
+  .token-line.is-ref {
+    background: color-mix(in oklab, var(--syntax-number) 20%, transparent);
+    box-shadow: inset 3px 0 0 var(--syntax-number);
+  }
   @keyframes walk-add { from { background: color-mix(in oklab, var(--brand) 40%, transparent); } }
   @keyframes walk-del { 0%, 55% { opacity: 1; max-height: 3em; } 100% { opacity: 0; max-height: 0; } }
 

@@ -17,6 +17,7 @@ import { DocsNav, PageAnchors, type Anchor } from "@/components/site/docs-nav";
 import { LabCredit, SiteBrand } from "@/components/site/brand";
 import { ThemeToggle } from "@/components/site/theme";
 import { Badge } from "@/components/ui/badge";
+import { useCodeRefs } from "@/components/CodeRefs";
 
 const GITHUB = "https://github.com/elicitjs/elicitjs";
 
@@ -61,6 +62,9 @@ export function DocShell({ children, chromeless }: Props) {
   }, [pathname]);
 
   const current = useCurrentSection(anchors);
+
+  // Inline code in a section's prose lights the lines it names in that section's code.
+  useCodeRefs();
 
   // Close the mobile sheet whenever the route changes.
   useEffect(() => setOpen(false), [pathname]);
